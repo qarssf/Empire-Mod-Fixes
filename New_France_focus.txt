@@ -1,0 +1,344 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = {
+	id = quebec_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 0
+			tag = QUE
+		}
+	}
+	
+	default = no
+
+##############################################
+### GENERIC CONTENT (FOR EVERY START DATE) ###
+##############################################
+
+	focus = {
+		id = QUE_de_calliere_appointment
+		icon = GFX_goal_generic_demand_territory
+		x = 10
+		y = 0
+		cost = 10
+
+		completion_reward = {
+			add_political_power = 100
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_the_five_colonies
+		icon = GFX_goal_unknown
+		x = 8
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_de_calliere_appointment }
+		relative_position_id = QUE_de_calliere_appointment
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_develop_canada
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_the_five_colonies }
+		relative_position_id = QUE_the_five_colonies
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_invest_in_acadia
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_the_five_colonies }
+		relative_position_id = QUE_the_five_colonies
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_invest_in_plaisance
+		icon = GFX_goal_unknown
+		x = 4
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_the_five_colonies }
+		relative_position_id = QUE_the_five_colonies
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_protect_the_fisheries
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_invest_in_plaisance }
+		relative_position_id = QUE_invest_in_plaisance
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_settle_louisiana
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_the_five_colonies }
+		relative_position_id = QUE_the_five_colonies
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_found_bilocci
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_settle_louisiana }
+		relative_position_id = QUE_settle_louisiana
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_claims_in_hudson_bay
+		icon = GFX_goal_unknown
+		x = -4
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_the_five_colonies }
+		relative_position_id = QUE_the_five_colonies
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_the_road_westwards
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = { focus = QUE_claims_in_hudson_bay }
+		relative_position_id = QUE_claims_in_hudson_bay
+
+		completion_reward = {
+		}
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_develop_the_mining_industry
+		icon = GFX_goal_unknown
+		x = -1
+		y = 3
+		relative_position_id = QUE_the_five_colonies
+		mutually_exclusive = { focus = QUE_limit_prospecting }
+
+		cost = 10
+		
+		completion_reward = {
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_french_gunsmiths
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = QUE_develop_the_mining_industry
+		prerequisite = { focus = QUE_develop_the_mining_industry }
+
+		cost = 10
+		
+		completion_reward = {
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_canadian_nail_industry
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = QUE_french_gunsmiths
+		prerequisite = { focus = QUE_french_gunsmiths }
+
+		cost = 10
+
+		completion_reward = {
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_deal_with_card_money
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = QUE_develop_the_mining_industry
+		prerequisite = { focus = QUE_develop_the_mining_industry focus = QUE_limit_prospecting }
+
+		cost = 10
+
+		completion_reward = {
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_limit_prospecting
+		icon = GFX_goal_unknown
+		x = 1
+		y = 3
+		relative_position_id = QUE_the_five_colonies
+		mutually_exclusive = { focus = QUE_develop_the_mining_industry }
+
+		cost = 10
+
+		completion_reward = {
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_barley_hop_and_beer
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = QUE_limit_prospecting
+		prerequisite = { focus = QUE_limit_prospecting }
+
+		cost = 10
+
+		completion_reward = {
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_breadbasket_of_the_metropole
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = QUE_barley_hop_and_beer
+		prerequisite = { focus = QUE_barley_hop_and_beer }
+
+		cost = 10
+
+		completion_reward = {
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = QUE_allocate_funding
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = QUE_breadbasket_of_the_metropole
+		prerequisite = { focus = QUE_breadbasket_of_the_metropole focus = QUE_canadian_nail_industry }
+
+		cost = 10
+
+		completion_reward = {
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+}

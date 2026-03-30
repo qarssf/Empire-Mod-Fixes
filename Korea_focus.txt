@@ -1,0 +1,3657 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = { 
+	id = Korea_focus
+	
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = KOR
+		}
+	}
+
+	default = no
+	
+	continuous_focus_position = { x = 50 y = 1300 }
+	
+	focus = {
+		id = KOR_last_years_of_the_ulbyeong_famine
+		icon = GFX_goal_famine
+		x = 10
+		y = 0
+
+		cost = 4.3
+		
+		completion_reward = {
+			country_event = korea.1
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		} 
+	}
+
+	focus = {
+		id = KOR_protect_the_people
+		icon = GFX_give_alms_to_the_peasants
+		x = 0
+		y = 1
+		relative_position_id = KOR_last_years_of_the_ulbyeong_famine
+		prerequisite = { focus = KOR_last_years_of_the_ulbyeong_famine }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_political_power = -100
+			add_stability = 0.10
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_amnesty_for_political_prisoners
+		icon = GFX_generic_law
+		x = -1
+		y = 1
+		relative_position_id = KOR_protect_the_people
+		prerequisite = { focus = KOR_protect_the_people }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			country_event = korea.2
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_dealing_with_taxes
+		icon = GFX_focus_ETH_adopt_the_lira
+		x = -1
+		y = 1
+		relative_position_id = KOR_amnesty_for_political_prisoners
+		prerequisite = { focus = KOR_amnesty_for_political_prisoners }
+
+		cost = 8
+		
+		completion_reward = {
+			country_event = korea.3
+		}
+		
+		ai_will_do = { 
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = KOR_hold_national_rituals
+		icon = GFX_korean_rituals
+		x = 1
+		y = 1
+		relative_position_id = KOR_protect_the_people
+		prerequisite = { focus = KOR_protect_the_people }
+
+		cost = 8
+		
+		completion_reward = {
+			country_event = korea.4
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_boost_the_national_morale
+		icon = GFX_generic_lets_go_korea
+		x = 1
+		y = 1
+		relative_position_id = KOR_hold_national_rituals
+		prerequisite = { focus = KOR_hold_national_rituals }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.10
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_combat_the_epidemic
+		icon = GFX_focus_generic_concessions
+		x = -1
+		y = 1
+		relative_position_id = KOR_hold_national_rituals
+		prerequisite = { focus = KOR_hold_national_rituals focus = KOR_amnesty_for_political_prisoners }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_political_power = -50
+			add_manpower = 1000
+			add_stability = 0.05
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_end_of_the_ulbyeong_famine
+		icon = GFX_generic_bread
+		x = 0
+		y = 1
+		relative_position_id = KOR_combat_the_epidemic
+		prerequisite = { focus = KOR_combat_the_epidemic }
+
+		cost = 5
+		
+		completion_reward = {
+			remove_ideas = KOR_ulbyeong_famine
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_cases_of_harsh_punishment
+		icon = GFX_indentured_servitude
+		x = -2
+		y = 1
+		relative_position_id = KOR_end_of_the_ulbyeong_famine
+		prerequisite = { focus = KOR_end_of_the_ulbyeong_famine }
+
+		cost = 5
+		
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			country_event = korea.6
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_construct_the_royal_archive
+		icon = GFX_scroll_icon
+		x = 0
+		y = 1
+		relative_position_id = KOR_end_of_the_ulbyeong_famine
+		prerequisite = { focus = KOR_end_of_the_ulbyeong_famine }
+
+		cost = 10
+		
+		completion_reward = {
+			add_political_power = -50
+			add_ideas = KOR_royal_archive
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_the_academic_scandal
+		icon = GFX_goal_draft_constitution
+		x = 2
+		y = 1
+		relative_position_id = KOR_end_of_the_ulbyeong_famine
+		prerequisite = { focus = KOR_end_of_the_ulbyeong_famine }
+
+		cost = 5
+		
+		completion_reward = {
+			country_event = korea.21
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_organise_the_royal_lineage
+		icon = GFX_generic_crown_icon
+		x = 0
+		y = 1
+		relative_position_id = KOR_construct_the_royal_archive
+		prerequisite = { focus = KOR_the_academic_scandal focus = KOR_construct_the_royal_archive focus = KOR_cases_of_harsh_punishment }
+
+		cost = 10
+		
+		completion_reward = {
+			add_ideas = KOR_royal_lineage
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_celebrate_our_royal_history
+		icon = GFX_generic_democratic_monarchism
+		x = 0
+		y = 1
+		relative_position_id = KOR_organise_the_royal_lineage
+		prerequisite = { focus = KOR_organise_the_royal_lineage }
+		prerequisite = { focus = KOR_construct_the_royal_archive }
+
+		cost = 10
+		
+		completion_reward = {
+			add_political_power = -50
+			swap_ideas = {
+				remove_idea = KOR_royal_lineage
+				add_idea = KOR_royal_lineage2
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_future_of_the_joseon_kingdom
+		icon = GFX_goal_future_of_the_joseon_kingdom
+		x = 0
+		y = 1
+		relative_position_id = KOR_celebrate_our_royal_history
+		prerequisite = { focus = KOR_celebrate_our_royal_history }
+
+		cost = 5
+		
+		completion_reward = {
+			country_event = korea.22
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+###############################
+#### King Sukjong's Branch ####
+###############################
+
+	focus = {
+		id = KOR_continuation_of_king_sukjongs_reign
+		icon = GFX_focus_generic_monarchy_1
+		x = -7
+		y = 1
+		relative_position_id = KOR_future_of_the_joseon_kingdom
+		prerequisite = { focus = KOR_future_of_the_joseon_kingdom }
+		mutually_exclusive = { focus = KOR_beginnings_of_peasant_rebellion }
+
+		available = {
+			always = no
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		completion_reward = { 
+		    add_political_power = 50
+		    add_stability = 0.05
+			if = {
+				limit = {
+					KOR_Sukjong = {
+						is_country_leader = yes
+						has_trait = KOR_vulnerable_king
+					} 
+				}
+				remove_trait = {
+					character = KOR_Sukjong
+					ideology = despotism
+					trait = KOR_vulnerable_king
+				} 
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_commemoration_of_historical_figures
+		icon = GFX_focus_aristocrats
+		x = -1
+		y = 1
+		relative_position_id = KOR_continuation_of_king_sukjongs_reign
+		prerequisite = { focus = KOR_continuation_of_king_sukjongs_reign }
+
+		cost = 8
+		
+		completion_reward = { 
+		    country_event = korea.23
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_appoint_new_courtiers
+		icon = GFX_noble_icon
+		x = 1
+		y = 1
+		relative_position_id = KOR_continuation_of_king_sukjongs_reign
+		prerequisite = { focus = KOR_continuation_of_king_sukjongs_reign }
+
+		cost = 8
+		
+		completion_reward = { 
+		    add_political_power = 100
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_queen_inhyeons_death
+		icon = GFX_goal_queen_inchyeon
+		x = -1
+		y = 1
+		relative_position_id = KOR_appoint_new_courtiers
+		prerequisite = { focus = KOR_commemoration_of_historical_figures focus = KOR_appoint_new_courtiers }
+
+		available = {
+			always = no
+		}
+
+		cost = 5
+		
+		completion_reward = { 
+			custom_effect_tooltip = focus_will_be_autocompleted
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_destroy_the_southerner_faction
+		icon = GFX_purge_the_court
+		x = -1
+		y = 1
+		relative_position_id = KOR_queen_inhyeons_death
+		prerequisite = { focus = KOR_queen_inhyeons_death }
+		mutually_exclusive = { focus = KOR_destroy_the_westerner_faction }
+	
+		cost = 10
+		
+		completion_reward = { 
+			add_stability = -0.05
+			add_political_power = -80
+			add_manpower = -1000
+			add_popularity = {
+			    ideology = neutrality
+			    popularity = -0.10
+		    }
+			add_popularity = {
+			    ideology = aristocracy
+			    popularity = -0.10
+		    }
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -1
+			}
+			remove_ideas = KOR_factionalism_within_the_court
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_destroy_the_westerner_faction
+		icon = GFX_goal_dissolve_parliament
+		x = 1
+		y = 1
+		relative_position_id = KOR_queen_inhyeons_death
+		prerequisite = { focus = KOR_queen_inhyeons_death }
+		mutually_exclusive = { focus = KOR_destroy_the_southerner_faction }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_manpower = -1500
+			add_political_power = -100
+		    add_stability = -0.02
+			add_war_support = 0.05 
+			add_popularity = {
+			    ideology = neutrality
+			    popularity = -0.15
+		    }
+			add_popularity = {
+			    ideology = aristocracy
+			    popularity = -0.15
+		    }
+			add_power_balance_value = {
+				id = KOR_factions
+				value = 0.5
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_expand_the_internal_court
+		icon = GFX_focus_generic_improve_the_administration
+		x = -1
+		y = 1
+		relative_position_id = KOR_destroy_the_westerner_faction
+		prerequisite = { focus = KOR_destroy_the_westerner_faction focus = KOR_destroy_the_southerner_faction }
+	
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+		    add_stability = 0.05
+			add_war_support = 0.05
+			add_political_power = 50
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+######################################
+### Mundane Domestic Issues Branch ###
+######################################
+
+	focus = {
+		id = KOR_mundane_domestic_issues
+		icon = GFX_goal_korea_politics
+		x = -3
+		y = 1
+		relative_position_id = KOR_expand_the_internal_court
+		prerequisite = { focus = KOR_expand_the_internal_court }
+		mutually_exclusive = { focus = KOR_reform_the_country }
+	
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+		    add_stability = 0.10
+			add_political_power = 120
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_slow_tax_measures
+		icon = GFX_focus_ITA_devaluate_the_lire
+		x = -1
+		y = 1
+		relative_position_id = KOR_mundane_domestic_issues
+		prerequisite = { focus = KOR_mundane_domestic_issues }
+	
+		cost = 10
+		
+		completion_reward = { 
+			swap_ideas = {
+				remove_idea = KOR_inefficient_tax_system
+				add_idea = KOR_slow_tax_system
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_minor_purges
+		icon = GFX_focus_ITA_moschettieri_del_duce
+		x = 1
+		y = 1
+		relative_position_id = KOR_mundane_domestic_issues
+		prerequisite = { focus = KOR_mundane_domestic_issues }
+	
+		cost = 10
+		
+		completion_reward = { 
+			country_event = korea.27
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_reshuffle_the_cabinet
+		icon = GFX_control_parliament
+		x = -1
+		y = 1
+		relative_position_id = KOR_minor_purges
+		prerequisite = { focus = KOR_minor_purges focus = KOR_slow_tax_measures }
+	
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			add_timed_idea = {
+				idea = KOR_reshuffled_cabinet
+				days = 100
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_kaesong_tax_issue
+		icon = GFX_generic_tax_issues
+		x = -1
+		y = 1
+		relative_position_id = KOR_reshuffle_the_cabinet
+		prerequisite = { focus = KOR_reshuffle_the_cabinet }
+	
+		cost = 4.3
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = { 
+			add_political_power = -50
+			random_owned_controlled_state = {
+				prioritize = {
+					525
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_naval_budget_cuts
+		icon = GFX_focus_ARG_anti_corruption_policies
+		x = 1
+		y = 1
+		relative_position_id = KOR_reshuffle_the_cabinet
+		prerequisite = { focus = KOR_reshuffle_the_cabinet }
+	
+		cost = 4.3
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			navy_experience = -20
+			add_war_support = -0.05
+			add_political_power = 120
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_plan_bureaucratic_reforms
+		icon = GFX_focus_generic_treaty
+		x = -1
+		y = 1
+		relative_position_id = KOR_naval_budget_cuts
+		prerequisite = { focus = KOR_naval_budget_cuts focus = KOR_kaesong_tax_issue }
+	
+		cost = 10
+		
+		completion_reward = { 
+			add_political_power = -100
+			swap_ideas = {
+				remove_idea = KOR_endemic_regional_corruption
+				add_idea = KOR_low_regional_corruption
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 50 
+		}
+	}
+
+	focus = {
+		id = KOR_commemorate_ming_emperors
+		icon = GFX_goal_ming_flag
+		x = 0
+		y = 1
+		relative_position_id = KOR_plan_bureaucratic_reforms
+		prerequisite = { focus = KOR_plan_bureaucratic_reforms }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			add_war_support = 0.03
+			add_ideas = KOR_ming_commemoration
+			reverse_add_opinion_modifier = {
+				target = CHI
+				modifier = KOR_commemorated_ming_emperors
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_pardon_the_westerner_faction
+		icon = GFX_focus_generic_self_management
+		x = -1
+		y = 1
+		relative_position_id = KOR_commemorate_ming_emperors
+		prerequisite = { focus = KOR_commemorate_ming_emperors }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			add_manpower = 100
+		    add_stability = 0.03
+			add_political_power = 25
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_border_control
+		icon = GFX_china_korea_border
+		x = 0
+		y = 1
+		relative_position_id = KOR_pardon_the_westerner_faction
+		prerequisite = { focus = KOR_pardon_the_westerner_faction }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			add_war_support = 0.05
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 9795
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 9918
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 11835
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_rehabilitate_historical_figures
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 1
+		y = 1
+		relative_position_id = KOR_commemorate_ming_emperors
+		prerequisite = { focus = KOR_commemorate_ming_emperors }
+
+		cost = 8
+
+		completion_reward = { 
+			country_event = korea.28
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_strengthen_ulleungdo_and_liancourt
+		icon = GFX_focus_GRE_a_land_of_mountains
+		x = 0
+		y = 1
+		relative_position_id = KOR_rehabilitate_historical_figures
+		prerequisite = { focus = KOR_rehabilitate_historical_figures }
+
+		cost = 5
+
+		completion_reward = { 
+			add_political_power = 50
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_stage_succession_crisis
+		icon = GFX_goal_generic_crown
+		x = -1
+		y = 1
+		relative_position_id = KOR_strengthen_ulleungdo_and_liancourt
+		prerequisite = { focus = KOR_strengthen_ulleungdo_and_liancourt focus = KOR_border_control }
+
+		cost = 4.3
+
+		completion_reward = { 
+			country_event = korea.29
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+##########################
+### New Reforms Branch ###
+##########################
+
+	focus = {
+		id = KOR_reform_the_country
+		icon = GFX_goal_korea_sign_document
+		x = 3
+		y = 1
+		relative_position_id = KOR_expand_the_internal_court
+		prerequisite = { focus = KOR_expand_the_internal_court }
+		mutually_exclusive = { focus = KOR_mundane_domestic_issues }
+	
+		cost = 10
+
+		completion_reward = { 
+		    add_political_power = -70
+			add_country_leader_trait = KOR_passionate_reformer
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_restore_balance_of_factions
+		icon = GFX_goal_generic_neutrality_focus
+		x = 0
+		y = 1
+		relative_position_id = KOR_reform_the_country
+		prerequisite = { focus = KOR_reform_the_country }
+	
+		cost = 5
+		
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+		    add_political_power = 50
+			country_event = korea.32
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_reorganise_tax_system
+		icon = GFX_sign_papers
+		x = -1
+		y = 1
+		relative_position_id = KOR_restore_balance_of_factions
+		prerequisite = { focus = KOR_restore_balance_of_factions }
+	
+		cost = 10
+
+		completion_reward = { 
+			remove_ideas = KOR_inefficient_tax_system
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_tax_relief_measuers
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 0
+		y = 1
+		relative_position_id = KOR_reorganise_tax_system
+		prerequisite = { focus = KOR_reorganise_tax_system }
+	
+		cost = 5
+		
+		search_filters = { FOCUS_FILTER_STABILITY }
+
+		completion_reward = { 
+		    add_political_power = -100
+			add_stability = 0.10
+			add_timed_idea = {
+				idea = KOR_tax_reliefs_idea
+				days = 80
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_reinstate_hall_of_worthies
+		icon = GFX_research_empire
+		x = 1
+		y = 1
+		relative_position_id = KOR_restore_balance_of_factions
+		prerequisite = { focus = KOR_restore_balance_of_factions }
+	
+		cost = 10
+		
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = { 
+			add_research_slot = 1
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_korean_physiocratic_theories
+		icon = GFX_scroll_icon
+		x = 0
+		y = 1
+		relative_position_id = KOR_reinstate_hall_of_worthies
+		prerequisite = { focus = KOR_reinstate_hall_of_worthies }
+	
+		cost = 5
+
+		completion_reward = { 
+			add_political_power = -25
+			country_event = korea.33
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_war_against_corruption
+		icon = GFX_goal_integrate_illegal_trade_circuits
+		x = -1
+		y = 1
+		relative_position_id = KOR_korean_physiocratic_theories
+		prerequisite = { focus = KOR_korean_physiocratic_theories focus = KOR_tax_relief_measuers }
+	
+		cost = 10
+		
+		completion_reward = { 
+		    add_political_power = -50
+			remove_ideas = KOR_endemic_regional_corruption
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_initiate_land_reforms
+		icon = GFX_goal_farmer_cart
+		x = -2
+		y = 1
+		relative_position_id = KOR_war_against_corruption
+		prerequisite = { focus = KOR_war_against_corruption }
+	
+		cost = 10
+		
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = { 
+		    add_political_power = -50
+			add_stability = 0.05
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_reissue_commodity_money
+		icon = GFX_money
+		x = 0
+		y = 1
+		relative_position_id = KOR_war_against_corruption
+		prerequisite = { focus = KOR_war_against_corruption }
+	
+		cost = 10
+		
+		completion_reward = { 
+			add_political_power = -25
+			add_ideas = KOR_currency_market
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_rationalise_the_defense_budget
+		icon = GFX_goal_generic_cavalry
+		x = 2
+		y = 1
+		relative_position_id = KOR_war_against_corruption
+		prerequisite = { focus = KOR_war_against_corruption }
+	
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_NAVY_XP }
+		
+		completion_reward = { 
+		    add_political_power = -25
+			add_war_support = 0.10
+			army_experience = 10
+			navy_experience = 10
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_end_factionalism
+		icon = GFX_focus_SWE_refuge_from_war
+		x = 0
+		y = 1
+		relative_position_id = KOR_reissue_commodity_money
+		prerequisite = { focus = KOR_rationalise_the_defense_budget focus = KOR_initiate_land_reforms focus = KOR_reissue_commodity_money }
+	
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		
+		completion_reward = { 
+		    add_political_power = 50
+			add_stability = 0.05
+			remove_ideas = KOR_factionalism_within_the_court
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_increase_grain_production
+		icon = GFX_generic_wheat
+		x = 0
+		y = 1
+		relative_position_id = KOR_end_factionalism
+		prerequisite = { focus = KOR_end_factionalism }
+	
+		cost = 10
+		
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_reform_the_civil_service
+		icon = GFX_lady_justice_icon
+		x = 0
+		y = 1
+		relative_position_id = KOR_increase_grain_production
+		prerequisite = { focus = KOR_increase_grain_production }
+	
+		cost = 10
+		
+		completion_reward = { 
+			add_ideas = KOR_reformed_civil_service
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_the_hermit_kingdom
+		icon = GFX_goal_korea_flag
+		x = -2
+		y = 1
+		relative_position_id = KOR_reform_the_civil_service
+		prerequisite = { focus = KOR_stage_succession_crisis focus = KOR_reform_the_civil_service  }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			add_political_power = 100
+            add_stability = 0.20
+			add_war_support = 0.10
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.15
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}	
+
+#######################
+### Domestic Branch ###
+#######################
+
+	focus = {
+		id = KOR_focus_on_domestic_issues
+		icon = GFX_goal_generic_balance
+		x = 20
+		y = 0
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+            add_political_power = 50
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+	
+	focus = {
+		id = KOR_develop_roads
+		icon = GFX_roman_road_icon
+		x = 0
+		y = 1
+		relative_position_id = KOR_focus_on_domestic_issues
+		prerequisite = { focus = KOR_focus_on_domestic_issues }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			add_political_power = -50
+            random_owned_controlled_state = {
+				prioritize = {
+					1059
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_improve_the_great_yeongam_road
+		icon = GFX_goal_construct_road
+		x = 0
+		y = 1
+		relative_position_id = KOR_develop_roads
+		prerequisite = { focus = KOR_develop_roads }
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+            random_owned_controlled_state = {
+				prioritize = {
+					525
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					1056
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					1056
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_expand_sungkyunkwan 
+		icon = GFX_research_empire
+		x = 0
+		y = 1
+		relative_position_id = KOR_improve_the_great_yeongam_road
+		prerequisite = { focus = KOR_improve_the_great_yeongam_road }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = { 
+			add_ideas = KOR_expanded_sungkyunkwan
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_expand_metallurgy_in_hanseong
+		icon = GFX_goal_generic_iron_focus
+		x = 0
+		y = 1
+		relative_position_id = KOR_expand_sungkyunkwan
+		prerequisite = { focus = KOR_expand_sungkyunkwan }
+
+		cost = 7.2
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = industry_tech_bonus
+				bonus = 0.5
+				uses = 2
+				category = industry
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					525
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+###########################
+### Drain Swamps Branch ###
+###########################
+
+	focus = {
+		id = KOR_drain_swamps
+		icon = GFX_focus_generic_land_reclamation
+		x = -3
+		y = 1
+		relative_position_id = KOR_focus_on_domestic_issues
+		prerequisite = { focus = KOR_focus_on_domestic_issues }
+		mutually_exclusive = { focus = KOR_the_yangban_business }
+
+		cost = 5
+
+		completion_reward = { 
+			add_stability = 0.05
+			add_political_power = -50
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					526
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+		
+		ai_will_do = { 
+			factor = -1000
+		}
+	}
+
+	focus = {
+		id = KOR_expand_the_farms
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 0
+		y = 1
+		relative_position_id = KOR_drain_swamps
+		prerequisite = { focus = KOR_drain_swamps }
+
+		cost = 7.2
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+######################
+### Yangban Branch ###
+######################
+
+	focus = {
+		id = KOR_the_yangban_business
+		icon = GFX_goal_merchant
+		x = -5
+		y = 1
+		relative_position_id = KOR_focus_on_domestic_issues
+		prerequisite = { focus = KOR_focus_on_domestic_issues }
+		mutually_exclusive = { focus = KOR_drain_swamps }
+
+		cost = 5
+
+		completion_reward = { 
+			add_political_power = 150
+			add_stability = -0.05
+		}
+		
+		ai_will_do = { 
+			factor = 100 
+		}
+	}
+
+	focus = {
+		id = KOR_yangban_investments
+		icon = GFX_focus_ETH_adopt_the_lira
+		x = 0
+		y = 1
+		relative_position_id = KOR_the_yangban_business
+		prerequisite = { focus = KOR_the_yangban_business }
+
+		cost = 10
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 100 
+		}
+	}
+
+######################################################
+### Shared Branch between Yangban and Drain Swamps ###
+######################################################
+
+	focus = {
+		id = KOR_import_chinese_books
+		icon = GFX_acquire_books_qing
+		x = -1
+		y = 1
+		relative_position_id = KOR_expand_the_farms
+		prerequisite = { focus = KOR_expand_the_farms focus = KOR_yangban_investments }
+
+		cost = 5
+
+		completion_reward = { 
+			country_event = korea.19
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_reform_the_calendar_system
+		icon = GFX_generic_education
+		x = 0
+		y = 1
+		relative_position_id = KOR_import_chinese_books
+		prerequisite = { focus = KOR_import_chinese_books }
+
+		cost = 10
+
+		completion_reward = { 
+			country_event = korea.20
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+#############################
+### Southern Trade Branch ###
+#############################
+
+	focus = {
+		id = KOR_revitalize_domestic_economy
+		icon = GFX_economic_stuff
+		x = 4
+		y = 1
+		relative_position_id = KOR_focus_on_domestic_issues
+		prerequisite = { focus = KOR_focus_on_domestic_issues }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					525
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_support_the_southern_manufacturers
+		icon = GFX_focus_DEN_limited_regulations
+		x = 1
+		y = 1
+		relative_position_id = KOR_revitalize_domestic_economy
+		prerequisite = { focus = KOR_revitalize_domestic_economy }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					1057
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					1063
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_southern_mining
+		icon = GFX_focus_generic_mining_industry
+		x = -1
+		y = 1
+		relative_position_id = KOR_revitalize_domestic_economy
+		prerequisite = { focus = KOR_revitalize_domestic_economy }
+
+		cost = 7.2
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					1063
+				}
+				add_resource = {
+					type = steel
+					amount = 8
+				}
+				add_resource = {
+					type = tungsten
+					amount = 10
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_build_up_dockyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = -1
+		y = 1
+		relative_position_id = KOR_southern_mining
+		prerequisite = { focus = KOR_southern_mining }
+
+		cost = 7.2
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					1057
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_support_northern_merchants
+		icon = GFX_generic_invest_in_economy
+		x = -1
+		y = 1
+		relative_position_id = KOR_support_the_southern_manufacturers
+		prerequisite = { focus = KOR_support_the_southern_manufacturers focus = KOR_southern_mining }
+
+		cost = 7.2
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = textile_manufactury
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					1059
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = logging_camp
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_expand_fishing_industries
+		icon = GFX_goal_generic_fish
+		x = 1
+		y = 1
+		relative_position_id = KOR_support_the_southern_manufacturers
+		prerequisite = { focus = KOR_support_the_southern_manufacturers }
+
+		cost = 10
+
+		completion_reward = { 
+			add_ideas = KOR_expanded_fishing
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+	focus = {
+		id = KOR_expand_overseas_trade
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 0
+		y = 1
+		relative_position_id = KOR_support_northern_merchants
+		prerequisite = { focus = KOR_expand_fishing_industries focus = KOR_build_up_dockyards focus = KOR_support_northern_merchants }
+
+		cost = 10
+
+		completion_reward = {
+			add_ideas = KOR_ginseng_trade
+		}
+		
+		ai_will_do = { 
+			factor = 10 
+		}
+	}
+
+########################
+#### Expansion Path ####
+########################
+
+	focus = {
+		id = KOR_seek_territorial_expansion
+		icon = GFX_goal_generic_political_pressure
+		x = 0
+		y = 0
+		mutually_exclusive = { focus = KOR_stay_loyal_to_the_qing }
+	
+		available = {
+			NOT = {
+				has_idea = KOR_ulbyeong_famine
+			}
+			has_war_support > 0.50
+		}
+
+		cost = 10
+
+		completion_reward = { 
+			leave_faction = yes
+			CHI = {
+				end_puppet = KOR
+				country_event = {
+					id = korea.8
+					days = 20
+				}
+			}
+		    add_stability = -0.10
+			remove_ideas = pays_tribute_2
+			add_ideas = KOR_preparing_for_war
+		}
+		
+		ai_will_do = { 
+			factor = -10000
+		}
+	}
+
+	focus = {
+		id = KOR_prepare_for_war
+		icon = GFX_soldiers_marching_korea
+		x = 0
+		y = 1
+		relative_position_id = KOR_seek_territorial_expansion
+		prerequisite = { focus = KOR_seek_territorial_expansion }
+
+		cost = 5
+		
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			add_ideas = partial_economic_mobilisation
+			add_war_support = 0.05		
+		}
+		
+		ai_will_do = { 
+			factor = -10000
+		}
+	}
+
+	focus = {
+		id = KOR_expand_production
+		icon = GFX_goal_generic_production2
+		x = 0
+		y = 1
+		relative_position_id = KOR_prepare_for_war
+		prerequisite = { focus = KOR_prepare_for_war }
+
+		cost = 10
+		
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}	
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = -10000
+		}
+	}
+
+##############################
+### Into China and Beyond! ###
+##############################
+
+	focus = {
+		id = KOR_into_china
+		icon = GFX_look_to_the_qing
+		x = -2
+		y = 1
+		relative_position_id = KOR_expand_production
+		prerequisite = { focus = KOR_expand_production }
+
+		cost = 2.2
+		
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			add_war_support = 0.05
+			add_state_claim = 716 # Liaotung
+			add_state_claim = 745 # Dalian
+		}
+		
+		ai_will_do = { 
+			factor = -10000
+		}
+	}
+
+	focus = {
+		id = KOR_raid_the_qing_border
+		icon = GFX_qing_flag_burning
+		x = 0
+		y = 1
+		relative_position_id = KOR_into_china
+		prerequisite = { focus = KOR_into_china }
+
+		available = {
+			has_army_manpower = {
+				size > 60000
+			}
+			CHI = {
+				exists = yes
+			}
+		}
+
+		bypass = {
+			CHI = {
+				exists = no
+			}
+		}
+
+		cost = 5
+		
+		completion_reward = { 
+			add_manpower = -5000
+			328 = { # Kirin
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+			716 = { # Liaotung
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+			717 = { # Sungkiang
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = -10000
+		}
+	}
+
+	focus = {
+		id = KOR_avenge_the_byeongja_war
+		icon = GFX_attack_the_qing
+		x = 0
+		y = 1
+		relative_position_id = KOR_raid_the_qing_border
+		prerequisite = { focus = KOR_raid_the_qing_border }
+
+		available = {
+			CHI = {
+				exists = yes
+			}
+		}
+
+		bypass = {
+			CHI = {
+				exists = no
+			}
+		}
+	
+		cost = 10
+		
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = { 
+			create_wargoal = {
+				type = annex_everything
+				target = CHI
+            }
+		}
+		
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = KOR_the_fate_of_china
+		icon = GFX_goal_fate_of_china
+		x = 0
+		y = 1
+		relative_position_id = KOR_avenge_the_byeongja_war
+		prerequisite = { focus = KOR_avenge_the_byeongja_war }
+
+		available = {
+			608 = { # Beijing
+				is_controlled_by = ROOT
+			}
+			CHI = { surrender_progress > 0.6 }
+		}
+	
+		cost = 5
+
+		completion_reward = { 
+			country_event = korea.16
+		}
+		
+		ai_will_do = { 
+			factor = 100000
+		}
+	}
+
+	focus = {
+		id = KOR_manchuria_is_ours
+		icon = GFX_manchurian_korea
+		x = 0
+		y = 1
+		relative_position_id = KOR_the_fate_of_china
+		prerequisite = { focus = KOR_the_fate_of_china }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = owns_manchuria	
+				328 = {
+					is_owned_and_controlled_by = KOR
+				}
+				408 = {
+					is_owned_and_controlled_by = KOR
+				}
+				409 = {
+					is_owned_and_controlled_by = KOR
+				}
+				560 = {
+					is_owned_and_controlled_by = KOR
+				}
+				561 = {
+					is_owned_and_controlled_by = KOR
+				}
+				655 = {
+					is_owned_and_controlled_by = KOR
+				}
+				657 = {
+					is_owned_and_controlled_by = KOR
+				}
+				714 = {
+					is_owned_and_controlled_by = KOR
+				}
+				715 = {
+					is_owned_and_controlled_by = KOR
+				}
+				716 = {
+					is_owned_and_controlled_by = KOR
+				}
+				717 = {
+					is_owned_and_controlled_by = KOR
+				}
+				745 = {
+					is_owned_and_controlled_by = KOR
+				}
+			}
+		}
+
+		bypass = {
+			hidden_trigger = {
+				has_country_flag = KOR_puppeted_china
+			}
+		}
+	
+		cost = 2.9
+
+		completion_reward = { 
+			country_event = korea.17
+		}
+		
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = KOR_return_of_goguryeo
+		icon = GFX_goal_generic_demand_territory
+		x = -1
+		y = 1
+		relative_position_id = KOR_manchuria_is_ours
+		prerequisite = { focus = KOR_manchuria_is_ours }
+		mutually_exclusive = { focus = KOR_successors_of_the_ming }
+	
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			set_cosmetic_tag = GOGURYEO_formable
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_political_power = 100
+		}
+		
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = KOR_successors_of_the_ming
+		icon = GFX_goal_ming_flag2
+		x = 1
+		y = 1
+		relative_position_id = KOR_manchuria_is_ours
+		prerequisite = { focus = KOR_manchuria_is_ours }
+		mutually_exclusive = { focus = KOR_return_of_goguryeo }
+
+		available = {
+			608 = { # Beijing
+				is_owned_and_controlled_by = KOR
+			}
+		}
+	
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			set_cosmetic_tag = MING_formable
+			add_stability = 0.15
+			add_war_support = 0.15
+			add_political_power = 100
+		}
+		
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+#############################
+### Japan and the Pacific ###
+#############################
+
+	focus = {
+		id = KOR_piracy_on_the_japanese_coast
+		icon = GFX_focus_prc_infiltration
+		x = 2
+		y = 1
+		relative_position_id = KOR_expand_production
+		prerequisite = { focus = KOR_expand_production }
+	
+		cost = 10
+		
+		completion_reward = { 
+			add_manpower = -5000
+			528 = { # Kyushu
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+			529 = { # Chugoku
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = KOR_avenge_the_imjin_war 
+		icon = GFX_betray_japan
+		x = 0
+		y = 1
+		relative_position_id = KOR_piracy_on_the_japanese_coast
+		prerequisite = { focus = KOR_piracy_on_the_japanese_coast }
+	
+		available = {
+			has_army_manpower ={
+				size > 45000
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = { 
+		    create_wargoal = {
+				type = annex_everything
+				target = JAP
+            }
+		}
+		
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = KOR_japan_is_conquered
+		icon = GFX_flag_burning_japan
+		x = 0
+		y = 1
+		relative_position_id = KOR_avenge_the_imjin_war
+		prerequisite = { focus = KOR_avenge_the_imjin_war }
+
+		available = {
+			282 = {
+				is_owned_and_controlled_by = KOR
+			}
+		}
+	
+		cost = 1.5
+		
+		completion_reward = { 
+			country_event = korea.18
+		}
+		
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = KOR_legacy_of_yi_sun_sin
+		icon = GFX_Yi_Sun_Sin_icon
+		x = 0
+		y = 1
+		relative_position_id = KOR_japan_is_conquered
+		prerequisite = { focus = KOR_japan_is_conquered }
+	
+		cost = 10
+		
+		completion_reward = {
+			if = {
+				limit = {
+					528 = {
+						is_owned_and_controlled_by = ROOT
+					}
+				}
+				add_state_core = 528
+			}
+			add_political_power = 100
+			add_ideas = KOR_legacy_of_yi_sun_sin_idea
+		}
+		
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+################################
+### Loyalty to the Qing Path ###
+################################
+
+	focus = {
+		id = KOR_stay_loyal_to_the_qing
+		icon = GFX_goal_stay_loyal_to_the_qing
+		x = -10
+		y = 0
+		mutually_exclusive = { focus = KOR_seek_territorial_expansion }
+
+		available = {
+			NOT = {
+				has_idea = KOR_ulbyeong_famine
+			}
+		}
+
+		cost = 10
+		
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.10
+		}
+		
+		ai_will_do = { 
+			factor = 1000000
+		}
+	}
+
+####################
+### Japan Branch ###
+####################
+
+	focus = {
+		id = KOR_send_delegates_to_japan
+		icon = GFX_agree_japan
+		x = -2
+		y = 1
+		relative_position_id = KOR_stay_loyal_to_the_qing
+		prerequisite = { focus = KOR_stay_loyal_to_the_qing }
+
+		cost = 5
+
+		completion_reward = { 
+			country_event = korea.34
+		}
+	}
+
+	focus = {
+		id = KOR_reconnect_with_ryukyu
+		icon = GFX_agree_ryukyu
+		x = -1
+		y = 1
+		relative_position_id = KOR_send_delegates_to_japan
+		prerequisite = { focus = KOR_send_delegates_to_japan }
+
+		cost = 5
+
+		completion_reward = { 
+			country_event = korea.35
+		}
+	}
+
+	focus = {
+		id = KOR_establish_contact_with_dejima
+		icon = GFX_agree_netherlands
+		x = 1
+		y = 1
+		relative_position_id = KOR_send_delegates_to_japan
+		prerequisite = { focus = KOR_send_delegates_to_japan }
+
+		cost = 5
+
+		completion_reward = { 
+			country_event = korea.36
+		}
+	}
+
+###################
+### Qing Branch ###
+###################
+
+	focus = {
+		id = KOR_reach_out_to_the_qing
+		icon = GFX_agree_china
+		x = 2
+		y = 1
+		relative_position_id = KOR_stay_loyal_to_the_qing
+		prerequisite = { focus = KOR_stay_loyal_to_the_qing }
+
+		cost = 2.2
+		
+		completion_reward = { 
+			reverse_add_opinion_modifier = {
+				target = CHI
+				modifier = KOR_strengthened_ties
+			}
+		}
+	}
+
+	focus = {
+		id = KOR_qing_investment
+		icon = GFX_qing_korea_agreement
+		x = -1
+		y = 1
+		relative_position_id = KOR_reach_out_to_the_qing
+		prerequisite = { focus = KOR_reach_out_to_the_qing }
+		mutually_exclusive = { focus = KOR_keep_our_distance }
+
+		cost = 5
+		
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			add_offsite_building = {
+				type = industrial_complex
+				level = 1
+			}
+			add_offsite_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+	}
+
+	focus = {
+		id = KOR_expand_trade
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 0
+		y = 1
+		relative_position_id = KOR_qing_investment
+		prerequisite = { focus = KOR_qing_investment }
+
+		cost = 8
+
+		completion_reward = { 
+			add_ideas = KOR_expanded_chinese_trade
+		}
+	}
+
+	focus = {
+		id = KOR_keep_our_distance
+		icon = GFX_generic_lets_go_korea
+		x = 1
+		y = 1
+		relative_position_id = KOR_reach_out_to_the_qing
+		prerequisite = { focus = KOR_reach_out_to_the_qing }
+		mutually_exclusive = { focus = KOR_qing_investment }
+
+		cost = 2.2
+		
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			add_political_power = 25
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = KOR_strengthen_anti_qing_rhetoric
+		icon = GFX_goal_strengthen_anti_qing_rhetoric
+		x = 0
+		y = 1
+		relative_position_id = KOR_keep_our_distance
+		prerequisite = { focus = KOR_keep_our_distance }
+
+		cost = 8
+		
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_political_power = 50
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+		}
+	}
+
+################################
+### Peasant Rebellion Branch ###
+################################
+
+	focus = {
+		id = KOR_beginnings_of_peasant_rebellion
+		icon = GFX_goal_beginnings_of_peasant_rebellion
+		x = 7
+		y = 1
+		relative_position_id = KOR_future_of_the_joseon_kingdom
+		prerequisite = { focus = KOR_future_of_the_joseon_kingdom }
+		mutually_exclusive = { focus = KOR_continuation_of_king_sukjongs_reign }
+
+		available = {
+			always = no
+		}
+
+		cost = 5
+		
+		completion_reward = { 
+		    add_stability = -0.05
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.1
+			}
+		}
+		
+		ai_will_do = { 
+			factor = -1000000
+		}
+	}
+
+	focus = {
+		id = KOR_rally_the_people
+		icon = GFX_goal_rally_the_people
+		x = 0
+		y = 1
+		relative_position_id = KOR_beginnings_of_peasant_rebellion
+		prerequisite = { focus = KOR_beginnings_of_peasant_rebellion }
+
+		cost = 8
+		
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			add_popularity = {
+				ideology = communism
+				popularity = 0.10
+			}
+		}
+	}
+
+	focus = {
+		id = KOR_approach_buddhist_monks
+		icon = GFX_prayer_hands
+		x = -2
+		y = 1
+		relative_position_id = KOR_rally_the_people
+		prerequisite = { focus = KOR_rally_the_people }
+
+		cost = 5
+	
+		completion_reward = { 
+			add_political_power = -25
+			add_manpower = 1000
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			activate_advisor = un_boo
+		}
+	}
+
+	focus = {
+		id = KOR_build_more_influence
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 0
+		y = 1
+		relative_position_id = KOR_rally_the_people
+		prerequisite = { focus = KOR_rally_the_people }
+
+		cost = 5
+	
+		completion_reward = { 
+			custom_effect_tooltip = will_gain_control_of_chungcheong
+			set_country_flag = KOR_control_of_chungcheong
+		}
+	}
+
+	focus = {
+		id = KOR_ally_with_crime_syndicates
+		icon = GFX_goal_ally_with_criminal_syndicates
+		x = 2
+		y = 1
+		relative_position_id = KOR_rally_the_people
+		prerequisite = { focus = KOR_rally_the_people }
+
+		cost = 5
+	
+		completion_reward = { 
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+			activate_advisor = jang_gil_san
+		}
+	}
+
+	focus = {
+		id = KOR_infiltrate_the_army
+		icon = GFX_focus_generic_infiltration
+		x = 1
+		y = 1
+		relative_position_id = KOR_approach_buddhist_monks
+		prerequisite = { focus = KOR_approach_buddhist_monks focus = KOR_ally_with_crime_syndicates focus = KOR_build_more_influence }
+		mutually_exclusive = { focus = KOR_agitate_the_lower_classes }
+
+		cost = 10
+	
+		completion_reward = { 
+			army_experience = 20
+			custom_effect_tooltip = gain_2_elite_divisions_and_a_lot_of_equipment
+			set_country_flag = KOR_infiltrated_the_army
+		}
+	}
+
+	focus = {
+		id = KOR_agitate_the_lower_classes
+		icon = GFX_focus_generic_support_the_left_right
+		x = -1
+		y = 1
+		relative_position_id = KOR_ally_with_crime_syndicates
+		prerequisite = { focus = KOR_ally_with_crime_syndicates focus = KOR_approach_buddhist_monks focus = KOR_build_more_influence }
+		mutually_exclusive = { focus = KOR_infiltrate_the_army }
+
+		cost = 5
+	
+		completion_reward = { 
+			custom_effect_tooltip = gain_5_poor_quality_divisions_and_little_equipment
+			set_country_flag = KOR_agitated_lower_classes
+		}
+	}
+
+	focus = {
+		id = KOR_the_lee_yeong_chang_rebellion
+		icon = GFX_goal_korea_man_holding_flag
+		x = -1
+		y = 1
+		relative_position_id = KOR_agitate_the_lower_classes
+		prerequisite = { focus = KOR_agitate_the_lower_classes focus = KOR_infiltrate_the_army }
+
+		cost = 1
+		
+		completion_reward = { 
+			leave_faction = yes
+			CHI = {
+				end_puppet = KOR
+			}
+			remove_ideas = pays_tribute_2
+			add_ideas = KOR_state_of_anarchy
+			start_civil_war = {
+				ruling_party = communism
+				ideology = neutrality
+				size = 0.5
+				states = { 1057 }		
+				hidden_effect = {
+					if = {
+						limit = {
+							has_country_flag = KOR_control_of_chungcheong
+						}
+						transfer_state = 1063
+					}
+					if = {
+						limit = {
+							has_country_flag = KOR_infiltrated_the_army
+						}
+						KOR = { load_oob = "KOR_civil_war1" }
+						country_event = {
+							id = korea.5
+							days = 3
+						}	
+					}
+					else_if = {
+						limit = { 
+							has_country_flag = KOR_agitated_lower_classes
+						}
+						KOR = { load_oob = "KOR_civil_war2" }
+						country_event = {
+							id = korea.6
+							days = 3
+						}	
+					}
+				}
+			}
+		}
+	}
+
+#######################
+### Buddhism Branch ###
+#######################
+	
+	focus = {
+		id = KOR_the_buddhists_take_over
+		icon = GFX_goal_the_buddha
+		x = -5
+		y = 1
+		relative_position_id = KOR_the_lee_yeong_chang_rebellion
+		prerequisite = { focus = KOR_the_lee_yeong_chang_rebellion }
+		mutually_exclusive = { focus = KOR_the_bandits_take_over }
+
+		cost = 2.2
+		
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			kill_country_leader = yes
+		    set_politics = {
+				ruling_party = fascism
+				elections_allowed = no
+				long_name = "The Buddhists"
+				name = "Buddhists"
+			}
+			set_cosmetic_tag = KOR_taebong_kingdom
+			add_political_power = 50
+			country_event = korea.30
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_a_theocratic_state
+		icon = GFX_goal_a_buddhist_state
+		x = 0
+		y = 1
+		relative_position_id = KOR_the_buddhists_take_over
+		prerequisite = { focus = KOR_the_buddhists_take_over }
+
+		cost = 8
+		
+		completion_reward = { 
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.10
+			}
+			add_ideas = buddhism
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_model_the_government_after_taebong
+		icon = GFX_focus_generic_improve_the_administration
+		x = 0
+		y = 1
+		relative_position_id = KOR_a_theocratic_state
+		prerequisite = { focus = KOR_a_theocratic_state }
+
+		cost = 10
+		
+		completion_reward = { 
+			add_ideas = KOR_inspiration_from_taebong
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_shift_capital_to_kaesong
+		icon = GFX_korea_capital
+		x = -1
+		y = 1
+		relative_position_id = KOR_model_the_government_after_taebong
+		prerequisite = { focus = KOR_model_the_government_after_taebong }
+
+		cost = 5
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					525
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = supply_node
+					level = 1
+					instant_build = yes
+					province = 12040
+				}
+			}
+			add_victory_points = {
+				province = 12040
+				value = 50
+			}
+			set_victory_points = {
+				province = 7125
+				value = 10
+			}
+			set_capital = {
+				state = 525 
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_cult_of_personality
+		icon = GFX_focus_generic_monarchy_2
+		x = 1
+		y = 1
+		relative_position_id = KOR_model_the_government_after_taebong
+		prerequisite = { focus = KOR_model_the_government_after_taebong }
+
+		cost = 8
+		
+		completion_reward = { 
+			country_event = korea.26
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_buddhist_elites
+		icon = GFX_buddhist_elites
+		x = -1
+		y = 1
+		relative_position_id = KOR_cult_of_personality
+		prerequisite = { focus = KOR_cult_of_personality }
+		prerequisite = { focus = KOR_shift_capital_to_kaesong }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			add_stability = 0.05
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_ideas = KOR_buddhist_elites_idea
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+	
+	focus = {
+		id = KOR_rebuild_the_temples
+		icon = GFX_goal_buddhist_temple_icon
+		x = 0
+		y = 1
+		relative_position_id = KOR_buddhist_elites
+		prerequisite = { focus = KOR_buddhist_elites }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = { 
+			country_event = korea.7
+			add_political_power = 50
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_paradise_on_earth
+		icon = GFX_take_over_the_world_korea
+		x = 0
+		y = 1
+		relative_position_id = KOR_rebuild_the_temples
+		prerequisite = { focus = KOR_rebuild_the_temples }
+
+		cost = 10
+		
+		completion_reward = { 
+			add_country_leader_trait = the_living_maitreya
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+##################################################
+### Shared branch between Buddhism and Bandits ###
+##################################################
+
+	focus = {
+		id = KOR_secure_order
+		icon = GFX_focus_generic_court
+		x = 0
+		y = 2
+		relative_position_id = KOR_the_lee_yeong_chang_rebellion
+		prerequisite = { focus = KOR_the_buddhists_take_over focus = KOR_the_bandits_take_over }
+
+		cost = 7.2
+		
+		completion_reward = { 
+			remove_ideas = KOR_state_of_anarchy
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_curtail_government_officials
+		icon = GFX_control_parliament
+		x = -1
+		y = 1
+		relative_position_id = KOR_secure_order
+		prerequisite = { focus = KOR_secure_order }
+
+		cost = 10
+		
+		completion_reward = { 
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.20
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_shuffle_the_bureaucracy
+		icon = GFX_goal_agree_with_the_court
+		x = 1
+		y = 1
+		relative_position_id = KOR_secure_order
+		prerequisite = { focus = KOR_secure_order }
+
+		cost = 10
+		
+		completion_reward = { 
+		    add_stability = -0.05
+			add_political_power = -50
+			remove_ideas = KOR_factionalism_within_the_court
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_redistribute_wealth
+		icon = GFX_money
+		x = 0
+		y = 1
+		relative_position_id = KOR_shuffle_the_bureaucracy
+		prerequisite = { focus = KOR_shuffle_the_bureaucracy focus = KOR_curtail_government_officials }
+
+		cost = 7.2
+		
+		completion_reward = { 
+			add_stability = 0.10
+			remove_ideas = KOR_endemic_regional_corruption
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_redistribute_land
+		icon = GFX_generic_law
+		x = 0
+		y = 1
+		relative_position_id = KOR_curtail_government_officials
+		prerequisite = { focus = KOR_shuffle_the_bureaucracy focus = KOR_curtail_government_officials }
+
+		cost = 7.2
+		
+		completion_reward = { 
+			add_political_power = 80
+			remove_ideas = KOR_inefficient_tax_system
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_crush_confucianism
+		icon = GFX_yin_yang_cracked
+		x = -1
+		y = 1
+		relative_position_id = KOR_redistribute_wealth
+		prerequisite = { focus = KOR_redistribute_land focus = KOR_redistribute_wealth }
+
+		cost = 10
+		
+		completion_reward = { 
+			remove_ideas = KOR_path_of_neo_confucianism
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+###################################
+### Revolutionary/Bandit Branch ###
+###################################
+
+	focus = {
+		id = KOR_the_bandits_take_over
+		icon = GFX_focus_ETH_freedom_at_gunpoint
+		x = 5
+		y = 1
+		relative_position_id = KOR_the_lee_yeong_chang_rebellion
+		prerequisite = { focus = KOR_the_lee_yeong_chang_rebellion }
+		mutually_exclusive = { focus = KOR_the_buddhists_take_over }
+
+		cost = 2.2
+		
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			kill_country_leader = yes
+			set_politics = {
+				ruling_party = communism
+				elections_allowed = no
+			}
+			add_political_power = 50
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_a_rogue_state
+		icon = GFX_pirates
+		x = 0
+		y = 1
+		relative_position_id = KOR_the_bandits_take_over
+		prerequisite = { focus = KOR_the_bandits_take_over }
+
+		cost = 8
+		
+		completion_reward = { 
+			add_popularity = {
+				ideology = communism
+				popularity = 0.10
+			}
+			country_event = korea.31
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_model_the_government_after_tungning
+		icon = GFX_goal_manchurian_bandit
+		x = 0
+		y = 1
+		relative_position_id = KOR_a_rogue_state
+		prerequisite = { focus = KOR_a_rogue_state }
+
+		cost = 4.3
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.10
+			set_cosmetic_tag = KOR_jang_kingdom
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_increase_tobacco_production
+		icon = GFX_focus_agriculture
+		x = -1
+		y = 1
+		relative_position_id = KOR_model_the_government_after_tungning
+		prerequisite = { focus = KOR_model_the_government_after_tungning }
+
+		cost = 8
+		
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_enlarge_the_army
+		icon = GFX_generic_soldiers
+		x = 0
+		y = 1
+		relative_position_id = KOR_increase_tobacco_production
+		prerequisite = { focus = KOR_increase_tobacco_production }
+
+		cost = 5
+		
+		completion_reward = {
+			add_manpower = 10000
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_expand_maritime_trade
+		icon = GFX_goal_generic_trade
+		x = 1
+		y = 1
+		relative_position_id = KOR_model_the_government_after_tungning
+		prerequisite = { focus = KOR_model_the_government_after_tungning }
+
+		cost = 7.2
+		
+		completion_reward = { 
+			upgrade_trade_law = yes
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_recruit_privateers
+		icon = GFX_pirate_deal
+		x = 0
+		y = 1
+		relative_position_id = KOR_expand_maritime_trade
+		prerequisite = { focus = KOR_expand_maritime_trade }
+
+		cost = 10
+		
+		completion_reward = { 
+			add_ideas = KOR_piracy
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_triump_of_kleptocracy
+		icon = GFX_japanese_ship
+		x = -1
+		y = 1
+		relative_position_id = KOR_recruit_privateers
+		prerequisite = { focus = KOR_recruit_privateers }
+		prerequisite = { focus = KOR_enlarge_the_army }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		
+		completion_reward = { 
+			add_political_power = 150
+			add_stability = 0.15
+			add_war_support = 0.15
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+###################
+### Army Branch ###
+###################
+
+	focus = {
+		id = KOR_review_the_army
+		icon = GFX_goal_korean_hat
+		x = 24
+		y = 6
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		
+		completion_reward = { 
+			army_experience = 20
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_excavate_sulphur_mines
+		icon = GFX_produce_more_gunpowder
+		x = -2
+		y = 1
+		relative_position_id = KOR_review_the_army
+		prerequisite = { focus = KOR_review_the_army }
+
+		cost = 5
+		
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					1063
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = tungsten
+					amount = 10
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_hold_military_exercises
+		icon = GFX_goal_infantry_soldiers
+		x = 2
+		y = 1
+		relative_position_id = KOR_review_the_army
+		prerequisite = { focus = KOR_review_the_army }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_MANPOWER }
+		
+		completion_reward = { 
+			add_manpower = 2500
+			army_experience = 10
+			add_war_support = 0.05
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_fortify_gangwha_island
+		icon = GFX_build_fort
+		x = 0
+		y = 1
+		relative_position_id = KOR_review_the_army
+		prerequisite = { focus = KOR_review_the_army }
+
+		cost = 8
+		
+		completion_reward = { 
+			add_stability = 0.05
+			random_owned_controlled_state = {
+				prioritize = {
+					525
+				}
+				add_building_construction = {
+					type = bunker
+					level = 5
+					province = 7221
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_reinforce_the_capital
+		icon = GFX_castle_tower_icon
+		x = -1
+		y = 1
+		relative_position_id = KOR_fortify_gangwha_island
+		prerequisite = { focus = KOR_fortify_gangwha_island focus = KOR_hold_military_exercises focus = KOR_excavate_sulphur_mines }
+
+		cost = 5
+		
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					525
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = bunker
+					level = 3
+					province = 7125
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					province = 12040
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_build_regional_defences
+		icon = GFX_fortification
+		x = 1
+		y = 1
+		relative_position_id = KOR_fortify_gangwha_island
+		prerequisite = { focus = KOR_fortify_gangwha_island focus = KOR_hold_military_exercises focus = KOR_excavate_sulphur_mines }
+
+		cost = 5
+		
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 9795
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					1059
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 1
+					province = 3803
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_improve_spears_and_swords
+		icon = GFX_spear_and_shield
+		x = -1
+		y = 1
+		relative_position_id = KOR_build_regional_defences
+		prerequisite = { focus = KOR_build_regional_defences focus = KOR_reinforce_the_capital }
+
+		cost = 8
+		
+		completion_reward = { 
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 3000
+			}
+			add_tech_bonus = {
+				name = infantry_weapons_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_produce_guns
+		icon = GFX_tanegashima
+		x = -1
+		y = 1
+		relative_position_id = KOR_improve_spears_and_swords
+		prerequisite = { focus = KOR_improve_spears_and_swords }
+
+		cost = 8
+		
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					1056
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_develop_cannons
+		icon = GFX_Tsar_Cannon	
+		x = 0
+		y = 1
+		relative_position_id = KOR_produce_guns
+		prerequisite = { focus = KOR_produce_guns }
+
+		cost = 10
+		
+		completion_reward = { 
+			add_ideas = KOR_korean_cannons
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_train_cavalry
+		icon = GFX_cavalry_icon
+		x = 1
+		y = 1
+		relative_position_id = KOR_improve_spears_and_swords
+		prerequisite = { focus = KOR_improve_spears_and_swords }
+
+		cost = 8
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					525
+				}
+				create_unit = {
+					division = "name = \"Gigapsa Regiment\" division_template = \"Gigapsa\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = KOR
+					count = 2
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = basic_cavalry_equipment
+				amount = 2000
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}	
+
+	focus = {
+		id = KOR_improve_hwacha
+		icon = GFX_goal_generic_army_artillery
+		x = 0
+		y = 1
+		relative_position_id = KOR_train_cavalry
+		prerequisite = { focus = KOR_train_cavalry }
+
+		cost = 10
+		
+		completion_reward = { 
+			add_ideas = KOR_improved_hwacha
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}	
+
+####################
+### Naval Branch ###
+####################
+
+	focus = {
+		id = KOR_review_the_navy
+		icon = GFX_japanese_ship
+		x = 30
+		y = 0
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		
+		completion_reward = { 
+			navy_experience = 20
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_build_more_dockyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 0
+		y = 1
+		relative_position_id = KOR_review_the_navy
+		prerequisite = { focus = KOR_review_the_navy }
+
+		cost = 10
+		
+		completion_reward = { 
+			random_owned_controlled_state = {
+				limit = {
+					is_coastal = yes
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_repair_battleships
+		icon = GFX_goal_generic_navy_battleship
+		x = 0
+		y = 1
+		relative_position_id = KOR_build_more_dockyards
+		prerequisite = { focus = KOR_build_more_dockyards }
+
+		cost = 10
+		
+		completion_reward = { 
+			random_owned_controlled_state = {
+				limit = {
+					is_coastal = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_doctrine_cost_reduction = {
+				name = naval_doctrine_research
+				cost_reduction = 0.5
+				uses = 2
+				category = fleet_in_being_tree
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_build_shield_ships
+		icon = GFX_Imperial_Warship_Generic1
+		x = -1
+		y = 1
+		relative_position_id = KOR_repair_battleships
+		prerequisite = { focus = KOR_repair_battleships }
+		mutually_exclusive = { focus = KOR_build_turtle_ships }
+
+		cost = 10
+		
+		completion_reward = { 
+			add_tech_bonus = {
+				#name = x
+				bonus = 0.75
+				uses = 2
+				category = ca_tech
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+	focus = {
+		id = KOR_build_turtle_ships
+		icon = GFX_turtle_ship_icon
+		x = 1
+		y = 1
+		relative_position_id = KOR_repair_battleships
+		prerequisite = { focus = KOR_repair_battleships }
+		mutually_exclusive = { focus = KOR_build_shield_ships }
+
+		cost = 10
+		
+		completion_reward = { 
+			add_tech_bonus = {
+				#name = x
+				bonus = 0.75
+				uses = 2
+				category = bb_tech
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 5 
+		}
+	}
+
+}

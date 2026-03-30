@@ -1,0 +1,1167 @@
+MIN_ming_restoration = { 
+    recruit_zhejiang = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 90
+        cost = 100
+        on_map_mode = map_and_decisions_view
+
+        fire_only_once = yes
+
+        available = {
+            has_country_leader = {
+                character = MIN_Zheng_Keshuang
+                ruling_only = yes
+            }
+        }
+
+        visible = {
+            has_completed_focus = MIN_smuggling_firearms
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 596 }
+        }
+
+        remove_effect = {
+            add_manpower = 15000
+        }
+    }
+
+    recruit_hunan = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 90
+        cost = 100
+        on_map_mode = map_and_decisions_view
+
+        fire_only_once = yes
+
+        available = {
+            has_country_leader = {
+                character = MIN_Zheng_Keshuang
+                ruling_only = yes
+            }
+        }
+
+        visible = {
+            has_completed_focus = MIN_smuggling_firearms
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 602 }
+        }
+
+        remove_effect = {
+            add_manpower = 15000
+        }
+    }
+
+    recruit_sichuan = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 90
+        cost = 100
+        on_map_mode = map_and_decisions_view
+
+        fire_only_once = yes
+
+        available = {
+            has_country_leader = {
+                character = MIN_Zheng_Keshuang
+                ruling_only = yes
+            }
+        }
+
+        visible = {
+            has_completed_focus = MIN_smuggling_firearms
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 605 }
+        }
+
+        remove_effect = {
+            add_manpower = 15000
+        }
+    }
+
+    smuggling_arms = {
+        icon = hol_draw_up_staff_plans
+        days_re_enable = 25
+        days_remove = 45
+        cost = 70
+
+        available = {
+            if = {
+                limit = {
+                    has_country_flag = smuggling_vietnam
+                }
+                custom_trigger_tooltip = {
+                    tooltip = smuggling_timer_tt
+                    NOT = { has_country_flag = smuggling_vietnam }
+                }
+            }
+        }
+
+        visible = {
+            has_completed_focus = MIN_smuggling_firearms
+        }
+
+        complete_effect = {
+            set_country_flag = { flag = smuggling_vietnam value = 1 days = 69 }
+        }
+
+        remove_effect = {
+            custom_effect_tooltip = cargo_vietnam_tt
+            hidden_effect = {
+                random = {
+                    chance = 70
+                    country_event = china.56
+                }
+                random = {
+                    chance = 30
+                    country_event = china.57
+                }
+            }
+        }
+    }
+
+    attack_arsenals_in_guangdong = {
+        icon = hol_draw_up_staff_plans
+        on_map_mode = map_and_decisions_view
+        days_remove = 45
+        cost = 70
+
+        fire_only_once = yes
+
+        available = {
+            has_country_leader = {
+                character = MIN_Zheng_Keshuang
+                ruling_only = yes
+            }
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 593 }
+        }
+
+        visible = {
+            has_completed_focus = MIN_arming_rebels
+        }
+
+        remove_effect = {
+            random = {
+                chance = 70
+                country_event = china.58
+            }
+            random = {
+                chance = 30
+                country_event = china.59
+            }
+        }
+    }
+
+    attack_arsenals_in_fujian = {
+        icon = hol_draw_up_staff_plans
+        on_map_mode = map_and_decisions_view
+        days_remove = 45
+        cost = 70
+
+        fire_only_once = yes
+
+        available = {
+            has_country_leader = {
+                character = MIN_Zheng_Keshuang
+                ruling_only = yes
+            }
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 595 }
+        }
+
+        visible = {
+            has_completed_focus = MIN_arming_rebels
+        }
+
+        remove_effect = {
+            random = {
+                chance = 65
+                country_event = china.58
+            }
+            random = {
+                chance = 35
+                country_event = china.59
+            }
+        }
+    }
+
+    attack_arsenals_in_jiangxi = {
+        icon = hol_draw_up_staff_plans
+        on_map_mode = map_and_decisions_view
+        days_remove = 45
+        cost = 70
+
+        fire_only_once = yes
+
+        available = {
+            has_country_leader = {
+                character = MIN_Zheng_Keshuang
+                ruling_only = yes
+            }
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 600 }
+        }
+
+        visible = {
+            has_completed_focus = MIN_arming_rebels
+        }
+
+        remove_effect = {
+            random = {
+                chance = 60
+                country_event = china.58
+            }
+            random = {
+                chance = 40
+                country_event = china.59
+            }
+        }
+    }
+
+    attack_arsenals_in_hunan = {
+        icon = hol_draw_up_staff_plans
+        on_map_mode = map_and_decisions_view
+        days_remove = 45
+        cost = 70
+
+        fire_only_once = yes
+
+        available = {
+            has_country_leader = {
+                character = MIN_Zheng_Keshuang
+                ruling_only = yes
+            }
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 602 }
+        }
+
+        visible = {
+            has_completed_focus = MIN_arming_rebels
+        }
+
+        remove_effect = {
+            random = {
+                chance = 50
+                country_event = china.58
+            }
+            random = {
+                chance = 50
+                country_event = china.59
+            }
+        }
+    }
+
+    attack_arsenals_in_zhejiang = {
+        icon = hol_draw_up_staff_plans
+        on_map_mode = map_and_decisions_view
+        days_remove = 45
+        cost = 70
+
+        fire_only_once = yes
+
+        available = {
+            has_country_leader = {
+                character = MIN_Zheng_Keshuang
+                ruling_only = yes
+            }
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 596 }
+        }
+
+        visible = {
+            has_completed_focus = MIN_arming_rebels
+        }
+
+        remove_effect = {
+            random = {
+                chance = 55
+                country_event = china.58
+            }
+            random = {
+                chance = 45
+                country_event = china.59
+            }
+        }
+    }
+
+    CHI_riots_in_southern_china = {
+
+		icon = generic_oppression
+
+		available = {
+			has_equipment = { infantry_equipment > 699 }
+		}
+
+		fire_only_once = no
+
+		cost = 50
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 751
+                state = 748
+                state = 603
+                state = 600
+                state = 599
+                state = 592
+                state = 594
+                state = 325
+                state = 747
+                state = 602
+                state = 593
+                state = 595
+			}
+		}
+
+		visible = {
+			has_completed_focus = MIN_arming_rebels
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 200
+				divisions_in_state = {
+					state = 26
+					size < 6
+				}
+			}
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = CHI_rebels_tt
+            random_list = {
+				33 = {
+					country_event = china.63
+				}
+				33 = {
+					country_event = china.64
+				}
+				33 = {
+					country_event = china.65
+				}
+				1 = {
+					
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -700
+				producer = CHI
+			}
+		}
+	}
+
+    CHI_riots_in_northern_china = {
+
+		icon = generic_oppression
+
+		available = {
+			has_equipment = { infantry_equipment > 699 }
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 26
+				state = 761
+                state = 612
+                state = 714
+                state = 561
+			}
+		}
+
+		visible = {
+			has_completed_focus = MIN_arming_rebels
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 200
+				divisions_in_state = {
+					state = 26
+					size < 6
+				}
+			}
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = CHI_rebels_tt
+            random_list = {
+				33 = {
+					country_event = china.66
+				}
+				33 = {
+					country_event = china.67
+				}
+				33 = {
+					country_event = china.68
+				}
+				1 = {
+					
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -700
+				producer = CHI
+			}
+		}
+	}
+
+    CHI_riots_in_western_china = {
+
+		icon = generic_oppression
+
+		available = {
+			has_equipment = { infantry_equipment > 699 }
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 26
+				state = 330
+                state = 612
+                state = 756
+                state = 755
+                state = 754
+                state = 753
+                state = 752
+                state = 616
+                state = 283
+                state = 605
+                state = 616
+                state = 746
+                state = 621
+                state = 622
+                state = 744
+			}
+		}
+
+		visible = {
+			has_completed_focus = MIN_arming_rebels
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 200
+				divisions_in_state = {
+					state = 26
+					size < 6
+				}
+			}
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = CHI_rebels_tt
+            random_list = {
+				33 = {
+					country_event = china.69
+				}
+				33 = {
+					country_event = china.70
+				}
+				33 = {
+					country_event = china.71
+				}
+				1 = {
+					
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -700
+				producer = CHI
+			}
+		}
+	}
+
+    CHI_riots_in_eastern_china = {
+
+		icon = generic_oppression
+
+		available = {
+			has_equipment = { infantry_equipment > 699 }
+		}
+
+		fire_only_once = yes
+
+		cost = 50
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 26
+			}
+		}
+
+		visible = {
+			has_completed_focus = MIN_arming_rebels
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 200
+				divisions_in_state = {
+					state = 26
+					size < 6
+				}
+			}
+		}
+		
+		complete_effect = {
+			custom_effect_tooltip = CHI_rebels_tt
+            random_list = {
+				33 = {
+					country_event = china.72
+				}
+				33 = {
+					country_event = china.73
+				}
+				33 = {
+					country_event = china.74
+				}
+				1 = {
+					
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -700
+				producer = CHI
+			}
+		}
+	}
+}
+MIN_anti_manchus = {
+    MIN_ming_exam_system = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 90
+        fire_only_once = yes
+
+        remove_effect = {
+            add_political_power = 50
+            add_stability = 0.03
+            custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_research_speed_factor = 0.05 tooltip = research_speed_factor_tt }
+        }
+    }
+    MIN_purge_qing_officials = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 90
+        fire_only_once = yes
+
+        remove_effect = {
+            add_stability = -0.05
+            custom_effect_tooltip = ming_loyalist_ministers_tt
+        }
+    }
+    MIN_redistribute_manchu_land = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 90
+        fire_only_once = yes
+
+        remove_effect = {
+            add_stability = 0.02
+            custom_effect_tooltip = manchu_compliance_tt
+            custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.03 tooltip = consumer_goods_factor_tt }
+        }
+    }
+    MIN_disband_manchu_armies = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 90
+        fire_only_once = yes
+
+        remove_effect = {
+            delete_unit_template_and_units = {
+				division_template = "Eight Banners Infantry Brigade"
+				disband = yes #will refund equipment and manpower
+			}
+			delete_unit_template_and_units = {
+				division_template = "Eight Banners Cavalry Brigade"
+				disband = yes #will refund equipment and manpower
+			}
+			delete_unit_template_and_units = {
+				division_template = "Green Standard Army"
+				disband = yes #will refund equipment and manpower
+			}
+			remove_dynamic_modifier = { modifier = CHI_eight_banners_system_modifier }
+			remove_dynamic_modifier = { modifier = CHI_green_standard_army }
+            custom_effect_tooltip = MIN_modify_ming_army_ns_intro
+			add_to_variable = { MIN_fv_army_org_factor = 0.1 tooltip = army_org_factor_tt }
+			add_to_variable = { MIN_fv_training_time_factor = -0.05 tooltip = training_time_factor_tt }
+        }
+    }
+}
+MIN_economy_restoration = {
+    MIN_redistribute_manchus_land = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        remove_effect = {
+            add_stability = 0.02
+            custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_recruitable_population_factor = 0.03 tooltip = recruitable_population_factor_tt }
+            add_to_variable = { MIN_nv_production_factory_max_efficiency_factor = -0.05 tooltip = production_factory_max_efficiency_factor_tt }
+        }
+    }
+    MIN_reform_coinage = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        visible = {
+			has_completed_focus = MIN_modernise_the_minting_system
+		}
+
+        remove_effect = {
+            add_stability = 0.05
+            custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.03 tooltip = consumer_goods_factor_tt }
+            add_to_variable = { MIN_nv_production_speed_buildings_factor = 0.05 tooltip = production_speed_buildings_factor_tt }
+        }
+    }
+    MIN_crack_down_on_corrupt_tax_collectors = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        remove_effect = {
+            add_stability = 0.02
+            custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.03 tooltip = consumer_goods_factor_tt }
+            add_to_variable = { MIN_nv_political_power_gain = 0.05 tooltip = political_power_gain_tt }
+        }
+    }
+    MIN_banks_in_jiangsu  = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        cost = 150
+        on_map_mode = map_and_decisions_view
+        fire_only_once = yes
+
+        available = {
+            has_stability > 0.40
+            num_of_controlled_states > 8  # Needs stable control over key regions
+            num_of_civilian_factories > 5  # Minimum industrial base required
+        }
+
+        visible = {
+            has_completed_focus = MIN_bank_system
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 598 }
+        }
+
+        complete_effect = {
+            598 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+        remove_effect = {
+            598 = {
+                add_dynamic_modifier = {
+                    modifier = banks_in_region
+                    scope = CHI
+                }
+            }
+        }
+    }
+    MIN_banks_in_zhejiang = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        cost = 150
+        on_map_mode = map_and_decisions_view
+        fire_only_once = yes
+
+        available = {
+            has_stability > 0.40
+            num_of_controlled_states > 8  # Needs stable control over key regions
+            num_of_civilian_factories > 5  # Minimum industrial base required
+        }
+
+        visible = {
+            has_completed_focus = MIN_bank_system
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 596 }
+        }
+
+        complete_effect = {
+            596 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+        remove_effect = {
+            596 = {
+                add_dynamic_modifier = {
+                    modifier = banks_in_region
+                    scope = CHI
+                }
+            }
+        }
+    }
+    MIN_banks_in_shandong = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        cost = 150
+        on_map_mode = map_and_decisions_view
+        fire_only_once = yes
+
+        available = {
+            has_stability > 0.40
+            num_of_controlled_states > 8  # Needs stable control over key regions
+            num_of_civilian_factories > 5  # Minimum industrial base required
+        }
+
+        visible = {
+            has_completed_focus = MIN_bank_system
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 597 }
+        }
+        
+
+        complete_effect = {
+            597 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+        remove_effect = {
+            597 = {
+                add_dynamic_modifier = {
+                    modifier = banks_in_region
+                    scope = CHI
+                }
+            }
+        }
+    }
+    MIN_banks_in_hebei = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        cost = 150
+        on_map_mode = map_and_decisions_view
+        fire_only_once = yes
+
+        available = {
+            has_stability > 0.40
+            num_of_controlled_states > 8  # Needs stable control over key regions
+            num_of_civilian_factories > 5  # Minimum industrial base required
+        }
+
+        visible = {
+            has_completed_focus = MIN_bank_system
+        }
+
+        highlight_states = {
+			highlight_state_targets = { state = 614 }
+        }
+
+        complete_effect = {
+            614 = {
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+        }
+        remove_effect = {
+            614 = {
+                add_dynamic_modifier = {
+                    modifier = banks_in_region
+                    scope = CHI
+                }
+            }
+        }
+    }
+    MIN_recovery_for_farmers = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+        cost = 100
+
+        remove_effect = {
+            add_stability = -0.1
+            custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_monthly_population = 0.03 tooltip = monthly_population_tt }
+            add_to_variable = { MIN_nv_production_factory_efficiency_gain_factor = 0.05 tooltip = production_factory_efficiency_gain_factor_tt }
+            add_to_variable = { MIN_nv_political_power_factor = -0.05 tooltip = political_power_factor_tt }
+        }
+    }
+    MIN_improve_literacy = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+        cost = 100
+
+        remove_effect = {
+            add_stability = -0.1
+            custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_research_speed_factor = 0.04 tooltip = research_speed_factor_tt }
+            add_to_variable = { MIN_nv_stability_factor = 0.02 tooltip = stability_factor_tt }
+            add_to_variable = { MIN_nv_consumer_goods_factor = -0.03 tooltip = consumer_goods_factor_tt }
+        }
+    }
+}
+MIN_recruit_ming_loyalists = {
+    MIN_call_upon = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 35
+        fire_only_once = yes
+
+        cost = 55
+
+        available = {
+            NOT = {
+                has_war_with = CHI
+            }
+            has_stability < 0.30
+        }
+
+        remove_effect = {
+            add_manpower = 5000
+            add_war_support = 0.05
+        }
+    }
+
+    MIN_recruit_officers = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        cost = 100
+
+        available = {
+            NOT = {
+                has_war_with = CHI
+            }
+            has_stability < 0.45
+        }
+
+        remove_effect = {
+            custom_effect_tooltip = MIN_modify_ming_army_ns_intro
+			add_to_variable = { MIN_fv_army_org_factor = 0.10 tooltip = army_org_factor_tt }
+            custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_production_speed_arms_factory_factor = 0.03 tooltip = production_speed_arms_factory_factor_tt }
+        }
+    }
+
+    MIN_mobilize_peasants = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        cost = 35
+
+        available = {
+            has_war_support > 0.5
+        }
+
+        visible = {
+            has_war_with = CHI
+        }
+
+        remove_effect = {
+            524 = {
+                create_unit = {
+                    division = "name = \"Loyalist Infantry Battalion\" division_template = \"Loyalist Infantry Battalion\" start_experience_factor = 0.5" 
+                    owner = MIN
+                    count = 3
+                }
+            }
+            add_manpower = 10000
+            add_stability = -0.05
+        }
+    }
+
+    MIN_war_reformarmy = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        cost = 70
+
+        available = {
+            num_divisions > 5
+        }
+
+        visible = {
+            has_war_with = CHI
+        }
+
+        remove_effect = {
+            custom_effect_tooltip = MIN_modify_ming_army_ns_intro
+			add_to_variable = { MIN_fv_army_attack_factor = 0.05 tooltip = army_attack_factor_tt }
+            add_to_variable = { MIN_fv_army_defence_factor = 0.05 tooltip = army_defence_factor_tt }
+        }
+    }
+
+    MIN_arms_southern_rebels = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        cost = 120
+
+        available = {
+            OR = {
+                controls_state = 593
+                controls_state = 595
+                controls_state = 600
+            }
+        }
+
+        visible = {
+            has_war_with = CHI
+            OR = {
+               controls_state = 593
+                controls_state = 595
+                controls_state = 600
+            }
+        }
+
+        complete_effect = {
+            593 = {
+                create_unit = {
+                    division = "name = \"Loyalist Infantry Battalion\" division_template = \"Loyalist Infantry Battalion\" start_experience_factor = 0.5" 
+                    owner = MIN
+                    count = 2
+                }
+            }
+            595 = {
+                create_unit = {
+                    division = "name = \"Loyalist Infantry Battalion\" division_template = \"Loyalist Infantry Battalion\" start_experience_factor = 0.5" 
+                    owner = MIN
+                    count = 3
+                }
+            }
+        }
+
+        remove_effect = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 3000
+                producer = MIN
+            }
+        }
+    }
+
+    MIN_yellow_turban = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        cost = 80
+
+        available = {
+            #OR = {
+                #    controls_state = 593
+                #    controls_state = 595
+                #    controls_state = 600
+                #}
+            has_war_support < 0.5
+        }
+
+        visible = {
+            has_completed_focus = MIN_rebuild_the_yellow_turbans
+        }
+
+        remove_effect = {
+            add_stability = -0.05
+            600 = {
+                create_unit = {
+                    division = "name = \"Yellow Turban Revivalists\" division_template = \"Yellow Turban Revivalists\" start_experience_factor = 0.7" 
+                    owner = MIN
+                    count = 2
+                }
+            }
+        }
+    }
+
+    MIN_recruit_warriors = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        cost = 80
+
+        available = {
+            has_war_support > 0.5
+        }
+
+        visible = {
+            has_completed_focus = MIN_rebuild_the_yellow_turbans
+        }
+
+        remove_effect = {
+            add_stability = -0.03
+            add_manpower = 10000
+            524 = {
+                create_unit = {
+                    division = "name = \"Peasant Defense Militia\" division_template = \"Peasant Defense Militia\" start_experience_factor = 0.4" 
+                    owner = MIN
+                    count = 2
+                }
+            }
+        }
+    }
+
+    MIN_shock_troops = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        cost = 80
+
+        available = {
+            num_divisions > 5
+        }
+
+        visible = {
+            has_completed_focus = MIN_rebuild_the_yellow_turbans
+        }
+
+        remove_effect = {
+            595 = {
+                create_unit = {
+                    division = "name = \"Imperial Shock Guards\" division_template = \"Imperial Shock Guards\" start_experience_factor = 1.0" 
+                    owner = MIN
+                    count = 2
+                }
+            }
+            600 = {
+                create_unit = {
+                    division = "name = \"Imperial Shock Guards\" division_template = \"Imperial Shock Guards\" start_experience_factor = 1.0" 
+                    owner = MIN
+                    count = 2
+                }
+            }
+            custom_effect_tooltip = MIN_modify_ming_army_ns_intro
+			add_to_variable = { MIN_fv_army_attack_factor = 0.05 tooltip = army_attack_factor_tt }
+            add_to_variable = { MIN_nv_dig_in_speed_factor = 0.03 tooltip = dig_in_speed_factor_tt }
+        }
+    }
+
+    MIN_incite_rebellion_in_guangxi = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 100
+        fire_only_once = yes
+
+        cost = 80
+
+        available = {
+            num_divisions > 5
+        }
+
+        visible = {
+            has_completed_focus = MIN_flame_of_revolt
+        }
+
+        remove_effect = {
+            599 = {
+                create_unit = {
+                    division = "name = \"Peasant Defense Militia\" division_template = \"Peasant Defense Militia\" start_experience_factor = 0.4" 
+                    owner = MIN
+                    count = 3
+                }
+            }
+        }
+    }
+
+    MIN_fund_militias_in_fujian = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 100
+        fire_only_once = yes
+
+        cost = 70
+
+        available = {
+            num_divisions > 5
+        }
+
+        visible = {
+            has_completed_focus = MIN_flame_of_revolt
+        }
+
+        modifier = {
+            consumer_goods_factor = 0.10
+        }
+
+        remove_effect = {
+            595 = {
+                create_unit = {
+                    division = "name = \"Peasant Defense Militia\" division_template = \"Peasant Defense Militia\" start_experience_factor = 0.4" 
+                    owner = MIN
+                    count = 3
+                }
+            }
+        }
+    }
+
+    MIN_undermine_qing_loyalists_in_guangdong = {
+        icon = hol_draw_up_staff_plans
+        days_remove = 180
+        fire_only_once = yes
+
+        cost = 80
+
+        available = {
+            num_divisions > 5
+        }
+
+        visible = {
+            has_completed_focus = MIN_flame_of_revolt
+        }
+
+        remove_effect = {
+            593 = {
+                add_resistance = 30
+            }
+            CHI = {
+                add_stability = -0.10
+            }
+        }
+    }
+}

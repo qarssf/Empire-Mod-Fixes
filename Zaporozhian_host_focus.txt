@@ -1,0 +1,1675 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = {
+	id = Zaporozhian_host_focus
+
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = ZAP
+		}
+	}
+
+	default = no
+
+	continuous_focus_position = { x = -200 y = 1500 }
+
+###################
+### Restoration ###
+###################
+
+	focus = {
+		id = ZAP_strengthening_the_hetman_power
+		icon = GFX_goal_unknown
+		x = 10
+		y = 0
+
+		available = {
+			has_stability > 0.4
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = ZAP_support_peter_the_great
+		icon = GFX_goal_unknown
+		x = 8
+		y = 1
+		relative_position_id = ZAP_strengthening_the_hetman_power 
+		prerequisite = { focus = ZAP_strengthening_the_hetman_power }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_reform_army
+		icon = GFX_goal_unknown
+		x = 5
+		y = 1
+		relative_position_id = ZAP_support_peter_the_great 
+		prerequisite = { focus = ZAP_support_peter_the_great }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_treaty_military_assistance_to_muscovy
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = ZAP_reform_army 
+		prerequisite = { focus = ZAP_reform_army }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_muscovites_in_army
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = ZAP_reform_army 
+		prerequisite = { focus = ZAP_reform_army }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_improvement_weapons
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = ZAP_muscovites_in_army 
+		prerequisite = { 
+			focus = ZAP_muscovites_in_army 
+			focus = ZAP_treaty_military_assistance_to_muscovy 
+		}
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_centralization_of_power_under_peter
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		relative_position_id = ZAP_support_peter_the_great 
+		prerequisite = { focus = ZAP_support_peter_the_great }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_introduction_of_moscow_tax
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_centralization_of_power_under_peter 
+		prerequisite = { focus = ZAP_centralization_of_power_under_peter }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_influence_of_muscovy_in_zaporizhia
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_support_peter_the_great 
+		prerequisite = { focus = ZAP_support_peter_the_great }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_hetmanate_vision
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_strengthening_the_hetman_power 
+		prerequisite = { focus = ZAP_strengthening_the_hetman_power }
+		
+		cost = 10
+
+		completion_reward = {
+			add_ideas = economic_reforms
+		}
+	}
+
+	focus = {
+		id = ZAP_moscow_control_over_foreign_trade
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_hetmanate_vision 
+		prerequisite = { focus = ZAP_hetmanate_vision }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_introduction_of_moscow_taxes
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_moscow_control_over_foreign_trade 
+		prerequisite = { focus = ZAP_moscow_control_over_foreign_trade }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_improve_manufactories
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_introduction_of_moscow_taxes 
+		prerequisite = { focus = ZAP_introduction_of_moscow_taxes }
+		
+		cost = 10
+
+		completion_reward = {
+			add_stability = -0.05
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type =  industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ZAP_agrarian_reforms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_moscow_control_over_foreign_trade 
+		prerequisite = { focus = ZAP_moscow_control_over_foreign_trade }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_strengthening_cossack_rights_to_land
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_agrarian_reforms 
+		prerequisite = { focus = ZAP_agrarian_reforms }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_monopoly_on_bread
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_strengthening_cossack_rights_to_land 
+		prerequisite = { focus = ZAP_strengthening_cossack_rights_to_land }
+		mutually_exclusive = { focus = ZAP_monopoly_on_vodka }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_monopoly_on_vodka
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_strengthening_cossack_rights_to_land 
+		prerequisite = { focus = ZAP_strengthening_cossack_rights_to_land }
+		mutually_exclusive = { focus = ZAP_monopoly_on_bread }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_urban_trade_and_craft
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = ZAP_monopoly_on_vodka 
+		prerequisite = { 
+			focus = ZAP_monopoly_on_vodka 
+			focus = ZAP_monopoly_on_bread 
+		}
+
+		cost = 10
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = ZAP_management_of_mines_and_forests
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_urban_trade_and_craft 
+		prerequisite = { focus = ZAP_urban_trade_and_craft }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_ceramic_production
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_urban_trade_and_craft 
+		prerequisite = { focus = ZAP_urban_trade_and_craft }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_improving_textile_production
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_urban_trade_and_craft 
+		prerequisite = { focus = ZAP_urban_trade_and_craft }
+
+		cost = 10
+
+		completion_reward = {
+			add_political_power = -70
+			add_stability = -0.06
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = textile_manufactury
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = textile_manufactury
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = textile_manufactury
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = ZAP_council_of_elders
+		icon = GFX_goal_unknown
+		x = -5
+		y = 1
+		relative_position_id = ZAP_strengthening_the_hetman_power 
+		prerequisite = { focus = ZAP_strengthening_the_hetman_power }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_elders_political_rights
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_council_of_elders 
+		prerequisite = { focus = ZAP_council_of_elders }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_suppression_of_moscow_influence
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_council_of_elders 
+		prerequisite = { focus = ZAP_council_of_elders }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_unification_local_nobility
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = ZAP_suppression_of_moscow_influence 
+		prerequisite = { 
+			focus = ZAP_suppression_of_moscow_influence 
+			focus = ZAP_elders_political_rights 
+		}
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_limiting_moscow_access_to_resources
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_unification_local_nobility 
+		prerequisite = { focus = ZAP_unification_local_nobility }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_privileged_status_of_elders
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_council_of_elders 
+		prerequisite = { focus = ZAP_council_of_elders }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_council_economic_reforms
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = ZAP_privileged_status_of_elders 
+		prerequisite = { 
+			focus = ZAP_privileged_status_of_elders
+			focus = ZAP_elders_political_rights  
+		}
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+#######################
+### Paliy Rebellion  ###
+#######################
+
+	focus = {
+		id = ZAP_alarming_situation_fastiv
+		icon = GFX_goal_unknown
+		x = 30
+		y = 0
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_uprising_against_polish_domination
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_alarming_situation_fastiv 
+		prerequisite = { focus = ZAP_alarming_situation_fastiv }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_the_paliyivshchyna
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_uprising_against_polish_domination 
+		prerequisite = { focus = ZAP_uprising_against_polish_domination }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_capture_bila_tserkva
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_the_paliyivshchyna 
+		prerequisite = { focus = ZAP_the_paliyivshchyna }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_defense_fastiv
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_capture_bila_tserkva 
+		prerequisite = { focus = ZAP_capture_bila_tserkva }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_beginning_of_a_punitive_operation
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_capture_bila_tserkva 
+		prerequisite = { focus = ZAP_capture_bila_tserkva }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_defense_of_the_hetmanate_borders
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = ZAP_beginning_of_a_punitive_operation 
+		prerequisite = { focus = ZAP_beginning_of_a_punitive_operation }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_help_poland
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = ZAP_beginning_of_a_punitive_operation 
+		prerequisite = { focus = ZAP_beginning_of_a_punitive_operation }
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_negotiations_with_the_nobility
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		relative_position_id = ZAP_beginning_of_a_punitive_operation 
+		prerequisite = { 
+			focus = ZAP_help_poland 
+			focus = ZAP_defense_of_the_hetmanate_borders 
+		}
+		
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_mazepa_entry_right_bank
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_negotiations_with_the_nobility 
+		prerequisite = { focus = ZAP_negotiations_with_the_nobility }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_support_of_the_nobility
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_mazepa_entry_right_bank 
+		prerequisite = { focus = ZAP_mazepa_entry_right_bank }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_unification_of_hetmanate
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		relative_position_id = ZAP_mazepa_entry_right_bank 
+		prerequisite = { focus = ZAP_mazepa_entry_right_bank }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+#######################
+### Mazepa  ###
+#######################
+
+	focus = {
+		id = ZAP_mazepa_reign
+		icon = GFX_goal_unknown
+		x = 50
+		y = 0
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_great_nothern_war
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		relative_position_id = ZAP_mazepa_reign 
+		prerequisite = { focus = ZAP_mazepa_reign }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+#######################
+### Sweden help  ###
+#######################	
+
+	focus = {
+		id = ZAP_deal_with_it_in_your_own_way
+		icon = GFX_goal_unknown
+		x = 10
+		y = 1
+		relative_position_id = ZAP_great_nothern_war 
+		prerequisite = { focus = ZAP_great_nothern_war }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_Secret_negotiations_with_Charles_XII
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_deal_with_it_in_your_own_way 
+		prerequisite = { focus = ZAP_deal_with_it_in_your_own_way }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_a_call_to_the_cossacks
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_Secret_negotiations_with_Charles_XII 
+		prerequisite = { focus = ZAP_Secret_negotiations_with_Charles_XII }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_declaration_of_independence
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_a_call_to_the_cossacks 
+		prerequisite = { focus = ZAP_a_call_to_the_cossacks }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_defense_of_baturin
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_declaration_of_independence 
+		prerequisite = { focus = ZAP_declaration_of_independence }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_the_baturyn_tragedy
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_defense_of_baturin 
+		prerequisite = { focus = ZAP_defense_of_baturin }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_mobilization_cossacks
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_the_baturyn_tragedy 
+		prerequisite = { focus = ZAP_the_baturyn_tragedy }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_the_capital_survived
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_defense_of_baturin 
+		prerequisite = { focus = ZAP_defense_of_baturin }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_counterattack_on_moscow_troops
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_the_capital_survived 
+		prerequisite = { focus = ZAP_the_capital_survived }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_decisive_battle_of_poltava
+		icon = GFX_goal_unknown
+		x = 0
+		y = 3
+		relative_position_id = ZAP_defense_of_baturin 
+		prerequisite = { 
+			focus = ZAP_mobilization_cossacks 
+			focus = ZAP_counterattack_on_moscow_troops 
+		}
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_defeat_of_muscovites
+		icon = GFX_goal_unknown
+		x = 4
+		y = 1
+		relative_position_id = ZAP_decisive_battle_of_poltava 
+      	prerequisite = { focus = ZAP_decisive_battle_of_poltava }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_recovering_the_left_bank_of_ukraine
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_defeat_of_muscovites 
+      	prerequisite = { focus = ZAP_defeat_of_muscovites }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_the_moscow_campaign
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_recovering_the_left_bank_of_ukraine 
+      	prerequisite = { focus = ZAP_recovering_the_left_bank_of_ukraine }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_reconstruction_baturyn
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_the_moscow_campaign 
+      	prerequisite = { focus = ZAP_the_moscow_campaign }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_political_stabilization
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = ZAP_reconstruction_baturyn 
+      	prerequisite = { focus = ZAP_reconstruction_baturyn }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_signing_of_new_agreements_with_sweden
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_political_stabilization 
+      	prerequisite = { focus = ZAP_political_stabilization }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_raids_crimean_khanate
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_signing_of_new_agreements_with_sweden 
+      	prerequisite = { focus = ZAP_signing_of_new_agreements_with_sweden }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_ports_on_the_black_sea
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_raids_crimean_khanate 
+      	prerequisite = { focus = ZAP_raids_crimean_khanate }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_economic_recovery
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_reconstruction_baturyn 
+      	prerequisite = { focus = ZAP_reconstruction_baturyn }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_restoration_of_the_farm
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_economic_recovery 
+      	prerequisite = { focus = ZAP_economic_recovery }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_expanding_trade_routes
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_restoration_of_the_farm 
+      	prerequisite = { focus = ZAP_restoration_of_the_farm }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_development_of_education_and_culture
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_economic_recovery 
+      	prerequisite = { focus = ZAP_economic_recovery }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_control_over_the_siverska_land
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_recovering_the_left_bank_of_ukraine 
+      	prerequisite = { focus = ZAP_recovering_the_left_bank_of_ukraine }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_defeat_at_poltava
+		icon = GFX_goal_unknown
+		x = -4
+		y = 1
+		relative_position_id = ZAP_decisive_battle_of_poltava 
+		prerequisite = { focus = ZAP_decisive_battle_of_poltava }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_an_attempt_at_restoration_by_orlyk
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_defeat_at_poltava 
+		prerequisite = { focus = ZAP_defeat_at_poltava }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_organization_of_the_emigration_government
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_an_attempt_at_restoration_by_orlyk 
+		prerequisite = { focus = ZAP_an_attempt_at_restoration_by_orlyk }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_alliance_with_sweden_and_turkey
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_organization_of_the_emigration_government 
+		prerequisite = { focus = ZAP_organization_of_the_emigration_government }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_the_campaign_of_pylyp_orlyk_to_the_right_bank 
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_alliance_with_sweden_and_turkey 
+		prerequisite = { focus = ZAP_alliance_with_sweden_and_turkey }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_to_the_left_bank
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_the_campaign_of_pylyp_orlyk_to_the_right_bank 
+		prerequisite = { focus = ZAP_the_campaign_of_pylyp_orlyk_to_the_right_bank }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_reform_of_the_cossack_army
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_to_the_left_bank 
+		prerequisite = { focus = ZAP_to_the_left_bank }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_restorate_and_fort_baturin
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_reform_of_the_cossack_army 
+		prerequisite = { focus = ZAP_reform_of_the_cossack_army }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_consolidation_of_the_power_of_the_foreman
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_restorate_and_fort_baturin 
+		prerequisite = { focus = ZAP_restorate_and_fort_baturin }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_constitutional_reforms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_consolidation_of_the_power_of_the_foreman 
+		prerequisite = { focus = ZAP_consolidation_of_the_power_of_the_foreman }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_development_of_agriculture
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_constitutional_reforms 
+		prerequisite = { focus = ZAP_constitutional_reforms }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_Support_for_culture_and_science
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_to_the_left_bank 
+		prerequisite = { focus = ZAP_to_the_left_bank }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_the_retreat_of_orlyk_army
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_the_campaign_of_pylyp_orlyk_to_the_right_bank 
+		prerequisite = { focus = ZAP_the_campaign_of_pylyp_orlyk_to_the_right_bank }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_remaining_loyal_to_moscow
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_defeat_at_poltava 
+		prerequisite = { focus = ZAP_defeat_at_poltava }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+#######################
+### Great Nothern war on Peter side  ###
+#######################	
+
+	focus = {
+		id = ZAP_military_alliance_with_muscovy
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_great_nothern_war 
+		prerequisite = { focus = ZAP_great_nothern_war }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_construction_of_a_line_of_fortresses
+		icon = GFX_goal_unknown
+		x = 3
+		y = 1
+		relative_position_id = ZAP_military_alliance_with_muscovy 
+		prerequisite = { focus = ZAP_military_alliance_with_muscovy }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_artillery_involvement
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_construction_of_a_line_of_fortresses 
+		prerequisite = { focus = ZAP_construction_of_a_line_of_fortresses }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_training_cossacks_under_moscow_generals
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_artillery_involvement 
+		prerequisite = { focus = ZAP_artillery_involvement }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_exhausting_campaign_on_the_northern_fronts
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_training_cossacks_under_moscow_generals 
+		prerequisite = { focus = ZAP_training_cossacks_under_moscow_generals }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_mobilization_reforms
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_exhausting_campaign_on_the_northern_fronts 
+		prerequisite = { focus = ZAP_exhausting_campaign_on_the_northern_fronts }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_creating_an_alternative_source_of_supply
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_exhausting_campaign_on_the_northern_fronts 
+		prerequisite = { focus = ZAP_exhausting_campaign_on_the_northern_fronts }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_cossack_cavalry_at_the_fronts
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_exhausting_campaign_on_the_northern_fronts 
+		prerequisite = { focus = ZAP_exhausting_campaign_on_the_northern_fronts }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_cossacks_in_winter_campaigns
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		relative_position_id = ZAP_exhausting_campaign_on_the_northern_fronts 
+		prerequisite = { 
+			focus = ZAP_cossack_cavalry_at_the_fronts 
+			focus = ZAP_creating_an_alternative_source_of_supply 
+			focus = ZAP_mobilization_reforms 
+		}
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_cossacks_in_peter_army
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_military_alliance_with_muscovy 
+		prerequisite = { focus = ZAP_military_alliance_with_muscovy }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_expansion_of_the_cossack_army
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_cossacks_in_peter_army 
+		prerequisite = { focus = ZAP_cossacks_in_peter_army }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_restoration_of_weakened_regiments
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = ZAP_expansion_of_the_cossack_army 
+		prerequisite = { focus = ZAP_expansion_of_the_cossack_army }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	focus = {
+		id = ZAP_retraining_cossacks
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_restoration_of_weakened_regiments 
+		prerequisite = { focus = ZAP_restoration_of_weakened_regiments }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+	
+	focus = {
+		id = ZAP_mobilization_reform
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = ZAP_expansion_of_the_cossack_army 
+		prerequisite = { focus = ZAP_expansion_of_the_cossack_army }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_classic_zaporizhian_cavalry
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_mobilization_reform 
+		prerequisite = { focus = ZAP_mobilization_reform }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_reform_the_cossack_army
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = ZAP_classic_zaporizhian_cavalry 
+		prerequisite = { focus = ZAP_classic_zaporizhian_cavalry }
+		prerequisite = { focus = ZAP_retraining_cossacks }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_ukrainian_baroque
+		icon = GFX_goal_unknown
+		x = -10
+		y = 1
+		relative_position_id = ZAP_mazepa_reign 
+		prerequisite = { focus = ZAP_mazepa_reign }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_restoring_religious_influence
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_ukrainian_baroque 
+		prerequisite = { focus = ZAP_ukrainian_baroque }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_foundation_of_kyiv_spiritual_authority
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_restoring_religious_influence 
+		prerequisite = { focus = ZAP_restoring_religious_influence }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_integrationi_moscow_patriarchate
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_foundation_of_kyiv_spiritual_authority 
+		prerequisite = { focus = ZAP_foundation_of_kyiv_spiritual_authority }
+		mutually_exclusive = { focus = ZAP_strengthening_control_over_the_kyiv_metropolis }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_support_from_moscow
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = ZAP_integrationi_moscow_patriarchate 
+		prerequisite = { focus = ZAP_integrationi_moscow_patriarchate }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_conflict_with_local_clergy
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_integrationi_moscow_patriarchate 
+		prerequisite = { focus = ZAP_integrationi_moscow_patriarchate }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_increasing_religious_taxes
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_conflict_with_local_clergy 
+		prerequisite = { focus = ZAP_conflict_with_local_clergy }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_integration_with_moscow_church
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_increasing_religious_taxes 
+		prerequisite = { focus = ZAP_increasing_religious_taxes }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_strengthening_control_over_the_kyiv_metropolis
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_foundation_of_kyiv_spiritual_authority 
+		prerequisite = { focus = ZAP_foundation_of_kyiv_spiritual_authority }
+		mutually_exclusive = { focus = ZAP_integrationi_moscow_patriarchate }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_expansion_of_monasteries
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = ZAP_strengthening_control_over_the_kyiv_metropolis 
+		prerequisite = { focus = ZAP_strengthening_control_over_the_kyiv_metropolis }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_influence_through_religious_ceremonies
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = ZAP_strengthening_control_over_the_kyiv_metropolis 
+		prerequisite = { focus = ZAP_strengthening_control_over_the_kyiv_metropolis }
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+
+	focus = {
+		id = ZAP_reducing_religious_taxes
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = ZAP_influence_through_religious_ceremonies 
+		prerequisite = { 
+			focus = ZAP_influence_through_religious_ceremonies 
+			focus = ZAP_expansion_of_monasteries 
+		}
+
+		cost = 10
+
+		completion_reward = {
+
+		}
+	}
+}

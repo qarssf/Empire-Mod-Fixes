@@ -1,0 +1,617 @@
+KOR_koreanification = {
+	KOR_resettle_koreans_in_manchuria = {
+
+		icon = oppression
+
+		cost = 100
+
+		days_remove = 150
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = KOR_owns_manchuria
+		}
+
+		available = {
+			has_completed_focus = KOR_manchuria_is_ours
+        }
+
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+
+		remove_effect = {
+			328 = { # Kirin
+				add_manpower = 20000
+				add_compliance = 10
+			}
+			714 = { # Heilungkiang
+				add_manpower = 20000
+				add_compliance = 10
+			}
+			715 = { # Liaoning
+				add_manpower = 20000
+				add_compliance = 10
+			}
+			716 = { # Liaotung
+				add_manpower = 20000
+				add_compliance = 10
+			}
+			717 = { # Sungkiang
+				add_manpower = 20000
+				add_compliance = 10
+			}
+			745 = { # Dalian
+				add_manpower = 20000
+				add_compliance = 10
+			}
+		}
+	}
+
+	KOR_settle_outer_manchuria = {
+
+		icon = oppression
+
+		cost = 120
+
+		days_remove = 170
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = KOR_koreanification_of_manchuria
+		}
+
+		available = {
+			has_completed_focus = KOR_manchuria_is_ours
+        }
+
+		modifier = {
+			political_power_cost = 0.05
+			consumer_goods_factor = 0.05
+		}
+
+		remove_effect = {
+			408 = { # Vladivostok
+				add_manpower = 10000
+				add_compliance = 5
+			}
+			409 = { # Boli
+				add_manpower = 10000
+				add_compliance = 5
+			}
+			560 = { # Nikoyalevsk
+				add_manpower = 10000
+				add_compliance = 5
+			}
+			561 = { # Amur
+				add_manpower = 10000
+				add_compliance = 5
+			}
+			657 = { # Birobidzhan
+				add_manpower = 10000
+				add_compliance = 5
+			}	
+		}
+	}
+
+	KOR_oppress_manchurians = {
+
+		icon = oppression
+
+		cost = 50
+
+		days_remove = 100
+
+		days_re_enable = 50
+
+		visible = {
+			has_country_flag = KOR_koreanification_of_manchuria
+		}
+
+		available = {
+			has_completed_focus = KOR_manchuria_is_ours
+        }
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		remove_effect = {
+			add_stability = -0.05
+			716 = { # Liaotung
+				add_compliance = 5
+			}
+			717 = { # Sungkiang
+				add_compliance = 5
+			}
+			745 = { # Dalian
+				add_compliance = 5
+			}
+		}
+	}
+
+	KOR_strengthen_garrisons = {
+
+		icon = oppression
+
+		cost = 70
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = KOR_koreanification_of_manchuria
+		}
+
+		available = {
+			has_completed_focus = KOR_manchuria_is_ours
+			has_equipment = {
+				infantry_equipment_0 > 2000
+			}
+        }
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = -2000
+			}
+			328 = { # Kirin
+				add_compliance = 5
+			}
+			714 = { # Heilungkiang
+				add_compliance = 5
+			}
+			715 = { # Liaoning
+				add_compliance = 5
+			}
+		}
+	}
+
+	KOR_reeducate_the_populace = {
+
+		icon = oppression
+
+		cost = 80
+
+		days_remove = 80
+
+		fire_only_once = yes
+
+		visible = {
+			has_country_flag = KOR_koreanification_of_manchuria
+		}
+
+		available = {
+			has_completed_focus = KOR_manchuria_is_ours
+        }
+
+		modifier = {
+			political_power_cost = 0.05
+		}
+
+		complete_effect = {
+			add_timed_idea = {
+				idea = KOR_reeducation_efforts
+				days = 80
+			}
+		}
+	}
+}
+
+KOR_bop = {
+	KOR_help_the_king_govern = {
+
+		icon = generic_monarchy
+
+		cost = 30
+
+		fire_only_once = no
+
+		days_re_enable = 100
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			OR = {
+				power_balance_value = {
+					id = KOR_factions
+					value > 0.25
+				}
+			}
+        }
+
+		complete_effect = {
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -0.02
+			}
+		}
+	}
+
+	KOR_regain_the_kings_favour = {
+
+		icon = generic_political_discourse
+
+		cost = 50
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			OR = {
+				has_completed_focus = KOR_destroy_the_southerner_faction
+				has_completed_focus = KOR_destroy_the_westerner_faction
+			}
+        }
+		
+		complete_effect = {
+			if = {
+				limit = {
+					has_completed_focus = KOR_destroy_the_southerner_faction
+				}
+				add_power_balance_value = {
+					id = KOR_factions
+					value = 0.07
+				}
+			}
+			else_if = {
+				limit = {
+					has_completed_focus = KOR_destroy_the_westerner_faction
+				}
+				add_power_balance_value = {
+					id = KOR_factions
+					value = -0.07
+				}
+			}
+			custom_effect_tooltip = KOR_faction_destroyed_will_try_to_regain_favour
+			add_stability = -0.05
+		}
+	}
+
+	KOR_criticize_the_westerner_faction = {
+
+		icon = eng_trade_unions_demand
+
+		cost = 50
+
+		fire_only_once = no
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			NOT = {
+				has_completed_focus = KOR_destroy_the_southerner_faction
+			}
+        }
+		
+		complete_effect = {
+			add_power_balance_value = {
+				id = KOR_factions
+				value = 0.05
+			}
+		}
+	}
+
+	KOR_frame_the_westerners_for_treason = {
+
+		icon = oppression
+
+		cost = 150
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			NOT = {
+				has_completed_focus = KOR_destroy_the_southerner_faction
+			}
+        }
+		
+		complete_effect = {
+			add_stability = -0.10
+			add_power_balance_value = {
+				id = KOR_factions
+				value = 0.40
+			}
+		}
+	}
+
+	KOR_utilize_factionalism_within_the_westerners = {
+
+		icon = hol_draw_up_staff_plans
+
+		cost = 20
+
+		fire_only_once = no
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+        }
+		
+		complete_effect = {
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = KOR_factions
+				value = 0.03
+			}
+		}
+	}
+
+	KOR_support_madam_jang_and_the_prince = {
+
+		icon = eng_ally_imperialist_coup
+
+		cost = 50
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			NOT = {
+				KOR_Madam_Jang = {
+					is_hired_as_advisor = yes
+				}
+			}
+        }
+		
+		complete_effect = {
+			add_power_balance_value = {
+				id = KOR_factions
+				value = 0.03
+			}
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			}
+			add_war_support = 0.02
+			activate_advisor = madam_jang
+		}
+	}
+
+	KOR_question_the_loyalty_of_the_southerner_faction = {
+
+		icon = generic_boot
+
+		cost = 25
+
+		fire_only_once = no
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			NOT = {
+				has_completed_focus = KOR_destroy_the_westerner_faction
+			}
+        }
+		
+		complete_effect = {
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -0.03
+			}
+		}
+	}
+
+	KOR_dominate_local_government_positions = {
+
+		icon = generic_operation
+
+		cost = 50
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+		
+		complete_effect = {
+			add_stability = 0.05
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -0.07
+			}
+		}
+	}
+
+	KOR_follow_the_legacy_of_song_si_yol = {
+
+		icon = generic_nationalism
+
+		cost = 60
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			has_country_flag = KOR_commemorated_song_si_yol
+        }
+		
+		complete_effect = {
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -0.07
+			}
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+
+	KOR_support_queen_inhyeon_and_lady_choi = {
+
+		icon = generic_hand_shake
+
+		cost = 100
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			NOT = {
+				KOR_Lady_Choi = {
+					is_hired_as_advisor = yes
+				}
+				KOR_Queen_Inhyeon = {
+					is_hired_as_advisor = yes
+				}
+			}
+        }
+		
+		complete_effect = {
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -0.05
+			}
+			add_stability = 0.05
+			activate_advisor = lady_choi
+			activate_advisor = queen_inhyeon
+		}
+	}
+
+	KOR_take_over_the_uijeongbu = {
+
+		icon = generic_civil_support
+
+		cost = 70
+
+		fire_only_once = yes
+
+		days_remove = 100
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		modifier = {
+			consumer_goods_factor = 0.05
+			political_power_cost = 0.10
+		}
+		
+		complete_effect = {
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -0.10
+			}
+		}
+	}
+
+	KOR_take_over_government_ministries = {
+
+		icon = coins
+
+		cost = 40
+
+		days_remove = 100
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			OR = {
+				power_balance_value = {
+					id = KOR_factions
+					value > 0.6
+				}
+				power_balance_value = {
+					id = KOR_factions
+					value < 0.6
+				}
+			}
+        }
+
+		modifier = {
+			consumer_goods_factor = 0.05
+			political_power_cost = 0.10
+		}
+		
+		complete_effect = {
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -0.15
+			}
+		}
+	}
+
+	KOR_take_over_the_border_defense_council = {
+
+		icon = generic_mountain_fortification
+
+		cost = 120
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+		
+		complete_effect = {
+			army_experience = 15
+			random_owned_controlled_state = {
+				prioritize = {
+					527
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_power_balance_value = {
+				id = KOR_factions
+				value = -0.15
+			}
+		}
+	}
+}

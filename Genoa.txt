@@ -1,0 +1,120 @@
+add_namespace = genoa
+
+# Election of New Doge, Girolamo De Mari
+country_event = {
+	id = genoa.1
+	title = genoa.1.t
+	desc = genoa.1.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Choose next Doge
+		name = genoa.1.a
+		add_stability = -0.01
+		add_political_power = -10
+		promote_character = GEN_Girolamo_De_Mari
+	}
+}
+
+# Election of New Doge, Federico Toso
+country_event = {
+	id = genoa.2
+	title = genoa.2.t
+	desc = genoa.2.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Choose next Doge
+		name = genoa.2.a
+		add_stability = -0.01
+		add_political_power = -10
+		promote_character = GEN_Federico_Toso
+	}
+}
+
+# Election of New Doge, Antonio Grimaldi
+country_event = {
+	id = genoa.3
+	title = genoa.3.t
+	desc = genoa.3.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Choose next Doge
+		name = genoa.3.a
+		add_stability = -0.01
+		add_political_power = -10
+		promote_character = GEN_Antonio_Grimaldi
+	}
+}
+
+# Election of New Doge, Stefano Ferretti
+country_event = {
+	id = genoa.4
+	title = genoa.4.t
+	desc = genoa.4.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Choose next Doge
+		name = genoa.4.a
+		add_stability = -0.01
+		add_political_power = -10
+		promote_character = GEN_Stefano_Ferretti
+	}
+}
+
+# Election of New Doge, Domenico De Mari
+country_event = {
+	id = genoa.5
+	title = genoa.5.t
+	desc = genoa.5.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Choose next Doge
+		name = genoa.5.a
+		add_stability = -0.01
+		add_political_power = -10
+		promote_character = GEN_Domenico_De_Mari
+	}
+}
+
+# Election of New Doge, Vincenzo Durazzo
+country_event = {
+	id = genoa.6
+	title = genoa.6.t
+	desc = genoa.6.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Choose next Doge
+		name = genoa.6.a
+		add_stability = -0.01
+		add_political_power = -10
+		promote_character = GEN_Vincenzo_Durazzo
+	}
+}
+
+# Election of New Doge, Francesco Imperiale
+country_event = {
+	id = genoa.7
+	title = genoa.7.t
+	desc = genoa.7.d
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { # Choose next Doge
+		name = genoa.7.a
+		add_stability = -0.01
+		add_political_power = -10
+		promote_character = GEN_Francesco_Imperiale
+	}
+}

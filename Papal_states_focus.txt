@@ -1,0 +1,1723 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = { 
+	id = Papal_states_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 0
+			tag = PAP
+		}
+	}
+
+	default = no
+	
+	focus = {
+		id = PAP_papal_reforms_and_restoration 
+		icon = GFX_focus_sultan_huseyn
+		x = 10
+		y = 0
+
+		cost = 10
+
+		search_filters = { }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_restoration_of_papal_authority
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_papal_reforms_and_restoration 
+		prerequisite = { focus = PAP_papal_reforms_and_restoration }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_assess_the_state_of_the_clergy
+		icon = GFX_focus_sultan_huseyn
+		x = 3
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_restoration_of_papal_authority 
+		prerequisite = { focus = PAP_restoration_of_papal_authority }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_strengthen_religious_influence
+		icon = GFX_focus_sultan_huseyn
+		x = 3
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_assess_the_state_of_the_clergy 
+		prerequisite = { focus = PAP_assess_the_state_of_the_clergy }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_sanctify_the_papal_mission
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_strengthen_religious_influence 
+		prerequisite = { focus = PAP_strengthen_religious_influence }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_reorganize_church_leadership
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_assess_the_state_of_the_clergy 
+		prerequisite = { focus = PAP_assess_the_state_of_the_clergy }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_support_from_the_faithful
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_reorganize_church_leadership 
+		prerequisite = { focus = PAP_reorganize_church_leadership }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_concordat_with_catholic_powers
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_support_from_the_faithful 
+		prerequisite = { focus = PAP_support_from_the_faithful }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_reform_curia
+		icon = GFX_focus_sultan_huseyn
+		x = -3
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_restoration_of_papal_authority 
+		prerequisite = { focus = PAP_restoration_of_papal_authority }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_expand_the_seminaries
+		icon = GFX_focus_sultan_huseyn
+		x = 3
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_reform_curia 
+		prerequisite = { 
+			focus = PAP_reform_curia 
+			focus = PAP_assess_the_state_of_the_clergy 
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_restoration_of_monastic_orders
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_expand_the_seminaries 
+		prerequisite = { focus = PAP_expand_the_seminaries }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_reorganization_of_church_finances
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_reform_curia 
+		prerequisite = { focus = PAP_reform_curia }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_streamline_church_administration
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_reform_curia 
+		prerequisite = { focus = PAP_reform_curia }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_expand_canon_law
+		icon = GFX_focus_sultan_huseyn
+		x = -1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_streamline_church_administration 
+		prerequisite = { 
+			focus = PAP_reorganization_of_church_finances
+			focus = PAP_streamline_church_administration 
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_completion_of_curia_reforms
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_expand_canon_law 
+		prerequisite = { focus = PAP_expand_canon_law }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_renewal_of_papal_influence
+		icon = GFX_focus_sultan_huseyn
+		x = 30
+		y = 0
+
+		cost = 10
+
+		search_filters = { }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_seassert_control_over_the_clergy
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_renewal_of_papal_influence 
+		prerequisite = { focus = PAP_renewal_of_papal_influence }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_clerical_reform
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_seassert_control_over_the_clergy 
+		prerequisite = { focus = PAP_seassert_control_over_the_clergy }
+		mutually_exclusive = { focus = PAP_local_clerical_independence }
+		mutually_exclusive = { focus = PAP_papal_recovery }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_establishing_papal_court_for_clerical_disputes
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_clerical_reform 
+		prerequisite = { focus = PAP_clerical_reform }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_promotion_of_loyal_clergy
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_establishing_papal_court_for_clerical_disputes 
+		prerequisite = { focus = PAP_establishing_papal_court_for_clerical_disputes }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_regular_audits_of_clerical_activities
+		icon = GFX_focus_sultan_huseyn
+		x = -3
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_clerical_reform 
+		prerequisite = { focus = PAP_clerical_reform }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_local_clerical_independence
+		icon = GFX_focus_sultan_huseyn
+		x = 4
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_seassert_control_over_the_clergy 
+		prerequisite = { focus = PAP_seassert_control_over_the_clergy }
+		mutually_exclusive = { focus = PAP_clerical_reform }
+		mutually_exclusive = { focus = PAP_papal_recovery }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_mandatory_papal_appointments
+		icon = GFX_focus_sultan_huseyn
+		x = 3
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_local_clerical_independence 
+		prerequisite = { focus = PAP_local_clerical_independence }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_reforming_local_church_governance
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_mandatory_papal_appointments 
+		prerequisite = { focus = PAP_mandatory_papal_appointments }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_limiting_local_authority
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_local_clerical_independence 
+		prerequisite = { focus = PAP_local_clerical_independence }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_removing_secular_influence
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_limiting_local_authority 
+		prerequisite = { focus = PAP_limiting_local_authority }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_papal_influence_in_the_holy_roman_empire
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_clerical_reform 
+		prerequisite = { 
+			focus = PAP_local_clerical_independence
+			focus = PAP_clerical_reform
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_expanding_papal_territory
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_promotion_of_loyal_clergy 
+		prerequisite = { 
+			focus = PAP_promotion_of_loyal_clergy
+			focus = PAP_removing_secular_influence
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_the_renaissance_of_rome
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_expanding_papal_territory 
+		prerequisite = { focus = PAP_promotion_of_loyal_clergy }
+		mutually_exclusive = { focus = PAP_confederation_of_st_peter_patrimonium }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_the_ambition_of_rome
+		icon = GFX_focus_sultan_huseyn
+		x = -5
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_the_renaissance_of_rome 
+		prerequisite = { focus = PAP_the_renaissance_of_rome }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_occupy_modeno
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_the_ambition_of_rome 
+		prerequisite = { focus = PAP_the_ambition_of_rome }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_buy_milan
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_occupy_modeno 
+		prerequisite = {
+			focus = PAP_occupy_modeno 
+			focus = PAP_occupy_mantua 
+			focus = PAP_occupy_parma 
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_allign_with_venice
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_buy_milan 
+		prerequisite = { focus = PAP_buy_milan }
+		mutually_exclusive = { focus = PAP_occupy_venice }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_allign_with_savoy
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_allign_with_venice 
+		prerequisite = { focus = PAP_allign_with_venice }
+		mutually_exclusive = { focus = PAP_occupy_savoy }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_allign_with_tuscany
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_allign_with_savoy 
+		prerequisite = { focus = PAP_allign_with_savoy }
+		mutually_exclusive = { focus = PAP_occupy_tuscany }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_allign_with_genoa
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_allign_with_tuscany 
+		prerequisite = { focus = PAP_allign_with_tuscany }
+		mutually_exclusive = { focus = PAP_occupy_genoa }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_occupy_venice
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_buy_milan 
+		prerequisite = { focus = PAP_buy_milan }
+		mutually_exclusive = { focus = PAP_allign_with_venice }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_occupy_savoy
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_occupy_venice 
+		prerequisite = { focus = PAP_occupy_venice }
+		mutually_exclusive = { focus = PAP_allign_with_savoy }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_occupy_tuscany
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_occupy_savoy 
+		prerequisite = { focus = PAP_occupy_savoy }
+		mutually_exclusive = { focus = PAP_allign_with_tuscany }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_occupy_genoa
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_occupy_tuscany 
+		prerequisite = { focus = PAP_occupy_tuscany }
+		mutually_exclusive = { focus = PAP_allign_with_genoa }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_fight_naples
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_occupy_genoa 
+		prerequisite = { 
+			focus = PAP_allign_with_genoa 
+			focus = PAP_occupy_genoa 
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_roman_empire
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_fight_naples 
+		prerequisite = { focus = PAP_fight_naples }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_fight_austria
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_roman_empire 
+		prerequisite = { focus = PAP_roman_empire }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_to_asia
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_fight_austria 
+		prerequisite = { focus = PAP_fight_austria }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_deeper_into_europe
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_to_asia 
+		prerequisite = { 
+			focus = PAP_to_france 
+			focus = PAP_to_asia 
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_roman_restoration
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_deeper_into_europe 
+		prerequisite = { focus = PAP_deeper_into_europe }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_fortifications_rome
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_roman_restoration 
+		prerequisite = { focus = PAP_roman_restoration }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_all_roads_to_rome
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_roman_restoration 
+		prerequisite = { focus = PAP_roman_restoration }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_eternal_city
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_roman_restoration 
+		prerequisite = { focus = PAP_roman_restoration }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_reviving_Roman_law
+		icon = GFX_focus_sultan_huseyn
+		x = 1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_eternal_city 
+		prerequisite = { focus = PAP_eternal_city }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_cultural_renaissance
+		icon = GFX_focus_sultan_huseyn
+		x = -1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_eternal_city 
+		prerequisite = { focus = PAP_eternal_city }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_to_spain
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_roman_empire 
+		prerequisite = { focus = PAP_roman_empire }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_to_france
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_to_spain 
+		prerequisite = { focus = PAP_to_spain }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_occupy_mantua
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_the_ambition_of_rome 
+		prerequisite = { focus = PAP_the_ambition_of_rome }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_occupy_parma
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_the_ambition_of_rome 
+		prerequisite = { focus = PAP_the_ambition_of_rome }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_confederation_of_st_peter_patrimonium
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_expanding_papal_territory 
+		prerequisite = { focus = PAP_removing_secular_influence }
+		mutually_exclusive = { focus = PAP_the_renaissance_of_rome }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_future_of_papal_states
+		icon = GFX_focus_sultan_huseyn
+		x = 5
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_confederation_of_st_peter_patrimonium 
+		prerequisite = { focus = PAP_confederation_of_st_peter_patrimonium }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_formation_of_confederation
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_future_of_papal_states 
+		prerequisite = { focus = PAP_future_of_papal_states }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_mutual_defense_pact
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_formation_of_confederation 
+		prerequisite = { focus = PAP_formation_of_confederation }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_negotiations_with_local_nobles
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_mutual_defense_pact 
+		prerequisite = { focus = PAP_mutual_defense_pact }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_decentralized_judiciary_system
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_negotiations_with_local_nobles 
+		prerequisite = { focus = PAP_negotiations_with_local_nobles }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_decentralized_governance_reform
+		icon = GFX_focus_sultan_huseyn
+		x = 1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_decentralized_judiciary_system 
+		prerequisite = { focus = PAP_decentralized_judiciary_system }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_regional_cultural_renaissance
+		icon = GFX_focus_sultan_huseyn
+		x = -1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_decentralized_judiciary_system 
+		prerequisite = { focus = PAP_decentralized_judiciary_system }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_decentralized_economic_policies
+		icon = GFX_focus_sultan_huseyn
+		x = 1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_regional_cultural_renaissance 
+		prerequisite = { 
+			focus = PAP_decentralized_governance_reform 
+			focus = PAP_regional_cultural_renaissance 
+		}
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_divine_authority_of_sancti_petri
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_decentralized_economic_policies 
+		prerequisite = { focus = PAP_decentralized_economic_policies }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_preserving_church_territories
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_divine_authority_of_sancti_petri 
+		prerequisite = { focus = PAP_divine_authority_of_sancti_petri }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_ecclesiastical_independence
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_preserving_church_territories 
+		prerequisite = { focus = PAP_preserving_church_territories }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_expanding_ecclesiastical_jurisdiction
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_ecclesiastical_independence 
+		prerequisite = { focus = PAP_ecclesiastical_independence }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_church_land_reclamation
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_preserving_church_territories 
+		prerequisite = { focus = PAP_preserving_church_territories }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_expand_papal_influence
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_confederation_of_st_peter_patrimonium 
+		prerequisite = { 
+			focus = PAP_the_renaissance_of_rome 
+			focus = PAP_confederation_of_st_peter_patrimonium 
+		}
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_cultural_unification
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_expand_papal_influence 
+		prerequisite = { focus = PAP_expand_papal_influence }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_centralized_taxation_system
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_expand_papal_influence 
+		prerequisite = { focus = PAP_expand_papal_influence }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_investment_in_education
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_expand_papal_influence 
+		prerequisite = { focus = PAP_expand_papal_influence }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_crisis_management
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_investment_in_education 
+		prerequisite = { 
+			focus = PAP_investment_in_education 
+			focus = PAP_centralized_taxation_system 
+			focus = PAP_cultural_unification 
+		}
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_build_chucrhes_monast
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_crisis_management 
+		prerequisite = { focus = PAP_crisis_management }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_standing_army
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_crisis_management 
+		prerequisite = { focus = PAP_crisis_management }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_cavalry_modernization
+		icon = GFX_focus_sultan_huseyn
+		x = 1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_standing_army 
+		prerequisite = { focus = PAP_standing_army }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_army_modernization
+		icon = GFX_focus_sultan_huseyn
+		x = -1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_standing_army 
+		prerequisite = { focus = PAP_standing_army }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_military_academy_creation
+		icon = GFX_focus_sultan_huseyn
+		x = 1
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_army_modernization 
+		prerequisite = { 
+			focus = PAP_army_modernization 
+			focus = PAP_cavalry_modernization 
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_papal_recovery
+		icon = GFX_focus_sultan_huseyn
+		x = 15
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_seassert_control_over_the_clergy 
+		prerequisite = { focus = PAP_seassert_control_over_the_clergy }
+		mutually_exclusive = { focus = PAP_local_clerical_independence }
+		mutually_exclusive = { focus = PAP_clerical_reform }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_addressing_the_budget_crisis
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_papal_recovery 
+		prerequisite = { focus = PAP_papal_recovery }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_agricultural_modernization
+		icon = GFX_focus_sultan_huseyn
+		x = 2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_addressing_the_budget_crisis 
+		prerequisite = { focus = PAP_addressing_the_budget_crisis }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_reforming_the_tax_system
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_addressing_the_budget_crisis 
+		prerequisite = { focus = PAP_addressing_the_budget_crisis }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_trade_expansion
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_addressing_the_budget_crisis 
+		prerequisite = { focus = PAP_addressing_the_budget_crisis }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_church_land_redistribution
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_trade_expansion 
+		prerequisite = { 
+			focus = PAP_reforming_the_tax_system 
+			focus = PAP_agricultural_modernization 
+			focus = PAP_trade_expansion 
+		}
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_stabilize_the_situation
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_church_land_redistribution 
+		prerequisite = { focus = PAP_church_land_redistribution }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_counter_foreign_interference
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_stabilize_the_situation 
+		prerequisite = { focus = PAP_stabilize_the_situation }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_neutrality_in_europe
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_counter_foreign_interference 
+		prerequisite = { focus = PAP_counter_foreign_interference }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_manage_italian_diplomacy
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_neutrality_in_europe 
+		prerequisite = { focus = PAP_neutrality_in_europe }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_counter_reformation_efforts
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_manage_italian_diplomacy 
+		prerequisite = { focus = PAP_manage_italian_diplomacy }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_inquisition_revival
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_counter_reformation_efforts 
+		prerequisite = { focus = PAP_counter_reformation_efforts }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_expand_missionary_work
+		icon = GFX_focus_sultan_huseyn
+		x = -2
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_counter_reformation_efforts 
+		prerequisite = { focus = PAP_counter_reformation_efforts }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_invest_in_religious_education
+		icon = GFX_focus_sultan_huseyn
+		x = -7
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_renewal_of_papal_influence 
+		prerequisite = { focus = PAP_renewal_of_papal_influence }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_support_for__catholic_monarchies
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_invest_in_religious_education 
+		prerequisite = { focus = PAP_invest_in_religious_education }
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_strengthening_the_papal_states
+		icon = GFX_focus_sultan_huseyn
+		x = -4
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_renewal_of_papal_influence 
+		prerequisite = { focus = PAP_renewal_of_papal_influence }
+
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = PAP_rebuild_the_holy_see_prestige
+		icon = GFX_focus_sultan_huseyn
+		x = 0
+		y = 1
+
+		cost = 10
+
+		search_filters = { }
+		relative_position_id = PAP_strengthening_the_papal_states 
+		prerequisite = { focus = PAP_strengthening_the_papal_states }
+
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+}

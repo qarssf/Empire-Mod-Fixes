@@ -1,0 +1,2972 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = {
+	id = SCO_focus_tree 
+
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = SCO
+		}
+	}
+
+	default = no
+
+	continuous_focus_position = { x = 50 y = 1450 }
+
+	focus = {
+		id = SCO_the_scottish_nation
+		icon = GFX_goal_unknown
+		x = 40
+		y = 0
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_support_hannovers
+		icon = GFX_goal_unknown
+		x = 15
+		y = 1
+		prerequisite = { focus = SCO_the_scottish_nation }
+		relative_position_id = SCO_the_scottish_nation
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			# the weak support
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_dyplo_support
+		icon = GFX_goal_unknown
+		x = 3
+		y = 1
+		prerequisite = { focus = SCO_support_hannovers }
+		relative_position_id = SCO_support_hannovers
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_treaty_with_prussia
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		prerequisite = { focus = SCO_dyplo_support }
+		relative_position_id = SCO_dyplo_support
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_austrain_support
+		icon = GFX_agree_austria
+		x = -1
+		y = 1
+		prerequisite = { focus = SCO_dyplo_support }
+		relative_position_id = SCO_dyplo_support
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_agreement_to_take_english_throne
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		prerequisite = { 
+			focus = SCO_austrain_support 
+			focus = SCO_treaty_with_prussia 
+		}
+		relative_position_id = SCO_austrain_support
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_support_for_royalty
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		prerequisite = { focus = SCO_support_hannovers }
+		relative_position_id = SCO_support_hannovers
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_dynastic_alliance_with_german_principalities
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_support_for_royalty }
+		relative_position_id = SCO_support_for_royalty
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_strengthening_positions_through_philanthropy
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		prerequisite = { focus = SCO_dynastic_alliance_with_german_principalities }
+		relative_position_id = SCO_dynastic_alliance_with_german_principalities
+		mutually_exclusive = { focus = SCO_supporting_the_trade_elite }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_supporting_the_trade_elite
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		prerequisite = { focus = SCO_dynastic_alliance_with_german_principalities }
+		relative_position_id = SCO_dynastic_alliance_with_german_principalities
+		mutually_exclusive = { focus = SCO_strengthening_positions_through_philanthropy }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			# the weak support
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_united_front_of_support
+		icon = GFX_goal_unknown
+		x = 4
+		y = 1
+		relative_position_id = SCO_supporting_the_trade_elite
+		prerequisite = { 
+			focus = SCO_supporting_the_trade_elite 
+			focus = SCO_agreement_to_take_english_throne 
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_strengthen_army
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		relative_position_id = SCO_united_front_of_support
+		prerequisite = { focus = SCO_united_front_of_support }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_strengthen_key_positions
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = SCO_strengthen_army
+		prerequisite = { focus = SCO_strengthen_army }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_recruit_more_troops
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_strengthen_army
+		prerequisite = { focus = SCO_strengthen_army }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_implement_military_reforms
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = SCO_recruit_more_troops
+		prerequisite = {
+			focus = SCO_recruit_more_troops
+			focus = SCO_strengthen_key_positions
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_start_civil_war_against_william
+		icon = GFX_goal_unknown
+		x = 7
+		y = 1
+		relative_position_id = SCO_united_front_of_support
+		prerequisite = { focus = SCO_united_front_of_support } 
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_organization_of_resistance
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_start_civil_war_against_william
+		prerequisite = { focus = SCO_start_civil_war_against_william } 
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_clandestine_financing
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_organization_of_resistance
+		prerequisite = { focus = SCO_organization_of_resistance } 
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_propaganda_to_revolt
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = SCO_clandestine_financing
+		prerequisite = { focus = SCO_clandestine_financing } 
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_bribing_forces_loyal_to_wilhelm
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_clandestine_financing
+		prerequisite = { focus = SCO_clandestine_financing } 
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	
+	focus = {
+		id = SCO_diversions_in_wilhelm_army
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = SCO_bribing_forces_loyal_to_wilhelm
+		prerequisite = { focus = SCO_bribing_forces_loyal_to_wilhelm } 
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_sneaking_into_william_courtyards
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_diversions_in_wilhelm_army
+		prerequisite = { focus = SCO_diversions_in_wilhelm_army } 
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_call_to_arms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_bribing_forces_loyal_to_wilhelm
+		prerequisite = { focus = SCO_bribing_forces_loyal_to_wilhelm }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_leader_elimination_operation
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = SCO_call_to_arms
+		prerequisite = { focus = SCO_call_to_arms }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_elimination_of_wilhem_commanders_and_political_advisors
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_leader_elimination_operation
+		prerequisite = { focus = SCO_leader_elimination_operation }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_waiting_for_william_death
+		icon = GFX_goal_unknown
+		x = -7
+		y = 1
+		relative_position_id = SCO_united_front_of_support
+		prerequisite = { focus = SCO_united_front_of_support }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_royal_legitimacy
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = SCO_waiting_for_william_death
+		prerequisite = { focus = SCO_waiting_for_william_death }
+		mutually_exclusive = { focus = SCO_gathering_support_from_nobles }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_gathering_support_from_nobles
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = SCO_waiting_for_william_death
+		prerequisite = { focus = SCO_waiting_for_william_death }
+		mutually_exclusive = { focus = SCO_royal_legitimacy }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_strengthening_hanoverian_claims
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = SCO_gathering_support_from_nobles
+		prerequisite = { 
+			focus = SCO_gathering_support_from_nobles 
+			focus = SCO_royal_legitimacy
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_sneaking_into_william_courtyard
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_strengthening_hanoverian_claims
+		prerequisite = { focus = SCO_strengthening_hanoverian_claims }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_no_worthy_claimant_to_the_throne
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_sneaking_into_william_courtyard
+		prerequisite = { focus = SCO_sneaking_into_william_courtyard }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_unification_under_hannover_dynasty
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_no_worthy_claimant_to_the_throne
+		prerequisite = { focus = SCO_no_worthy_claimant_to_the_throne }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_coronation_george_I
+		icon = GFX_goal_unknown
+		x = 7
+		y = 2
+		relative_position_id = SCO_unification_under_hannover_dynasty
+		prerequisite = { 
+			focus = SCO_unification_under_hannover_dynasty 
+			focus = SCO_sneaking_into_william_courtyards 
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_reform_british_army
+		icon = GFX_goal_unknown
+		x = 5
+		y = 1
+		relative_position_id = SCO_coronation_george_I
+		prerequisite = { focus = SCO_coronation_george_I }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_expansion_of_the_royal_navy
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = SCO_reform_british_army
+		prerequisite = { focus = SCO_reform_british_army }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_armament_modernization
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = SCO_reform_british_army
+		prerequisite = { focus = SCO_reform_british_army }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_implementation_of_new_tactics_and_doctrine
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = SCO_armament_modernization
+		prerequisite = { 
+			focus = SCO_expansion_of_the_royal_navy 
+			focus = SCO_armament_modernization 
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_supporting_loyal_aristocrats
+		icon = GFX_goal_unknown
+		x = -6
+		y = 1
+		relative_position_id = SCO_coronation_george_I
+		prerequisite = { focus = SCO_coronation_george_I }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_support_nobility
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_supporting_loyal_aristocrats
+		prerequisite = { focus = SCO_supporting_loyal_aristocrats }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_royal_patronage
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = SCO_support_nobility
+		prerequisite = { focus = SCO_support_nobility }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_establishment_of_noble_councils
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_royal_patronage
+		prerequisite = { focus = SCO_royal_patronage }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_land_grants_loyal_nobles
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_support_nobility
+		prerequisite = { focus = SCO_support_nobility }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_tax_exemptions_for_loyal_nobles
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_land_grants_loyal_nobles
+		prerequisite = { focus = SCO_land_grants_loyal_nobles }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_reforms_to_strengthen_aristocratic_influence
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = SCO_tax_exemptions_for_loyal_nobles
+		prerequisite = { 
+			focus = SCO_tax_exemptions_for_loyal_nobles
+			focus = SCO_establishment_of_noble_councils
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_opening_an_era_of_stability
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_coronation_george_I
+		prerequisite = { focus = SCO_coronation_george_I }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_tax_reforms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_opening_an_era_of_stability
+		prerequisite = { focus = SCO_opening_an_era_of_stability }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_expansion_of_trade_networks
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_tax_reforms
+		prerequisite = { focus = SCO_tax_reforms }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_infrastructure_development
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_expansion_of_trade_networks
+		prerequisite = { focus = SCO_expansion_of_trade_networks }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_social_security_reforms
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = SCO_tax_reforms
+		prerequisite = { focus = SCO_tax_reforms }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_investments_in_science_and_technology
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_social_security_reforms
+		prerequisite = { 
+			focus = SCO_social_security_reforms
+			focus = SCO_expansion_of_trade_networks 
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_improve_national_banks
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_investments_in_science_and_technology
+		prerequisite = { focus = SCO_investments_in_science_and_technology }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_court_reforms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_improve_national_banks
+		prerequisite = { focus = SCO_improve_national_banks }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_restoring_villagers_trust_in_the_crown
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		relative_position_id = SCO_opening_an_era_of_stability
+		prerequisite = {
+			focus = SCO_supporting_loyal_aristocrats 
+			focus = SCO_opening_an_era_of_stability 
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_institution_of_public_education
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_restoring_villagers_trust_in_the_crown
+		prerequisite = { focus = SCO_restoring_villagers_trust_in_the_crown }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_industrial_growth_strategy
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_institution_of_public_education
+		prerequisite = { focus = SCO_institution_of_public_education }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_improve_of_working_conditions
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_industrial_growth_strategy
+		prerequisite = { focus = SCO_industrial_growth_strategy }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_agrarian_reforms
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = SCO_industrial_growth_strategy
+		prerequisite = { 
+			focus = SCO_investments_in_science_and_technology 
+			focus = SCO_industrial_growth_strategy 
+		}
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_eliminate_the_opposition
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		relative_position_id = SCO_strengthening_hanoverian_claims
+		prerequisite = { focus = SCO_strengthening_hanoverian_claims }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_region_cleanup_operations
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_eliminate_the_opposition
+		prerequisite = { focus = SCO_eliminate_the_opposition }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+#######################
+### Unite w England ###
+#######################
+
+	focus = {
+		id = SCO_unite_w_england
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_the_scottish_nation
+		prerequisite = { focus = SCO_the_scottish_nation }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_glorious_revolution
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = SCO_unite_w_england
+		prerequisite = { focus = SCO_unite_w_england }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			# Recognition of William III as ruler and the beginning of rapprochement with England.
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_instability
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_glorious_revolution
+		prerequisite = { focus = SCO_glorious_revolution }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			# Recognition of William III as ruler and the beginning of rapprochement with England.
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_support_for_the_local_aristocracy
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_unite_w_england
+		prerequisite = { focus = SCO_unite_w_england }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_parliamentary_reforms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_support_for_the_local_aristocracy
+		prerequisite = { focus = SCO_support_for_the_local_aristocracy }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_conclusion_union_with_england
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_parliamentary_reforms
+		prerequisite = { 
+			focus = SCO_parliamentary_reforms 
+			focus = SCO_instability 
+		}
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_seven_bad_years
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		relative_position_id = SCO_unite_w_england
+		prerequisite = { focus = SCO_unite_w_england }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_agricultural_improvements
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_seven_bad_years
+		prerequisite = { focus = SCO_seven_bad_years }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_wool_and_textile_exports
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = SCO_agricultural_improvements
+		prerequisite = {
+			focus = SCO_agricultural_improvements
+			focus = SCO_urban_development
+		}
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	
+	focus = {
+		id = SCO_infrastructure_reforms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_wool_and_textile_exports
+		prerequisite = { focus = SCO_wool_and_textile_exports }
+
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_judicial_reform
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_infrastructure_reforms
+		prerequisite = { focus = SCO_infrastructure_reforms }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_urban_development
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = SCO_seven_bad_years
+		prerequisite = { focus = SCO_seven_bad_years }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+##########################
+### STUART Restoration ###
+##########################
+
+	focus = {
+		id = SCO_stuart_restoration
+		icon = GFX_goal_unknown
+		x = 16
+		y = 1
+		prerequisite = { focus = SCO_the_scottish_nation }
+		
+		cost = 5 
+
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_leaders_meeting
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_stuart_restoration }
+		relative_position_id = SCO_stuart_restoration
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		mutually_exclusive = { focus = SCO_impact_on_the_church }
+		
+		cost = 5
+
+		completion_reward = {
+			country_event = scotland.2
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_military_alliances
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_leaders_meeting }
+		relative_position_id = SCO_leaders_meeting
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		cost = 5 
+		 
+
+		completion_reward = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = SCO_same_view_on_eng_king
+			}
+			add_opinion_modifier = {
+				target = AUS
+				modifier = SCO_same_view_on_eng_king
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_backstage_arrangements
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_military_alliances }
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_military_alliances
+
+		cost = 5 
+		
+		completion_reward = {
+			country_event = scotland.3
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_funding_anti_english_movements
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_backstage_arrangements }
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_backstage_arrangements
+
+		cost = 5 
+		
+		completion_reward = {
+			ENG = {
+				add_ideas = anti_english_movements
+			}
+			hidden_effect = {
+				random = {
+					chance = 80
+					ENG = {
+						country_event = scotland.4
+					}
+					SCO = {
+						country_event = scotland.5
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_undermining_english_authority_in_the_colonies
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_funding_anti_english_movements
+		prerequisite = { focus = SCO_funding_anti_english_movements }
+
+		cost = 5 
+		
+		completion_reward = {
+			#USA = {
+			#	add_resistance = 60
+			#}
+			#add_resistance = 15
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_conclusion_of_defense_pact
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_undermining_english_authority_in_the_colonies
+		prerequisite = { focus = SCO_undermining_english_authority_in_the_colonies }
+
+		cost = 5 
+		
+		completion_reward = {
+			country_event = scotland.6
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_secret_arms_shipments
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_conclusion_of_defense_pact }
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_conclusion_of_defense_pact
+
+		cost = 5 
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3000
+				producer = FRA
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+				producer = AUS
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_negotiations_with_clans
+		icon = GFX_goal_unknown
+		x = -7
+		y = 1
+		prerequisite = { focus = SCO_leaders_meeting }
+		relative_position_id = SCO_leaders_meeting
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		cost = 5 
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_lowland_clan_support
+		icon = GFX_goal_unknown
+		x = -5
+		y = 2
+		prerequisite = { focus = SCO_negotiations_with_clans }
+		relative_position_id = SCO_leaders_meeting
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		cost = 5 
+
+		completion_reward = {
+			division_template = {
+				name = "Lowland regiment"	
+
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+			}
+			121 = {
+				create_unit = {
+					division = "name = \"Lowland regiment\" division_template = \"Lowland regiment\" start_experience_factor = 3.0" 
+					owner = SCO
+				}
+			}
+			133 = {
+				create_unit = {
+					division = "name = \"Lowland regiment\" division_template = \"Lowland regiment\" start_experience_factor = 3.0" 
+					owner = SCO
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_highland_support
+		icon = GFX_goal_unknown
+		x = -9
+		y = 2
+		prerequisite = { focus = SCO_negotiations_with_clans }
+		relative_position_id = SCO_leaders_meeting
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		cost = 5 
+		 
+		completion_reward = {
+			division_template = {
+				name = "Higland regiment"
+
+				regiments = {
+					mountaineers = { x = 0 y = 0 }
+					mountaineers = { x = 0 y = 1 }
+					mountaineers = { x = 0 y = 2 }	
+					mountaineers = { x = 1 y = 0 }
+					mountaineers = { x = 1 y = 1 }
+					mountaineers = { x = 1 y = 2 }
+					mountaineers = { x = 2 y = 0 }	
+					mountaineers = { x = 2 y = 1 }	
+					mountaineers = { x = 2 y = 2 }		
+				}
+
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+			}
+			136 = {
+				create_unit = {
+					division = "name = \"Higland regiment\" division_template = \"Higland regiment\" start_experience_factor = 3.0" 
+					owner = SCO
+				}
+			}
+			120 = {
+				create_unit = {
+					division = "name = \"Higland regiment\" division_template = \"Higland regiment\" start_experience_factor = 3.0" 
+					owner = SCO
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_militia_recruitment
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		prerequisite = { focus = SCO_highland_support }
+		prerequisite = { focus = SCO_lowland_clan_support }
+		relative_position_id = SCO_lowland_clan_support
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		cost = 5 
+
+		completion_reward = {
+			add_manpower = 55000
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_creation_of_elite_squads
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		prerequisite = { focus = SCO_militia_recruitment }
+		relative_position_id = SCO_militia_recruitment
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		cost = 5 
+
+		completion_reward = {
+			division_template = {
+				name = "Militia Squad"
+
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }	
+					militia = { x = 1 y = 0 }
+					militia = { x = 1 y = 1 }
+					militia = { x = 1 y = 2 }
+					militia = { x = 2 y = 0 }	
+					militia = { x = 2 y = 1 }	
+					militia = { x = 2 y = 2 }		
+				}
+
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+			}
+			136 = {
+				create_unit = {
+					division = "name = \"Militia Squad\" division_template = \"Militia Squad\" start_experience_factor = 3.0" 
+					owner = SCO
+				}
+			}
+			120 = {
+				create_unit = {
+					division = "name = \"Militia Squad\" division_template = \"Militia Squad\" start_experience_factor = 3.0" 
+					owner = SCO
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_arms_factory
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_creation_of_elite_squads }
+		#mutually_exclusive = { focus = SCO_guerrilla_warfare_tactics }
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_creation_of_elite_squads
+
+		cost = 5 
+		
+		completion_reward = {
+			120 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			133 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_weapons_collection
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_arms_factory }
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_arms_factory
+
+		cost = 5 
+		
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 500
+				producer = SCO
+			}
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_fortification_works
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		prerequisite = { focus = SCO_militia_recruitment }
+		relative_position_id = SCO_militia_recruitment
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+
+		cost = 5 
+
+		completion_reward = {
+			121 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 11378
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 9314
+				}
+			}
+			133 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 11218
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_mass_agitation
+		icon = GFX_goal_unknown
+		x = 4
+		y = 2
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_arms_factory
+		prerequisite = { focus = SCO_weapons_collection }
+		prerequisite = { focus = SCO_secret_arms_shipments }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_protecting_scottish_identity
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		prerequisite = { focus = SCO_mass_agitation }
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_mass_agitation
+
+		cost = 5
+
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_organization_of_sabotage_actions
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_protecting_scottish_identity
+		prerequisite = { focus = SCO_protecting_scottish_identity }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_alliance_with_the_irish_rebels
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_organization_of_sabotage_actions
+		prerequisite = { focus = SCO_organization_of_sabotage_actions }
+		mutually_exclusive = { focus = SCO_organization_of_partisan_detachments }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_organization_of_partisan_detachments
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_organization_of_sabotage_actions
+		prerequisite = { focus = SCO_organization_of_sabotage_actions }
+		mutually_exclusive = { focus = SCO_alliance_with_the_irish_rebels }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_undermining_english_administration
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_organization_of_sabotage_actions
+		prerequisite = {
+			focus = SCO_organization_of_partisan_detachments 
+			focus = SCO_alliance_with_the_irish_rebels
+		}
+	
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_stuart_rebellion
+		icon = GFX_goal_unknown
+		x = 8
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_undermining_english_administration
+		prerequisite = {
+			focus = SCO_undermining_english_administration 
+			focus = SCO_develop_of_religious_program
+		}
+	
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_mobilizing_supporters
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_stuart_rebellion
+		prerequisite = { focus = SCO_stuart_rebellion }
+	
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_strike_against_the_english_garrisons
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_mobilizing_supporters
+		prerequisite = { focus = SCO_mobilizing_supporters }
+		mutually_exclusive = { focus = SCO_capture_strategic_points }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_capture_strategic_points
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_mobilizing_supporters
+		prerequisite = { focus = SCO_mobilizing_supporters }
+		mutually_exclusive = { focus = SCO_strike_against_the_english_garrisons }
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_suppression_of_the_english_loyalists
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_capture_strategic_points
+		prerequisite = {
+			focus = SCO_capture_strategic_points
+			focus = SCO_strike_against_the_english_garrisons
+		}
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_pick_a_crown
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_suppression_of_the_english_loyalists
+		prerequisite = { focus = SCO_suppression_of_the_english_loyalists }
+		
+		cost = 5
+		
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_flag = french_puppet
+				}
+				FRA = {
+					puppet = SCO
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_new_governament
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_pick_a_crown
+		prerequisite = { focus = SCO_pick_a_crown }
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_introduction_new_educational_system
+		icon = GFX_goal_unknown
+		x = 3
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_new_governament
+		prerequisite = { focus = SCO_new_governament }
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_reorganization_the_civilservice
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_new_governament
+		prerequisite = { focus = SCO_new_governament }
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_infrastructure_restoration
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_new_governament
+		prerequisite = { focus = SCO_new_governament }
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_army_reform
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_new_governament
+		prerequisite = { focus = SCO_new_governament }
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_modernization_agriculture
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_army_reform
+		prerequisite = {
+			focus = SCO_army_reform 
+			focus = SCO_infrastructure_restoration 
+			focus = SCO_reorganization_the_civilservice 
+			focus = SCO_introduction_new_educational_system 
+		}
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	focus = {
+		id = SCO_social_reform_citizen_support
+		icon = GFX_goal_unknown
+		x = 3
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		relative_position_id = SCO_army_reform
+		prerequisite = {
+			focus = SCO_army_reform 
+			focus = SCO_infrastructure_restoration 
+			focus = SCO_reorganization_the_civilservice 
+			focus = SCO_introduction_new_educational_system 
+		}
+		
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_impact_on_the_church
+		icon = GFX_goal_unknown
+		x = 10
+		y = 1
+		relative_position_id = SCO_stuart_restoration
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_stuart_restoration }
+		mutually_exclusive = { focus = SCO_leaders_meeting }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_blessing_the_presbyterian_church
+		icon = GFX_goal_unknown
+		x = -2
+		y = 4
+		relative_position_id = SCO_impact_on_the_church
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_religious_reforms }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_religious_committees
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_blessing_the_presbyterian_church
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_blessing_the_presbyterian_church }
+		mutually_exclusive = { focus = SCO_control_of_church_finances }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_control_of_church_finances
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = SCO_blessing_the_presbyterian_church
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_blessing_the_presbyterian_church }
+		mutually_exclusive = { focus = SCO_religious_committees }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_unity_of_church_and_pretenders
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_control_of_church_finances
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { 
+			focus = SCO_control_of_church_finances
+			focus = SCO_religious_committees  
+		}
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_presbyterian_support
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = SCO_impact_on_the_church
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_impact_on_the_church }
+		mutually_exclusive = { focus = SCO_catholic_support }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_catholic_support
+		icon = GFX_goal_unknown
+		x = 4
+		y = 1
+		relative_position_id = SCO_impact_on_the_church
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_impact_on_the_church }
+		mutually_exclusive = { focus = SCO_presbyterian_support }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_reconciliation_with_the_catholics
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_catholic_support
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_catholic_support }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_blessing_from_vatican
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_reconciliation_with_the_catholics
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_reconciliation_with_the_catholics }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_support_for_catholic_monarchs
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_blessing_from_vatican
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_blessing_from_vatican }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_catholic_revival
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_support_for_catholic_monarchs
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_support_for_catholic_monarchs }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_synod_of_catholic_bishops
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_catholic_revival
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_catholic_revival }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_rejection_english_ecclesiastical_authority
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		relative_position_id = SCO_synod_of_catholic_bishops
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { 
+			focus = SCO_synod_of_catholic_bishops 
+			focus = SCO_unity_of_church_and_pretenders 
+		}
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_secret_meetings
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_rejection_english_ecclesiastical_authority
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_rejection_english_ecclesiastical_authority }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_declaration_independence_in_field_of_culture
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_secret_meetings
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_secret_meetings }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_renaissance_scottish_culture
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_declaration_independence_in_field_of_culture
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_declaration_independence_in_field_of_culture }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_develop_of_religious_program
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_renaissance_scottish_culture
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_renaissance_scottish_culture }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_undermining_popularity_of_english_church_schools
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = SCO_secret_meetings
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_secret_meetings }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_reform_the_presbyterian_church
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_presbyterian_support
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_presbyterian_support }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_religious_reforms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_reform_the_presbyterian_church
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_reform_the_presbyterian_church }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_alliance_with_presbyterian_leaders
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		relative_position_id = SCO_reform_the_presbyterian_church
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_reform_the_presbyterian_church }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_church_armies
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_alliance_with_presbyterian_leaders
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_alliance_with_presbyterian_leaders }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_covenant_rebirth
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_church_armies
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_church_armies }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_covenant_meetings
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_covenant_rebirth
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_covenant_rebirth }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_the_covenant_declaration
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_covenant_meetings
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_covenant_meetings }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_covenant_resistance_units
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = SCO_covenant_rebirth
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_covenant_rebirth }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_opposition_to_anglicans
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = SCO_covenant_resistance_units
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = { focus = SCO_covenant_resistance_units }
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	focus = {
+		id = SCO_promise_form_covenant_government
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = SCO_opposition_to_anglicans
+		search_filters = { FOCUS_FILTER_POLITICAL } 
+		prerequisite = {
+			focus = SCO_opposition_to_anglicans 
+			focus = SCO_the_covenant_declaration 
+		}
+	
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+}

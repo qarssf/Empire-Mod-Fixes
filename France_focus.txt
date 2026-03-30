@@ -1,0 +1,3139 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = {
+	id = france_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 100
+			tag = FRA
+		}
+	}
+	
+	default = no
+
+	focus = {
+		id = FRA_sun_king
+		icon = GFX_louis_XIV
+		x = 5
+		y = 0
+		cost = 10
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 50
+			add_country_leader_trait = roy_soleil
+		}
+		
+		ai_will_do = {
+			factor = 40
+		}
+
+	}
+
+	focus = {
+		id = FRA_storm_over_europe
+		icon = GFX_focus_usa_focus_on_europe
+		x = -6
+		y = 1
+		cost = 5
+		relative_position_id = FRA_sun_king
+		prerequisite = { focus = FRA_sun_king }
+
+		ai_will_do = {
+			factor = 80
+		}
+
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+
+	focus = {
+		id = FRA_expanding_the_bourbon_sphere
+		icon = GFX_goal_fleur_de_lys
+		prerequisite = { focus = FRA_storm_over_europe}
+		x = 0
+		y = 1
+		cost = 10
+		relative_position_id = FRA_storm_over_europe
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = FRA_the_english_king_in_exile
+		icon = GFX_england_crown
+		x = -13
+		y = 1
+		cost = 5
+		relative_position_id = FRA_storm_over_europe
+		prerequisite = { focus = FRA_storm_over_europe }
+
+		available = {
+			NOT = { 
+				is_in_faction_with = ENG
+				ENG = {
+					has_completed_focus = ENG_restore_the_old_pretender
+				}
+			}
+		}
+
+		completion_reward = {
+			add_ideas = HOL_english_king_in_exile
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_support_james_iii
+		icon = GFX_focus_restore_aulde_pretender
+		x = 0
+		y = 1
+		relative_position_id = FRA_the_english_king_in_exile
+		prerequisite = { focus = FRA_the_english_king_in_exile }
+
+		available = {
+			NOT = { 
+				is_in_faction_with = ENG
+				ENG = {
+					has_completed_focus = ENG_restore_the_old_pretender
+				}
+			}
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = HOL_english_king_in_exile
+				add_idea = HOL_english_king_in_exile_2
+			}
+			ENG = {
+				add_timed_idea = {
+					idea = french_influence
+					days = 150
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_attract_english_catholics
+		icon = GFX_focus_por_concordat
+		x = -1
+		y = 1
+		relative_position_id = FRA_support_james_iii
+		prerequisite = { focus = FRA_support_james_iii }
+
+		available = {
+			NOT = { 
+				is_in_faction_with = ENG
+				ENG = {
+					has_completed_focus = ENG_restore_the_old_pretender
+				}
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {
+			add_manpower = 30000
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = FRA_prepare_the_great_liberation
+		icon = GFX_tanegashima
+		x = 0
+		y = 1
+		relative_position_id = FRA_attract_english_catholics
+		prerequisite = { focus = FRA_attract_english_catholics }
+
+		available = { 
+			has_war_with = ENG
+			NOT = { 
+				is_in_faction_with = ENG
+				ENG = {
+					has_completed_focus = ENG_restore_the_old_pretender
+				}
+			}
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 2 }
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_the_landing_at_firth_of_forth
+		icon = GFX_focus_generic_coastal_fort
+		x = 0
+		y = 1
+		relative_position_id = FRA_prepare_the_great_liberation
+		prerequisite = { focus = FRA_prepare_the_great_liberation }
+
+		available = { 
+			alliance_naval_strength_ratio > 0.5 
+			has_war_with = ENG
+			NOT = { 
+				is_in_faction_with = ENG
+				ENG = {
+					has_completed_focus = ENG_restore_the_old_pretender
+				}
+			}
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			add_manpower = -5000
+			random_list = {
+			    50 = {
+			        country_event = {
+			        	id = france.15
+			        	days = 3
+			        }
+			    }
+			    50 = {
+			       country_event = {
+			        	id = france.16
+			        	days = 3
+			        }
+			    }
+			}
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_anglo_french_treaty
+		icon = GFX_goal_generic_improve_relations
+		x = 1
+		y = 1
+		relative_position_id = FRA_the_landing_at_firth_of_forth
+		prerequisite = { focus = FRA_the_landing_at_firth_of_forth focus = FRA_join_the_quadruple_alliance }
+		mutually_exclusive = { focus = FRA_continue_to_host_the_old_pretender }
+
+		available = {
+			always = no
+		}
+
+		cost = 5
+
+		completion_reward = { 
+			custom_effect_tooltip = PRS_hre_tree_unavailable
+	 	} 
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = {
+		id = FRA_continue_to_host_the_old_pretender
+		icon = GFX_focus_restore_aulde_pretender
+		x = -1
+		y = 1
+		relative_position_id = FRA_the_landing_at_firth_of_forth
+		prerequisite = { focus = FRA_the_landing_at_firth_of_forth }
+		mutually_exclusive = { focus = FRA_anglo_french_treaty }
+
+		available = {
+			always = no
+		}
+
+		cost = 5
+
+		completion_reward = { 
+			custom_effect_tooltip = PRS_hre_tree_unavailable
+	 	} 
+
+		ai_will_do = { 
+		 	factor = 1
+		} 
+	}
+
+	focus = {
+		id = FRA_stoke_up_sentiments_in_ireland
+		icon = GFX_ireland_burning
+		x = 1
+		y = 1
+		relative_position_id = FRA_support_james_iii
+		prerequisite = { focus = FRA_support_james_iii }
+
+		available = {
+			NOT = {
+				AND = {
+					113 = { is_core_of = ENG }
+					135 = { is_core_of = ENG }
+					134 = { is_core_of = ENG }
+					119 = { is_core_of = ENG }
+				}
+			}
+			NOT = { is_in_faction_with = ENG }
+		}
+
+		cost = 5
+
+		completion_reward = {
+			113 = {
+				start_resistance = yes
+				add_compliance = -20 
+				add_resistance = 10 
+			}
+			135 = {
+				add_compliance = -20 
+				add_resistance = 10 
+			}
+			134 = {
+				add_compliance = -20 
+				add_resistance = 10 
+			}
+			119 = {
+				add_compliance = -20 
+				add_resistance = 10 
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = FRA_scottish_deal
+		icon = GFX_scottish_flag
+		x = 0
+		y = 1
+		relative_position_id = FRA_stoke_up_sentiments_in_ireland
+		prerequisite = { focus = FRA_stoke_up_sentiments_in_ireland }
+
+		available = { 
+			has_war_with = ENG 
+			SCO = { exists = yes }
+		}
+		
+		cost = 10
+
+		completion_reward = {
+			SCO = { 
+				country_event = {
+					id = france.8
+					days = 5
+				}
+			}
+		}
+	}
+
+################################
+### Italian Interests Branch ###
+################################
+
+	focus = {
+		id = FRA_italian_interests
+		icon = GFX_focus_on_italy
+		x = 0
+		y = 2
+		relative_position_id = FRA_storm_over_europe
+		prerequisite = { focus = FRA_expanding_the_bourbon_sphere }
+
+		bypass = {
+			ITA = { is_in_faction = yes }
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_STABILITY }
+
+		completion_reward = {
+			add_stability = 0.10
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_align_savoy
+		icon = GFX_agree_savoy
+		x = -1
+		y = 1
+		relative_position_id = FRA_italian_interests
+		prerequisite = { focus = FRA_italian_interests }
+		mutually_exclusive = { focus = FRA_break_ties_with_savoy }
+
+		bypass = {
+			ITA = { is_in_faction = yes }
+		}
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			ITA = { country_event = generic.5 }
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_break_ties_with_savoy
+		icon = GFX_strike_savoy
+		x = 1
+		y = 1
+		relative_position_id = FRA_italian_interests
+		prerequisite = { focus = FRA_italian_interests }
+		mutually_exclusive = { focus = FRA_align_savoy }
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			reverse_add_opinion_modifier = {
+			    target = ITA
+			    modifier = large_decrease
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_respect_mantuan_neutrality
+		icon = GFX_goal_generic_neutrality_focus
+		x = 1
+		y = 1
+		relative_position_id = FRA_align_savoy
+		prerequisite = { focus = FRA_align_savoy focus = FRA_break_ties_with_savoy }
+		mutually_exclusive = { focus = FRA_align_mantua focus = FRA_occupy_mantua }
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.02
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_align_mantua
+		icon = GFX_goal_generic_alliance
+		x = -1
+		y = 1
+		relative_position_id = FRA_align_savoy
+		prerequisite = { focus = FRA_align_savoy focus = FRA_break_ties_with_savoy }
+		mutually_exclusive = { focus = FRA_respect_mantuan_neutrality focus = FRA_occupy_mantua }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			MTU = { country_event = generic.5 }
+		}
+
+		ai_will_do = {
+			factor = 80
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_occupy_mantua
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 3
+		y = 1
+		relative_position_id = FRA_align_savoy
+		prerequisite = { focus = FRA_align_savoy focus = FRA_break_ties_with_savoy }
+		mutually_exclusive = { focus = FRA_respect_mantuan_neutrality focus = FRA_align_mantua }
+
+		bypass = {
+			MTU = {
+				OR = {
+					exists = no
+					is_in_faction_with = ROOT
+				}
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = puppet_wargoal_focus
+			    target = MTU
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_respect_modena_neutrality
+		icon = GFX_goal_generic_neutrality_focus
+		x = 0
+		y = 1
+		relative_position_id = FRA_respect_mantuan_neutrality
+		prerequisite = { focus = FRA_occupy_mantua focus = FRA_respect_mantuan_neutrality focus = FRA_align_mantua }
+		mutually_exclusive = { focus = FRA_align_modena focus = FRA_occupy_modena }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.02
+			add_political_power = 50
+		}
+		
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_align_modena
+		icon = GFX_goal_generic_alliance
+		x = -2
+		y = 1
+		relative_position_id = FRA_respect_mantuan_neutrality
+		prerequisite = { focus = FRA_occupy_mantua focus = FRA_respect_mantuan_neutrality focus = FRA_align_mantua }
+		mutually_exclusive = { focus = FRA_respect_modena_neutrality focus = FRA_occupy_modena }
+
+		bypass = {
+			MOD = {
+				is_in_faction_with = ROOT
+			}
+		}
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			MOD = { country_event = generic.5 }
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_occupy_modena
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 2
+		y = 1
+		relative_position_id = FRA_respect_mantuan_neutrality
+		prerequisite = { focus = FRA_occupy_mantua focus = FRA_respect_mantuan_neutrality focus = FRA_align_mantua }
+		mutually_exclusive = { focus = FRA_respect_modena_neutrality focus = FRA_align_modena }
+
+		bypass = {
+			MOD = {
+				OR = {
+					is_subject_of = ROOT
+					exists = no
+				}
+			}
+		}
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = puppet_wargoal_focus
+			    target = MOD
+			}
+		}
+
+		ai_will_do = {
+			factor = 80
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_respect_genoa_neutrality
+		icon = GFX_goal_generic_neutrality_focus
+		prerequisite = { focus = FRA_occupy_modena focus = FRA_respect_modena_neutrality focus = FRA_align_modena }
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = FRA_respect_modena_neutrality
+		mutually_exclusive = { focus = FRA_align_genoa focus = FRA_occupy_genoa }
+
+		completion_reward = {
+			add_stability = 0.02
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 80
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+
+	focus = {
+		id = FRA_align_genoa
+		icon = GFX_goal_generic_alliance
+		prerequisite = { focus = FRA_occupy_modena focus = FRA_respect_modena_neutrality focus = FRA_align_modena }
+		x = -2
+		y = 1
+		cost = 5
+		relative_position_id = FRA_respect_modena_neutrality
+		mutually_exclusive = { focus = FRA_respect_genoa_neutrality focus = FRA_occupy_genoa }
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+
+		bypass = {
+			GEN = {
+				is_in_faction_with = ROOT
+			}
+		}
+
+		completion_reward = {
+			GEN = { country_event = generic.5 }
+		}
+	}
+
+	focus = {
+		id = FRA_occupy_genoa
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 2
+		y = 1
+		relative_position_id = FRA_respect_modena_neutrality
+		prerequisite = { focus = FRA_occupy_modena focus = FRA_respect_modena_neutrality focus = FRA_align_modena }
+		mutually_exclusive = { focus = FRA_respect_genoa_neutrality focus = FRA_align_genoa }
+
+		bypass = {
+			GEN = {
+				OR = {
+					is_subject_of = ROOT
+					exists = no
+				}
+			}
+		}
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = puppet_wargoal_focus
+			    target = GEN
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_respect_tuscany_neutrality
+		icon = GFX_goal_generic_neutrality_focus
+		x = 0
+		y = 1
+		relative_position_id = FRA_respect_genoa_neutrality
+		prerequisite = { focus = FRA_occupy_genoa focus = FRA_respect_genoa_neutrality focus = FRA_align_genoa }
+		mutually_exclusive = { focus = FRA_align_tuscany focus = FRA_occupy_tuscany }
+
+		cost = 5
+
+		completion_reward = {
+			add_stability = 0.02
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 80
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_align_tuscany
+		icon = GFX_goal_generic_alliance
+		x = -2
+		y = 1
+		relative_position_id = FRA_respect_genoa_neutrality
+		prerequisite = { focus = FRA_occupy_genoa focus = FRA_respect_genoa_neutrality focus = FRA_align_genoa }
+		mutually_exclusive = { focus = FRA_respect_tuscany_neutrality focus = FRA_occupy_tuscany }
+
+		bypass = {
+			TUS = {
+				is_in_faction_with = ROOT
+			}
+		}
+
+		cost = 5
+
+		completion_reward = {
+			TUS = { country_event = generic.5 }
+		}
+		
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_occupy_tuscany
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 2
+		y = 1
+		relative_position_id = FRA_respect_genoa_neutrality
+		prerequisite = { focus = FRA_occupy_genoa focus = FRA_respect_genoa_neutrality focus = FRA_align_genoa }
+		mutually_exclusive = { focus = FRA_respect_tuscany_neutrality focus = FRA_align_tuscany }
+
+		bypass = {
+			TUS = {
+				is_subject_of = ROOT
+				exists = no
+			}
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = puppet_wargoal_focus
+			    target = TUS
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_access_through_papal_state
+		icon = GFX_agree_papal_states
+		x = 1
+		y = 1
+		relative_position_id = FRA_respect_tuscany_neutrality
+		prerequisite = { focus = FRA_occupy_tuscany focus = FRA_respect_tuscany_neutrality focus = FRA_align_tuscany }
+		mutually_exclusive = { focus = FRA_respect_papal_neutrality }
+
+		cost = 5
+
+		completion_reward = {
+			PAP = { give_military_access = FRA }
+			PRM = { give_military_access = FRA }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = FRA_protect_the_papal_state
+		icon = GFX_goal_generic_defence
+		x = -3
+		y = 1
+		relative_position_id = FRA_respect_tuscany_neutrality
+		prerequisite = { focus = FRA_occupy_tuscany focus = FRA_respect_tuscany_neutrality focus = FRA_align_tuscany }
+		mutually_exclusive = { focus = FRA_break_ties_with_the_papal_state }
+
+		cost = 5
+
+		completion_reward = {
+			give_guarantee = PAP
+			send_equipment = {
+			    type = infantry_equipment
+			    amount = 1000
+			    target = PAP
+			}
+			reverse_add_opinion_modifier = {
+			    target = PAP
+			    modifier = huge_increase
+			}
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_invite_papal_state
+		icon = GFX_goal_papal_states_flag
+		x = 0
+		y = 1
+		relative_position_id = FRA_protect_the_papal_state
+		prerequisite = { focus = FRA_protect_the_papal_state }
+
+		available = {
+			NOT = { has_completed_focus = FRA_respect_papal_neutrality }
+		}
+
+		bypass = {
+			is_in_faction_with = PAP
+		}
+
+		cost = 5
+
+		completion_reward = {
+			PAP = { country_event = generic.5 }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = FRA_break_ties_with_the_papal_state
+		icon = GFX_goal_generic_attack_allies
+		x = -1
+		y = 1
+		relative_position_id = FRA_respect_tuscany_neutrality
+		prerequisite = { focus = FRA_occupy_tuscany focus = FRA_respect_tuscany_neutrality focus = FRA_align_tuscany }
+		mutually_exclusive = { focus = FRA_protect_the_papal_state }
+
+		cost = 5
+
+		completion_reward = {
+			reverse_add_opinion_modifier = {
+			    target = PAP
+			    modifier = large_decrease
+			}
+			add_stability = -0.15
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = FRA_military_occupation
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		x = 1
+		y = 1
+		relative_position_id = FRA_break_ties_with_the_papal_state
+		prerequisite = { focus = FRA_break_ties_with_the_papal_state }
+		prerequisite = { focus = FRA_access_through_papal_state }
+
+		bypass = {
+			PAP = {
+				OR = {
+					exists = no
+					is_subject_of = ROOT
+				}
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = puppet_wargoal_focus
+			    target = PAP
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+
+	}
+
+	focus = {
+		id = FRA_respect_papal_neutrality
+		icon = GFX_goal_generic_neutrality_focus
+		x = 3
+		y = 1
+		relative_position_id = FRA_respect_tuscany_neutrality
+		prerequisite = { focus = FRA_occupy_tuscany focus = FRA_respect_tuscany_neutrality focus = FRA_align_tuscany }
+		mutually_exclusive = { focus = FRA_access_through_papal_state }
+
+		available = {
+			NOT = { has_completed_focus = FRA_invite_papal_state }
+		}
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_stability = 0.02
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 80
+		}
+	}
+
+	focus = {
+		id = FRA_allies_in_the_empire
+		icon = GFX_focus_ger_revive_kaiserreich
+		x = 6
+		y = 2
+		relative_position_id = FRA_storm_over_europe
+		prerequisite = { focus = FRA_expanding_the_bourbon_sphere }
+
+		cost = 5
+
+		search_filters = { FOCUS_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_war_support = 0.10
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_ally_bavaria
+		icon = GFX_goal_anschluss
+		x = -1
+		y = 1
+		relative_position_id = FRA_allies_in_the_empire
+		prerequisite = { focus = FRA_allies_in_the_empire }
+
+		bypass = {
+			BAV = { 
+				is_in_faction = yes 
+			}
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			BAV = { country_event = generic.5 }
+			reverse_add_opinion_modifier = {
+			    target = BAV
+			    modifier = faction_traitor
+			}
+			reverse_add_opinion_modifier = {
+			    target = CLG
+			    modifier = faction_traitor
+			}
+			reverse_add_opinion_modifier = {
+			    target = LUI
+			    modifier = faction_traitor
+			}
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_invite_cologne_and_liege
+		icon = GFX_goal_anschluss
+		x = 1
+		y = 1
+		relative_position_id = FRA_allies_in_the_empire
+		prerequisite = { focus = FRA_allies_in_the_empire }
+
+		bypass = {
+			CLG = { 
+				is_in_faction = yes 
+			}
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			CLG = { country_event = generic.5 }
+		}
+
+		ai_will_do = {
+			factor = 30
+		}
+	}
+
+	focus = {
+		id = FRA_alliance_with_brunswick
+		icon = GFX_goal_anschluss
+		x = 0
+		y = 1
+		relative_position_id = FRA_ally_bavaria
+		prerequisite = { focus = FRA_ally_bavaria focus = FRA_invite_cologne_and_liege }
+		
+		cost = 5
+
+		bypass = {
+			BSG = { 
+				is_in_faction = yes 
+			}
+		}
+
+		completion_reward = {
+			BSG = { country_event = generic.5 }
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	focus = {
+		id = FRA_allies_in_thuringia
+		icon = GFX_goal_anschluss
+		prerequisite = { focus = FRA_ally_bavaria focus = FRA_invite_cologne_and_liege}
+		x = 2
+		y = 1
+		cost = 5
+		relative_position_id = FRA_ally_bavaria
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		bypass = {
+			THU = { is_in_faction = yes }
+		}
+
+		completion_reward = {
+			THU = { country_event = generic.5 }
+		}
+	}
+
+	focus = {
+		id = FRA_link_up_with_bavaria
+		icon = GFX_goal_generic_military_deal
+		x = 1
+		y = 1
+		relative_position_id = FRA_alliance_with_brunswick
+		prerequisite = { focus = FRA_allies_in_thuringia focus = FRA_alliance_with_brunswick }
+
+		bypass = {
+			RPA = {
+				exists = no
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = RPA
+			}
+		}
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+
+	focus = {
+		id = FRA_secure_trier
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		prerequisite = { focus = FRA_allies_in_thuringia focus = FRA_alliance_with_brunswick}
+		x = -1
+		y = 1
+		cost = 5
+		relative_position_id = FRA_alliance_with_brunswick
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+
+		bypass = {
+			TRR = {
+				exists = no
+			}
+		}
+
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = TRR
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_occupy_lorraine
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 3
+		y = 1
+		relative_position_id = FRA_alliance_with_brunswick
+		prerequisite = { focus = FRA_allies_in_thuringia focus = FRA_alliance_with_brunswick }
+		mutually_exclusive = { focus = FRA_sway_lorraine }
+
+		available = {
+			has_war_with = AUS
+		}
+
+		bypass = {
+			OR = {
+				has_war_with = LOR
+				LOR = { 
+					is_in_faction_with = FRA 
+				}
+				LOR = {
+					exists = no
+				}
+			}
+		}
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = LOR
+			}	
+		}
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_sway_lorraine
+		icon = GFX_goal_generic_major_alliance
+		x = 5
+		y = 1
+		relative_position_id = FRA_alliance_with_brunswick
+		prerequisite = { focus = FRA_allies_in_thuringia focus = FRA_alliance_with_brunswick }
+		mutually_exclusive = { focus = FRA_occupy_lorraine }
+
+		available = {
+			has_war_with = AUS
+		}
+
+		cost = 5
+
+		bypass = {
+			LOR = { is_in_faction_with = FRA }
+		}
+
+		completion_reward = {
+			reverse_add_opinion_modifier = {
+			    target = LOR
+			    modifier = large_increase
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_ally_lorraine
+		icon = GFX_goal_generic_alliance
+		x = 0
+		y = 1
+		relative_position_id = FRA_sway_lorraine
+		prerequisite = { focus = FRA_sway_lorraine }
+
+		available = {
+			has_war_with = AUS
+		}
+
+		bypass = {
+			LOR = { is_in_faction_with = FRA }
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			LOR = { country_event = generic.5 }
+		}
+	}
+
+	focus = {
+		id = FRA_propose_vassalization
+		icon = GFX_goal_generic_national_unity
+		x = -1
+		y = 1
+		relative_position_id = FRA_ally_lorraine
+		prerequisite = { focus = FRA_ally_lorraine }
+		mutually_exclusive = { focus =  FRA_swap_lorraine_for_milan }
+
+		available = {
+			has_war_with = AUS
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			LOR = { country_event = france.18 }
+		}
+	}
+
+	focus = {
+		id = FRA_swap_lorraine_for_milan
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 1
+		y = 1
+		relative_position_id = FRA_ally_lorraine
+		prerequisite = { focus = FRA_ally_lorraine }
+		mutually_exclusive = { focus =  FRA_propose_vassalization }
+
+		available = {
+			has_war_with = AUS
+			LOM = { is_subject_of = FRA }
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			LOR = { country_event = france.21 }
+		}
+	}
+
+	focus = {
+		id = FRA_befriend_switzerland
+		icon = GFX_agree_switzerland
+		x = 0
+		y = 1 
+		prerequisite = { focus = FRA_occupy_lorraine }
+		relative_position_id = FRA_occupy_lorraine
+
+		bypass = {
+			SWI = {
+				OR = {
+					exists = no
+					is_subject = yes
+					AND = {
+						is_subject = no
+						is_in_faction_with = ROOT
+					}
+				}
+			}
+		}
+
+		cost = 5
+
+		completion_reward = {
+			SWI = { add_opinion_modifier = { target = FRA modifier = large_increase } }
+		}
+	}
+
+	focus = {
+		id = FRA_march_to_vienna
+		icon = GFX_betray_austria
+		x = -2
+		y = 1
+		relative_position_id = FRA_occupy_lorraine
+		prerequisite = { focus = FRA_occupy_lorraine focus = FRA_secure_trier focus = FRA_link_up_with_bavaria }
+
+		available = {
+			has_war_with = AUS
+		}
+
+		bypass = {
+			WUR = {
+				exists = no
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = WUR
+			}	
+		}
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_instigate_hungarian_rebellion
+		icon = GFX_agree_hungary
+		x = 0
+		y = 1
+		relative_position_id = FRA_march_to_vienna
+		prerequisite = { focus = FRA_march_to_vienna }
+
+		available = { 
+			has_war_with = AUS 
+			date > 1703.6.15
+			NOT = { 
+				has_global_flag = HUN_has_rebelled 
+				has_global_flag = AUS_dual_monarchy 
+				HUN = {
+					is_puppet_of = AUS
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = hungarian_states_occupied_by_austria
+				43 = {
+					is_owned_and_controlled_by = AUS
+				}
+				45 = {
+					is_owned_and_controlled_by = AUS
+				}
+				70 = {
+					is_owned_and_controlled_by = AUS
+				}
+				71 = {
+					is_owned_and_controlled_by = AUS
+				}
+				73 = {
+					is_owned_and_controlled_by = AUS
+				}
+				76 = {
+					is_owned_and_controlled_by = AUS
+				}
+				83 = {
+					is_owned_and_controlled_by = AUS
+				}
+				84 = {
+					is_owned_and_controlled_by = AUS
+				}
+				109 = {
+					is_owned_and_controlled_by = AUS
+				}
+				154 = {
+					is_owned_and_controlled_by = AUS
+				}
+				155 = {
+					is_owned_and_controlled_by = AUS
+				}
+				664 = {
+					is_owned_and_controlled_by = AUS
+				}
+			}
+		}
+
+		cost = 10
+
+		bypass = {
+			OR = { 
+				country_exists = HUN
+				AUS = { has_global_flag = AUS_dual_monarchy }
+				AUS = { has_global_flag = AUS_dual_monarchy }
+			}
+			NOT = {
+				43 = {
+					is_owned_and_controlled_by = AUS
+				}
+				70 = {
+					is_owned_and_controlled_by = AUS
+				}
+				71 = {
+					is_owned_and_controlled_by = AUS
+				}
+				73 = {
+					is_owned_and_controlled_by = AUS
+				}
+				76 = {
+					is_owned_and_controlled_by = AUS
+				}
+				83 = {
+					is_owned_and_controlled_by = AUS
+				}
+				154 = {
+					is_owned_and_controlled_by = AUS
+				}
+				664 = {
+					is_owned_and_controlled_by = AUS
+				}
+			}
+		}
+
+		completion_reward = {
+			AUS = {
+				country_event = hungary.1
+			}
+		}
+		
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+			modifier = {
+				date > 1703.1.1
+				add = 10
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_support_hungarian_revolt
+		icon = GFX_tanegashima
+		x = 0
+		y = 1
+		relative_position_id = FRA_instigate_hungarian_rebellion
+		prerequisite = { focus = FRA_instigate_hungarian_rebellion }
+
+		bypass = {
+			OR = {
+				HUN = { has_capitulated = yes }
+				HUN = { is_in_faction_with = AUS }
+				NOT = { country_exists = HUN }
+			}
+		}
+
+		available = {
+			country_exists = HUN
+			HUN = { has_war_with = AUS }
+		}
+		
+		cost = 10
+
+		completion_reward = {
+			send_equipment = {
+			    equipment = infantry_equipment
+			    amount = 10000
+			    target = HUN
+			}
+			send_equipment = {
+			    equipment = support_equipment
+			    amount = 500
+			    target = HUN
+			}
+			send_equipment = {
+			    equipment = artillery_equipment
+			    amount = 250
+			    target = HUN
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = { FRA = { has_war_with = AUS } }
+				factor = 0
+			}
+			modifier = {
+				date > 1703.1.1
+				add = 10
+			}
+		}
+	}
+
+################################
+### Pressure on Spain Branch ###
+################################
+
+	focus = {
+		id = FRA_pressure_on_spain
+		icon = GFX_philip_v
+		x = -8
+		y = 1
+		relative_position_id = FRA_storm_over_europe
+		prerequisite = { focus = FRA_storm_over_europe }
+
+		available = { 
+			NOT = { BAV = { has_idea = BAV_joseph_ferdinand } }
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			SPR = { add_opinion_modifier = { target = FRA modifier = FRA_pressured_spain } }
+			FRA = { add_to_variable = { var = ger_gateway_to_europe_influence value = 5 } }
+			set_variable = { var = ger_temp_trade_influence value = FRA.ger_gateway_to_europe_influence }
+			subtract_from_variable = { var = ger_temp_trade_influence value = AUS.eng_gateway_to_europe_influence }
+			set_variable = { var = eng_temp_trade_influence value = AUS.eng_gateway_to_europe_influence }
+			subtract_from_variable = { var = eng_temp_trade_influence value = FRA.ger_gateway_to_europe_influence }
+			add_to_variable = { var = gateway_to_europe_influence_pp_total value = 10 }
+		}
+
+		ai_will_do = {
+			factor = 800
+		}
+	}
+
+	focus = {
+		id = FRA_align_portugal
+		icon = GFX_focus_por_the_fifth_empire
+		x = 5
+		y = 1
+		relative_position_id = FRA_pressure_on_spain
+		prerequisite = { focus = FRA_pressure_on_spain }
+		prerequisite = { focus = FRA_expanding_the_bourbon_sphere }
+
+		cost = 5
+		
+		completion_reward = {
+			POR = { country_event = generic.5 }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = FRA_treaty_of_london_achieved
+		icon = GFX_sign_papers
+		x = 0
+		y = 1
+		relative_position_id = FRA_pressure_on_spain
+		prerequisite = { focus = FRA_pressure_on_spain }
+		prerequisite = { focus = FRA_expanding_the_bourbon_sphere }
+		mutually_exclusive = { focus = FRA_contest_succession focus = FRA_spain_is_ours }
+
+		available = {
+			SPR = { 
+				OR = {
+					has_completed_focus = SPR_bourbon_partition
+					has_completed_focus = SPR_habsburg_partition
+				}
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_stability = 0.10
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	focus = {
+		id = FRA_a_balance_of_power
+		icon = GFX_goal_generic_neutrality_focus
+		x = 0
+		y = 2
+		relative_position_id = FRA_treaty_of_london_achieved
+		prerequisite = { focus = FRA_treaty_of_london_achieved focus = FRA_formalize_alliance  focus = FRA_mobilisation_scheme }
+		mutually_exclusive = { focus = FRA_bourbon_domination_of_europe }
+
+		available = {
+			OR = {
+				has_global_flag = FRA_defeated_flag
+				has_global_flag = habsburg_alliance_defeated_flag
+				SPR = { 
+					OR = {
+						has_completed_focus = SPR_bourbon_partition
+						has_completed_focus = SPR_habsburg_partition
+					}
+				}
+			} 
+			has_war = no
+		}
+		
+		cost = 5
+
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+		
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	focus = {
+		id = FRA_join_the_quadruple_alliance
+		icon = GFX_goal_quadruple_alliance
+		x = 0
+		y = 1
+		relative_position_id = FRA_a_balance_of_power
+		prerequisite = { focus = FRA_a_balance_of_power }
+
+		available = {
+			ENG = { has_completed_focus = eng_quadruple_alliance }
+		}
+
+		bypass = {
+			is_in_faction_with = ENG 
+			ENG = { has_completed_focus = eng_quadruple_alliance }
+		}
+
+		cost = 10
+		
+		completion_reward = {
+			if = {
+				limit = {
+					FRA = { is_faction_leader = yes }
+				}
+				dismantle_faction = yes
+			}
+			else_if = {
+				limit = {
+					FRA = { is_in_faction = yes }
+				}
+				leave_faction = yes
+			}
+			ENG = { country_event = generic.2 }
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	focus = {
+		id = FRA_spain_is_ours
+		icon = GFX_spain_is_ours
+		x = 2
+		y = 1
+		relative_position_id = FRA_pressure_on_spain
+		prerequisite = { focus = FRA_pressure_on_spain }
+		prerequisite = { focus = FRA_expanding_the_bourbon_sphere }
+		mutually_exclusive = { focus = FRA_contest_succession  focus = FRA_treaty_of_london_achieved }
+
+		available = {
+			SPR = { 
+				has_country_leader = {
+				    name = "Philip V"
+				    ruling_only = yes
+				}
+			}
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_political_power = 120
+		}
+
+		ai_will_do = {
+			factor = 800
+		}
+	}
+
+	focus = {
+		id = FRA_formalize_alliance
+		icon = GFX_agree_spain
+		x = 0
+		y = 1
+		relative_position_id = FRA_spain_is_ours
+		prerequisite = { focus = FRA_spain_is_ours }
+
+		bypass = {
+			SPR = { is_in_faction_with = FRA }
+		}
+
+		cost = 5
+
+		completion_reward = {
+			SPR = { country_event = generic.5 }
+		}
+
+		ai_will_do = {
+			factor = 800
+		}
+	}
+
+	focus = {
+		id = FRA_bourbon_domination_of_europe
+		icon = GFX_focus_rom_royal_dictatorship
+		x = 0
+		y = 1
+		relative_position_id = FRA_formalize_alliance
+		prerequisite = { focus = FRA_formalize_alliance }
+		mutually_exclusive = { focus = FRA_a_balance_of_power }
+
+		available = {
+			has_global_flag = grand_alliance_defeated_flag
+		}
+		
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 150
+		}
+
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+
+	focus = {
+		id = FRA_propose_economic_integration
+		icon = GFX_focus_generic_industry_3
+		prerequisite = { focus = FRA_bourbon_domination_of_europe}
+		x = 0
+		y = 1
+		cost = 10
+		relative_position_id = FRA_bourbon_domination_of_europe
+
+		ai_will_do = { 
+			factor = 80
+		}
+
+		available = { SPR = {is_in_faction_with = FRA } }
+
+		completion_reward = {
+			SPR = {
+				country_event = {
+					id = france.5
+					days = 5
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_march_into_the_southern_netherlands
+		icon = GFX_goal_generic_more_territorial_claims
+		prerequisite = { focus = FRA_formalize_alliance}
+		x = 2
+		y = 1
+		cost = 4
+		relative_position_id = FRA_formalize_alliance
+
+		ai_will_do = { 
+			factor = 40
+		}
+
+		bypass = {
+			BEL = { has_war = yes }
+		}
+
+		available = { }
+
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 15
+			968 = { set_demilitarized_zone = no }
+			6 = { set_demilitarized_zone = no }
+			34 = { set_demilitarized_zone = no }
+			793 = { set_demilitarized_zone = no }
+			8 = { set_demilitarized_zone = no }
+		}
+	}
+
+	focus = {
+		id = FRA_integrate_catalonia
+		icon = GFX_catalonia
+		prerequisite = { focus = FRA_propose_economic_integration }
+		x = 0
+		y = 1
+		cost = 10
+		relative_position_id = FRA_propose_economic_integration
+
+		available = { 
+			OR = {
+				AND = {
+					SPR = { is_puppet_of = FRA }
+					165 = {
+				    is_controlled_by = SPR
+					}
+				}
+				AND = {
+					ARA = { is_puppet_of = FRA }
+					165 = {
+				    is_controlled_by = ARA
+					}
+				}
+				165 = {
+				    is_controlled_by = FRA
+				}
+			}
+		}
+
+		completion_reward = {
+			transfer_state = 165
+			165 = { add_core_of = FRA }
+		}
+	}
+
+	focus = {
+		id = FRA_contest_succession
+		icon = GFX_goal_demand_sudetenland
+		x = -2
+		y = 1
+		relative_position_id = FRA_pressure_on_spain
+		prerequisite = { focus = FRA_pressure_on_spain }
+		mutually_exclusive = { focus = FRA_spain_is_ours focus = FRA_treaty_of_london_achieved }
+
+		available = {
+			SPR = { 
+				has_country_leader = {
+				    name = "Carlos II"
+				    ruling_only = yes
+				}
+			}
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = {
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 80
+		}
+	}
+
+	focus = {
+		id = FRA_mobilisation_scheme
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 0
+		y = 1
+		relative_position_id = FRA_contest_succession
+		prerequisite = { focus = FRA_contest_succession }
+
+		available = { 
+			has_global_flag = habsburg_full 
+		}
+
+		bypass = { 
+			has_war_with = SPR 
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 80
+		}
+	}
+
+	focus = {
+		id = FRA_crush_spain_now
+		icon = GFX_goal_generic_major_war
+		x = 0
+		y = 1
+		relative_position_id = FRA_mobilisation_scheme
+		prerequisite = { focus = FRA_mobilisation_scheme }
+
+		available = { 
+			has_global_flag = habsburg_full 
+		}
+
+		bypass = { 
+			has_war_with = SPR 
+		}
+		
+		cost = 10
+
+		will_lead_to_war_with = SPR
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = SPR
+			}	
+			add_ai_strategy = {
+		    	type = declare_war
+		    	id = SPR
+		    	value = 200
+			}
+		}
+
+		ai_will_do = {
+			factor = 80
+		}
+	}
+
+	focus = {
+		id = FRA_set_up_aragon
+		icon = GFX_goal_generic_dangerous_deal
+		x = 0
+		y = 1
+		relative_position_id = FRA_crush_spain_now
+		prerequisite = { focus = FRA_crush_spain_now }
+
+		available = {
+			AND = {
+				165 = {
+				    is_controlled_by = FRA
+				}
+				166 = {
+				    is_controlled_by = FRA
+				}
+				167 = {
+				    is_controlled_by = FRA
+				}
+				177 = {
+				    is_controlled_by = FRA
+				}
+				878 = {
+					is_controlled_by = FRA
+				}
+			}
+		}
+
+		cost = 10
+
+		completion_reward = {	
+			country_event = france.14
+		}
+	}
+
+	focus = {
+		id = FRA_expand_versailles_court
+		icon = GFX_Versailles
+		x = 0
+		y = 1
+		relative_position_id = FRA_sun_king
+		prerequisite = { focus = FRA_sun_king }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_war_support = 0.1
+			add_stability = 0.1
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.10
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_unlimited_power
+		icon = GFX_focus_generic_annex_country_2
+		x = 9
+		y = 1
+		relative_position_id = FRA_storm_over_europe
+		prerequisite = { focus = FRA_storm_over_europe }
+
+		cost = 10
+
+		completion_reward = {
+			add_ideas = agressive_foreign_policy
+		}
+	}
+
+	focus = {
+		id = FRA_natural_borders
+		icon = GFX_focus_fra_border
+		x = 0
+		y = 1
+		relative_position_id = FRA_unlimited_power
+		prerequisite = { focus = FRA_unlimited_power }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			add_state_claim = 6
+			add_state_claim = 34
+			add_state_claim = 8
+			add_state_claim = 35
+			add_state_claim = 42
+			add_state_claim = 51
+			add_state_claim = 793
+			add_state_claim = 735
+			add_state_claim = 790
+			add_state_claim = 923
+		}
+	}
+
+	focus = {
+		id = FRA_demand_corsica
+		icon = GFX_corsica
+		prerequisite = { focus = FRA_natural_borders }
+		x = 0
+		y = 1
+		cost = 5
+		relative_position_id = FRA_natural_borders
+
+		bypass = {
+			1 = { is_controlled_by = ROOT }
+		}
+
+		available = {
+			NOT = {
+				1 = { is_controlled_by = ROOT }
+			}
+		}
+
+		completion_reward = {
+			if = {
+			    limit = {
+			        1 = { is_controlled_by = GEN }
+			    }
+			    GEN = { country_event = france.11 }
+			}
+			if = {
+			    limit = {
+			        1 = { is_controlled_by = ITA } 
+			    }
+			    ITA = {
+			    	country_event = france.11
+			    }
+			}
+			else = {
+			    add_state_claim = 1
+			}
+		}
+		
+		ai_will_do = {
+			base = 0
+		}
+	}
+
+	focus = {
+		id = FRA_maintain_gallicanism_doctrine
+		icon = GFX_goal_generic_demand_territory
+		x = 8
+		y = 1
+		cost = 10
+		relative_position_id = FRA_sun_king
+		prerequisite = { focus = FRA_sun_king }
+
+		completion_reward = {
+			add_popularity = {
+			    ideology = fascism
+			    popularity = -0.05
+			}
+			add_political_power = 60
+			reverse_add_opinion_modifier = {
+			    target = PAP
+			    modifier = small_decrease
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_address_religious_turmoil
+		icon = GFX_goal_spiritual_mobilization
+		x = 0
+		y = 1
+		cost = 10
+		relative_position_id = FRA_maintain_gallicanism_doctrine
+		prerequisite = { focus = FRA_maintain_gallicanism_doctrine }
+
+		completion_reward = {
+			custom_effect_tooltip = hugenot_decisions
+		}
+	}
+	
+	focus = {
+		id = FRA_reinstate_edict_of_nantes
+		icon = GFX_peace
+		x = 1
+		y = 1
+		relative_position_id = FRA_address_religious_turmoil
+		prerequisite = { focus = FRA_address_religious_turmoil }
+		mutually_exclusive = { focus = FRA_confirm_edict_of_fontainebleu }
+
+		cost = 10
+
+		completion_reward = {
+			custom_effect_tooltip = warning_excommunication
+			remove_ideas = FRA_religious_unrest
+			remove_ideas = FRA_edict_of_fontainebleu
+		}
+	}
+
+	focus = {
+		id = FRA_confirm_edict_of_fontainebleu
+		icon = GFX_catholic_and_protestant
+		x = -1
+		y = 1
+		relative_position_id = FRA_address_religious_turmoil
+		prerequisite = { focus = FRA_address_religious_turmoil }
+		mutually_exclusive = { focus = FRA_reinstate_edict_of_nantes }
+
+		cost = 10
+
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+
+	focus = {
+		id = FRA_proclaim_defender_of_the_faith
+		icon = GFX_defender_of_the_faith
+		x = -1
+		y = 1
+		relative_position_id = FRA_confirm_edict_of_fontainebleu
+		prerequisite = { focus = FRA_confirm_edict_of_fontainebleu }
+
+		cost = 10
+
+		completion_reward = {
+			add_ideas = FRA_defender_of_the_faith
+		}
+	}
+
+	focus = {
+		id = FRA_expand_into_north_africa
+		icon = GFX_goal_africa_diplomacy
+		x = 0
+		y = 1
+		relative_position_id = FRA_proclaim_defender_of_the_faith
+		prerequisite = { focus = FRA_proclaim_defender_of_the_faith }
+
+		bypass = {
+			ALG = {
+				exists = no
+			}
+			TUN = {
+				exists = no
+			}
+			MOR = {
+				exists = no
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+			    type = annex_everything
+			    target = ALG
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = TUN
+			}
+			create_wargoal = {
+			    type = annex_everything
+			    target = MOR
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+
+	focus = {
+		id = FRA_banish_all_huguenots
+		icon = GFX_banish_the_huguenots
+		x = 0
+		y = 2
+		relative_position_id = FRA_address_religious_turmoil
+		prerequisite = { focus = FRA_confirm_edict_of_fontainebleu }
+		
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+
+#######################
+### Industry Branch ###
+#######################
+
+	focus = { 
+		id = FRA_french_manufacturing
+		icon = GFX_goal_generic_construction2
+		x = 20
+		y = 0
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			16 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = { 
+		id = FRA_reform_the_taxation_system
+		icon = GFX_generic_tax_issues
+		x = 4
+		y = 1
+		relative_position_id = FRA_french_manufacturing
+		prerequisite = { focus = FRA_french_manufacturing }
+
+		cost = 10
+		
+		completion_reward = {
+			remove_ideas = FRA_inefficient_taxation_system
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = { 
+		id = FRA_industry_technology
+		icon = GFX_economic_stuff
+		x = 0
+		y = 1
+		relative_position_id = FRA_french_manufacturing
+		prerequisite = { focus = FRA_french_manufacturing }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	
+	focus = { 
+		id = FRA_expand_wine_industry
+		icon = GFX_wine_glass_icon
+		x = 2
+		y = 1
+		relative_position_id = FRA_french_manufacturing
+		prerequisite = { focus = FRA_french_manufacturing }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = {
+		id = FRA_expand_textile_industry
+		icon = GFX_focus_textile
+		x = 1
+		y = 1
+		relative_position_id = FRA_expand_wine_industry
+		prerequisite = { focus = FRA_expand_wine_industry }
+		
+		available = {
+			has_tech = textile_manufacturing
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					25
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_resource = {
+					type = rubber
+					amount = 4
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					26
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = textile_manufactury
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = FRA_land_reforms
+		icon = GFX_focus_generic_land_reclamation
+		x = -1
+		y = 1
+		relative_position_id = FRA_expand_wine_industry
+		prerequisite = { focus = FRA_expand_wine_industry }
+		prerequisite = { focus = FRA_industry_technology }
+
+		cost = 8
+		
+		completion_reward = {
+			16 = {
+				add_extra_state_shared_building_slots = 2			
+			}
+			24 = {
+				add_extra_state_shared_building_slots = 2			
+			}
+			33 = {
+				add_extra_state_shared_building_slots = 2			
+			}
+			25 = {
+				add_extra_state_shared_building_slots = 2			
+			}
+			26 = {
+				add_extra_state_shared_building_slots = 2			
+			}
+		}
+
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+	}
+
+	focus = { 
+		id = FRA_civil_university
+		icon = GFX_generic_education
+		x = 0
+		y = 1
+		relative_position_id = FRA_land_reforms
+		prerequisite = { focus = FRA_land_reforms }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+	}
+	
+	focus = { 
+		id = FRA_more_farmland
+		icon = GFX_goal_generic_wheat
+		x = 2
+		y = 1
+		relative_position_id = FRA_land_reforms
+		prerequisite = { focus = FRA_land_reforms }
+
+		cost = 7.2
+	
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 22
+				state = 18
+			}
+		}
+
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+	}
+
+	focus = { 
+		id = FRA_expand_iron_mines
+		icon = GFX_silver_icon
+		x = 0
+		y = 1
+		relative_position_id = FRA_more_farmland
+		prerequisite = { focus = FRA_more_farmland }
+
+		cost = 7.2
+
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 20
+				state = 31
+			}
+		}
+
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+	}
+
+	focus = { 
+		id = FRA_expand_arms_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		x = -2
+		y = 1
+		relative_position_id = FRA_french_manufacturing
+		prerequisite = { focus = FRA_french_manufacturing }
+		
+		available = { 
+			threat > 0.10 
+		}
+		
+		cost = 8
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					24
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					30
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = FRA_border_infrastructure
+		icon = GFX_roman_road_icon
+		x = 1
+		y = 1
+		relative_position_id = FRA_expand_arms_industry
+		prerequisite = { focus = FRA_expand_arms_industry }
+		prerequisite = { focus = FRA_industry_technology }
+
+		cost = 9
+
+		completion_reward = {
+			28 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}			
+			}
+			29 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}			
+			}
+			18 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}			
+			}
+			21 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}			
+			}
+			32 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}			
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		}
+	}
+
+	focus = { 
+		id = FRA_military_university
+		icon = GFX_research_empire
+		x = 0
+		y = 1
+		relative_position_id = FRA_border_infrastructure
+		prerequisite = { focus = FRA_border_infrastructure }
+
+		cost = 10
+
+		completion_reward = {
+			add_research_slot = 1
+		}
+
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+	}
+
+	focus = { 
+		id = FRA_parisian_industry
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = FRA_military_university }
+		prerequisite = { focus = FRA_civil_university }
+		x = 2
+		y = 1
+		relative_position_id = FRA_military_university
+		cost = 10
+		available_if_capitulated = yes 
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+		completion_reward = {
+			16 = {
+				add_extra_state_shared_building_slots = 6
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}			
+		}
+	}
+
+	focus = { 
+		id = FRA_prepare_fleet
+		icon = GFX_Imperial_Warship_Generic
+		prerequisite = { focus = FRA_expand_arms_industry }
+		x = -1
+		y = 1
+		relative_position_id = FRA_expand_arms_industry
+		cost = 10
+		available_if_capitulated = yes 
+		available = {
+		}
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_coastal = yes
+					is_core_of = FRA
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_coastal = yes
+					is_core_of = FRA
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}					
+		}
+	}	
+
+	focus = { 
+		id = FRA_expand_harbour
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = FRA_prepare_fleet }
+		x = 0
+		y = 1
+		relative_position_id = FRA_prepare_fleet
+		cost = 5
+		available_if_capitulated = yes 
+		available = {
+		}
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+		completion_reward = {
+			19 = {
+				add_building_construction = {
+					type = naval_base
+					level = 4
+					instant_build = yes
+					province = 6712
+				}
+			}			
+		}
+	}
+	
+	focus = { 
+		id = FRA_industry_mil_2
+		icon = GFX_tanegashima
+		x = 0
+		y = 3
+		relative_position_id = FRA_expand_arms_industry
+		prerequisite = { focus = FRA_expand_harbour }
+		prerequisite = { focus = FRA_military_university }
+
+		cost = 10
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					25
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					26
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}		
+		}
+
+		ai_will_do = { 
+ 			factor = 1
+ 		} 
+	}
+
+
+############
+# MILITARY TREE
+############
+
+	focus = {
+		id = FRA_raise_military_budget
+		icon = GFX_helmet_icon
+		x = 30
+		y = 0
+		cost = 10
+	
+
+		completion_reward = {
+			add_war_support = .10
+		}
+	}
+
+	focus = {
+		id = FRA_expand_musketeer_force
+		icon = GFX_musketeer_hat_icon
+		prerequisite = { focus = FRA_raise_military_budget }
+		mutually_exclusive = { focus = FRA_revolutionary_warfare }
+		x = -3
+		y = 1
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = cat_grand_battle_plan
+			}
+			army_experience = 10
+		}
+	}
+
+	focus = {
+		id = FRA_construct_hotel_des_invalides
+		icon = GFX_build_churches
+		prerequisite = { focus = FRA_expand_musketeer_force }
+		x = -3
+		y = 2
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_ideas = FRA_hotel_des_invalides
+		}
+	}
+
+	focus = {
+		id = FRA_disciplined_army
+		icon = GFX_soldier_icon
+		prerequisite = { focus = FRA_construct_hotel_des_invalides }
+		x = -4
+		y = 3
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_ideas = FRA_disciplined_musketeer_force
+		}
+	}
+
+	focus = {
+		id = FRA_summon_elites
+		icon = GFX_goal_napoleonic_soldier
+		x = -4
+		y = 4
+		relative_position_id = FRA_raise_military_budget
+		prerequisite = { focus = FRA_disciplined_army }
+
+		cost = 10
+
+		completion_reward = {
+			division_template = {
+				name = "Mousquetaires de la garde"
+				priority = 2
+				is_locked = yes
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					recon = { x = 0 y = 1 } 
+				}
+			}
+			16 = {
+				create_unit = {
+					division = "name = \"Mousquetaires de la garde\" division_template = \"Mousquetaires de la garde\" start_experience_factor = 1" 
+					owner = FRA
+				}
+				create_unit = {
+					division = "name = \"Mousquetaires du roi\" division_template = \"Mousquetaires de la garde\" start_experience_factor = 1" 
+					owner = FRA
+				}
+				create_unit = {
+					division = "name = \"Mousquetaires de la maison militaire\" division_template = \"Mousquetaires de la garde\" start_experience_factor = 1" 
+					owner = FRA
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_noble_officers
+		icon = GFX_noble_icon
+		x = 1
+		y = 1
+		relative_position_id = FRA_construct_hotel_des_invalides
+		prerequisite = { focus = FRA_construct_hotel_des_invalides }
+
+		cost = 10
+
+		completion_reward = {
+			add_ideas = noble_officers
+		}
+	}
+
+	focus = {
+		id = FRA_direct_command
+		icon = GFX_soldier_icon2
+		x = 0
+		y = 1
+		relative_position_id = FRA_noble_officers
+		prerequisite = { focus = FRA_noble_officers }
+
+		cost = 10
+
+		completion_reward = {
+			add_ideas = FRA_direct_military_command
+		}
+	}
+
+	focus = {
+		id = FRA_revolutionary_warfare
+		icon = GFX_dragoon_helmet_icon
+		x = 3
+		y = 1
+		relative_position_id = FRA_raise_military_budget
+		prerequisite = { focus = FRA_raise_military_budget }
+		mutually_exclusive = { focus = FRA_expand_musketeer_force }
+
+		cost = 5
+
+		completion_reward = {
+			army_experience = 20
+		}
+	}
+
+	focus = {
+		id = FRA_school_of_superiour_firepower
+		icon = GFX_field_gun
+		prerequisite = { focus = FRA_revolutionary_warfare }
+		mutually_exclusive = { focus = FRA_school_of_mobile_warfare }
+		x = 1
+		y = 2
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = cat_superior_firepower
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_artillery_barage
+		icon = GFX_Tsar_Cannon
+		prerequisite = { focus = FRA_school_of_superiour_firepower }
+		x = 0
+		y = 3
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_ideas = massed_battery
+		}
+	}
+
+	focus = {
+		id = FRA_improved_cannons
+		icon = GFX_cannon
+		prerequisite = { focus = FRA_artillery_barage }
+		x = 0
+		y = 4
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_tech_bonus = {
+					name = artillery
+					bonus = 2.0
+					uses = 1
+					category = artillery
+				}
+		}
+	}
+
+	focus = {
+		id = FRA_square_formations
+		icon = GFX_goal_generic_defence
+		x = 1
+		y = 1
+		relative_position_id = FRA_school_of_superiour_firepower
+		prerequisite = { focus = FRA_school_of_superiour_firepower }
+
+		cost = 10
+
+		completion_reward = {
+			add_ideas = FRA_square_formations
+		}
+	}
+
+	focus = {
+		id = FRA_infantry_of_the_line
+		icon = GFX_dutch_soldier_icon
+		x = 0
+		y = 1
+		relative_position_id = FRA_square_formations
+		prerequisite = { focus = FRA_square_formations }
+
+		cost = 10
+
+		completion_reward = {
+			add_ideas = FRA_infantry_de_ligne
+		}
+	}
+
+	focus = {
+		id = FRA_school_of_mobile_warfare
+		icon = GFX_goal_generic_army_doctrines
+		prerequisite = { focus = FRA_revolutionary_warfare }
+		mutually_exclusive = { focus = FRA_school_of_superiour_firepower }
+		x = 5
+		y = 2
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = land_doc_bonus
+				bonus = 1.0
+				uses = 1
+				category = cat_mobile_warfare
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_revolutionary_cavalry
+		icon = GFX_cavalry_icon
+		prerequisite = { focus = FRA_school_of_mobile_warfare }
+		x = 4
+		y = 3
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = armor
+				bonus = 1.0
+				uses = 1
+				category = armor
+			}
+		}
+	}
+
+	focus = {
+		id = FRA_cavalry_blitz
+		icon = GFX_french_cavalryman
+		prerequisite = { focus = FRA_revolutionary_cavalry }
+		x = 4
+		y = 4
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {	
+			add_ideas = FRA_cavalry_blitz
+		}
+	}
+
+	focus = {
+		id = FRA_forced_march
+		icon = GFX_soldiers_marching
+		prerequisite = { focus = FRA_school_of_mobile_warfare }
+		x = 6
+		y = 3
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_ideas = FRA_forced_march
+		}
+	}
+
+	focus = {
+		id = FRA_canned_food
+		icon = GFX_goal_generic_positive_trade_relations
+		prerequisite = { focus = FRA_forced_march }
+		x = 6
+		y = 4
+		cost = 10
+		relative_position_id = FRA_raise_military_budget
+
+		completion_reward = {
+			add_ideas = expanded_supply_trains
+		}
+	}
+}
+	

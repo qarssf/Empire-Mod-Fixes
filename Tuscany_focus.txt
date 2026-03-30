@@ -1,0 +1,1220 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = {
+	id = Tuscany_focus
+
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = TUS
+		}
+	}
+
+	default = no
+
+	continuous_focus_position = { x = 5750 y = 0 } 
+
+	focus = {
+		id = TUS_Internal_Reforms
+		icon = GFX_goal_unknown
+		x = 10
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_Start_Economic_Reforms
+		icon = GFX_goal_unknown
+		x = -7
+		y = 1
+		relative_position_id = TUS_Internal_Reforms
+		prerequisite = { focus = TUS_Internal_Reforms }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = TUS_Liberalize_Grain_Trade
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Start_Economic_Reforms
+		}
+		completion_reward = {
+			add_to_variable = { TUS_production_factory_max_efficiency_factor = 0.05 }
+			add_stability = 0.05
+		}
+		relative_position_id = TUS_Start_Economic_Reforms
+	}
+	focus = {
+		id = TUS_Reserve_grain_for_the_army
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Liberalize_Grain_Trade
+		}
+		relative_position_id = TUS_Liberalize_Grain_Trade
+	}
+	focus = {
+		id = TUS_Opera_delle_strade_toscane
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Liberalize_Grain_Trade
+		}
+		mutually_exclusive = {
+			focus = TUS_Reclaiming_the_marshy_areas
+		}
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_core_of = TUS
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = TUS_Liberalize_Grain_Trade
+		
+	}
+	focus = {
+		id = TUS_Reclaiming_the_marshy_areas
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Liberalize_Grain_Trade
+		}
+		mutually_exclusive = {
+			focus = TUS_Opera_delle_strade_toscane
+		}
+		completion_reward = {
+			162 = { add_extra_state_shared_building_slots = 3 }
+		}
+		relative_position_id = TUS_Liberalize_Grain_Trade
+	}
+	focus = { #TUS_HIGHER_taxes
+		id = TUS_Lower_taxes
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Opera_delle_strade_toscane focus = TUS_Reclaiming_the_marshy_areas
+		}
+		completion_reward = {
+			add_to_variable = { TUS_production_factory_max_efficiency_factor = 0.05 }
+			add_to_variable = { TUS_production_factory_efficiency_gain_factor = 0.1 }
+			add_to_variable = { TUS_consumer_goods_factor = -0.1 }
+			add_to_variable = { TUS_production_speed_buildings_factor = 0.05 }
+			add_stability = -0.1
+		}
+		relative_position_id = TUS_Liberalize_Grain_Trade
+	}
+	focus = {
+		id = TUS_Liquidate_medieval_companies
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Start_Economic_Reforms
+		}
+		completion_reward = {
+			add_to_variable = { TUS_production_speed_buildings_factor = 0.1 }
+			add_to_variable = { TUS_production_factory_efficiency_gain_factor = 0.1 }
+			add_to_variable = { TUS_consumer_goods_factor = -0.05 }
+			add_to_variable = { TUS_industrial_capacity_factory = 0.05 }
+			add_stability = -0.1
+		}
+		relative_position_id = TUS_Start_Economic_Reforms
+	}
+	focus = {
+		id = TUS_National_specialists
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Liquidate_medieval_companies
+		}
+		mutually_exclusive = {
+			focus = TUS_Invite_foreign_investors
+		}
+		relative_position_id = TUS_Liquidate_medieval_companies
+	}
+	focus = {
+		id = TUS_Invite_foreign_investors
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Liquidate_medieval_companies
+		}
+		mutually_exclusive = {
+			focus = TUS_National_specialists
+		}
+		relative_position_id = TUS_Liquidate_medieval_companies
+	}
+	focus = {
+		id = TUS_Invest_in_Civilian_Industry
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_National_specialists focus = TUS_Invite_foreign_investors
+		}
+		completion_reward = {
+			add_to_variable = { TUS_production_speed_buildings_factor = 0.05 }
+			random_owned_state = {
+				limit = {
+					is_core_of = TUS
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = TUS_Liquidate_medieval_companies
+	}
+	focus = {
+		id = TUS_Break_ties_with_the_emperor
+		icon = GFX_goal_unknown
+		x = 2
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Lower_taxes focus = TUS_Invest_in_Civilian_Industry
+		}
+		mutually_exclusive = {
+			focus = TUS_Send_more_gifts_to_the_Emperor
+		}
+	}
+	focus = {
+		id = TUS_Send_more_gifts_to_the_Emperor
+		icon = GFX_goal_unknown
+		x = 4
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Lower_taxes focus = TUS_Invest_in_Civilian_Industry
+		}
+		mutually_exclusive = {
+			focus = TUS_Break_ties_with_the_emperor
+		}
+	}
+	focus = {
+		id = TUS_fund_military_production
+		icon = GFX_goal_unknown
+		x = 6
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Start_Economic_Reforms
+		}
+		completion_reward = {
+			add_to_variable = { TUS_consumer_goods_factor = -0.05 }
+			add_to_variable = { TUS_industrial_capacity_factory = 0.05 }
+			add_to_variable = { TUS_industrial_capacity_dockyard = 0.05 }
+			add_stability = -0.1
+		}
+		relative_position_id = TUS_Start_Economic_Reforms
+	}
+	focus = {
+		id = TUS_Siena_artillery_industry
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_fund_military_production
+		}
+		relative_position_id = TUS_fund_military_production
+	}
+	focus = {
+		id = TUS_tuscan_army_university
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_fund_military_production
+		}
+		relative_position_id = TUS_fund_military_production
+	}
+	focus = {
+		id = TUS_prospect_for_resources
+		icon = GFX_goal_unknown
+		x = 4
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_fund_military_production
+		}
+		relative_position_id = TUS_fund_military_production
+	}
+	focus = {
+		id = TUS_steel_industry_production
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_prospect_for_resources
+		}
+		mutually_exclusive = {
+			focus = TUS_Encourage_fabric_production
+		}
+		relative_position_id = TUS_prospect_for_resources
+	}
+	focus = {
+		id = TUS_Encourage_fabric_production
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_prospect_for_resources
+		}
+		mutually_exclusive = {
+			focus = TUS_steel_industry_production
+		}
+		relative_position_id = TUS_prospect_for_resources
+	}
+	focus = {
+		id = TUS_The_problem_of_birth_rate
+		icon = GFX_goal_unknown
+		x = 9
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Internal_Reforms
+		}
+		relative_position_id = TUS_Internal_Reforms
+	}
+	focus = {
+		id = TUS_Subsidy_for_new_children
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_The_problem_of_birth_rate
+		}
+		relative_position_id = TUS_The_problem_of_birth_rate
+	}
+	focus = {
+		id = TUS_Encourage_birth_rates_with_propaganda
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_The_problem_of_birth_rate
+		}
+		relative_position_id = TUS_The_problem_of_birth_rate
+	}
+	focus = {
+		id = TUS_Tuscan_army_reforms
+		icon = GFX_goal_unknown
+		x = 0
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Subsidy_for_new_children focus = TUS_Encourage_birth_rates_with_propaganda
+		}
+		relative_position_id = TUS_The_problem_of_birth_rate
+	}
+	focus = {
+		id = TUS_Jurisdictional_reforms
+		icon = GFX_goal_unknown
+		x = 20
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Internal_Reforms
+		}
+		relative_position_id = TUS_Internal_Reforms
+	}
+	focus = {
+		id = TUS_Out_with_the_clergy
+		icon = GFX_goal_unknown
+		x = -5
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Jurisdictional_reforms
+		}
+		relative_position_id = TUS_Jurisdictional_reforms
+	}
+	focus = {
+		id = TUS_Abolish_the_Maggiorsacrato
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Out_with_the_clergy
+		}
+		relative_position_id = TUS_Out_with_the_clergy
+	}
+	focus = {
+		id = TUS_Abolish_the_fidecommesso
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Out_with_the_clergy
+		}
+		relative_position_id = TUS_Out_with_the_clergy
+	}
+	focus = {
+		id = TUS_Abolish_the_manomorta
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Out_with_the_clergy
+		}
+		relative_position_id = TUS_Out_with_the_clergy
+	}
+	focus = {
+		id = TUS_Centralize_jurisdiction
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Jurisdictional_reforms
+		}
+		relative_position_id = TUS_Jurisdictional_reforms
+	}
+	focus = {
+		id = TUS_Quattro_delitti_infami
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Jurisdictional_reforms
+		}
+		relative_position_id = TUS_Jurisdictional_reforms
+	}
+	focus = {
+		id = TUS_addressing_our_politics
+		icon = GFX_goal_unknown
+		x = 47
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_end_the_medici_regime
+		icon = GFX_goal_unknown
+		x = 7
+		y = 1
+		relative_position_id = TUS_addressing_our_politics 
+		prerequisite = { focus = TUS_addressing_our_politics }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_restore_the_pisa_republic
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_end_the_medici_regime 
+		prerequisite = { focus = TUS_end_the_medici_regime }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_under_oligarchy
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		relative_position_id = TUS_restore_the_pisa_republic 
+		prerequisite = { focus = TUS_restore_the_pisa_republic }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_approach_venice
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = TUS_under_oligarchy 
+		prerequisite = { focus = TUS_under_oligarchy }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_send_country_leader_to_venice
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = TUS_approach_venice 
+		prerequisite = { focus = TUS_approach_venice }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_rebuild_pisa
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = TUS_send_country_leader_to_venice 
+		prerequisite = { focus = TUS_send_country_leader_to_venice }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_inspiration_from_the_serenissima
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_send_country_leader_to_venice 
+		prerequisite = { focus = TUS_send_country_leader_to_venice }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_under_king
+		icon = GFX_goal_unknown
+		x = 3
+		y = 1
+		relative_position_id = TUS_restore_the_pisa_republic 
+		prerequisite = { focus = TUS_restore_the_pisa_republic }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_approach_the_papal_states
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = TUS_under_king 
+		prerequisite = { focus = TUS_under_king }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_send_country_leader_to_rome
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = TUS_approach_the_papal_states 
+		prerequisite = { focus = TUS_approach_the_papal_states }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_defenders_of_christ
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = TUS_send_country_leader_to_rome 
+		prerequisite = { focus = TUS_send_country_leader_to_rome }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_send_economic_subsidies
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_send_country_leader_to_rome 
+		prerequisite = { focus = TUS_send_country_leader_to_rome }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_expand_our_dominions
+		icon = GFX_goal_unknown
+		x = 3
+		y = 1
+		relative_position_id = TUS_under_oligarchy 
+		prerequisite = { 
+			focus = TUS_under_oligarchy 
+			focus = TUS_under_king 
+		}
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_the_best_among_the_italians
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = TUS_expand_our_dominions 
+		prerequisite = { focus = TUS_expand_our_dominions }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_approach_savoy
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = TUS_the_best_among_the_italians 
+		prerequisite = { focus = TUS_the_best_among_the_italians }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_tabarka_or_war
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = TUS_the_best_among_the_italians 
+		prerequisite = { focus = TUS_the_best_among_the_italians }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_invade_genoa
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = TUS_tabarka_or_war 
+		prerequisite = { focus = TUS_tabarka_or_war }
+		prerequisite = { focus = TUS_approach_savoy }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_deal_with_the_spanish
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = TUS_expand_our_dominions 
+		prerequisite = { focus = TUS_expand_our_dominions }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_buy_oran
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = TUS_deal_with_the_spanish 
+		prerequisite = { focus = TUS_deal_with_the_spanish }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_taking_back_what_is_ours
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = TUS_deal_with_the_spanish 
+		prerequisite = { focus = TUS_deal_with_the_spanish }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_buy_sardinia
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = TUS_taking_back_what_is_ours 
+		prerequisite = { focus = TUS_taking_back_what_is_ours }
+		prerequisite = { focus = TUS_buy_oran }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_kingdom_republic_of_the_flowers
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = TUS_buy_sardinia 
+		prerequisite = { focus = TUS_buy_sardinia }
+		prerequisite = { focus = TUS_invade_genoa }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_medicis_tradition
+		icon = GFX_goal_unknown
+		x = -7
+		y = 1
+		relative_position_id = TUS_addressing_our_politics 
+		prerequisite = { focus = TUS_addressing_our_politics }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_continue_the_neutral_policy
+		icon = GFX_goal_unknown
+		x = 4
+		y = 1
+		relative_position_id = TUS_medicis_tradition 
+		prerequisite = { focus = TUS_medicis_tradition }
+		mutually_exclusive = { focus = TUS_seek_foreign_recognitions }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_deterrance
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = TUS_continue_the_neutral_policy 
+		prerequisite = { focus = TUS_continue_the_neutral_policy }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_innovative_minds
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_deterrance 
+		prerequisite = { focus = TUS_deterrance }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_gifts_to_the_emperor
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = TUS_continue_the_neutral_policy 
+		prerequisite = { focus = TUS_continue_the_neutral_policy }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_armed_neutrality
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_gifts_to_the_emperor 
+		prerequisite = { focus = TUS_gifts_to_the_emperor }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_seek_foreign_recognitions
+		icon = GFX_goal_unknown
+		x = -4
+		y = 1
+		relative_position_id = TUS_medicis_tradition 
+		prerequisite = { focus = TUS_medicis_tradition }
+		mutually_exclusive = { focus = TUS_continue_the_neutral_policy }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_flirt_w_british
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = TUS_seek_foreign_recognitions 
+		prerequisite = { focus = TUS_seek_foreign_recognitions }
+		mutually_exclusive = { focus = TUS_visit_to_the_spanish_court }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_join_the_grand_alliance
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_flirt_w_british 
+		prerequisite = { focus = TUS_flirt_w_british }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_economic_cooperation
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		relative_position_id = TUS_join_the_grand_alliance 
+		prerequisite = { focus = TUS_join_the_grand_alliance }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_propose_a_political_marriage
+		icon = GFX_goal_unknown
+		x = -3
+		y = 1
+		relative_position_id = TUS_join_the_grand_alliance 
+		prerequisite = { focus = TUS_join_the_grand_alliance }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_visit_to_the_spanish_court
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = TUS_seek_foreign_recognitions 
+		prerequisite = { focus = TUS_seek_foreign_recognitions }
+		mutually_exclusive = { focus = TUS_flirt_w_british }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_make_a_defensive_pact
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_visit_to_the_spanish_court 
+		prerequisite = { focus = TUS_visit_to_the_spanish_court }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_lets_help_our_friends
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = TUS_make_a_defensive_pact 
+		prerequisite = {
+			focus = TUS_make_a_defensive_pact
+			focus = TUS_join_the_grand_alliance
+		}
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_fortificate_the_seas
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		relative_position_id = TUS_lets_help_our_friends 
+		prerequisite = { focus = TUS_lets_help_our_friends }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_send_our_company_to_our_allies
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_fortificate_the_seas 
+		prerequisite = { focus = TUS_fortificate_the_seas }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_recruit_the_nobles
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		relative_position_id = TUS_lets_help_our_friends 
+		prerequisite = { focus = TUS_lets_help_our_friends }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_TUS_buy_mercenaries2
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_recruit_the_nobles 
+		prerequisite = { focus = TUS_recruit_the_nobles }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_buy_mercenaries
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_lets_help_our_friends 
+		prerequisite = { focus = TUS_lets_help_our_friends }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_recruit_the_nobles2
+		icon = GFX_goal_unknown
+		x = 0
+		y = 1
+		relative_position_id = TUS_buy_mercenaries 
+		prerequisite = { focus = TUS_buy_mercenaries }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_lets_take_the_ports
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		relative_position_id = TUS_make_a_defensive_pact 
+		prerequisite = { focus = TUS_make_a_defensive_pact }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_we_govern_italy
+		icon = GFX_goal_unknown
+		x = 3
+		y = 1
+		relative_position_id = TUS_make_a_defensive_pact 
+		prerequisite = { focus = TUS_make_a_defensive_pact }
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+	}
+	focus = {
+		id = TUS_Reorganization_of_Infantry
+		icon = GFX_goal_unknown
+		x = -2
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Tuscan_army_reforms 
+		}
+		mutually_exclusive = { focus = TUS_Reorganization_of_Cavalry }
+		relative_position_id = TUS_Tuscan_army_reforms
+	}
+	focus = {
+		id = TUS_Reorganization_of_Cavalry
+		icon = GFX_goal_unknown
+		x = 2
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = TUS_Tuscan_army_reforms }
+		mutually_exclusive = { focus = TUS_Reorganization_of_Infantry }
+		relative_position_id = TUS_Tuscan_army_reforms
+	}
+	focus = {
+		id = TUS_Disciplined_training
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Reorganization_of_Infantry 
+		}
+		relative_position_id = TUS_Reorganization_of_Infantry
+	}
+	focus = {
+		id = TUS_Increase_the_mobilization_reserve.
+		icon = GFX_goal_unknown
+		x = -1
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Disciplined_training 
+		}
+		relative_position_id = TUS_Reorganization_of_Infantry
+	}
+	focus = {
+		id = TUS_Supply_improvements
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Reorganization_of_Infantry 
+		}
+		relative_position_id = TUS_Reorganization_of_Infantry
+	}
+	focus = {
+		id = TUS_New_military_academies
+		icon = GFX_goal_unknown
+		x = 1
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = TUS_Supply_improvements }
+		relative_position_id = TUS_Reorganization_of_Infantry
+	}
+	focus = {
+		id = TUS_encourages_horse_production
+		icon = GFX_goal_unknown
+		x = 1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Reorganization_of_Cavalry 
+		}
+		relative_position_id = TUS_Reorganization_of_Cavalry
+	}
+	focus = {
+		id = TUS_knights_of_the_republic_kingdom
+		icon = GFX_goal_unknown
+		x = -1
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = TUS_Reorganization_of_Cavalry 
+		}
+		relative_position_id = TUS_Reorganization_of_Cavalry
+	}
+	focus = {
+		id = TUS_Light_Cavalry_doctrine
+		icon = GFX_goal_unknown
+		x = -1
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = TUS_knights_of_the_republic_kingdom }
+		prerequisite = { focus = TUS_encourages_horse_production }
+		mutually_exclusive = { focus = TUS_Armored_Cavalry_doctrine }
+		relative_position_id = TUS_Reorganization_of_Cavalry
+	}
+	focus = {
+		id = TUS_Armored_Cavalry_doctrine
+		icon = GFX_goal_unknown
+		x = 1
+		y = 2
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = { focus = TUS_knights_of_the_republic_kingdom }
+		prerequisite = { focus = TUS_encourages_horse_production }
+		mutually_exclusive = { focus = TUS_Light_Cavalry_doctrine }
+		relative_position_id = TUS_Reorganization_of_Cavalry
+	}
+}

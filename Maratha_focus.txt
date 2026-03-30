@@ -1,0 +1,4986 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = { 
+	id = Maratha_focus
+	country = {
+	factor = 0
+		modifier = {
+			add = 100
+			original_tag = MAR
+		}
+	}
+
+	default = no
+
+	continuous_focus_position = { x = 50 y = 1400 }
+	
+	focus = {
+		id = MAR_legacy_of_shivaji
+		icon = GFX_shivaji_focus
+		x = 15
+		y = 0
+	
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_war_support = 0.10
+			hidden_effect = {
+				country_event = maratha.24
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 10000 
+		}
+	}
+
+########################
+### Continue the War ###
+########################
+
+	focus = {
+		id = MAR_continue_the_fight
+		icon = GFX_attack_mughals2
+		x = -4
+		y = 1
+		relative_position_id = MAR_legacy_of_shivaji
+		prerequisite = { focus = MAR_legacy_of_shivaji }
+		mutually_exclusive = { focus = MAR_the_fight_has_ended }
+
+		available = {
+			has_war_with = RAJ
+		}
+
+		cost = 5
+		
+		completion_reward = {
+			add_timed_idea = {
+				idea = MAR_continue_the_fight
+				days = 200
+			}
+			add_command_power = 50
+		}
+		
+		ai_will_do = { 
+			factor = 1000 
+		}
+	}
+
+	focus = {
+		id = MAR_ask_madurai_for_aid
+		icon = GFX_agree_madurai
+		x = -2
+		y = 1
+		relative_position_id = MAR_continue_the_fight
+		prerequisite = { focus = MAR_continue_the_fight }
+
+		bypass = {
+			NOT = {
+				has_war_with = RAJ
+			}
+		}
+
+		cost = 5
+		
+		completion_reward = {
+			MDR = { 
+				country_event = maratha.5 
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 1000 
+		}
+	}
+
+	focus = {
+		id = MAR_secure_portuguese_aid
+		icon = GFX_agree_portugal
+		x = 0
+		y = 1
+		relative_position_id = MAR_continue_the_fight
+		prerequisite = { focus = MAR_continue_the_fight }
+
+		bypass = {
+			NOT = {
+				has_war_with = RAJ
+			}
+		}
+
+		cost = 5
+		
+		completion_reward = {
+			POR = {
+				country_event = maratha.8
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_ask_mysore_for_aid
+		icon = GFX_agree_mysore
+		x = 2
+		y = 1
+		relative_position_id = MAR_continue_the_fight
+		prerequisite = { focus = MAR_continue_the_fight }
+
+		bypass = {
+			NOT = {
+				has_war_with = RAJ
+			}
+		}
+
+		cost = 5
+		
+		completion_reward = {
+			MYS = { 
+				country_event = maratha.2 
+			}
+		}
+		
+		ai_will_do = { 
+			factor = 1000 
+		}
+	}
+
+	focus = {
+		id = MAR_purchase_weapons
+		icon = GFX_tanegashima
+		x = -1
+		y = 1
+		relative_position_id = MAR_secure_portuguese_aid
+		prerequisite = { focus = MAR_ask_mysore_for_aid focus = MAR_ask_madurai_for_aid focus = MAR_secure_portuguese_aid }
+		mutually_exclusive = { focus = MAR_increase_production }
+
+		bypass = {
+			NOT = {
+				has_war_with = RAJ
+			}
+		}
+
+		cost = 10
+		
+		completion_reward = {
+			add_political_power = -70
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 200
+			}
+			add_equipment_to_stockpile = {
+				type = basic_cavalry_equipment
+				amount = 200
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 50
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_increase_production
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 1
+		y = 1
+		relative_position_id = MAR_secure_portuguese_aid
+		prerequisite = { focus = MAR_ask_mysore_for_aid focus = MAR_ask_madurai_for_aid focus = MAR_secure_portuguese_aid }
+		mutually_exclusive = { focus = MAR_purchase_weapons }
+
+		bypass = {
+			NOT = {
+				has_war_with = RAJ
+			}
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_political_power = -50
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_train_mountaineers
+		icon = GFX_focus_GRE_a_land_of_mountains
+		x = -1
+		y = 1
+		relative_position_id = MAR_increase_production
+		prerequisite = { focus = MAR_increase_production focus = MAR_purchase_weapons }
+
+		bypass = {
+			NOT = {
+				has_war_with = RAJ
+			}
+		}
+
+		cost = 7.2
+		
+		completion_reward = {
+			960 = {
+				create_unit = {
+					division = "name = \"Mountaineers\" division_template = \"Mountaineers\""
+					owner = MAR
+					count = 3
+				}
+			}
+		}
+	}
+
+##########################
+### Mughals Peaced Out ###
+##########################
+
+	focus = {
+		id = MAR_the_fight_has_ended
+		icon = GFX_peace
+		x = 4
+		y = 1
+		relative_position_id = MAR_legacy_of_shivaji
+		prerequisite = { focus = MAR_legacy_of_shivaji }
+		mutually_exclusive = { focus = MAR_continue_the_fight }
+
+		available = {
+			NOT = {
+				has_war_with = RAJ
+			}
+		}
+
+		cost = 2.2
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 50
+		}
+		
+		ai_will_do = { 
+			factor = -10000 
+		}
+	}
+
+	focus = {
+		id = MAR_reconstruction
+		icon = GFX_generic_man_working
+		x = -2
+		y = 1
+		relative_position_id = MAR_the_fight_has_ended
+		prerequisite = { focus = MAR_the_fight_has_ended }
+
+		cost = 10
+		
+		completion_reward = {
+			swap_ideas = {
+				add_idea = MAR_devastated_countryside_2
+				remove_idea = MAR_devastated_countryside
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_strengthen_industry
+		icon = GFX_focus_generic_industry_3
+		x = 0
+		y = 1
+		relative_position_id = MAR_reconstruction
+		prerequisite = { focus = MAR_reconstruction }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_bide_our_time
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 0
+		y = 1
+		relative_position_id = MAR_the_fight_has_ended
+		prerequisite = { focus = MAR_the_fight_has_ended }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_political_power = 70
+			add_stability = 0.05
+			add_war_support = 0.10
+		}
+	}
+
+	focus = {
+		id = MAR_arrest_traitors
+		icon = GFX_goal_generic_oppression
+		x = 0
+		y = 1
+		relative_position_id = MAR_bide_our_time
+		prerequisite = { focus = MAR_bide_our_time }
+
+		cost = 10
+		
+		completion_reward = {
+			add_political_power = -100
+			swap_ideas = {
+				remove_idea = MAR_traitors_everywhere
+				add_idea = MAR_traitors_better
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_construct_border_forts
+		icon = GFX_build_fort
+		x = 2
+		y = 1
+		relative_position_id = MAR_the_fight_has_ended
+		prerequisite = { focus = MAR_the_fight_has_ended }
+
+		cost = 7.2
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_integrate_new_territories
+		icon = GFX_focus_generic_concessions
+		x = 0
+		y = 1
+		relative_position_id = MAR_construct_border_forts
+		prerequisite = { focus = MAR_construct_border_forts }
+
+		available = {
+			owns_state = 429
+			owns_state = 962
+		}
+
+		cost = 10
+		
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_stability = 0.10
+			429 = { # Ahmadnagar
+				add_core_of = MAR
+			}
+			962 = { # Kolhapur
+				add_core_of = MAR
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_resume_the_fight
+		icon = GFX_strike_mughals
+		x = 0
+		y = 1
+		relative_position_id = MAR_arrest_traitors
+		prerequisite = { focus = MAR_arrest_traitors focus = MAR_integrate_new_territories focus = MAR_strengthen_industry }
+
+		available = {
+			RAJ = {
+				has_completed_focus = MUG_restart_the_war
+			}
+		}
+
+		cost = 2.9
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.05
+		}
+	}
+
+#############################
+### The War is Won Branch ###
+#############################
+
+	focus = {
+		id = MAR_we_are_victorious
+		icon = GFX_maratha_flag2
+		x = 4
+		y = 1
+		relative_position_id = MAR_train_mountaineers
+		prerequisite = { focus = MAR_train_mountaineers focus = MAR_resume_the_fight }
+
+		available = {
+			has_country_flag = MAR_won_the_war
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.15
+			add_political_power = 100
+			set_truce = {
+				target = RAJ
+				days = 100
+			}
+			hidden_effect = {
+				country_event = {
+					id = maratha.28
+					days = 10
+				}
+				country_event = { # Inferior artillery
+					id = maratha.35
+					days = 12
+				}
+				country_event = { # Bad commissariat
+					id = maratha.36
+					days = 13
+				}
+			}
+		}
+	}
+
+#######################################
+### Fixing Post-War Problems Branch ###
+#######################################
+
+	focus = {
+		id = MAR_negotiate_recognition_from_the_mughals
+		icon = GFX_focus_hol_the_foundations_of_defense
+		x = 0
+		y = 1
+		relative_position_id = MAR_we_are_victorious
+		prerequisite = { focus = MAR_we_are_victorious }
+
+		available = {
+			RAJ = {
+				has_opinion = {
+					target = ROOT
+					value > 29
+				}
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			custom_effect_tooltip = higher_relations_with_mughals_the_better
+			RAJ = {
+				country_event = maratha.29
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_heal_the_country
+		icon = GFX_focus_generic_concessions
+		x = -2
+		y = 1
+		relative_position_id = MAR_negotiate_recognition_from_the_mughals
+		prerequisite = { focus = MAR_negotiate_recognition_from_the_mughals }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			remove_ideas = MAR_war_exhaustion
+			add_political_power = -50
+		}
+	}
+	
+	focus = {
+		id = MAR_restore_the_countryside
+		icon = GFX_generic_man_working
+		x = 0
+		y = 1
+		relative_position_id = MAR_heal_the_country
+		prerequisite = { focus = MAR_heal_the_country }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = -70
+			if = {
+				limit = {
+					has_idea = MAR_devastated_countryside
+				}
+				remove_ideas = MAR_devastated_countryside
+			}
+			else_if = {
+				limit = {
+					has_idea = MAR_devastated_countryside_2
+				}
+				remove_ideas = MAR_devastated_countryside_2
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_remove_the_traitors
+		icon = GFX_focus_generic_infiltration
+		x = 0
+		y = 1
+		relative_position_id = MAR_negotiate_recognition_from_the_mughals
+		prerequisite = { focus = MAR_negotiate_recognition_from_the_mughals }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.10
+			if = {
+				limit = {
+					has_idea = MAR_traitors_everywhere
+				}
+				remove_ideas = MAR_traitors_everywhere
+			}
+			else_if = {
+				limit = {
+					has_idea = MAR_traitors_everywhere_2
+				}
+				remove_ideas = MAR_traitors_everywhere_2
+			}
+			else_if = {
+				limit = {
+					has_idea = MAR_traitors_better
+				}
+				remove_ideas = MAR_traitors_better
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_expand_fort_network
+		icon = GFX_goal_generic_defence
+		x = 0
+		y = 1
+		relative_position_id = MAR_remove_the_traitors
+		prerequisite = { focus = MAR_remove_the_traitors }
+
+		cost = 10
+		
+		completion_reward = {
+			add_ideas = MAR_expanded_fort_construction
+		}
+	}
+
+	focus = {
+		id = MAR_establish_judicial_systems
+		icon = GFX_focus_generic_court
+		x = 2
+		y = 1
+		relative_position_id = MAR_negotiate_recognition_from_the_mughals
+		prerequisite = { focus = MAR_negotiate_recognition_from_the_mughals }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.10
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_reform_taxation
+		icon = GFX_generic_tax_issues
+		x = 0
+		y = 1
+		relative_position_id = MAR_establish_judicial_systems
+		prerequisite = { focus = MAR_establish_judicial_systems }
+
+		available = {
+			OR = {
+				has_idea = MAR_jagirs_medium
+				NOT = {
+					AND = {
+						has_idea = MAR_jagirs_very_high
+						has_idea = MAR_jagirs_high
+						has_idea = MAR_jagirs_medium
+						has_idea = MAR_jagirs_low
+						has_idea = MAR_jagirs_very_low
+					}
+				}
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_ideas = MAR_reformed_taxation
+		}
+	}
+
+####################
+### South Branch ###
+####################
+
+	focus = {
+		id = MAR_the_south
+		icon = GFX_look_to_the_south
+		x = -8
+		y = 1
+		relative_position_id = MAR_we_are_victorious
+		prerequisite = { focus = MAR_we_are_victorious }
+
+		available = {
+			NOT = {
+				has_idea = MAR_war_exhaustion
+				has_idea = MAR_lack_of_legitimacy
+			}
+		}
+
+		cost = 2.9
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = MAR_destroy_hyderabad
+		icon = GFX_attack_hyderabad
+		x = -2
+		y = 1
+		relative_position_id = MAR_the_south
+		prerequisite = { focus = MAR_the_south }
+
+		bypass = {
+			HYD = {
+				exists = no
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = mughals_might_come_in
+			create_wargoal = {
+				target = HYD
+				type = annex_everything
+			}
+			hidden_effect = {
+				RAJ = {
+					country_event = {
+						id = maratha.37
+						days = 3
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAR_the_southern_princes
+		icon = GFX_keladi_and_venad_flags
+		x = -1
+		y = 1
+		relative_position_id = MAR_destroy_hyderabad
+		prerequisite = { focus = MAR_destroy_hyderabad }
+
+		bypass = {
+			KOL = {
+				exists = no
+			}
+			VED = {
+				exists = no
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = KOL
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = VED
+				type = annex_everything
+			}
+		}
+	}
+	
+	focus = {
+		id = MAR_mysore_and_madurai
+		icon = GFX_attack_mysore_and_madurai
+		x = 1
+		y = 1
+		relative_position_id = MAR_destroy_hyderabad
+		prerequisite = { focus = MAR_destroy_hyderabad }
+
+		bypass = {
+			MYS = {
+				exists = no
+			}
+			MDR = {
+				exists = no
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = if_in_faction_demand_tribute_if_not_annex
+			if = {
+				limit = {
+					MYS = {
+						is_in_faction_with = MAR
+					}
+				}
+				MYS = {
+					country_event = maratha.25
+				}
+			}
+			else = {
+				create_wargoal = {
+					target = MYS
+					type = annex_everything
+				}
+			}
+			if = {
+				limit = {
+					MDR = {
+						is_in_faction_with = MAR
+					}
+				}
+				MDR = {
+					country_event = maratha.25
+				}
+			}
+			else = {
+				create_wargoal = {
+					target = MDR
+					type = annex_everything
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_attack_kandy
+		icon = GFX_attack_kandy2
+		x = -1
+		y = 1
+		relative_position_id = MAR_mysore_and_madurai
+		prerequisite = { focus = MAR_mysore_and_madurai focus = MAR_the_southern_princes }
+
+		bypass = {
+			SRL = {
+				exists = no
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = SRL
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_colonise_andamans
+		icon = GFX_focus_generic_annex_country
+		x = -1
+		y = 1
+		relative_position_id = MAR_attack_kandy
+		prerequisite = { focus = MAR_attack_kandy }
+
+		available = {
+			733 = {
+				is_owned_and_controlled_by = UNC
+			}
+		}
+
+		bypass = {
+			owns_state = 733
+		}
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_political_power = -50
+			733 = {
+				transfer_state_to = MAR
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_our_own_colonies
+		icon = GFX_take_over_the_world_maratha
+		x = 0
+		y = 1
+		relative_position_id = MAR_colonise_andamans
+		prerequisite = { focus = MAR_colonise_andamans }
+
+		available = {
+			any_owned_state = {
+				is_coastal = yes
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = colonial_tech_bonus
+				bonus = 1.0
+				uses = 2
+				category = colonial_tech
+			}	
+		}
+	}
+
+################################
+### Link to Thanjavur Branch ###
+################################
+	
+	focus = {
+		id = MAR_link_to_thanjavur
+		icon = GFX_attack_carnatic_sultanate
+		x = 2
+		y = 1
+		relative_position_id = MAR_the_south
+		prerequisite = { focus = MAR_the_south }
+
+		bypass = {
+			CAA = {
+				exists = no
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = CAA
+				type = annex_everything
+			}
+		}
+	}
+	
+	focus = {
+		id = MAR_ally_thanjavur
+		icon = GFX_goal_generic_improve_relations
+		x = -1
+		y = 1
+		relative_position_id = MAR_link_to_thanjavur
+		prerequisite = { focus = MAR_link_to_thanjavur }
+		mutually_exclusive = { focus = MAR_subjugate_thanjavur }
+
+		cost = 5
+		
+		completion_reward = {
+			TAN = { 
+				country_event = generic.2
+			}
+		}
+	}
+	
+	focus = {
+		id = MAR_reduce_thanjavur_to_a_puppet
+		icon = GFX_focus_PER_communist_afghanistan_intervention
+		x = 0
+		y = 1
+		relative_position_id = MAR_ally_thanjavur
+		prerequisite = { focus = MAR_ally_thanjavur }
+
+		cost = 5
+		
+		completion_reward = {
+			unlock_decision_category_tooltip = MAR_vassalise_thanjavur
+		}
+	}
+	
+	focus = {
+		id = MAR_subjugate_thanjavur
+		icon = GFX_goal_generic_major_war
+		x = 1
+		y = 1
+		relative_position_id = MAR_link_to_thanjavur
+		prerequisite = { focus = MAR_link_to_thanjavur }
+		mutually_exclusive = { focus = MAR_ally_thanjavur }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = TAN
+				type = puppet_wargoal_focus
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_integrate_thanjavur
+		icon = GFX_scroll_icon2
+		x = 0
+		y = 1
+		relative_position_id = MAR_subjugate_thanjavur
+		prerequisite = { focus = MAR_subjugate_thanjavur }
+
+		available = {
+			owns_state = 965
+		}
+
+		bypass = {
+			965 = {
+				is_core_of = ROOT
+			}
+		}
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_state_core = 965
+		}
+	}
+
+#################################
+### Shared Development Branch ###
+#################################
+
+	focus = {
+		id = MAR_expand_southern_trade
+		icon = GFX_goal_generic_positive_trade_relations
+		x = -1
+		y = 1
+		relative_position_id = MAR_reduce_thanjavur_to_a_puppet
+		prerequisite = { focus = MAR_reduce_thanjavur_to_a_puppet focus = MAR_integrate_thanjavur focus = MAR_attack_kandy }
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_political_power = 50
+			add_ideas = MAR_southern_trade
+		}
+	}
+
+	focus = {
+		id = MAR_ports_in_keladi
+		icon = GFX_goal_generic_build_navy
+		x = 1
+		y = 1
+		relative_position_id = MAR_expand_southern_trade
+		prerequisite = { focus = MAR_expand_southern_trade }
+
+		available = {
+			owns_state = 1035
+		}
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					1035
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_develop_madurai
+		icon = GFX_focus_generic_industry_2
+		x = -1
+		y = 1
+		relative_position_id = MAR_expand_southern_trade
+		prerequisite = { focus = MAR_expand_southern_trade }
+
+		available = {
+			owns_state = 423
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { # Madurai
+					423
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_connect_southern_markets
+		icon = GFX_roman_road_icon
+		x = 0
+		y = 1
+		relative_position_id = MAR_develop_madurai
+		prerequisite = { focus = MAR_develop_madurai }
+
+		available = {
+			owns_state = 423
+			owns_state = 424
+			owns_state = 425
+			owns_state = 959
+			owns_state = 1035
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_political_power = 30
+			random_owned_controlled_state = { # Madurai
+				prioritize = { 
+					423
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { # Sira
+				prioritize = { 
+					424
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { # Mysore
+				prioritize = { 
+					425
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { # Venad
+				prioritize = { 
+					959
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = { # Keladi
+				prioritize = { 
+					1035
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_southern_agrarian_reforms
+		icon = GFX_focus_agriculture
+		x = 0
+		y = 1
+		relative_position_id = MAR_ports_in_keladi
+		prerequisite = { focus = MAR_ports_in_keladi }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = -100
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { # Farms
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { # Farms
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { # Farms
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_restore_southern_monuments
+		icon = GFX_economic_stuff
+		x = -1
+		y = 1
+		relative_position_id = MAR_southern_agrarian_reforms
+		prerequisite = { focus = MAR_southern_agrarian_reforms focus = MAR_connect_southern_markets }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_stability = 0.15
+			add_political_power = 100
+		}
+	}
+
+####################
+### North Branch ###
+####################
+
+	focus = {
+		id = MAR_the_north
+		icon = GFX_strike_at_india
+		x = 7
+		y = 1
+		relative_position_id = MAR_we_are_victorious
+		prerequisite = { focus = MAR_we_are_victorious }
+
+		available = {
+			NOT = {
+				has_idea = MAR_war_exhaustion
+			}
+		}
+
+		cost = 2.9
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+
+####################################
+### Resume the Mughal War Branch ###
+####################################
+
+	focus = {
+		id = MAR_resume_the_mughal_war
+		icon = GFX_mughal_flag_burning
+		x = 6
+		y = 1
+		relative_position_id = MAR_the_north
+		prerequisite = { focus = MAR_the_north }
+
+		bypass = {
+			OR = {
+				has_war_with = RAJ
+				NOT = {
+					has_truce_with = RAJ
+				}
+			}
+		}
+
+		cost = 2.2
+		
+		completion_reward = {
+			set_truce = {
+				target = RAJ
+				days = 0
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_expand_into_gujarat
+		icon = GFX_gujarat
+		x = -1
+		y = 1
+		relative_position_id = MAR_resume_the_mughal_war
+		prerequisite = { focus = MAR_resume_the_mughal_war }
+
+		bypass = {
+			owns_state = 428
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_state_claim = 428
+			unlock_decision_tooltip = MAR_clash_over_gujarat
+		}
+	}
+
+	focus = {
+		id = MAR_expand_into_cutch
+		icon = GFX_attack_cutch
+		x = 0
+		y = 1
+		relative_position_id = MAR_expand_into_gujarat
+		prerequisite = { focus = MAR_expand_into_gujarat }
+
+		bypass = {
+			CUT = {
+				exists = no
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = CUT
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_subjugate_gujarati_chieftains
+		icon = GFX_focus_generic_subjugation
+		x = 0
+		y = 1
+		relative_position_id = MAR_expand_into_cutch
+		prerequisite = { focus = MAR_expand_into_cutch }
+
+		available = {
+			owns_state = 428 # Gujarat
+			owns_state = 1116 # Cutch 
+		}
+
+		bypass = {
+			428 = {
+				is_core_of = ROOT
+			}
+			1116 = {
+				is_core_of = ROOT
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_state_core = 428 
+			add_state_core = 1116
+		}
+	}
+
+	focus = {
+		id = MAR_instigate_the_sikhs
+		icon = GFX_focus_RAJ_sikh_religious_guarantees
+		x = -1 
+		y = 1
+		relative_position_id = MAR_subjugate_gujarati_chieftains
+		prerequisite = { focus = MAR_subjugate_gujarati_chieftains focus = MAR_develop_bundelkhand }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = sikhs_will_rebel_when_completing_all_out_war
+			440 = {
+				add_resistance = 30
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_send_weapons
+		icon = GFX_tanegashima
+		x = 0
+		y = 1
+		relative_position_id = MAR_instigate_the_sikhs
+		prerequisite = { focus = MAR_instigate_the_sikhs }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = sikhs_will_get_weapons_when_they_rebel
+			set_country_flag = sent_sikhs_weapons
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = -1000
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = -50
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment_1
+				amount = -200
+			}
+			add_equipment_to_stockpile = {
+				type = basic_cavalry_equipment
+				amount = -400
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_expand_into_malwa
+		icon = GFX_malwa
+		x = 1
+		y = 1
+		relative_position_id = MAR_resume_the_mughal_war
+		prerequisite = { focus = MAR_resume_the_mughal_war }
+
+		bypass = {
+			owns_state = 437 # Malwa
+			owns_state = 1117 # Bhopal
+			owns_state = 1118 # Nagpur
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_state_claim = 437
+			add_state_claim = 1117
+			add_state_claim = 1118
+			unlock_decision_tooltip = MAR_clash_over_malwa
+			unlock_decision_tooltip = MAR_clash_over_bhopal
+			unlock_decision_tooltip = MAR_clash_over_nagpur
+		}
+	}
+
+	focus = {
+		id = MAR_expand_into_bundelkhand
+		icon = GFX_bundelkhand
+		x = 0
+		y = 1
+		relative_position_id = MAR_expand_into_malwa
+		prerequisite = { focus = MAR_expand_into_malwa }
+
+		bypass = {
+			owns_state = 977
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_state_claim = 977
+			unlock_decision_tooltip = MAR_clash_over_bundelkhand
+		}
+	}
+
+	focus = {
+		id = MAR_develop_bundelkhand
+		icon = GFX_generic_man_working
+		x = 0
+		y = 1
+		relative_position_id = MAR_expand_into_bundelkhand
+		prerequisite = { focus = MAR_expand_into_bundelkhand }
+
+		available = {
+			owns_state = 977
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_state_core = 977
+			random_owned_controlled_state = {
+				prioritize = {
+					977
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure 
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory 
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_raid_bengal
+		icon = GFX_maratha_horseman
+		x = 1
+		y = 1
+		relative_position_id = MAR_develop_bundelkhand
+		prerequisite = { focus = MAR_develop_bundelkhand }
+
+		available = {
+			owns_state = 977
+		}
+
+		cost = 7.2
+		
+		completion_reward = {
+			435 = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+			}
+			978 = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+
+			}
+			add_timed_idea = {
+				idea = MAR_spoils_from_bengal
+				days = 200
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_conquer_bengal
+		icon = GFX_attack_bengal
+		x = 0
+		y = 1
+		relative_position_id = MAR_raid_bengal
+		prerequisite = { focus = MAR_raid_bengal }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = BAN
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_take_over_assam
+		icon = GFX_generic_take_assam
+		x = 0
+		y = 1
+		relative_position_id = MAR_conquer_bengal
+		prerequisite = { focus = MAR_conquer_bengal }
+
+		available = {
+			432 = {
+				is_owned_and_controlled_by = UNC
+			}
+		}
+
+		bypass = {
+			owns_state = 432
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_political_power = -50
+			transfer_state = 432
+		}
+	}
+
+	focus = {
+		id = MAR_take_on_mrauk_u
+		icon = GFX_goal_generic_political_pressure
+		x = 2
+		y = 1
+		relative_position_id = MAR_conquer_bengal
+		prerequisite = { focus = MAR_conquer_bengal }
+
+		bypass = {
+			MRK = {
+				exists = no
+			}
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = MRK
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_press_for_awadh
+		icon = GFX_awadh_flag
+		x = -1
+		y = 1
+		relative_position_id = MAR_develop_bundelkhand
+		prerequisite = { focus = MAR_develop_bundelkhand focus = MAR_subjugate_gujarati_chieftains }
+
+		bypass = {
+			OR = {
+				has_war_with = RAJ
+				owns_state = 438
+			}
+		}
+
+		cost = 7.2
+		
+		completion_reward = {
+			RAJ = {
+				country_event = maratha.40
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_all_out_war
+		icon = GFX_attack_mughals
+		x = 0 
+		y = 1
+		relative_position_id = MAR_press_for_awadh
+		prerequisite = { focus = MAR_press_for_awadh }
+
+		bypass = {
+			OR = {
+				has_war_with = RAJ
+				RAJ = {
+					exists = no
+				}
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = sikhs_will_rebel
+			create_wargoal = {
+				target = RAJ
+				type = annex_everything
+			}
+			hidden_effect = {
+				440 = {
+					transfer_state_to = SKH
+				}
+				SKH = {
+					declare_war_on = {
+						target = RAJ
+						type = independence_wargoal
+					}
+				}
+				if = {
+					limit = {
+						has_country_flag = sent_sikhs_weapons
+					}
+					SKH = {
+						add_equipment_to_stockpile = {
+							type = infantry_equipment_0
+							amount = 1000
+							producer = MAR
+						}
+						add_equipment_to_stockpile = {
+							type = artillery_equipment_1
+							amount = 50
+							producer = MAR
+						}
+						add_equipment_to_stockpile = {
+							type = support_equipment_1
+							amount = 200
+							producer = MAR
+						}
+						add_equipment_to_stockpile = {
+							type = basic_cavalry_equipment
+							amount = 400
+							producer = MAR
+						}
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_new_emperor_of_india
+		icon = GFX_focus_RAJ_peacock_throne_for_the_modern_age
+		x = 0 
+		y = 1
+		relative_position_id = MAR_all_out_war
+		prerequisite = { focus = MAR_all_out_war }
+
+		bypass = {
+			OR = {
+				RAJ = {
+					exists = no
+				}
+				RAJ = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_stability = 0.15
+			add_political_power = 150
+			add_ideas = empire
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Shahu_I
+						ruling_only = yes
+					}
+					MAR_Shahu_I = {
+						has_trait = benevolent_chhatrapati
+					}
+				}
+				swap_ruler_traits = { 
+					remove = benevolent_chhatrapati 
+					add = emperor_of_india
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Tarabai
+						ruling_only = yes
+					}
+					MAR_Tarabai = {
+						has_trait = warrior_queen
+					}
+				}
+				swap_ruler_traits = { 
+					remove = warrior_queen 
+					add = empress_of_india
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_all_of_asia
+		icon = GFX_goal_asia_diplomacy
+		x = 0 
+		y = 1
+		relative_position_id = MAR_new_emperor_of_india
+		prerequisite = { focus = MAR_new_emperor_of_india }
+
+		available = {
+			OR = {
+				RAJ = {
+					exists = no
+				}
+				RAJ = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.10
+		}
+	}
+
+	focus = {
+		id = MAR_attack_nepal
+		icon = GFX_focus_generic_attack_nepal
+		x = 0 
+		y = 1
+		relative_position_id = MAR_all_of_asia
+		prerequisite = { focus = MAR_all_of_asia }
+
+		bypass = {
+			OR = {
+				has_war_with = NEP
+				NEP = {
+					exists = no
+				}
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = NEP
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_attack_the_dragon
+		icon = GFX_attack_the_qing
+		x = 0 
+		y = 1
+		relative_position_id = MAR_attack_nepal
+		prerequisite = { focus = MAR_attack_nepal }
+
+		bypass = {
+			OR = {
+				has_war_with = CHI
+				CHI = {
+					exists = no
+				}
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = CHI
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_take_on_persia
+		icon = GFX_goal_kill_persia
+		x = -2
+		y = 1
+		relative_position_id = MAR_all_of_asia
+		prerequisite = { focus = MAR_all_of_asia }
+
+		bypass = {
+			OR = {
+				has_war_with = PER
+				PER = {
+					exists = no
+				}
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = PER
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_dismantle_the_hordes
+		icon = GFX_generic_attack_horde_nations
+		x = 0
+		y = 1
+		relative_position_id = MAR_take_on_persia
+		prerequisite = { focus = MAR_take_on_persia }
+
+		bypass = {
+			OR = {
+				has_war_with = KAZ
+				KAZ = {
+					exists = no
+				}
+			}
+			OR = {
+				has_war_with = KYR
+				KYR = {
+					exists = no
+				}
+			}
+			OR = {
+				has_war_with = UZB
+				UZB = {
+					exists = no
+				}
+			}
+			OR = {
+				has_war_with = SIK
+				SIK = {
+					exists = no
+				}
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = KAZ
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = KYR
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = UZB
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = SIK
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_destroy_bhutan
+		icon = GFX_take_over_bhutan
+		x = 2
+		y = 1
+		relative_position_id = MAR_all_of_asia
+		prerequisite = { focus = MAR_all_of_asia }
+
+		bypass = {
+			OR = {
+				has_war_with = BHU
+				BHU = {
+					exists = no
+				}
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = BHU
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_attack_burma
+		icon = GFX_attack_burma2
+		x = 0 
+		y = 1
+		relative_position_id = MAR_destroy_bhutan
+		prerequisite = { focus = MAR_destroy_bhutan }
+
+		bypass = {
+			OR = {
+				has_war_with = BRM
+				BRM = {
+					exists = no
+				}
+			}
+		}
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = BRM
+				type = annex_everything
+			}
+		}
+	}
+
+########################
+### Surat Sub-Branch ###
+########################
+
+	focus = {
+		id = MAR_occupy_surat
+		icon = GFX_focus_generic_annex_country
+		x = 3
+		y = 1
+		relative_position_id = MAR_resume_the_mughal_war
+		prerequisite = { focus = MAR_resume_the_mughal_war }
+
+		available = {
+			1036 = {
+				is_owned_and_controlled_by = RAJ
+			}
+		}
+
+		bypass = {
+			owns_state = 1036
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_political_power = -100
+			1036 = {
+				transfer_state_to = MAR
+			}
+		}
+	}
+	
+	focus = {
+		id = MAR_develop_surat
+		icon = GFX_focus_generic_industry_1
+		x = 0
+		y = 1
+		relative_position_id = MAR_occupy_surat
+		prerequisite = { focus = MAR_occupy_surat }
+
+		available = {
+			owns_state = 1036
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_state_core = 1036
+			random_owned_controlled_state = {
+				prioritize = {
+					1036
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+#####################
+### Rajput Branch ###
+#####################
+
+	focus = {
+		id = MAR_the_rajputs
+		icon = GFX_rajput_states
+		x = 0
+		y = 1
+		relative_position_id = MAR_the_north
+		prerequisite = { focus = MAR_the_north }
+
+		cost = 5
+		
+		completion_reward = {
+			country_event = maratha.39
+		}
+	}
+
+	focus = {
+		id = MAR_subjugate_the_rajputs
+		icon = GFX_focus_RAJ_forge_the_kshatriya_army
+		x = -2
+		y = 1
+		relative_position_id = MAR_the_rajputs
+		prerequisite = { focus = MAR_the_rajputs }
+		mutually_exclusive = { focus = MAR_ally_the_rajputs }
+
+		available = {
+			has_country_flag = MAR_chose_to_subjugate_rajputs
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			create_wargoal = {
+				target = MEW
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = JOD
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = JAS
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = JAI
+				type = annex_everything
+			}
+			create_wargoal = {
+				target = BIK
+				type = annex_everything
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_establish_tributary_system
+		icon = GFX_money
+		x = -1
+		y = 1
+		relative_position_id = MAR_subjugate_the_rajputs
+		prerequisite = { focus = MAR_subjugate_the_rajputs }
+		mutually_exclusive = { focus = MAR_direct_annexation }
+
+		available = {
+			owns_state = 981
+			owns_state = 982
+			owns_state = 983
+			owns_state = 984
+			owns_state = 433
+		}
+
+		cost = 10
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 100
+			add_ideas = MAR_tributary_system
+			# Amber
+			984 = {
+				transfer_state_to = JAI
+			}
+			# Bikaner
+			982 = {
+				transfer_state_to = BIK
+			}
+			# Jaisalmer
+			981 = {
+				transfer_state_to = JAS
+			}
+			# Marwar
+			983 = {
+				transfer_state_to = JOD
+			}
+			# Mewar
+			433 = {
+				transfer_state_to = MEW
+			}
+			set_autonomy = {
+				target = JAI
+				autonomous_state = autonomy_tributary_state
+			}
+			set_autonomy = {
+				target = BIK
+				autonomous_state = autonomy_tributary_state
+			}
+			set_autonomy = {
+				target = JAS
+				autonomous_state = autonomy_tributary_state
+			}
+			set_autonomy = {
+				target = JOD
+				autonomous_state = autonomy_tributary_state
+			}
+			set_autonomy = {
+				target = MEW
+				autonomous_state = autonomy_tributary_state
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_direct_annexation
+		icon = GFX_goal_generic_oppression
+		x = 1
+		y = 1
+		relative_position_id = MAR_subjugate_the_rajputs
+		prerequisite = { focus = MAR_subjugate_the_rajputs }
+		mutually_exclusive = { focus = MAR_establish_tributary_system }
+
+		available = {
+			owns_state = 981
+			owns_state = 982
+			owns_state = 983
+			owns_state = 984
+			owns_state = 433
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			# Amber
+			984 = {
+				add_compliance = 30
+			}
+			# Bikaner
+			982 = {
+				add_compliance = 30
+			}
+			# Jaisalmer
+			981 = {
+				add_compliance = 30
+			}
+			# Marwar
+			983 = {
+				add_compliance = 30
+			}
+			# Mewar
+			433 = {
+				add_compliance = 30
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_ally_the_rajputs
+		icon = GFX_ally_the_rajputs
+		x = 2
+		y = 1
+		relative_position_id = MAR_the_rajputs
+		prerequisite = { focus = MAR_the_rajputs }
+		mutually_exclusive = { focus = MAR_subjugate_the_rajputs }
+
+		available = {
+			has_country_flag = MAR_chose_to_ally_rajputs
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			if = {
+				limit = {
+					is_in_faction = no
+				}
+				create_faction = "Maratha Sphere"
+			}
+			MEW = {
+				country_event = generic.5
+			}
+			JOD = {
+				country_event = generic.5
+			}
+			JAS = {
+				country_event = generic.5
+			}
+			JAI = {
+				country_event = generic.5
+			}
+			BIK = {
+				country_event = generic.5
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_rajput_warriors
+		icon = GFX_indian_warrior
+		x = 0
+		y = 1
+		relative_position_id = MAR_ally_the_rajputs
+		prerequisite = { focus = MAR_ally_the_rajputs }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_ideas = MAR_rajput_warriors
+		}
+	}
+
+########################
+### Foreigner Branch ###
+########################
+
+	focus = {
+		id = MAR_drive_out_the_foreigners
+		icon = GFX_goal_remove_the_foreigners
+		x = -16
+		y = 1
+		relative_position_id = MAR_we_are_victorious
+		prerequisite = { focus = MAR_we_are_victorious }
+
+		available = {
+			NOT = {
+				has_idea = MAR_war_exhaustion
+				has_idea = MAR_lack_of_legitimacy
+			}
+		}
+
+		cost = 2.9
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = MAR_capture_bassein
+		icon = GFX_portugal_flag_burning
+		x = -2
+		y = 1
+		relative_position_id = MAR_drive_out_the_foreigners
+		prerequisite = { focus = MAR_drive_out_the_foreigners }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = expand_into_portuguese_india
+		}
+	}
+
+	focus = {
+		id = MAR_develop_bassein
+		icon = GFX_goal_generic_production2
+		x = -1
+		y = 1
+		relative_position_id = MAR_capture_bassein
+		prerequisite = { focus = MAR_capture_bassein }
+
+		available = {
+			owns_state = 1027
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_state_core = 1027
+			random_owned_controlled_state = {
+				prioritize = {
+					1027
+				}
+				set_state_name = "Vasai"
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = university
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAR_destroy_the_french
+		icon = GFX_kill_france
+		x = 0
+		y = 1
+		relative_position_id = MAR_drive_out_the_foreigners
+		prerequisite = { focus = MAR_drive_out_the_foreigners }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = expand_into_french_india
+		}
+	}
+
+	focus = {
+		id = MAR_subjugate_danish_india
+		icon = GFX_danish_flag_burning
+		x = 2
+		y = 1
+		relative_position_id = MAR_drive_out_the_foreigners
+		prerequisite = { focus = MAR_drive_out_the_foreigners }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = expand_into_danish_india
+		}
+	}
+	
+	focus = {
+		id = MAR_deal_with_the_EIC
+		icon = GFX_betray_eic
+		x = -1
+		y = 1
+		relative_position_id = MAR_destroy_the_french
+		prerequisite = { focus = MAR_destroy_the_french focus = MAR_capture_bassein focus = MAR_subjugate_danish_india }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = expand_into_english_india
+		}
+	}
+	
+	focus = {
+		id = MAR_develop_bombay
+		icon = GFX_generic_naval_bases_mapno
+		x = 0
+		y = 1
+		relative_position_id = MAR_deal_with_the_EIC
+		prerequisite = { focus = MAR_deal_with_the_EIC }
+
+		available = {
+			owns_state = 961
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_state_core = 961
+			random_owned_controlled_state = {
+				prioritize = {
+					961
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}	
+			}
+
+		}
+	}
+	
+	focus = {
+		id = MAR_kick_out_the_dutch
+		icon = GFX_attack_netherlands2
+		x = -1
+		y = 1
+		relative_position_id = MAR_subjugate_danish_india
+		prerequisite = { focus = MAR_subjugate_danish_india focus = MAR_destroy_the_french focus = MAR_capture_bassein }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			custom_effect_tooltip = expand_into_dutch_india
+		}
+	}
+	
+	focus = {
+		id = MAR_control_the_spice_trade
+		icon = GFX_spices
+		x = 0
+		y = 1
+		relative_position_id = MAR_kick_out_the_dutch
+		prerequisite = { focus = MAR_kick_out_the_dutch }
+
+		available = {
+			owns_state = 963
+			owns_state = 964
+			owns_state = 1037
+			owns_state = 1039
+			num_of_naval_factories > 5
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_ideas = MAR_spice_trade
+		}
+	}
+
+########################
+### Political Branch ###
+########################
+
+	focus = {
+		id = MAR_death_of_rajaram
+		icon = GFX_broken_crown
+		x = -7
+		y = 0
+
+		available = {
+			always = no
+		}
+
+		cost = 0
+		
+		completion_reward = {
+			custom_effect_tooltip = focus_will_be_autocompleted
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_the_new_chhatrapati
+		icon = GFX_goal_generic_crown
+		x = 0
+		y = 1
+		relative_position_id = MAR_death_of_rajaram
+		prerequisite = { focus = MAR_death_of_rajaram }
+
+		cost = 5
+		
+		completion_reward = {
+			country_event = maratha.15
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_reign_of_tarabai
+		icon = GFX_goal_tarabai
+		x = 0
+		y = 1
+		relative_position_id = MAR_the_new_chhatrapati
+		prerequisite = { focus = MAR_the_new_chhatrapati }
+
+		available = {
+			has_country_leader = {
+				character = MAR_Tarabai
+				ruling_only = yes
+			}
+			has_civil_war = no
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_country_leader_trait = warrior_queen
+			add_war_support = 0.05
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+######################
+### Tarabai Branch ###
+######################
+
+	focus = {
+		id = MAR_tarabai_remains
+		icon = GFX_goal_generic_balance
+		x = -1
+		y = 1
+		relative_position_id = MAR_reign_of_tarabai
+		prerequisite = { focus = MAR_reign_of_tarabai }
+		mutually_exclusive = { focus = MAR_the_return_of_shahu }
+
+		available = {
+			has_country_flag = MAR_chose_tarabai
+			has_country_leader = {
+				character = MAR_Tarabai
+				ruling_only = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = maratha_civil_war_resolved
+				has_country_flag = MAR_civil_war_began
+				has_civil_war = no
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.10
+			add_stability = 0.10
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+####################
+### Shahu Branch ###
+####################
+
+	focus = {
+		id = MAR_the_return_of_shahu
+		icon = GFX_cult_of_personality_captainluck
+		x = 1
+		y = 1
+		relative_position_id = MAR_reign_of_tarabai
+		prerequisite = { focus = MAR_reign_of_tarabai }
+		mutually_exclusive = { focus = MAR_tarabai_remains }
+
+		available = {
+			has_country_flag = MAR_chose_shahu
+			has_country_leader = {
+				character = MAR_Shahu_I
+				ruling_only = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = maratha_civil_war_resolved
+				has_country_flag = MAR_civil_war_began
+				has_civil_war = no
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_country_leader_trait = benevolent_chhatrapati
+			add_war_support = 0.10
+			add_stability = 0.10
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+#####################
+### Shared Branch ###
+#####################
+
+	focus = {
+		id = MAR_the_jagir_issue
+		icon = GFX_noble_icon
+		x = -1
+		y = 1
+		relative_position_id = MAR_the_return_of_shahu
+		prerequisite = { focus = MAR_the_return_of_shahu focus = MAR_tarabai_remains }
+
+		available = {
+			has_idea = MAR_jagirs_high
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			unlock_decision_category_tooltip = MAR_jagirs
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_rearrange_saranjams
+		icon = GFX_sign_papers
+		x = 0
+		y = 1
+		relative_position_id = MAR_the_jagir_issue
+		prerequisite = { focus = MAR_the_jagir_issue }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+				ideology = aristocracy
+				popularity = -0.10
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_revive_the_ashta_pradhan
+		icon = GFX_focus_AFG_parliamentary_democracy
+		x = -1
+		y = 1
+		relative_position_id = MAR_rearrange_saranjams
+		prerequisite = { focus = MAR_rearrange_saranjams }
+		mutually_exclusive = { focus = MAR_supremacy_of_the_peshwa }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.05
+			add_ideas = MAR_ashta_pradhan
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.15
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_supremacy_of_the_peshwa
+		icon = GFX_focus_GER_total_control_over_domestic_affairs
+		x = 1
+		y = 1
+		relative_position_id = MAR_rearrange_saranjams
+		prerequisite = { focus = MAR_rearrange_saranjams }
+		mutually_exclusive = { focus = MAR_revive_the_ashta_pradhan }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_political_power = -50
+			add_stability = 0.05
+			add_ideas = MAR_supremacy_of_the_peshwa
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.15
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_make_sanskrit_the_court_language
+		icon = GFX_om_sign_document
+		x = -1
+		y = 1
+		relative_position_id = MAR_supremacy_of_the_peshwa
+		prerequisite = { focus = MAR_supremacy_of_the_peshwa focus = MAR_revive_the_ashta_pradhan }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_political_power = -70
+			add_stability = 0.05
+			if = {
+				limit = {
+					has_idea = MAR_supremacy_of_the_peshwa
+				}
+				swap_ideas = {
+					remove_idea = MAR_supremacy_of_the_peshwa
+					add_idea = MAR_supremacy_of_the_peshwa_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = MAR_ashta_pradhan
+				}
+				swap_ideas = {
+					remove_idea = MAR_ashta_pradhan
+					add_idea = MAR_ashta_pradhan_2
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_protect_the_rights_of_hindus
+		icon = GFX_protect_hindus
+		x = 0
+		y = 1
+		relative_position_id = MAR_make_sanskrit_the_court_language
+		prerequisite = { focus = MAR_make_sanskrit_the_court_language }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.10
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+
+#######################
+### Industry Branch ###
+#######################
+
+	focus = {
+		id = MAR_develop_pune
+		icon = GFX_focus_generic_industry_1
+		x = 35
+		y = 0
+
+		available = {
+			has_war = no
+			owns_state = 960
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					960
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}	
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_develop_industry
+		icon = GFX_maratha_economy
+		x = -8
+		y = 1
+		relative_position_id = MAR_develop_pune
+		prerequisite = { focus = MAR_develop_pune }
+		mutually_exclusive = { focus = MAR_develop_agriculture }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_political_power = -70
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}	
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_wootz_steel
+		icon = GFX_silver_icon
+		x = 0
+		y = 1
+		relative_position_id = MAR_develop_industry
+		prerequisite = { focus = MAR_develop_industry }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = blacksmith
+					level = 2
+					instant_build = yes
+				}
+				add_resource = {
+					type = steel
+					amount = 12
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = steel
+					amount = 8
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_arms_factories
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 0
+		y = 1
+		relative_position_id = MAR_wootz_steel
+		prerequisite = { focus = MAR_wootz_steel }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_textile_mills
+		icon = GFX_goal_generic_cloth_focus
+		x = 0
+		y = 1
+		relative_position_id = MAR_arms_factories
+		prerequisite = { focus = MAR_arms_factories }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = textile_manufactury
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = textile_manufactury
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = rubber
+					amount = 12
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_develop_agriculture
+		icon = GFX_generic_wheat
+		x = -6
+		y = 1
+		relative_position_id = MAR_develop_pune
+		prerequisite = { focus = MAR_develop_pune }
+		mutually_exclusive = { focus = MAR_develop_industry }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_stability = 0.05
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}	
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_agrarian_reform
+		icon = GFX_focus_agriculture
+		x = 0
+		y = 1
+		relative_position_id = MAR_develop_agriculture
+		prerequisite = { focus = MAR_develop_agriculture }
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					960
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					962
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_relief_to_farmers
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 0
+		y = 1
+		relative_position_id = MAR_agrarian_reform
+		prerequisite = { focus = MAR_agrarian_reform }
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_stability = 0.10
+			add_political_power = 70
+			add_timed_idea = {
+				idea = MAR_farmer_relief
+				days = 100
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_expand_irrigation
+		icon = GFX_focus_generic_land_reclamation
+		x = 0
+		y = 1
+		relative_position_id = MAR_relief_to_farmers
+		prerequisite = { focus = MAR_relief_to_farmers }
+
+		available = {
+			owns_state = 429
+			owns_state = 962
+		}
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					962
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_tax_exemptions
+		icon = GFX_focus_ARG_anti_corruption_policies
+		x = -1
+		y = 1
+		relative_position_id = MAR_expand_irrigation
+		prerequisite = { focus = MAR_expand_irrigation focus = MAR_textile_mills }
+
+		cost = 10
+		
+		completion_reward = {
+			add_ideas = MAR_tax_exemptions
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_standardise_weights_and_measures
+		icon = GFX_goal_generic_balance
+		x = -4
+		y = 1
+		relative_position_id = MAR_develop_pune
+		prerequisite = { focus = MAR_develop_pune }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_political_power = -70
+			add_ideas = MAR_weights_and_measures
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_ports_and_docks
+		icon = GFX_goal_generic_build_navy
+		x = 0
+		y = 1
+		relative_position_id = MAR_standardise_weights_and_measures
+		prerequisite = { focus = MAR_standardise_weights_and_measures }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_coastal = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}	
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_establish_octroi
+		icon = GFX_generic_tax_issues2
+		x = 0
+		y = 1
+		relative_position_id = MAR_ports_and_docks
+		prerequisite = { focus = MAR_ports_and_docks }
+
+		available = {
+			any_owned_state = {
+				is_coastal = yes
+			}
+		}
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			add_political_power = 50
+			add_ideas = MAR_octroi
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_stimulate_maritime_trade
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 0
+		y = 1
+		relative_position_id = MAR_establish_octroi
+		prerequisite = { focus = MAR_establish_octroi }
+
+		cost = 10
+		
+		completion_reward = {
+			add_political_power = -100
+			upgrade_trade_law = yes
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_the_new_territories
+		icon = GFX_generic_shovel_and_hammer
+		x = 0
+		y = 1
+		relative_position_id = MAR_develop_pune
+		prerequisite = { focus = MAR_develop_pune }
+
+		available = {
+			owns_state = 429
+			owns_state = 962
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					962
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}	
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_develop_malwa
+		icon = GFX_focus_generic_industry_2
+		x = -2
+		y = 1
+		relative_position_id = MAR_the_new_territories
+		prerequisite = { focus = MAR_the_new_territories }
+
+		available = {
+			owns_state = 437
+			owns_state = 1117
+			owns_state = 1118
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_political_power = -100
+			add_state_core = 437
+			add_state_core = 1117
+			add_state_core = 1118
+			random_owned_controlled_state = {
+				prioritize = {
+					437
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					1117
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					1118
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_develop_gujarat
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 2
+		y = 1
+		relative_position_id = MAR_the_new_territories
+		prerequisite = { focus = MAR_the_new_territories }
+
+		available = {
+			owns_state = 428
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			add_political_power = -50
+			add_state_core = 428
+			random_owned_controlled_state = {
+				prioritize = {
+					428
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_develop_cutch
+		icon = GFX_generic_invest_in_economy
+		x = 0
+		y = 1
+		relative_position_id = MAR_the_new_territories
+		prerequisite = { focus = MAR_the_new_territories }
+
+		available = {
+			owns_state = 1116
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			add_political_power = -50
+			add_state_core = 1116
+			random_owned_controlled_state = {
+				prioritize = {
+					1116
+				}
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_renovate_the_grand_trunk_road
+		icon = GFX_roman_road_icon
+		x = 0
+		y = 1
+		relative_position_id = MAR_develop_cutch
+		prerequisite = { focus = MAR_develop_gujarat focus = MAR_develop_cutch focus = MAR_develop_malwa }
+
+		available = {
+			owns_state = 435
+			owns_state = 438
+			owns_state = 439
+			owns_state = 440
+			owns_state = 442
+			owns_state = 985
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					430
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					435
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					438
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					439
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					440
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					442
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					985
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_shift_capital_to_delhi
+		icon = GFX_shift_capital_to_delhi
+		x = 0
+		y = 1
+		relative_position_id = MAR_renovate_the_grand_trunk_road
+		prerequisite = { focus = MAR_renovate_the_grand_trunk_road }
+
+		available = {
+			owns_state = 439
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ANNEXATION }
+		
+		completion_reward = {
+			add_state_core = 439
+			set_capital = {
+				state = 439
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					439
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 4
+					instant_build = yes
+					province = 2086
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_reform_internal_tariffs
+		icon = GFX_focus_generic_treaty
+		x = 4
+		y = 1
+		relative_position_id = MAR_develop_pune
+		prerequisite = { focus = MAR_develop_pune }
+
+		available = {
+			owns_state = 437
+			owns_state = 1117
+			owns_state = 1118
+		}
+
+		cost = 10
+		
+		completion_reward = {
+			add_political_power = -100
+			add_ideas = MAR_reformed_tariffs
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_centres_of_learning
+		icon = GFX_research_empire
+		x = 0
+		y = 1
+		relative_position_id = MAR_reform_internal_tariffs
+		prerequisite = { focus = MAR_reform_internal_tariffs }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_research_slot = 1
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = university
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_restore_nalanda
+		icon = GFX_goal_buddha
+		x = 0
+		y = 1
+		relative_position_id = MAR_centres_of_learning
+		prerequisite = { focus = MAR_centres_of_learning }
+
+		available = {
+			owns_state = 435 # Bihar
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_ideas = MAR_restored_nalanda
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	focus = {
+		id = MAR_restore_kashi_vishwanath
+		icon = GFX_focus_RAJ_temple_entry_movements
+		x = 0
+		y = 1
+		relative_position_id = MAR_restore_nalanda
+		prerequisite = { focus = MAR_restore_nalanda }
+
+		available = {
+			owns_state = 435 # Bihar
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			add_stability = 0.15
+			random_owned_controlled_state = {
+				prioritize = {
+					977
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_victory_points = {
+					province = 2005
+					value = 10
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_monetary_reform
+		icon = GFX_focus_ETH_adopt_the_lira
+		x = 7
+		y = 1
+		relative_position_id = MAR_develop_pune
+		prerequisite = { focus = MAR_develop_pune }
+
+		cost = 2.2
+		
+		completion_reward = {
+			country_event = maratha.43
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_introduce_new_coins
+		icon = GFX_money
+		x = -1
+		y = 1
+		relative_position_id = MAR_monetary_reform
+		prerequisite = { focus = MAR_monetary_reform }
+		mutually_exclusive = { focus = MAR_stay_with_the_rupee }
+
+		available = {
+			OR = {
+				has_idea = MAR_jagirs_low
+				NOT = {
+					AND = {
+						has_idea = MAR_jagirs_very_high
+						has_idea = MAR_jagirs_high
+						has_idea = MAR_jagirs_medium
+						has_idea = MAR_jagirs_low
+						has_idea = MAR_jagirs_very_low
+					}
+				}
+			}
+			has_country_flag = MAR_new_coins_flag
+		}
+
+		cost = 5
+		
+		completion_reward = {
+			add_political_power = -100
+			add_ideas = MAR_new_coins
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_stay_with_the_rupee
+		icon = GFX_goal_generic_neutrality_focus
+		x = 1
+		y = 1
+		relative_position_id = MAR_monetary_reform
+		prerequisite = { focus = MAR_monetary_reform }
+		mutually_exclusive = { focus = MAR_introduce_new_coins }
+
+		available = {
+			has_country_flag = MAR_stay_with_rupee_flag
+		}
+
+		cost = 5
+		
+		completion_reward = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			add_ideas = MAR_rupee_strengthened
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_establish_the_police
+		icon = GFX_hand_holding_stick
+		x = -1
+		y = 1
+		relative_position_id = MAR_stay_with_the_rupee
+		prerequisite = { focus = MAR_stay_with_the_rupee focus = MAR_introduce_new_coins }
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				create_intelligence_agency = {
+					name = "Kotwals"
+					icon = GFX_intelligence_agency_logo_agency
+				}
+				add_stability = 0.10
+			}
+			else = {
+				add_stability = 0.10
+				add_political_power = 70
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+###################
+### Army Branch ###
+###################
+
+	focus = {
+		id = MAR_reform_the_maratha_army
+		icon = GFX_focus_generic_army_doctrines_2
+		x = 55
+		y = 0
+
+		available = {
+			has_war = no
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			army_experience = 30
+			add_war_support = 0.05
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+##########################
+### Shared Tech Branch ###
+##########################
+
+	focus = {
+		id = MAR_infantry_tactics
+		icon = GFX_goal_infantry_soldiers
+		x = 0
+		y = 2
+		relative_position_id = MAR_reform_the_maratha_army
+		prerequisite = { focus = MAR_reform_the_maratha_army }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_modernise_artillery
+		icon = GFX_goal_generic_army_artillery
+		x = -1
+		y = 1
+		relative_position_id = MAR_infantry_tactics
+		prerequisite = { focus = MAR_infantry_tactics }
+
+		available = {
+			has_idea = MAR_inferior_artillery
+		}
+
+		cost = 10
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAR_inferior_artillery
+				add_idea = MAR_reforming_artillery
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_establish_factories
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 0
+		y = 1
+		relative_position_id = MAR_modernise_artillery
+		prerequisite = { focus = MAR_modernise_artillery }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_conclude_artillery_reforms
+		icon = GFX_cannon
+		x = 0
+		y = 1
+		relative_position_id = MAR_establish_factories
+		prerequisite = { focus = MAR_establish_factories }
+
+		cost = 10
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAR_reforming_artillery
+				add_idea = MAR_reformed_artillery
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_reform_the_commissariat
+		icon = GFX_sign_papers
+		x = 1
+		y = 1
+		relative_position_id = MAR_infantry_tactics
+		prerequisite = { focus = MAR_infantry_tactics }
+		
+		available = {
+			has_idea = MAR_corrupt_commissariat
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_RESEARCH FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			remove_ideas = MAR_corrupt_commissariat
+		}
+	}
+	
+	focus = {
+		id = MAR_cavalry_reforms
+		icon = GFX_cavalry_icon2
+		x = 0
+		y = 1
+		relative_position_id = MAR_reform_the_commissariat
+		prerequisite = { focus = MAR_reform_the_commissariat }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_ideas = MAR_exceptional_cavalry
+		}
+	}
+
+	focus = {
+		id = MAR_prevent_looting
+		icon = GFX_citizen_support2
+		x = 0
+		y = 1
+		relative_position_id = MAR_cavalry_reforms
+		prerequisite = { focus = MAR_cavalry_reforms }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_manpower = -5000
+			add_political_power = 100
+			add_stability = 0.10
+			add_war_support = -0.10
+		}
+	}
+
+	focus = {
+		id = MAR_military_academy
+		icon = GFX_focus_generic_advanced_military_studies
+		x = -1
+		y = 1
+		relative_position_id = MAR_prevent_looting
+		prerequisite = { focus = MAR_prevent_looting focus = MAR_conclude_artillery_reforms }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+
+###################################
+### Feudal Jagirdar Army Branch ###
+###################################
+
+	focus = {
+		id = MAR_rely_on_jagirdars
+		icon = GFX_noble_icon
+		x = -6
+		y = 1
+		relative_position_id = MAR_reform_the_maratha_army
+		prerequisite = { focus = MAR_reform_the_maratha_army }
+		mutually_exclusive = { focus = MAR_return_to_shivajis_time }
+
+		available = {
+			OR = {
+				has_idea = MAR_jagirs_very_high
+				has_idea = MAR_jagirs_high
+				has_idea = MAR_jagirs_medium
+			}
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_STABILITY FOCUS_WAR_SUPPORT }
+			
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAR_maratha_army
+				add_idea = MAR_feudal_army
+			}
+			add_stability = 0.05
+			add_war_support = 0.05
+			army_experience = 10
+		}
+	}
+
+	focus = {
+		id = MAR_expand_jagir_system
+		icon = GFX_focus_hol_the_foundations_of_defense
+		x = 0
+		y = 1
+		relative_position_id = MAR_rely_on_jagirdars
+		prerequisite = { focus = MAR_rely_on_jagirdars }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+			
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.10
+			MAR_increase_jagir_amount = yes
+		}
+	}
+
+	focus = {
+		id = MAR_raise_feudal_levies
+		icon = GFX_generic_soldiers
+		x = -2
+		y = 1
+		relative_position_id = MAR_expand_jagir_system
+		prerequisite = { focus = MAR_expand_jagir_system }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.05
+			add_manpower = 8000
+			960 = {
+				create_unit = {
+					division = "name = \"Jagirdar Cavalry\" division_template = \"Light Cavalry\""
+					owner = MAR
+					count = 5
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_call_personal_retinues
+		icon = GFX_spear_and_shield
+		x = 0
+		y = 1
+		relative_position_id = MAR_raise_feudal_levies
+		prerequisite = { focus = MAR_raise_feudal_levies }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_WAR_SUPPORT }
+		
+		completion_reward = {
+			add_war_support = 0.05
+			add_manpower = 8000
+			960 = {
+				create_unit = {
+					division = "name = \"Jagirdar Infantry\" division_template = \"Maval Division\""
+					owner = MAR
+					count = 5
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_gifts_for_jagirdars
+		icon = GFX_focus_generic_monetary_union
+		x = 0
+		y = 1
+		relative_position_id = MAR_expand_jagir_system
+		prerequisite = { focus = MAR_expand_jagir_system }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+			add_war_support = 0.10
+			add_ideas = MAR_jagirdar_rewards
+			MAR_increase_jagir_amount = yes
+		}
+	}
+
+	focus = {
+		id = MAR_grant_noble_titles
+		icon = GFX_agree_nobles
+		x = 0
+		y = 1
+		relative_position_id = MAR_gifts_for_jagirdars
+		prerequisite = { focus = MAR_gifts_for_jagirdars }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_political_power = 70
+			add_stability = 0.05
+			add_war_support = 0.10
+			activate_advisor = generic_army_chief_speed_army_chief
+			MAR_increase_jagir_amount = yes
+		}
+	}
+	
+	focus = {
+		id = MAR_expand_the_light_cavalry
+		icon = GFX_cavalry_icon
+		x = 2
+		y = 1
+		relative_position_id = MAR_expand_jagir_system
+		prerequisite = { focus = MAR_expand_jagir_system }
+
+		cost = 8
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAR_feudal_army
+				add_idea = MAR_feudal_army_2
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_empower_the_bargirs
+		icon = GFX_goal_generic_cavalry
+		x = 0
+		y = 1
+		relative_position_id = MAR_expand_the_light_cavalry
+		prerequisite = { focus = MAR_expand_the_light_cavalry }
+
+		cost = 10
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAR_feudal_army_2
+				add_idea = MAR_feudal_army_3
+			}
+		}
+	}
+
+#####################################
+### Shivaji's Central Army Branch ###
+#####################################
+
+	focus = {
+		id = MAR_return_to_shivajis_time
+		icon = GFX_shivaji_icon
+		x = 6
+		y = 1
+		relative_position_id = MAR_reform_the_maratha_army
+		prerequisite = { focus = MAR_reform_the_maratha_army }
+		mutually_exclusive = { focus = MAR_rely_on_jagirdars }
+
+		available = {
+			OR = {
+				has_idea = MAR_jagirs_medium
+				has_idea = MAR_jagirs_low
+				has_idea = MAR_jagirs_very_low
+				NOT = {
+					AND = {
+						has_idea = MAR_jagirs_very_high
+						has_idea = MAR_jagirs_high
+						has_idea = MAR_jagirs_medium
+						has_idea = MAR_jagirs_low
+						has_idea = MAR_jagirs_very_low
+					}
+				}
+			}
+		}
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_WAR_SUPPORT }
+			
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAR_maratha_army
+				add_idea = MAR_central_army
+			}
+			add_war_support = 0.05
+			army_experience = 15
+		}
+	}
+
+	focus = {
+		id = MAR_professionalise_the_army
+		icon = GFX_maratha_spearman_icon
+		x = 2
+		y = 1
+		relative_position_id = MAR_return_to_shivajis_time
+		prerequisite = { focus = MAR_return_to_shivajis_time }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+			
+		completion_reward = {
+			army_experience = 20
+			swap_ideas = {
+				remove_idea = MAR_central_army
+				add_idea = MAR_central_army_2
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_western_tactics
+		icon = GFX_french_soldier_icon
+		x = 0
+		y = 1
+		relative_position_id = MAR_professionalise_the_army
+		prerequisite = { focus = MAR_professionalise_the_army }
+
+		cost = 10
+			
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAR_central_army_2
+				add_idea = MAR_central_army_3
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_expand_central_command
+		icon = GFX_generic_chess_king
+		x = 0
+		y = 1
+		relative_position_id = MAR_return_to_shivajis_time
+		prerequisite = { focus = MAR_return_to_shivajis_time }
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+			
+		completion_reward = {
+			add_political_power = 75
+			add_ideas = MAR_central_command
+		}
+	}
+
+	focus = {
+		id = MAR_procure_flintlocks
+		icon = GFX_flintlock_and_pistol
+		x = 0
+		y = 1
+		relative_position_id = MAR_expand_central_command
+		prerequisite = { focus = MAR_expand_central_command }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+			
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_establish_salary_system
+		icon = GFX_focus_generic_welfare
+		x = -2
+		y = 1
+		relative_position_id = MAR_return_to_shivajis_time
+		prerequisite = { focus = MAR_return_to_shivajis_time }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_ideas = MAR_salary_system
+			add_political_power = -70
+			add_stability = 0.10
+			add_war_support = 0.10
+		}
+	}
+
+	focus = {
+		id = MAR_establish_huzurat
+		icon = GFX_french_cavalryman
+		x = 0
+		y = 1
+		relative_position_id = MAR_establish_salary_system
+		prerequisite = { focus = MAR_establish_salary_system }
+
+		cost = 10
+		
+		completion_reward = {
+			division_template = {
+				name = "Huzurat" 
+
+				regiments = {
+					cavalry = { x = 0 y = 0 }
+					cavalry = { x = 0 y = 1 }
+					cavalry = { x = 1 y = 0 }
+					cavalry = { x = 1 y = 1 }
+					cavalry = { x = 2 y = 0 }
+					cavalry = { x = 2 y = 1 }
+					cavalry = { x = 2 y = 2 }
+					cavalry = { x = 0 y = 2 }
+					cavalry = { x = 1 y = 2 }
+				}
+
+				support = { 
+					artillery = { x = 0 y = 0 }
+					recon = { x = 0 y = 1 }
+					logistics_company = { x = 0 y = 2 }
+				} 
+			}
+			960 = { 
+				create_unit = {
+					division = "name = \"Huzurat Regiment\" division_template = \"Huzurat\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = MAR
+					count = 3
+				}
+			}
+		}
+	}
+
+####################
+### Naval Branch ###
+####################
+
+	focus = {
+		id = MAR_bring_back_kanhoji
+		icon = GFX_kanhoji_angre
+		x = 73
+		y = 0
+
+		available = {
+			has_war = no
+			has_country_flag = MAR_kanhoji_broke_free
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		
+		completion_reward = {
+			navy_experience = 20
+			add_political_power = -100
+			MAR_Kanhoji_Angre = {
+				set_nationality = MAR
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_dockyards_in_kalyan
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 0
+		y = 2
+		relative_position_id = MAR_bring_back_kanhoji
+		prerequisite = { focus = MAR_bring_back_kanhoji }
+
+		available = {
+			owns_state = 429
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					429
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = MAR_expand_konkan_fleet
+		icon = GFX_goal_generic_navy_cruiser
+		x = 0
+		y = 1
+		relative_position_id = MAR_dockyards_in_kalyan
+		prerequisite = { focus = MAR_dockyards_in_kalyan }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_NAVY_XP FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			navy_experience = 15
+			add_equipment_to_stockpile = {
+				type = ship_hull_light_1
+				amount = 2
+			}
+			add_equipment_to_stockpile = {
+				type = ship_hull_submarine_1
+				amount = 4
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_naval_research_initiative
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		x = -1
+		y = 1
+		relative_position_id = MAR_expand_konkan_fleet
+		prerequisite = { focus = MAR_expand_konkan_fleet focus = MAR_recruit_malvani_sailors }
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_NAVY_XP }
+		
+		completion_reward = {
+			navy_experience = 10
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_fortify_coastal_defenses
+		icon = GFX_focus_generic_coastal_fort
+		x = 2
+		y = 1
+		relative_position_id = MAR_dockyards_in_kalyan
+		prerequisite = { focus = MAR_dockyards_in_kalyan }
+
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+		
+		completion_reward = {
+			add_stability = 0.05
+			random_owned_controlled_state = {
+				prioritize = {
+					960
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+					province = 4395
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+					province = 7232
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+					province = 13280
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+					province = 13283
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_recruit_malvani_sailors
+		icon = GFX_soldiers_marching
+		x = -2
+		y = 1
+		relative_position_id = MAR_dockyards_in_kalyan
+		prerequisite = { focus = MAR_dockyards_in_kalyan }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_NAVY_XP FOCUS_FILTER_MANPOWER }
+		
+		completion_reward = {
+			add_manpower = 5000
+			navy_experience = 10
+		}
+	}
+
+	focus = {
+		id = MAR_establish_vijaydurg
+		icon = GFX_focus_BEL_national_redoubt_at_antwerp
+		x = -1
+		y = 1
+		relative_position_id = MAR_fortify_coastal_defenses
+		prerequisite = { focus = MAR_fortify_coastal_defenses focus = MAR_expand_konkan_fleet }
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = {
+					960
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 5
+					instant_build = yes
+					province = 4395
+				}
+				add_resource = {
+					type = chromium
+					amount = 10
+				}
+			}
+			add_victory_points = {
+				province = 4395
+				value = 10
+			}
+		}
+	}
+
+#####################################
+### Pursue Western Designs Branch ###
+#####################################
+
+	focus = {
+		id = MAR_pursue_western_designs
+		icon = GFX_generic_ship
+		x = -5
+		y = 1
+		relative_position_id = MAR_bring_back_kanhoji
+		prerequisite = { focus = MAR_bring_back_kanhoji }
+		mutually_exclusive = { focus = MAR_preserve_traditional_designs }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_NAVY_XP FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = fleet_in_being_tree
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_ships_of_the_line
+		icon = GFX_goal_generic_occupy_states_coastal
+		x = 0
+		y = 1
+		relative_position_id = MAR_pursue_western_designs
+		prerequisite = { focus = MAR_pursue_western_designs }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				ahead_reduction = 1
+				uses = 1
+				category = bb_tech
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_rival_european_fleets
+		icon = GFX_Imperial_Warship_Generic
+		x = 0
+		y = 1
+		relative_position_id = MAR_ships_of_the_line
+		prerequisite = { focus = MAR_ships_of_the_line }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				ahead_reduction = 1
+				uses = 1
+				category = ca_tech
+			}
+		}
+	}
+
+###########################################
+### Preserve Traditional Designs Branch ###
+###########################################
+
+	focus = {
+		id = MAR_preserve_traditional_designs
+		icon = GFX_generic_scale_replacement_captainluck
+		x = 5
+		y = 1
+		relative_position_id = MAR_bring_back_kanhoji
+		prerequisite = { focus = MAR_bring_back_kanhoji }
+		mutually_exclusive = { focus = MAR_pursue_western_designs }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_NAVY_XP FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			navy_experience = 10
+			add_doctrine_cost_reduction = {
+				name = naval_doc_bonus
+				cost_reduction = 0.5
+				uses = 2
+				category = trade_interdiction_tree
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_improve_galivats_and_grabs
+		icon = GFX_Imperial_Warship_Generic1
+		x = 0
+		y = 1
+		relative_position_id = MAR_preserve_traditional_designs
+		prerequisite = { focus = MAR_preserve_traditional_designs }
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		
+		completion_reward = {
+			add_tech_bonus = {
+				name = ss_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 3
+				category = ss_tech
+			}
+		}
+	}
+
+	focus = {
+		id = MAR_destroyer_effort
+		icon = GFX_pirate_deal
+		x = 0
+		y = 1
+		relative_position_id = MAR_improve_galivats_and_grabs
+		prerequisite = { focus = MAR_improve_galivats_and_grabs }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = dd_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 3
+				category = dd_tech
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

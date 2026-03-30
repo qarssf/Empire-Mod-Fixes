@@ -1,0 +1,1149 @@
+estate_interactions = {
+	appoint_ministers = {
+		icon = generic_political_discourse
+		cost = 25
+
+		fire_only_once = no
+
+		days_re_enable = 120
+
+		days_remove = 45
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		available = {
+			fascism > 0.10
+		}
+
+		modifier = {
+			political_advisor_cost_factor = -0.5
+			chief_economic_advisor_cost_factor = -0.50
+			chief_diplomatic_advisor_cost_factor = -0.50
+			spymaster_cost_factor = -0.50
+		}
+
+		complete_effect = {	
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			} 
+		}
+	}
+	censorship = { 
+		cost = 50
+
+		fire_only_once = no
+
+		days_re_enable = 360
+
+		days_remove = 90
+
+		available = {
+			fascism > 0.15
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		modifier = {
+			stability_weekly = 0.005
+			political_power_gain = -0.5
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_stability < 0.5
+			}
+		}
+		complete_effect = {	
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			} 
+		}
+	}
+	usage_of_church_lands = { 
+		icon = infiltrate_state
+
+		cost = 75
+
+		fire_only_once = no
+
+		days_re_enable = 120
+
+		days_remove = 90
+
+		available = {
+			fascism > 0.20
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+		complete_effect = {
+			random_owned_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					is_owned_by = ROOT
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.075
+			}
+		}
+	}
+	appoint_new_officers = {
+		icon = generic_army_support
+
+		fire_only_once = no
+
+		days_re_enable = 100
+
+		days_remove = 90
+		
+		cost = 25
+
+		available = {
+			aristocracy > 0.10
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+		
+		complete_effect = {	
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.075
+			} 
+		}
+
+		remove_effect = {
+			army_experience = 20
+		}
+	}
+	raise_additional_levies = {
+		icon = generic_nationalism
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_re_enable = 180
+
+		days_remove = 90
+
+		available = {
+			aristocracy > 0.20
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		complete_effect = {
+			add_manpower = 2500
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			} 
+		}
+
+		remove_effect = {
+			add_manpower = 2500
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				has_manpower < 2500
+			}
+			modifier = {
+				NOT = {
+					has_government = aristocracy
+				}
+				add = -30
+				aristocracy > 0.50
+			}
+			modifier = {
+				NOT = {
+					has_government = aristocracy
+				}
+				add = -100
+				aristocracy > 0.70
+			}
+		}
+	}
+	seek_support_for_war = {
+		icon = generic_prepare_civil_war
+
+		available = {
+			has_war_support < 0.5
+			has_offensive_war = no
+			aristocracy > 0.20
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		fire_only_once = no
+
+		days_remove = 35
+		days_re_enable = 180
+
+		cost = 75
+
+		modifier = {
+			war_support_weekly = 0.01
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_war_support < 0.4
+				has_war = yes
+			}
+		}
+
+		complete_effect = {	
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			} 
+		}
+	}
+	lobby_with_merchants = {
+		icon = generic_political_discourse
+
+		cost = 50
+
+		days_remove = 180
+
+		fire_only_once = no
+
+		days_re_enable = 180
+	
+		available = {
+			democratic > 0.10
+		}
+
+		modifier = {
+			consumer_goods_factor = -0.10
+		}
+
+		complete_effect = {	
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			} 
+		}
+	}
+	appoint_new_admirals = {
+		icon = generic_army_support
+		cost = 25
+
+		fire_only_once = no
+
+		days_re_enable = 180
+
+		available = {
+			any_state = {
+				is_coastal = yes
+			}
+			democratic > 0.10
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+		
+		complete_effect = {	
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			} 
+		}
+
+		remove_effect = {
+			navy_experience = 25
+		}
+	}
+	attract_investors = {
+		icon = burghers
+
+		cost = 120
+
+		fire_only_once = no
+
+		days_re_enable = 150
+
+		available = {
+			democratic > 0.15
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		complete_effect = {	
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			} 
+			random_owned_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					is_owned_by = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+				    type = industrial_complex
+				    level = 1
+				    instant_build = yes
+				}
+			}
+		}
+	}
+	ship_construction_effort = {
+		icon = generic_construction
+
+		available = {
+			democratic > 0.20
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+		
+		fire_only_once = no
+
+		days_remove = 180
+
+		days_re_enable = 180
+
+		cost = 75
+
+		modifier = {
+			industrial_capacity_dockyard = 0.15
+		}
+
+		complete_effect = {	
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			} 
+		}
+	}
+	strenghten_absolutism = { # Duh
+		allowed = {
+			always = yes
+		}
+
+		available = {
+			neutrality < 1
+		}
+
+		visible = {
+			has_government = neutrality
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		fire_only_once = no
+
+		days_remove = 100
+
+		days_re_enable = 200
+
+		icon = nobility
+
+		cost = 125
+
+		remove_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.10
+			}
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				add = 20
+				has_government = neutrality
+				neutrality > 0.4
+				has_political_power > 150
+			}
+		}
+	}
+	send_the_men_to_manufactories = { # Lose stab and mp for a quick factory output boost
+		visible = { 
+			num_of_factories < 60
+		}
+
+		fire_only_once = no
+
+		days_remove = 150
+
+		cost = 50
+
+		modifier = {
+			consumer_goods_factor = -0.10
+			industrial_capacity_factory = 0.15
+		}
+
+		complete_effect = {
+			add_manpower = -700
+			add_stability = -0.05
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	build_roads = { # Increase speed of building roads for c.g and less factory output
+		visible = { 
+			num_of_factories < 60
+		}
+		
+		fire_only_once = no
+
+		days_remove = 150
+
+		cost = 100
+
+		modifier = {
+			production_speed_rail_way_factor = 0.25
+			consumer_goods_factor = 0.05
+			industrial_capacity_factory = -0.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	acquire_supply_wagons = { # Repeating train seize
+		visible = { 
+			num_of_factories < 60
+		}
+		
+		available = {
+			has_tech = motorised_infantry
+		}
+		
+		fire_only_once = no
+
+		days_remove = 30
+		days_re_enable = 75
+
+		cost = 0
+
+		ai_will_do = {
+			base = 1
+		}
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = train_equipment_1
+				amount = 20
+			}
+			add_stability = -0.025
+		}
+	}
+	exercise_the_army = {
+		icon = generic_military
+
+		fire_only_once = no
+
+		days_remove = 75
+		days_re_enable = 100
+
+		cost = 75
+
+		remove_effect = {
+			army_experience = 20
+		}
+		
+		ai_will_do = {
+			base = 1
+			#modifier = {
+			#	add = 50
+			#	original_tag = SOV
+			#}
+		}
+	}
+	hire_mercenaries = { # Way to get manpower quickly
+		icon = burghers
+
+		fire_only_once = no
+
+		days_remove = 20
+
+		days_re_enable = 70
+
+		cost = 50
+
+		remove_effect = {
+			add_manpower = 2000
+		}
+
+		modifier = {
+			consumer_goods_factor = 0.05
+		}
+		
+		ai_will_do = {
+			base = 1
+
+			modifier = {
+				add = 10
+				has_manpower < 5000 
+			}
+		}
+	}
+	cave_to_the_estates = {
+		allowed = {
+			always = yes
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		fire_only_once = no
+
+		days_remove = 70
+
+		days_re_enable = 90
+
+		cost = 50
+
+		modifier = {
+			stability_weekly = 0.01
+		}
+
+		remove_effect = {
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.075
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.075
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.075
+			}
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	dismiss_the_estates = {
+		allowed = {
+			always = yes
+		}
+
+		visible = {
+			NOT = { has_country_flag = absolutist_state }
+		}
+
+		available = {
+			neutrality > 0.60
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			political_power_gain = -0.10
+		}
+
+		days_remove = 10
+		days_re_enable = 90
+
+		cost = 100
+
+		remove_effect = {
+			country_event = estate.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+}
+
+# Absolutist decrees
+royal_decrees = {
+	summon_the_estates = {
+
+		icon = generic_political_discourse
+
+		allowed = {
+			always = yes
+		}
+
+		visible = {
+			has_country_flag = absolutist_state
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			stability_weekly = 0.005
+		}
+
+		days_remove = 70
+		days_re_enable = 90
+
+		cost = 100
+
+		remove_effect = {
+			country_event = estate.2
+		}
+
+		ai_will_do = {
+			base = 20
+			modifier = {
+				neutrality > 0.5
+				factor = 0
+			}
+		}
+	}
+
+	royal_decree_war_support = {
+
+		icon = generic_nationalism 
+
+		visible = {
+			has_country_flag = absolutist_state
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			war_support_weekly = 0.005
+		}
+
+		days_remove = 90
+		days_re_enable = 120
+
+		cost = 100
+
+		remove_effect = {
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	confistation_of_land = {
+
+    	icon = nobility
+
+        allowed = {
+            always = yes
+        }
+
+        available = {
+			neutrality > 0.5
+		}
+
+        fire_only_once = no
+
+		days_remove = 90
+		days_re_enable = 120
+		
+        cost = 50
+
+        available = {
+            any_owned_state = {
+            	NOT = { has_state_flag = confistation_of_land_flag }
+            	is_fully_controlled_by = ROOT
+            }
+        }
+
+        visible = {
+			has_country_flag = absolutist_state
+		}
+
+        complete_effect = {
+        	add_war_support = -0.025
+			add_stability = -0.025
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				set_state_flag = confistation_of_land_flag
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				all_owned_state = { free_building_slots = { building = industrial_complex size < 1 include_locked = no } }
+			}
+			modifier = {
+				any_owned_state = {
+					infrastructure > 5
+					free_building_slots = { building = industrial_complex size > 0 include_locked = no }
+				}
+				factor = 0
+			}
+		}
+    }
+
+    peasant_relief = {
+
+		icon = POL_looming_peasants_strike
+
+		available = {
+			has_stability < 1.0
+		}
+
+		visible = {
+			has_country_flag = absolutist_state
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			stability_weekly = 0.005
+			consumer_goods_factor = 0.05
+			industrial_capacity_factory = -0.1
+		}
+
+		days_remove = 180
+		days_re_enable = 200
+
+		cost = 100
+
+		complete_effect = {	
+			add_popularity = {
+				ideology = communism
+				popularity = 0.025
+			} 
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_stability < 0.6
+			}
+		}
+	}
+	
+	confiscate_livestock = {
+
+		icon = generic_cavalry
+
+		available = {
+			neutrality > 0.5
+		}
+
+		visible = {
+			has_country_flag = absolutist_state
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			base_fuel_gain_factor = 0.25
+			consumer_goods_factor = -0.05
+		}
+
+		days_remove = 180
+		days_re_enable = 540
+
+		cost = 70
+
+		complete_effect = {	
+			add_popularity = {
+				ideology = communism
+				popularity = 0.025
+			} 
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1
+				has_stability < 0.6
+			}
+		}
+	}
+
+	centralization_decree = {
+
+		icon = generic_monarchy
+
+		available = {
+			neutrality > 0.5
+		}
+
+		visible = {
+			has_country_flag = absolutist_state
+		}
+
+		fire_only_once = no
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		days_remove = 120
+		days_re_enable = 90
+
+		cost = 100
+
+		remove_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+		}
+	}
+}
+
+patriarchy_interactions = {
+	adopt_icon_of_christ_pancreator = {
+		cost = 75
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+				has_completed_focus = RUS_efficient_icon_funding
+			}
+		}
+
+		complete_effect = {	
+			if = {
+			    limit = {
+			        NOT = { has_completed_focus = RUS_separate_church_influence }
+			    }   
+			    add_popularity = {
+					ideology = fascism
+					popularity = 0.05
+				}
+			} 
+			add_timed_idea = {
+			    idea = icon_of_christ_pancreator
+			    days = 180
+			}
+		}
+	}
+	adopt_icon_of_st_eleusa = {
+		cost = 75
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+				has_completed_focus = RUS_efficient_icon_funding
+			}
+		}
+
+		complete_effect = {	
+			if = {
+			    limit = {
+			        NOT = { has_completed_focus = RUS_separate_church_influence}
+			    }   
+			    add_popularity = {
+					ideology = fascism
+					popularity = 0.05
+				}
+			}
+			add_timed_idea = {
+			    idea = icon_of_st_eleusa
+			    days = 180
+			}
+		}
+	}
+	adopt_icon_of_st_nicholas = {
+		cost = 75
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+				has_completed_focus = RUS_efficient_icon_funding
+			}
+		}
+
+		complete_effect = {	
+			if = {
+			    limit = {
+			        NOT = { has_completed_focus = RUS_separate_church_influence}
+			    }   
+			    add_popularity = {
+					ideology = fascism
+					popularity = 0.05
+				}
+			} 
+			add_timed_idea = {
+			    idea = icon_of_st_nicholas
+			    days = 180
+			}
+		}
+	}
+	adopt_icon_of_st_michael = {
+		cost = 75
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+				has_completed_focus = RUS_efficient_icon_funding
+			}
+		}
+
+		complete_effect = {	
+			if = {
+			    limit = {
+			        NOT = { has_completed_focus = RUS_separate_church_influence}
+			    }   
+			    add_popularity = {
+					ideology = fascism
+					popularity = 0.05
+				}
+			} 
+			add_timed_idea = {
+			    idea = icon_of_st_michael
+			    days = 180
+			}
+		}
+	}
+	adopt_icon_of_st_climacus = {
+		cost = 75
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+				has_completed_focus = RUS_efficient_icon_funding
+			}
+		}
+
+		complete_effect = {
+			if = {
+			    limit = {
+			        NOT = { has_completed_focus = RUS_separate_church_influence}
+			    }   
+			    add_popularity = {
+					ideology = fascism
+					popularity = 0.05
+				}
+			}
+			add_timed_idea = {
+			    idea = icon_of_st_climacus
+			    days = 180
+			}	
+		}
+	}
+	adopt_icon_of_christ_pancreator_2 = {
+		cost = 25
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+			}
+			has_completed_focus = RUS_efficient_icon_funding
+		}
+
+		complete_effect = {	 
+		    add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_timed_idea = {
+			    idea = icon_of_christ_pancreator
+			    days = 180
+			}
+		}
+	}
+	adopt_icon_of_st_eleusa_2 = {
+		cost = 25
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+			}
+			has_completed_focus = RUS_efficient_icon_funding
+		}
+
+		complete_effect = {	  
+		    add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_timed_idea = {
+			    idea = icon_of_st_eleusa
+			    days = 180
+			}
+		}
+	}
+	adopt_icon_of_st_nicholas_2 = {
+		cost = 25
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+			}
+			has_completed_focus = RUS_efficient_icon_funding
+		}
+
+		complete_effect = {  
+		    add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_timed_idea = {
+			    idea = icon_of_st_nicholas
+			    days = 180
+			}
+		}
+	}
+	adopt_icon_of_st_michael_2 = {
+		cost = 25
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+			}
+			has_completed_focus = RUS_efficient_icon_funding
+		}
+
+		complete_effect = {	 
+		    add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_timed_idea = {
+			    idea = icon_of_st_michael
+			    days = 180
+			}
+		}
+	}
+	adopt_icon_of_st_climacus_2 = {
+		cost = 25
+		fire_only_once = no
+
+		icon = patriarchy
+
+		visible = {
+			NOT = {
+				OR = {
+					has_idea = icon_of_christ_pancreator
+					has_idea = icon_of_st_eleusa
+					has_idea = icon_of_st_nicholas
+					has_idea = icon_of_st_climacus
+					has_idea = icon_of_st_michael
+				}
+			}
+			has_completed_focus = RUS_efficient_icon_funding
+		}
+
+		complete_effect = { 
+		    add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_timed_idea = {
+			    idea = icon_of_st_climacus
+			    days = 180
+			}	
+		}
+	}
+}

@@ -1,0 +1,1264 @@
+RUS_treaty_of_constantinople = {
+	RUS_recognition_of_azov = {
+	
+		icon = generic_anchor
+	
+		available = {
+			has_completed_focus = RUS_negotiate_with_the_ottomans
+		}
+	
+		visible = {
+			OR = {
+				NOT = {
+					has_country_flag = RUS_treaty_of_constantinople_signed
+					has_global_flag = TUR_continued_GTW
+				}	
+			}	
+			NOT = {
+				has_completed_focus = RUS_defy_the_tsar
+				has_country_flag = RUS_ottoman_accepts_azov
+				has_war_with = TUR
+			}
+		}
+	
+		days_remove = 5
+
+		fire_only_once = yes
+	
+		cost = 25
+	
+		complete_effect = {
+			TUR = {
+				country_event = russia_new.1
+			}			
+		}		
+	
+		ai_will_do = {
+			factor = 500
+		}
+	}
+	RUS_demand_demilitarization_of_kherson = {
+	
+		icon = border_war
+	
+		available = {
+			has_completed_focus = RUS_negotiate_with_the_ottomans
+		}
+	
+		visible = {
+			OR = {
+				NOT = {
+					has_country_flag = RUS_treaty_of_constantinople_signed
+					has_global_flag = TUR_continued_GTW
+				}
+			}	
+			NOT = {
+				has_war_with = TUR
+				has_completed_focus = RUS_defy_the_tsar
+				has_country_flag = RUS_ottoman_accepts_demilitarization_of_kherson 
+			}
+		}
+	
+		days_remove = 5
+
+		fire_only_once = yes
+	
+		cost = 25
+	
+		complete_effect = {
+			TUR = {
+				country_event = russia_new.4
+			}			
+		}		
+	
+		ai_will_do = {
+			factor = 500
+		}
+	}
+	RUS_quickly_affirm_peace_treaty = { # Without getting Matrika recognised
+		icon = generic_break_treaty
+	
+		available = {
+			has_completed_focus = RUS_negotiate_with_the_ottomans
+			has_country_flag = RUS_ottoman_accepts_azov
+			has_country_flag = RUS_ottoman_accepts_demilitarization_of_kherson 
+		}
+	
+		visible = {
+			OR = {
+				NOT = {
+					has_country_flag = RUS_treaty_of_constantinople_signed
+					has_global_flag = TUR_continued_GTW
+				}
+			}
+			NOT = {
+				has_war_with = TUR
+				has_completed_focus = RUS_defy_the_tsar
+			}
+		}
+	
+		days_remove = 5
+
+		fire_only_once = yes
+	
+		cost = 25
+	
+		complete_effect = {
+			TUR = {
+				country_event = russia_new.7
+			}			
+			set_country_flag = RUS_abandoned_claim_on_kaffa_1
+		}		
+	
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	RUS_demand_ownership_of_matrika = {
+	
+		icon = eng_trade_unions_demand
+	
+		available = {
+			has_completed_focus = RUS_negotiate_with_the_ottomans
+		}
+	
+		visible = {
+			OR = {
+				NOT = {
+					has_country_flag = RUS_treaty_of_constantinople_signed
+					has_global_flag = TUR_continued_GTW
+				}	
+			}	
+			NOT = {
+				has_completed_focus = RUS_defy_the_tsar
+				has_country_flag = RUS_ottoman_accepts_ownership_of_matrika
+				has_war_with = TUR
+				has_country_flag = RUS_abandoned_claim_on_kaffa_1				
+			}
+		}
+	
+		days_remove = 5
+
+		fire_only_once = yes
+	
+		cost = 50
+	
+		complete_effect = {
+			TUR = {
+				country_event = russia_new.5
+			}			
+		}		
+	
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	RUS_quickly_affirm_peace_treaty_1 = { # With getting Matrika recognised
+		icon = generic_hand_shake
+	
+		available = {
+			has_completed_focus = RUS_negotiate_with_the_ottomans
+			has_country_flag = RUS_ottoman_accepts_azov
+			has_country_flag = RUS_ottoman_accepts_demilitarization_of_kherson 
+			has_country_flag = RUS_ottoman_accepts_ownership_of_matrika
+		}
+	
+		visible = {
+			OR = {
+				NOT = {
+					has_country_flag = RUS_treaty_of_constantinople_signed
+					has_global_flag = TUR_continued_GTW
+				}
+			}
+			NOT = {
+				has_war_with = TUR
+				has_completed_focus = RUS_defy_the_tsar
+			}
+		}
+	
+		days_remove = 5
+
+		fire_only_once = yes
+	
+		cost = 25
+	
+		complete_effect = {
+			TUR = {
+				country_event = russia_new.7
+			}			
+			set_country_flag = RUS_abandoned_claim_on_kaffa_1
+		}		
+	
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	RUS_signature_of_the_treaty_of_constantinople = {
+	
+		icon = eng_trade_unions_support
+	
+		available = {
+			hidden_trigger = { always = no }
+		}
+
+		fire_only_once = yes
+	
+		cancel_trigger = {
+			OR = {
+				has_country_flag = RUS_treaty_of_constantinople_signed
+				has_global_flag = TUR_continued_GTW			
+			}	
+		}
+		
+		activation = {
+			OR = {
+				NOT = {
+					has_country_flag = RUS_treaty_of_constantinople_signed
+					has_global_flag = TUR_continued_GTW
+				}
+			}
+			NOT = {
+				has_war_with = TUR
+			}
+		}
+	
+		days_mission_timeout = 365
+		
+		days_remove = 5
+
+		is_good = no
+	
+		timeout_effect = {
+			TUR = {
+				country_event = russia_new.7 
+			}
+		}
+	
+		ai_will_do = {
+			factor = 200
+		}
+	}
+}
+	
+political_actions = {
+	RUS_negotiate_polish_surrender = {
+	
+		icon = generic_decisison
+	
+		days_re_enable = 60 
+	
+		cost = 25
+	
+		ai_will_do = {
+			factor = 100
+		}
+	
+		visible = {
+			has_war_with = POL
+			original_tag = SOV
+			NOT = { POL = { has_country_flag = POL_defeated_by_russia }}
+		}
+	
+		available = {
+			POL = { surrender_progress > 0.25 }
+			is_faction_leader = yes
+		}	
+	
+		complete_effect = {
+			country_event = poland.42
+		}	
+	}
+	
+	RUS_negotiate_swedish_surrender = {
+	
+		icon = generic_decisison
+	
+		days_re_enable = 60 
+	
+		cost = 25
+	
+		visible = {
+			has_war_with = SWE
+			original_tag = SOV
+			NOT = { 
+				SWE = { 
+					has_country_flag = SWE_defeated_by_russia 
+				}
+			}
+		}
+	
+		available = {
+			SWE = { 
+				surrender_progress > 0.50 
+			}
+			is_faction_leader = yes
+		}	
+	
+		complete_effect = {
+			country_event = sweden.1
+		}	
+	
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	RUS_negotiate_persian_surrender = {
+	
+		icon = generic_decisison
+	
+		days_re_enable = 60 
+	
+		cost = 25
+	
+		ai_will_do = {
+			factor = 100
+		}
+	
+		visible = {
+			has_war_with = PER
+			original_tag = SOV
+			#todo requirement boomersssssssssssssssss
+		}
+	
+		available = {
+			PER = { surrender_progress > 0.50 }
+			is_faction_leader = yes
+		}	
+	
+		complete_effect = {
+			PER = {
+				country_event = russia_new.16
+			}
+		}	
+	}
+}
+	
+RUS_great_northern_war = { 
+
+	RUS_financial_budget_crisis = {
+	
+		allowed = { 
+			tag = SOV 
+		}
+		
+		icon = POL_looming_peasants_strike #TODO
+		
+		available = {
+			hidden_trigger = { always = no }
+		}
+		
+		is_good = no
+		fire_only_once = yes
+		days_re_enable = 5
+		days_remove = 5
+		days_mission_timeout = 10
+		
+		cancel_trigger = {
+			
+		}
+		
+		timeout_effect = {
+			SOV = { country_event = russia_new.29 }
+		}
+
+		complete_effect = {
+
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+	}
+
+	RUS_narva_campaign = {
+	
+		allowed = { 
+			tag = SOV
+		}
+		
+		icon = border_war
+		
+		available = {
+			hidden_trigger = { always = no }
+		}
+		
+		days_mission_timeout = 30
+		days_remove = 15
+		is_good = no
+		fire_only_once = yes
+		
+		cancel_trigger = {
+			#OR = {
+			#			
+			#}	
+		}
+
+		highlight_states = {
+			highlight_provinces = { 4640 }
+		}
+			
+		activation = {
+			has_completed_focus = RUS_narva_campaign
+			#FOR DEBUG
+			#always = yes
+		}
+		
+		visible = {
+			has_country_flag = RUS_narva_campaign
+			#FOR DEBUG
+			#always_yes
+		}
+			
+		cancel_effect = {
+			
+		}
+		
+		timeout_effect = { #TODO
+			if = {
+				limit = {
+					NOT = { SOV = { controls_province = 4640 } }
+				}
+				country_event = russia_new.27
+			}
+			else = {
+				country_event = russia_new.26
+			}
+		}
+			
+		ai_will_do = {
+			factor = 200
+		}
+	}
+
+	RUS_impending_bashkir_rebellion = {
+	
+		allowed = { 
+			tag = SOV 
+		}
+		
+		icon = POL_looming_peasants_strike
+		
+		available = {
+			hidden_trigger = { always = no }
+		}
+		
+		days_mission_timeout = 300
+		days_remove = 15
+		is_good = no
+		fire_only_once = yes
+		
+		cancel_trigger = {
+			#OR = {
+			#			
+			#}	
+		}
+			
+		activation = {
+			has_country_flag = BASHKIR_REBELLION
+			#FOR DEBUG
+			#always = yes
+		}
+		
+		visible = {
+			has_country_flag = BASHKIR_REBELLION
+			#FOR DEBUG
+			#always_yes
+		}
+		
+		timeout_effect = {
+			country_event = russia_new.20	 
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	
+	RUS_defeat_bashkir_rebellion = {
+
+		allowed = { 
+			tag = SOV
+		}
+		
+		icon = POL_looming_peasants_strike
+		
+		available = {
+			hidden_trigger = { always = no }
+		}
+		
+		days_mission_timeout = 120
+		days_remove = 15
+		is_good = no
+		fire_only_once = yes
+			
+		activation = {
+			BSK = { exists = yes }
+			has_country_flag = BASHKIR_REBELLION
+			#FOR DEBUG
+			#always = yes
+		}
+		
+		visible = {
+			BSK = { exists = yes }
+			has_country_flag = BASHKIR_REBELLION
+			#FOR DEBUG
+			#always_yes
+		}
+		
+		timeout_effect = {
+			if = {
+				limit = {
+					OR = {
+						BSK = { has_capitulated = no }
+						BSK = { exists = yes }
+					}
+				}
+				white_peace = BSK
+				651 = { remove_core_of = SOV }
+				582 = { remove_core_of = SOV }
+				572 = { remove_core_of = SOV }
+				651 = { add_core_of = BSK }
+				582 = { add_core_of = BSK }
+				572 = { add_core_of = BSK }
+				country_event = russia_new.21
+			}
+			else = {
+				add_stability = 0.15
+				add_war_support = 0.05
+				country_event = russia_new.22 
+				651 = { remove_core_of = BSK }
+				582 = { remove_core_of = BSK }
+				572 = { remove_core_of = BSK }
+				651 = { add_core_of = SOV }
+				582 = { add_core_of = SOV }
+				572 = { add_core_of = SOV }
+			}
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	
+	RUS_defeat_bashkir_rebellion_civilwar = {
+	
+		allowed = { 
+			tag = SOV
+		}
+		
+		icon = POL_looming_peasants_strike
+		
+		available = {
+			hidden_trigger = { always = no }
+		}
+		
+		days_mission_timeout = 60
+		days_remove = 15
+		is_good = no
+		fire_only_once = yes
+		
+		cancel_trigger = {
+			#OR = {
+			#			
+			#}	
+		}
+			
+		activation = {
+			has_country_flag = RUS_bashkir_civil_war
+			#FOR DEBUG
+			#always = yes
+		}
+		
+		visible = {
+			has_country_flag = RUS_bashkir_civil_war
+			#FOR DEBUG
+			#always_yes
+		}
+			
+		cancel_effect = {
+			
+		}
+		
+		timeout_effect = {
+			if = {
+				limit = {
+					OR = {
+						BSK = { has_capitulated = no }
+						BSK = { exists = yes }
+					}
+				}
+				white_peace = BSK
+				651 = { remove_core_of = SOV }
+				582 = { remove_core_of = SOV }
+				572 = { remove_core_of = SOV }
+				651 = { add_core_of = BSK }
+				582 = { add_core_of = BSK }
+				572 = { add_core_of = BSK }
+				country_event = russia_new.21 
+				country_event = sweden.19
+			}
+			else = {
+				add_stability = 0.15
+				add_war_support = 0.05
+				country_event = russia_new.22 
+			}
+		}
+			
+		ai_will_do = {
+			factor = 200
+		}
+	}
+	
+	RUS_scorch_baturyn = { 
+	
+	cost = 25
+	
+	fire_only_once = yes
+	
+	icon = GFX_decision_aristocratic_coup
+	
+	visible = {
+		tag = SOV
+		SOV = { has_country_flag = RUS_GNW_MAZEPA_BETRAYAL_GRAHHH }
+		SOV = { has_war_with = ZAP }
+		SOV = { has_war_with = SWE }
+		date < 1721.1.1 
+	}
+	
+	ai_will_do = {
+		factor = 200
+	}
+	
+	available = {
+		tag = SOV
+		SOV = { has_country_flag = RUS_GNW_MAZEPA_BETRAYAL_GRAHHH }
+		SOV = { has_war_with = ZAP }
+		SOV = { has_war_with = SWE }
+		SOV = { controls_province = 6508 }
+		date < 1721.1.1 
+	}
+	
+	complete_effect = {
+		custom_effect_tooltip = GNW_interrengum_criteria_tooltip #LOCALISATION TODO
+		add_political_power = -75
+		if = {
+			limit = {
+				has_country_flag = GNW_RUS_won_wschowa #TODO
+				has_country_flag = GNW_RUS_won_kalisz #TODO
+			}
+			SOV = { country_event = greatnorthernwars.5 }
+		}
+		else = {
+			SOV = { country_event = greatnorthernwars.4 }
+		}
+		SOV = { POL_increase_foreign_influence = yes }
+	}
+	}
+	
+	RUS_scorched_earth_novgorod = {
+		icon = generic_scorched_earth
+	
+		available = {
+			has_completed_focus = RUS_scorched_earth_tactics
+			tag = SOV
+		}
+	
+		days_remove = 60
+	
+		highlight_states = {
+		   highlight_state_targets = { state = 263 } 
+		   highlight_color_before_active = 3
+		   highlight_color_while_active = 2
+		}
+	
+		cost = 15
+		fire_only_once = yes
+	
+		visible = {
+			tag = SOV
+			has_war_with = SWE
+			has_completed_focus = RUS_scorched_earth_tactics
+		}
+	
+		complete_effect = {
+			263 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			244 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			209 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+		}
+	
+		remove_effect = {
+			add_stability = -0.125
+			263 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			244 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			209 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+		}
+	
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				NOT = {
+					263 = { is_controlled_by = SOV }
+					controls_province = 117
+				}
+				factor = 10
+			}
+		}
+	}
+	
+	RUS_scorched_earth_moskva = {
+		icon = generic_scorched_earth
+	
+		available = {
+			has_completed_focus = RUS_scorched_earth_tactics
+			tag = SOV
+		}
+	
+		days_remove = 60
+	
+		highlight_states = {
+		   highlight_state_targets = { state = 219 } 
+		   highlight_color_before_active = 3
+		   highlight_color_while_active = 2
+		}
+	
+		cost = 15
+		fire_only_once = yes
+	
+		visible = {
+			tag = SOV
+			has_war_with = SWE
+			has_completed_focus = RUS_scorched_earth_tactics
+		}
+	
+		complete_effect = {
+			219 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			242 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			246 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			247 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+		}
+	
+		remove_effect = {
+			add_stability = -0.125
+			219 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			242 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			246 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			247 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+		}
+	
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				NOT = {
+					219 = { is_controlled_by = SOV }
+				}
+				factor = 10
+			}
+		}
+	}
+	
+	RUS_scorched_earth_orel = {
+		icon = generic_scorched_earth
+	
+		available = {
+			has_completed_focus = RUS_scorched_earth_tactics
+			tag = SOV
+		}
+	
+		days_remove = 60
+	
+		highlight_states = {
+		   highlight_state_targets = { state = 222 } 
+		   highlight_color_before_active = 3
+		   highlight_color_while_active = 2
+		}
+	
+		cost = 15
+		fire_only_once = yes
+	
+		visible = {
+			tag = SOV
+			has_war_with = SWE
+			has_completed_focus = RUS_scorched_earth_tactics
+		}
+	
+		complete_effect = {
+			222 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			205 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			243 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			223 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			224 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			258 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			220 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+		}
+	
+		remove_effect = {
+			add_stability = -0.125
+			222 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			205 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			243 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			223 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			224 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			258 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			220 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+		}
+	
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				NOT = {
+					222 = { is_controlled_by = SOV }
+				}
+				factor = 10
+			}
+		}
+	}
+	
+	RUS_scorched_earth_tsaritsyn = {
+		icon = generic_scorched_earth
+	
+		available = {
+			has_completed_focus = RUS_scorched_earth_tactics
+			tag = SOV
+		}
+	
+		days_remove = 60
+	
+		highlight_states = {
+		   highlight_state_targets = { state = 222 } 
+		   highlight_color_before_active = 3
+		   highlight_color_while_active = 2
+		}
+	
+		cost = 15
+		fire_only_once = yes
+	
+		visible = {
+			tag = SOV
+			has_war_with = SWE
+			has_completed_focus = RUS_scorched_earth_tactics
+		}
+	
+		complete_effect = {
+			217 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			239 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			236 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			237 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			1030 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			265 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			238 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			245 = {
+				add_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+		}
+	
+		remove_effect = {
+			add_stability = -0.125
+			217 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			239 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			236 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			237 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			1030 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			265 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			238 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+			245 = {
+				remove_dynamic_modifier = {
+					modifier = GNW_scorched_earth
+				}
+			}
+		}
+	
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				NOT = {
+					217 = { is_controlled_by = SOV }
+				}
+				factor = 10
+			}
+		}
+	}
+}
+
+RUS_bop = { #TODO
+ 
+	RUS_strengthen_tsar_power = {
+
+		icon = generic_monarchy
+
+		cost = 75
+
+		fire_only_once = no
+
+		days_remove = 60
+
+		days_re_enable = 180
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		modifier = {
+			political_power_gain = -0.6
+		}
+
+		complete_effect = {
+			add_power_balance_value = {
+				id = RUS_factions
+				value = -0.2
+			}
+		}
+	}
+
+	RUS_encourage_westernization = {
+
+		icon = generic_political_discourse
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_remove = 30
+
+		days_re_enable = 60
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		modifier = {
+			political_power_gain = -0.4
+		}
+
+		complete_effect = {
+			add_power_balance_value = {
+				id = RUS_factions
+				value = -0.1
+			}
+		}
+	}
+
+	RUS_encourage_trips_europe = {
+
+		icon = eng_trade_unions_demand
+
+		cost = 25
+
+		fire_only_once = no
+
+		days_remove = 15
+
+		days_re_enable = 30
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		modifier = {
+			political_power_gain = -0.2
+			consumer_goods_factor = 0.05
+		}
+
+		complete_effect = {
+			add_power_balance_value = {
+				id = RUS_factions
+				value = -0.05
+			}
+		}
+	}
+
+	RUS_invoke_peasant_discontent = {
+
+		icon = POL_organize_strike_two
+
+		cost = 25
+
+		fire_only_once = no
+
+		days_remove = 15
+
+		days_re_enable = 30
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		modifier = {
+			political_power_gain = -0.2
+		}
+
+		complete_effect = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = RUS_factions
+				value = 0.05
+			}
+		}
+	}
+
+	RUS_leverage_church_authority = {
+
+		icon = patriarchy 
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_remove = 30
+
+		days_re_enable = 60
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		modifier = {
+			political_power_gain = -0.4
+		}
+
+		complete_effect = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = RUS_factions
+				value = 0.1
+			}
+		}
+	}
+
+	RUS_political_sabotage_corruption = {
+
+		icon = generic_fundraising
+
+		cost = 75
+
+		fire_only_once = no
+
+		days_remove = 60
+
+		days_re_enable = 180
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		modifier = {
+			political_power_gain = -0.6
+			consumer_goods_factor = 0.1
+		}
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = RUS_factions
+				value = 0.2
+			}
+		}
+	}
+}

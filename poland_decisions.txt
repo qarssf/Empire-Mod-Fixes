@@ -1,0 +1,794 @@
+political_actions = {
+	POL_reform_the_nation = { # Go against the Szlachta Focus
+		icon = aristocratic_coup
+
+		available = {
+			always = no
+		}
+
+		days_mission_timeout = 365
+
+		activation = {
+			always = no # Triggered from effect
+		}
+
+		cancel_trigger = {
+			has_completed_focus = POL_abolish_the_sejm
+		}
+
+		is_good = no
+
+		timeout_effect = {
+			news_event = mod.23
+			add_stability = -0.15
+			add_political_power = -150
+			start_civil_war = {
+				ruling_party = neutrality
+				ideology = aristocracy
+				size = 0.45
+			}
+			hidden_effect = {
+				add_ideas = {
+					POL_liberum_veto
+					POL_dominance_of_nobles
+					catholic
+					limited_exports
+					POL_sejm
+					kingdom
+					POL_rural_society
+					POL_conscription_crisis
+					POL_foreign_meddling_4
+				}
+				POL = {
+					set_country_leader_name = {
+						ideology = neutrality
+						name = POL_Frederick_Augustus
+					}
+					set_country_leader_portrait = {
+						ideology = neutrality
+						portrait = GFX_Frederick_Augustus
+					}
+					add_country_leader_trait = disputed_reign
+				}	
+			    random_other_country = {
+					limit = {
+						original_tag = POL
+						has_government = aristocracy
+					}
+					set_popularities = {
+						aristocracy = 40
+						democratic = 17
+						neutrality = 12
+						fascism = 21
+						communism = 10
+					}
+					set_cosmetic_tag = PPR
+					load_focus_tree = { tree = Polish_focus keep_completed = no }
+					unlock_national_focus = POL_depose_august
+					add_ideas = {
+						POL_liberum_veto
+						POL_dominance_of_nobles
+						catholic
+						limited_exports
+						POL_sejm
+						kingdom
+						POL_rural_society
+						POL_conscription_crisis
+						POL_foreign_meddling_4
+					}
+					create_country_leader = {
+						name = "Stanislaw I"
+						picture = "Stanislaw.dds"
+						expire = "1965.1.1"
+						ideology = despotism
+						traits = {	
+							likes_sweden		
+						}
+					}
+					create_country_leader = {
+						name = "Stanislaw I"
+						picture = "Stanislaw.dds"
+						expire = "1965.1.1"
+						ideology = nobility
+						traits = {	
+							likes_sweden		
+						}
+					}
+					set_party_name = { 
+					    ideology = neutrality 
+					    name = "House Leszczyński"
+					    long_name = "House of Leszczyński"
+					}
+				}
+			}
+		}
+
+		priority = 2
+	}
+	POL_pacify_the_magnates = {
+		icon = generic_hand_shake
+
+		cost = 70
+
+		fire_only_once = no
+
+		days_remove = 30
+
+		days_re_enable = 150
+
+		visible = {
+			has_active_mission = POL_reform_the_nation
+		}
+
+		available = {
+			has_active_mission = POL_reform_the_nation
+        }
+
+		modifier = {
+			political_power_gain = -0.10
+		}
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.05
+			}
+			add_days_mission_timeout = {
+				mission = POL_reform_the_nation
+				days = 30
+			}
+		}
+	}
+	POL_bribe_the_magnates = {
+		icon = burghers
+
+		cost = 80
+
+		fire_only_once = no
+
+		days_remove = 70
+
+		days_re_enable = 100
+
+		visible = {
+			has_active_mission = POL_reform_the_nation
+		}
+
+		available = {
+			has_active_mission = POL_reform_the_nation
+        }
+
+		modifier = {
+			consumer_goods_factor = 0.10
+		}
+
+		complete_effect = {
+			add_days_mission_timeout = {
+				mission = POL_reform_the_nation
+				days = 40
+			}
+		}
+	}
+	POL_military_force = {
+		icon = generic_reorganize_irregulars
+
+		cost = 30
+
+		fire_only_once = no
+
+		days_remove = 50
+
+		days_re_enable = 60
+
+		visible = {
+			has_active_mission = POL_reform_the_nation
+		}
+
+		available = {
+			has_completed_focus = POL_cripple_magnates
+        }
+
+		modifier = {
+			political_power_gain = -0.15
+			consumer_goods_factor = 0.10
+		}
+
+		complete_effect = {
+			army_experience = 10
+			add_stability = -0.05
+			add_manpower = -1200
+			add_days_mission_timeout = {
+				mission = POL_reform_the_nation
+				days = 40
+			}
+		}
+	}
+	POL_control_the_church = {
+		icon = clergy 
+
+		cost = 100
+
+		fire_only_once = yes
+
+		days_remove = 50
+
+		visible = {
+			has_active_mission = POL_reform_the_nation
+		}
+
+		available = {
+			has_completed_focus = POL_expel_radziejowksi
+        }
+
+		modifier = {
+			political_power_gain = -0.10
+		}
+
+		complete_effect = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.20
+			}
+			add_days_mission_timeout = {
+				mission = POL_reform_the_nation
+				days = 100
+			}
+		}
+	}
+}
+
+POL_foreign_influence = {
+	POL_infiltrate_poland = {
+		cost = 25
+
+		days_remove = 90
+
+		visible = {
+			OR = {	
+				tag = AUS
+				tag = SWE
+				tag = PRS
+				tag = SOV
+			}
+		}
+
+		available = {
+            POL = { exists = yes }
+            hidden_trigger = { NOT = { has_idea = POL_influence_over_poland_6 } }
+            if = {
+            	limit = {
+            		original_tag = PRS
+            	}
+            	NOT = { 
+					POL = { has_completed_focus = POL_expel_prussian_ambassadors }
+					focus_progress = {
+						focus = POL_expel_prussian_ambassadors
+						progress > 0.01
+					}
+				}
+            }
+            if = {
+            	limit = {
+            		original_tag = AUS
+            	}
+            	NOT = { 
+					POL = { has_completed_focus = POL_expel_austrian_ambassadors }
+					focus_progress = {
+						focus = POL_expel_austrian_ambassadors
+						progress > 0.01
+					}
+				}
+            }
+            if = {
+            	limit = {
+            		original_tag = SOV
+            	}
+            	NOT = { 
+					POL = { has_completed_focus = POL_expel_russian_ambassadors }
+					focus_progress = {
+						focus = POL_expel_russian_ambassadors
+						progress > 0.01
+					}
+				}
+            }
+            if = {
+            	limit = {
+            		original_tag = SWE
+            	}
+            	SWE = { has_completed_focus = SWE_infiltrate_the_commonwealth }
+            	NOT = { 
+					POL = { has_completed_focus = POL_expel_swedish_ambassadors }
+					focus_progress = {
+						focus = POL_expel_swedish_ambassadors
+						progress > 0.01
+					}
+				}
+            }
+        }
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		fixed_random_seed = no
+
+		remove_effect = {
+			random_list = {
+				5 = {
+					POL_decrease_foreign_influence = yes
+				}
+				45 = {
+					POL_increase_foreign_influence = yes
+				}
+				50 = {
+					POL = { country_event = poland.30 }
+					POL_increase_foreign_influence = yes
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 5
+			modifier = {
+			    factor = 10
+			    has_completed_focus = SWE_infiltrate_the_commonwealth
+			}
+		}
+	}
+	POL_crack_down_on_foreign_influence = {
+		cost = var:crack_down_on_influence_foreign_cost
+		days_remove = var:crack_down_on_influence_foreign_time
+		visible = {
+			tag = POL
+		}
+		available = {
+            tag = POL
+        }
+        ai_will_do = {
+			factor = 100
+		}
+		modifier = {
+			political_power_cost = 0.05
+		}
+		remove_effect = {
+			POL_decrease_meddling = yes
+			if = {
+				limit = { 
+					SOV = {
+						OR = {
+							has_idea = POL_influence_over_poland_1 
+							has_idea = POL_influence_over_poland_2 
+							has_idea = POL_influence_over_poland_3 
+							has_idea = POL_influence_over_poland_4 
+							has_idea = POL_influence_over_poland_5 
+							has_idea = POL_influence_over_poland_6 
+						}
+					}
+				}
+				random_list = {
+					50 = {
+						SOV = { POL_decrease_foreign_influence = yes }
+					}
+					50 = {
+					}
+				}
+			}
+			if = {
+				limit = { 
+					SWE = {
+						OR = {
+							has_idea = POL_influence_over_poland_1 
+							has_idea = POL_influence_over_poland_2 
+							has_idea = POL_influence_over_poland_3 
+							has_idea = POL_influence_over_poland_4 
+							has_idea = POL_influence_over_poland_5 
+							has_idea = POL_influence_over_poland_6 
+						}
+					}
+				}
+				random_list = {
+					50 = {
+						SWE = { POL_decrease_foreign_influence = yes }
+					}
+					50 = {
+					}
+				}
+			}
+			if = {
+				limit = { 
+					AUS = {
+						OR = {
+							has_idea = POL_influence_over_poland_1 
+							has_idea = POL_influence_over_poland_2 
+							has_idea = POL_influence_over_poland_3 
+							has_idea = POL_influence_over_poland_4 
+							has_idea = POL_influence_over_poland_5 
+							has_idea = POL_influence_over_poland_6 
+						}
+					}
+				}
+				random_list = {
+					50 = {
+						AUS = { POL_decrease_foreign_influence = yes }
+					}
+					50 = {
+					}
+				}
+			}
+			if = {
+				limit = { 
+					PRS = {
+						OR = {
+							has_idea = POL_influence_over_poland_1 
+							has_idea = POL_influence_over_poland_2 
+							has_idea = POL_influence_over_poland_3 
+							has_idea = POL_influence_over_poland_4 
+							has_idea = POL_influence_over_poland_5 
+							has_idea = POL_influence_over_poland_6 
+						}
+					}
+				}
+				random_list = {
+					50 = {
+						PRS = { POL_decrease_foreign_influence = yes }
+					}
+					50 = {
+					}
+				}
+			}
+		}
+	}
+}
+
+POL_bop = {
+	POL_call_a_sejm = {
+		icon = generic_monarchy
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_remove = 30
+
+		days_re_enable = 330
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		modifier = {
+			political_power_gain = -0.10
+		}
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = 0.2
+			}
+		}
+	}
+
+	POL_redistribute_land = {
+		icon = hol_draw_up_staff_plans
+
+		cost = 30
+
+		fire_only_once = no
+
+		days_re_enable = 120
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			power_balance_value = { # Szlachta is dominant
+				id = POL_factions
+				value < 0.80
+			}
+        }
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = 0.1
+			}
+		}
+	}
+
+	POL_reduce_szlachta_privileges = {
+		icon = eng_ally_imperialist_coup
+
+		cost = 30
+
+		fire_only_once = no
+
+		days_remove = 120
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+                tooltip = POL_check_tax_szlachta_missions_tt
+                check_variable = { POL_check_tax_szlachta_missions < 1 }
+            }
+			power_balance_value = {
+				id = POL_factions
+				value > 0.2
+			}
+        }
+
+		modifier = {
+			consumer_goods_factor = 0.20
+		}
+
+		complete_effect = {
+			add_to_variable = { POL_check_reduce_szlachta_privileges_mission = 1 }
+			add_power_balance_value = {
+				id = POL_factions
+				value = -0.2
+			}
+		}
+		remove_effect = {
+			add_to_variable = { POL_check_reduce_szlachta_privileges_mission = -1 }
+		}
+	}
+
+	POL_tax_szlachta = {
+		icon = coins
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_remove = 120
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+                tooltip = POL_check_reduce_szlachta_privileges_mission_tt
+                check_variable = { POL_check_reduce_szlachta_privileges_mission < 1 }
+            }
+			power_balance_value = {
+				id = POL_factions
+				value > -0.80
+			}
+        }
+
+		modifier = {
+			consumer_goods_factor = -0.20
+			stability_factor = -0.20
+		}
+
+		complete_effect = {
+			add_to_variable = { POL_check_tax_szlachta_missions = 1 }
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = -0.2
+			}
+		}
+		remove_effect = {
+			add_to_variable = { POL_check_tax_szlachta_missions = -1 }
+		}
+	}
+
+	POL_hereditary_act = {
+		icon = generic_monarchy
+
+		cost = 50
+
+		fire_only_once = yes
+
+		visible = {
+			power_balance_value = {
+				id = POL_factions
+				value < -0.40
+			}
+		}
+
+		available = {
+			always = yes
+        }
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = -0.1
+			}
+		}
+	}
+
+	POL_restrict_liberum_veto = {
+		icon = eng_trade_unions_demand
+
+		cost = 300
+
+		fire_only_once = yes
+
+		visible = {
+			has_idea = POL_liberum_veto
+		}
+
+		available = {
+			has_idea = POL_liberum_veto
+        }
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.1
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = -0.2
+			}
+			if = {
+    			limit = {
+        			has_idea = POL_liberum_veto
+    			}
+				swap_ideas = {
+					remove_idea = POL_liberum_veto
+					add_idea = POL_liberum_veto_restricted
+				}
+			}
+		}
+	}
+
+	POL_recruit_nobles = {
+		icon = generic_military
+
+		cost = 50
+
+		fire_only_once = no
+
+		days_re_enable = 180
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			NOT = {
+    			has_stability < 0.4
+			}
+        }
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = -0.1
+			}
+			add_war_support = 0.05
+			add_stability = -0.05
+			add_manpower = 10000
+		}
+	}
+
+	POL_centralize_royal_army = {
+		icon = generic_nationalism
+
+		cost = 50
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			OR = {
+				has_completed_focus = POL_secure_absolute_power
+				has_completed_focus = POL_align_magnates
+				has_completed_focus = POL_reform_the_state
+				has_completed_focus = POL_the_kings_court
+			}
+        }
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = -0.1
+			}
+			add_war_support = 0.05
+			#Upgrades an army spirit that is not yet implemented#
+		}
+	}
+
+	POL_expand_noble_autonomy = {
+		icon = nobility
+
+		cost = 30
+
+		fire_only_once = no
+
+		days_re_enable = 120
+
+		visible = {
+			has_idea = POL_dominance_of_nobles
+		}
+
+		available = {
+			has_idea = POL_dominance_of_nobles
+        }
+
+		complete_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = 0.1
+			}
+		}
+	}
+
+	POL_noble_tax_reform = {
+		icon = eng_trade_unions_support
+
+		cost = 0
+
+		fire_only_once = yes
+
+		visible = {
+			always = yes
+		}
+
+		available = {
+			always = yes
+        }
+
+		complete_effect = {
+			add_political_power = 200
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.10
+			}
+			add_popularity = {
+				ideology = aristocracy
+				popularity = 0.10
+			}
+			add_power_balance_value = {
+				id = POL_factions
+				value = 0.15
+			}
+		}
+	}
+}

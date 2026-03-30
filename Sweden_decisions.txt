@@ -1,0 +1,257 @@
+political_actions = {
+	SWE_arange_an_accident_for_frederick = {
+
+		icon = eng_support_imperialist_coup
+	
+		cost = 150
+
+		available = {
+			tag = SWE
+			DEN = {
+				has_country_leader = {
+				    name = "Frederick IV"
+				    ruling_only = yes
+				}
+			}
+			has_completed_focus = SWE_the_royal_marriage
+			has_idea = SWE_royal_marriage
+		}
+
+		visible = {
+			has_completed_focus = SWE_the_royal_marriage
+			has_idea = SWE_royal_marriage
+		}
+
+		days_remove = 70
+
+		modifier = {
+			political_power_gain = -0.15
+		}
+
+		
+		remove_effect = {
+			SWE = { country_event = denmark.2 }
+			DEN = { country_event = denmark.2 }
+			hidden_effect = {
+				news_event = { id = mod.21 days = 1 }
+			}
+		}
+	}
+}
+
+SWE_cossack_aid = {
+	SWE_Cossack_equipment = {
+
+		icon = generic_prepare_civil_war
+		cost = 25
+		days_re_enable = 60
+		fire_only_once = no
+
+		visible = {
+			has_completed_focus = SWE_seek_zaporozhian_support
+		}
+
+		complete_effect = {	
+			ZAP = { country_event = cossack.1 } 
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	SWE_Cossack_manpower = {
+		icon = generic_prepare_civil_war
+
+		cost = 25
+		days_re_enable = 60
+		fire_only_once = no
+
+		visible = {
+			has_completed_focus = SWE_seek_zaporozhian_support
+		}
+
+		complete_effect = {	
+			ZAP = { country_event = cossack.2 }	
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	SWE_Cossack_volunteers = {
+		icon = generic_prepare_civil_war
+
+		cost = 50
+		fire_only_once = yes
+
+		visible = {
+			has_completed_focus = SWE_seek_zaporozhian_support
+		}
+
+		complete_effect = {	
+			ZAP = { country_event = cossack.3 }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	SWE_Cossack_support = {
+		icon = generic_prepare_civil_war
+
+		cost = 25
+		fire_only_once = yes
+
+		visible = {
+			has_completed_focus = SWE_seek_zaporozhian_support
+		}
+
+		complete_effect = {	
+			reverse_add_opinion_modifier = {
+				target = ZAP
+				modifier = huge_increase
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}	
+	}
+
+	SWE_Cossack_border_conflict = {
+
+		icon = generic_prepare_civil_war
+
+		cost = 50
+		fire_only_once = yes
+
+		visible = {
+			has_completed_focus = SWE_seek_zaporozhian_support
+		}
+
+		complete_effect = {	
+			ZAP = { country_event = cossack.4 }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}
+
+SWE_ottoman_aid = {
+
+	SWE_ottoman_equipment = {
+		icon = generic_prepare_civil_war
+
+		cost = 25
+		days_re_enable = 60
+		fire_only_once = no
+
+		visible = {
+			has_completed_focus = SWE_seek_ottoman_support
+		}
+
+		fixed_random_seed = no
+
+		days_remove = 10
+		remove_effect = {
+		    random_list = {
+				30 = {
+				}
+				40 = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 100
+						producer = TUR
+					}
+				}
+				20 = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 250
+						producer = TUR
+					}
+				}
+				10 = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 1000
+						producer = TUR
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	SWE_ottoman_manpower = {
+
+		icon = generic_prepare_civil_war
+
+		visible = {
+			has_completed_focus = SWE_seek_ottoman_support
+		}
+
+		cost = 25
+		days_re_enable = 60
+		fire_only_once = no
+
+		fixed_random_seed = no
+
+		days_remove = 10
+	    remove_effect = {
+	        random_list = {
+				30 = {
+					add_manpower = 0
+				}
+				40 = {
+					add_manpower = 1250
+				}
+				20 = {
+					add_manpower = 2500
+				}
+				10 = {
+					add_manpower = 5000
+				}
+			}
+	    }
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	SWE_ottoman_volunteers = {
+
+		icon = generic_military
+
+		cost = 25
+		days_re_enable = 60
+		fire_only_once = no
+
+		visible = {
+			has_completed_focus = SWE_seek_ottoman_support
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {	
+			TUR = {
+				add_ai_strategy = {
+					type = send_volunteers_desire
+					id = "SWE"
+					value = 1000
+				}
+			}
+		}
+	}
+}

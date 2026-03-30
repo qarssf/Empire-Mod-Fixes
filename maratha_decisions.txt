@@ -1,0 +1,1439 @@
+MAR_expansion = {
+	# Portuguese India
+	MAR_clash_over_goa = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 960
+			owns_state = 962
+			NOT = {
+				owns_state = 321
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 321
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_capture_bassein
+			NOT = {
+				owns_state = 321
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 960
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 321
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_diu = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 428
+			NOT = {
+				owns_state = 846
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 846
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_capture_bassein
+			NOT = {
+				owns_state = 846
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 428
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 846
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_bassein = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 960
+			NOT = {
+				owns_state = 1027
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1027
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_capture_bassein
+			NOT = {
+				owns_state = 1027
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 960
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1027
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	# Danish India
+	MAR_clash_over_tranquebar = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 965
+			NOT = {
+				owns_state = 847
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 847
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_subjugate_danish_india
+			NOT = {
+				owns_state = 847
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 965
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 847
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	# Dutch India
+	MAR_clash_over_mangalore = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 959
+			NOT = {
+				owns_state = 963
+			}	
+		}
+		
+		highlight_states = {
+			highlight_state_targets = {
+				state = 963
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_kick_out_the_dutch
+			NOT = {
+				owns_state = 963
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 959
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 963
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_tuticorin = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 423
+			NOT = {
+				owns_state = 1042
+			}	
+		}
+		
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1042
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_kick_out_the_dutch
+			NOT = {
+				owns_state = 1042
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 423
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1042
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_south_coromandel = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 424
+			NOT = {
+				owns_state = 964
+			}	
+		}
+		
+		highlight_states = {
+			highlight_state_targets = {
+				state = 964
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_kick_out_the_dutch
+			NOT = {
+				owns_state = 964
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 424
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 964
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_north_coromandel = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 1072
+			NOT = {
+				owns_state = 1037
+			}	
+		}
+		
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1037
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_kick_out_the_dutch
+			NOT = {
+				owns_state = 1037
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 1072
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1037
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_dutch_bengal = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 978
+			NOT = {
+				owns_state = 1039
+			}	
+		}
+		
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1039
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_kick_out_the_dutch
+			NOT = {
+				owns_state = 1039
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 978
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1037
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_dutch_ceylon = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 958
+			NOT = {
+				owns_state = 422
+			}	
+		}
+		
+		highlight_states = {
+			highlight_state_targets = {
+				state = 422
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_kick_out_the_dutch
+			NOT = {
+				owns_state = 422
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 958
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 422
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	# French India
+	MAR_clash_over_pondicherry = {
+		icon = border_war
+
+		days_re_enable = 70
+		
+		cost = 50
+
+		available = {
+			owns_state = 965
+			NOT = {
+				owns_state = 320
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 320
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_destroy_the_french
+			NOT = {
+				owns_state = 320
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 965
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 320
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_french_bengal = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 431
+			NOT = {
+				owns_state = 1034
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1034
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_destroy_the_french
+			NOT = {
+				owns_state = 1034
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 431
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1034
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	# East India Company
+	MAR_clash_over_bombay = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 1027
+			NOT = {
+				owns_state = 961
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 961
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_deal_with_the_EIC
+			NOT = {
+				owns_state = 961
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 1027
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 961
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_karwar = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 962
+			NOT = {
+				owns_state = 1041
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1041
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_deal_with_the_EIC
+			NOT = {
+				owns_state = 1041
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 962
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1041
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_madras = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 424
+			NOT = {
+				owns_state = 1038
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1038
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_deal_with_the_EIC
+			NOT = {
+				owns_state = 1038
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 424
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1038
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_fort_william = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 431
+			NOT = {
+				owns_state = 1040
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1040
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_deal_with_the_EIC
+			NOT = {
+				owns_state = 1040
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 431
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1040
+			        num_provinces = 1
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	# Mughal Expansion decisions
+	MAR_clash_over_malwa = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 429
+			NOT = {
+				owns_state = 437
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 437
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_expand_into_malwa
+			NOT = {
+				owns_state = 437
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 429
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 437
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_bhopal = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 437
+			NOT = {
+				owns_state = 1117
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1117
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_expand_into_malwa
+			NOT = {
+				owns_state = 1117
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 437
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1117
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_nagpur = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 437
+			NOT = {
+				owns_state = 1118
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1118
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_expand_into_malwa
+			NOT = {
+				owns_state = 1118
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 437
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 1118
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_gujarat = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 429
+			NOT = {
+				owns_state = 428
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 428
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_expand_into_gujarat
+			NOT = {
+				owns_state = 428
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 429
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 428
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+
+	MAR_clash_over_bundelkhand = {
+		icon = border_war
+
+		days_re_enable = 70
+
+		cost = 50
+
+		available = {
+			owns_state = 1117
+			NOT = {
+				owns_state = 977
+			}	
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 977
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_expand_into_bundelkhand
+			NOT = {
+				owns_state = 977
+			}
+		}
+		
+		complete_effect = {
+			start_border_war = {
+			change_state_after_war = no
+			    attacker = {
+			        state = 1117
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_attacker.1
+       				on_lose = wtt_border_conflict_lost_attacker.1
+			    }
+							
+			    defender = {
+			        state = 977
+			        num_provinces = 2
+			        on_win = wtt_border_conflict_won_defender.1
+   					on_lose = wtt_border_conflict_lost_defender.1
+			    }
+			}
+		}
+	}
+}
+MAR_vassalise_thanjavur = {
+	MAR_infiltrate_thanjavurs_court = {
+		icon = generic_political_discourse
+
+		fire_only_once = yes
+
+		cost = 50
+
+		days_remove = 70
+
+		available = {
+			always = yes
+		}
+
+		visible = {
+			has_completed_focus = MAR_reduce_thanjavur_to_a_puppet
+		}
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+		
+		complete_effect = {
+			add_to_variable = {
+				var = MAR_thanjavur_infiltration
+				value = 20
+			}
+			clamp_variable = {
+				var = MAR_thanjavur_infiltration
+				max = 100
+			}
+			set_country_flag = MAR_infiltrated_thanjavurs_court
+		}
+	}
+
+	MAR_replace_the_guards = {
+		icon = generic_reorganize_irregulars
+
+		fire_only_once = yes
+
+		cost = 70
+
+		days_remove = 50
+
+		modifier = { # Being bribed cuh
+			consumer_goods_factor = 0.15
+		}
+
+		available = {
+			always = yes
+		}
+
+		visible = {
+			has_completed_focus = MAR_reduce_thanjavur_to_a_puppet
+		}
+		
+		complete_effect = {
+			add_to_variable = {
+				var = MAR_thanjavur_infiltration
+				value = 30
+			}
+			clamp_variable = {
+				var = MAR_thanjavur_infiltration
+				max = 100
+			}
+		}
+	}
+
+	MAR_pressure_the_king = {
+		icon = eng_trade_unions_demand
+
+		fire_only_once = yes
+
+		cost = 100
+
+		days_remove = 20
+
+		available = {
+			always = yes
+		}
+
+		visible = {
+			has_completed_focus = MAR_reduce_thanjavur_to_a_puppet
+		}
+		
+		complete_effect = {
+			add_to_variable = {
+				var = MAR_thanjavur_infiltration
+				value = 30
+			}
+			clamp_variable = {
+				var = MAR_thanjavur_infiltration
+				max = 100
+			}
+		}
+	}
+
+	MAR_apply_military_pressure = {
+		icon = generic_prepare_civil_war
+
+		fire_only_once = yes
+
+		cost = 0
+
+		days_remove = 50
+
+		modifier = { # Takes money and shit
+			consumer_goods_factor = 0.10
+		}
+
+		available = {
+			OR = { # Borders Thanjavur, how can you apply military pressure with no border?
+				owns_state = 423
+				owns_state = 424
+				owns_state = 425
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_reduce_thanjavur_to_a_puppet
+		}
+		
+		complete_effect = {
+			add_manpower = 5000
+			add_stability = -0.05
+			add_to_variable = {
+				var = MAR_thanjavur_infiltration
+				value = 50
+			}
+			clamp_variable = {
+				var = MAR_thanjavur_infiltration
+				max = 100
+			}
+		}
+	}
+
+	MAR_vassalise_thanjavur = {
+		icon = hol_draw_up_staff_plans
+
+		fire_only_once = yes
+
+		cost = 100
+
+		available = {
+			check_variable = {
+				MAR_thanjavur_infiltration > 99
+			}
+		}
+
+		visible = {
+			has_completed_focus = MAR_reduce_thanjavur_to_a_puppet
+		}
+		
+		complete_effect = {
+			puppet = TAN
+			965 = {
+				add_core_of = ROOT
+			}
+		}
+	}
+}
+MAR_jagirs = {
+	MAR_hand_out_more_jagirs = {
+		icon = hol_draw_up_staff_plans
+
+		fire_only_once = no
+
+		cost = 30
+
+		days_remove = 50
+
+		days_re_enable = 100
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		available = {
+			has_completed_focus = MAR_the_jagir_issue
+		}
+
+		visible = {
+			OR = {
+				has_idea = MAR_jagirs_very_high
+				has_idea = MAR_jagirs_high
+				has_idea = MAR_jagirs_medium
+				has_idea = MAR_jagirs_low
+				has_idea = MAR_jagirs_very_low
+			}
+		}
+		
+		complete_effect = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			MAR_increase_jagir_amount = yes
+		}
+	}
+	
+	MAR_seize_jagirs = {
+		icon = hol_draw_up_staff_plans
+
+		fire_only_once = no
+
+		cost = 70
+
+		days_remove = 50
+
+		days_re_enable = 100
+
+		modifier = {
+			political_power_cost = 0.10
+		}
+
+		available = {
+			has_completed_focus = MAR_the_jagir_issue
+		}
+
+		visible = {
+			OR = {
+				has_idea = MAR_jagirs_very_high
+				has_idea = MAR_jagirs_high
+				has_idea = MAR_jagirs_medium
+				has_idea = MAR_jagirs_low
+				has_idea = MAR_jagirs_very_low
+			}
+		}
+		
+		complete_effect = {
+			add_stability = -0.05
+			add_war_support = -0.05
+			MAR_decrease_jagir_amount = yes
+		}
+	}
+	
+	MAR_institute_cash_payments = {
+		icon = coins
+
+		fire_only_once = yes
+
+		cost = 100
+
+		days_remove = 50
+
+		modifier = {
+			political_power_cost = 0.20
+			consumer_goods_factor = 0.10
+		}
+
+		available = {
+			has_completed_focus = MAR_the_jagir_issue
+		}
+
+		visible = {
+			OR = {
+				has_idea = MAR_jagirs_very_high
+				has_idea = MAR_jagirs_high
+				has_idea = MAR_jagirs_medium
+				has_idea = MAR_jagirs_low
+				has_idea = MAR_jagirs_very_low
+			}
+		}
+		
+		complete_effect = {
+			add_ideas = MAR_instituted_cash_payments
+		}
+	}
+
+	MAR_beginnings_of_a_meritocracy = {
+		icon = eng_trade_unions_support
+
+		fire_only_once = yes
+
+		cost = 100
+
+		days_remove = 50
+
+		modifier = {
+			political_power_cost = 0.20
+		}
+
+		available = {
+			has_completed_focus = MAR_the_jagir_issue
+			neutrality > 0.60
+		}
+
+		visible = {
+			OR = {
+				has_idea = MAR_jagirs_very_high
+				has_idea = MAR_jagirs_high
+				has_idea = MAR_jagirs_medium
+				has_idea = MAR_jagirs_low
+				has_idea = MAR_jagirs_very_low
+			}
+			has_idea = MAR_institutionalised_nepotism
+		}
+		
+		complete_effect = {
+			swap_ideas = {
+				remove_idea = MAR_institutionalised_nepotism
+				add_idea = MAR_institutionalised_nepotism_2
+			}
+			set_country_flag = MAR_started_meritocratic_reforms
+		}
+	}
+
+	MAR_finish_meritocratic_reforms = {
+		icon = eng_trade_unions_support
+
+		fire_only_once = yes
+
+		cost = 100
+
+		days_remove = 50
+
+		modifier = {
+			political_power_cost = 0.20
+		}
+
+		available = {
+			has_completed_focus = MAR_the_jagir_issue
+			neutrality > 0.70
+		}
+
+		visible = {
+			OR = {
+				has_idea = MAR_jagirs_very_high
+				has_idea = MAR_jagirs_high
+				has_idea = MAR_jagirs_medium
+				has_idea = MAR_jagirs_low
+				has_idea = MAR_jagirs_very_low
+			}
+			OR = {
+				has_idea = MAR_institutionalised_nepotism
+				has_idea = MAR_institutionalised_nepotism_2
+			}
+			has_country_flag = MAR_started_meritocratic_reforms
+		}
+		
+		complete_effect = {
+			remove_ideas = MAR_institutionalised_nepotism_2
+			clr_country_flag = MAR_started_meritocratic_reforms
+		}
+	}
+
+	MAR_reform_inheritance_law = {
+		icon = eng_trade_unions_support
+
+		fire_only_once = yes
+
+		cost = 150
+
+		days_remove = 50
+
+		modifier = {
+			political_power_cost = 0.20
+		}
+
+		available = {
+			has_completed_focus = MAR_the_jagir_issue
+			neutrality > 0.50
+		}
+
+		visible = {
+			OR = {
+				has_idea = MAR_jagirs_very_high
+				has_idea = MAR_jagirs_high
+				has_idea = MAR_jagirs_medium
+				has_idea = MAR_jagirs_low
+				has_idea = MAR_jagirs_very_low
+			}
+		}
+		
+		complete_effect = {
+			add_stability = -0.15
+			MAR_decrease_jagir_amount = yes
+			add_popularity = {
+				ideology = aristocracy
+				popularity = -0.15
+			}
+		}
+	}
+
+	MAR_abolish_jagirs = {
+		icon = generic_break_treaty
+
+		fire_only_once = yes
+
+		cost = 150
+
+		available = {
+			has_completed_focus = MAR_the_jagir_issue
+			neutrality > 0.70
+			has_manpower > 40000
+		}
+
+		visible = {
+			OR = {
+				has_idea = MAR_jagirs_very_high
+				has_idea = MAR_jagirs_high
+				has_idea = MAR_jagirs_medium
+				has_idea = MAR_jagirs_low
+				has_idea = MAR_jagirs_very_low
+			}
+		}
+		
+		complete_effect = {
+			add_stability = -0.10
+			if = {
+				limit = {
+					has_idea = MAR_jagirs_very_high
+				}
+				remove_ideas = MAR_jagirs_very_high
+			}
+			if = {
+				limit = {
+					has_idea = MAR_jagirs_high
+				}
+				remove_ideas = MAR_jagirs_high
+			}
+			if = {
+				limit = {
+					has_idea = MAR_jagirs_medium
+				}
+				remove_ideas = MAR_jagirs_medium
+			}
+			if = {
+				limit = {
+					has_idea = MAR_jagirs_low
+				}
+				remove_ideas = MAR_jagirs_low
+			}
+			if = {
+				limit = {
+					has_idea = MAR_jagirs_very_low
+				}
+				remove_ideas = MAR_jagirs_very_low
+			}
+			add_popularity = {
+				ideology = aristocracy
+				popularity = -0.50
+			}
+		}
+	}
+}

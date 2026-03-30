@@ -1,0 +1,787 @@
+JAP_foreign_influence = {
+	JAP_crack_down_on_foreign_influence = {
+
+		icon = oppression
+
+		cost = 65
+
+		days_remove = 40
+
+		visible = {
+			original_tag = JAP
+			has_country_flag = JAP_foreign_influence_flag
+		}
+
+		available = {
+            original_tag = JAP
+			has_completed_focus = JAP_the_foreigners
+        }
+
+		modifier = {
+			political_power_cost = 0.15
+		}
+
+		remove_effect = {
+			add_to_variable = {
+				var = HOL_influence
+				value = -5
+			}
+			add_to_variable = {
+				var = SPR_influence
+				value = -5
+			}
+			add_to_variable = {
+				var = POR_influence
+				value = -5
+			}
+			clamp_variable = { 
+				var = HOL_influence 
+				min = 0 
+				max = 100 
+			}
+			clamp_variable = { 
+				var = SPR_influence 
+				min = 0 
+				max = 100 
+			}
+			clamp_variable = { 
+				var = POR_influence 
+				min = 0 
+				max = 100 
+			}
+			custom_effect_tooltip = decreases_influence_by_5
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	JAP_dutch_economic_support = {
+
+		icon = gre_investment_decisions
+
+		cost = 80
+
+		days_remove = 90
+
+		visible = {
+			original_tag = JAP
+			has_country_flag = JAP_foreign_influence_flag
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = {
+					var = HOL_influence
+					value = 10
+					compare = greater_than_or_equals
+				}
+				tooltip = needs_10_hol_influence
+			}
+        }
+
+		remove_effect = {
+			add_to_variable = {
+				var = HOL_influence
+				value = 10
+			}
+			clamp_variable = { 
+				var = HOL_influence 
+				min = 0 
+				max = 100 
+			}
+			random_owned_controlled_state = {
+				limit = {
+					NOT = {
+						has_state_flag = built_hol_civ_factory
+					}
+					is_in_home_area = yes
+				}
+				set_state_flag = built_hol_civ_factory
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = increases_hol_influence_by_10
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	JAP_spanish_military_support = {
+
+		icon = generic_military
+
+		cost = 50
+
+		days_remove = 70
+
+		visible = {
+			original_tag = JAP
+			has_country_flag = JAP_foreign_influence_flag
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = {
+					var = SPR_influence
+					value = 10
+					compare = greater_than_or_equals
+				}
+				tooltip = needs_10_spr_influence
+			}
+        }
+
+		remove_effect = {
+			add_to_variable = {
+				var = SPR_influence
+				value = 10
+			}
+			clamp_variable = { 
+				var = SPR_influence 
+				min = 0 
+				max = 100 
+			}
+			random_owned_controlled_state = {
+				limit = {
+					NOT = {
+						has_state_flag = built_spr_mil_factory
+					}
+					is_in_home_area = yes
+				}
+				set_state_flag = built_spr_mil_factory
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = increases_spr_influence_by_10
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	JAP_portuguese_naval_support = {
+
+		icon = generic_anchor
+
+		cost = 50
+
+		days_remove = 70
+
+		visible = {
+			original_tag = JAP
+			has_country_flag = JAP_foreign_influence_flag
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = {
+					var = POR_influence
+					value = 10
+					compare = greater_than_or_equals
+				}
+				tooltip = needs_10_por_influence
+			}
+        }
+
+		remove_effect = {
+			add_to_variable = {
+				var = POR_influence
+				value = 10
+			}
+			clamp_variable = { 
+				var = POR_influence 
+				min = 0 
+				max = 100 
+			}
+			random_owned_controlled_state = {
+				limit = {
+					NOT = {
+						has_state_flag = built_por_dockyard
+					}
+					is_in_home_area = yes
+					is_coastal = yes
+				}
+				set_state_flag = built_por_dockyard
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = increases_por_influence_by_10
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	JAP_sell_land = {
+
+		icon = eng_trade_unions_support
+
+		days_remove = 50
+
+		fire_only_once = no
+
+		visible = {
+			original_tag = JAP
+			has_country_flag = JAP_foreign_influence_flag
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = {
+					var = HOL_influence
+					value = 10
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = POR_influence
+					value = 10
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = SPR_influence
+					value = 10
+					compare = greater_than_or_equals
+				}
+				tooltip = all_need_10_influence
+			}
+        }
+
+		remove_effect = {
+			country_event = {
+				id = japan.19
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	JAP_civil_war = {
+
+		icon = nobility
+
+		activation = {
+			custom_trigger_tooltip = {
+				check_variable = {
+					var = HOL_influence
+					value = 80
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = POR_influence
+					value = 80
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = SPR_influence
+					value = 80
+					compare = greater_than_or_equals
+				}
+				tooltip = anyone_with_80_influence
+			}
+		}
+
+		cancel_trigger = {
+			check_variable = {
+				var = HOL_influence
+				value = 80
+				compare = less_than
+			}
+			check_variable = {
+				var = POR_influence
+				value = 80
+				compare = less_than
+			}
+			check_variable = {
+				var = SPR_influence
+				value = 80
+				compare = less_than
+			}
+		}
+
+		days_mission_timeout = 100
+
+		timeout_effect  = {
+			start_civil_war = {
+				ideology = democratic
+				size = 0.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+JAP_deal_with_dissent = {
+	JAP_suppress_the_dissidents = {
+
+		icon = oppression
+
+		cost = 100
+
+		days_remove = 70
+
+		fire_only_once = no
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+			has_stability < 0.5
+			has_war_support < 0.4
+			neutrality > 0.5
+			has_government = neutrality
+        }
+
+		modifier = {
+			political_power_factor = -0.10
+		}
+
+		remove_effect = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = democratic 
+				popularity = -0.05
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	JAP_negotiate_with_moderate_faction = {
+
+		icon = oppression
+
+		cost = 100
+
+		days_remove = 100
+
+		fire_only_once = no
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+			fascism > 0.2
+			communism > 0.2
+			democratic > 0.2
+			has_stability < 0.5
+        }
+
+		modifier = {
+			consumer_goods_factor = 0.05
+			political_power_cost = 0.10
+		}
+
+		complete_effect = {
+			add_stability = 0.1
+			add_political_power = 50
+		}
+
+		remove_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.1
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	JAP_purge_opposition_leaders = {
+
+		icon = oppression
+
+		cost = 150
+
+		days_remove = 130
+
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+			has_stability < 0.6
+			fascism > 0.2
+			communism > 0.2
+			democratic  > 0.2
+        }
+
+		modifier = {
+			resistance_activity = -0.2
+			compliance_growth = 0.05
+		}
+
+		complete_effect = {
+			add_stability = 0.1
+		}
+
+		remove_effect = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = -0.2
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = -0.2
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	JAP_bribe_the_landlords = {
+
+		icon = oppression
+
+		cost = 100
+
+		days_remove = 120
+
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+			num_of_civilian_factories > 4
+			num_of_military_factories > 4
+			has_stability < 0.5
+			neutrality > 0.5
+        }
+
+		modifier = {
+			local_resources = 0.2
+			political_power_gain = -0.03
+			consumer_goods_factor = -0.07
+		}
+
+		complete_effect = {
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}
+
+JAP_deal_with_inflation = {
+	JAP_increase_taxes_on_wealthy_merchants = {
+
+		icon = burghers
+
+		cost = 65
+
+		days_remove = 40
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+            original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+        }
+
+		complete_effect = {
+			add_political_power = 50
+			add_stability = 0.1
+		}
+
+		remove_effect = {
+			add_ideas = merchant_taxation
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	JAP_cut_government_spending = {
+
+		icon = eng_trade_unions_support
+
+		cost = 65
+
+		days_remove = 40
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+            original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+        }
+
+		modifier = {
+			production_factory_efficiency_gain_factor = -0.1
+		}
+
+		complete_effect = {
+			add_political_power = 70
+			add_stability = 0.05
+		}
+
+		remove_effect = {
+			add_timed_idea = {
+				idea = fiscal_austerity
+				days = 90
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	JAP_new_currency = {
+
+		icon = coins
+
+		cost = 65
+
+		days_remove = 40
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+            original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+        }
+
+		modifier = {
+			production_factory_efficiency_gain_factor = -0.1
+		}
+
+		complete_effect = {
+			add_stability = 0.1
+		}
+
+		remove_effect = {
+			add_timed_idea = {
+				idea = currency_reformation
+				days = 365
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	JAP_promote_foreign_investments = {
+
+		icon = oppression
+
+		cost = 0
+
+		days_remove = 30
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+            original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+        }
+
+		complete_effect = {
+			add_political_power = 200
+		}
+
+		remove_effect = {
+			add_timed_idea = {
+				idea = foreign_economic_influence
+				days = 200
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+}
+JAP_eliminate_illiteracy = {
+	JAP_build_national_schools = {
+
+		icon = oppression
+
+		cost = 120
+
+		days_remove = 365
+
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+            original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+        }
+
+		modifier = {
+			political_power_gain = -0.05
+		}
+
+		complete_effect = {
+			add_stability = 0.05
+		}
+
+		remove_effect = {
+			add_ideas = national_schooling_system
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	JAP_mandatory_education_laws = {
+
+		icon = oppression
+
+		cost = 65
+
+		days_remove = 40
+		
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+            original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+        }
+
+		modifier = {
+			political_power_gain = -0.15
+			consumer_goods_factor = 0.10
+		}
+
+		complete_effect = {
+			add_stability = -0.05
+		}
+
+		remove_effect = {
+			add_ideas = compulsory_education
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	JAP_promote_literacy_campaigns = {
+
+		icon = oppression
+
+		cost = 65
+
+		days_remove = 40
+		fire_only_once = yes
+
+		visible = {
+			original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+		}
+
+		available = {
+            original_tag = JAP
+			has_completed_focus = JAP_focus_on_the_interior
+        }
+
+		modifier = {
+			political_power_gain = 0.20
+			consumer_goods_factor = -0.05
+			drift_defence_factor = 0.05
+			stability_factor = 0.05
+			research_speed_factor = 0.03
+		}
+
+		complete_effect = {
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+}
+
+army_reforms = {
+	call_upon_the_samurai_clans = {
+		activation = {
+			always = no
+		}
+
+		available = {
+			has_completed_focus = JAP_steel_and_honor_fire_and_blood
+		}
+
+		icon = mission_icon
+
+		days_mission_timeout = 180
+
+		timeout_effect = {
+			add_war_support = 0.1
+			custom_effect_tooltip = warrior_spirit_ns_intro
+			add_to_variable = {	JAP_av_army_core_defence_factor = 0.10 tooltip = army_core_defence_factor_tt }
+			add_to_variable = {	JAP_av_cavalry_attack_factor = 0.10 tooltip = cavalry_attack_factor_tt }
+		}
+	}
+}

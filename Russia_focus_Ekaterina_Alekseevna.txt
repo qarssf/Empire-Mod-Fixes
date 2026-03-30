@@ -1,0 +1,186 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = {
+	id = Russia_focus_Ekaterina_Alekseevna
+	
+	country = {
+		factor = 0
+		modifier = {
+			add = 15
+			original_tag = SOV
+		}
+	}
+	default = no
+	#continuous_focus_position = { x = 100 y = 2000 }
+	#initial_show_position = {
+		#x = 36
+		#y = 0
+	#}
+	
+#	focus = {
+#		id = RUS_
+#		icon = GFX_
+#		prerequisite = { focus = }
+#		mutually_exclusive = { focus =  }
+#		x = -3
+#		y = 0
+#		relative_position_id = 
+#
+#		cost = 10
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#
+#		available = {
+#
+#		}
+#		
+#		bypass = {
+#
+#		}
+#
+#		
+#		
+#		
+#
+#		complete_tooltip = {
+#
+#		}
+#
+#		completion_reward = {
+#
+#		}
+#	}
+
+
+############################################################################
+############################################################################
+############################################################################
+
+ #     #                                                              
+ #     #  #   ####   #####   ####   #####   #   ####     ##    #      
+ #     #  #  #         #    #    #  #    #  #  #    #   #  #   #      
+ #######  #   ####     #    #    #  #    #  #  #       #    #  #      
+ #     #  #       #    #    #    #  #####   #  #       ######  #      
+ #     #  #  #    #    #    #    #  #   #   #  #    #  #    #  #      
+ #     #  #   ####     #     ####   #    #  #   ####   #    #  ###### 
+                                                                      
+############################################################################
+############################################################################
+############################################################################
+
+    focus = {
+		id = RUS_creation_of_supreme_privy_council  
+		icon = GFX_focus_rom_royal_dictatorship
+		x = 15
+		y = 0
+		cost = 1.6 
+	
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY } 
+		
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+            if = {
+				limit = {
+					has_idea = governing_senate_1
+				}
+				swap_ideas = {
+					remove_idea = governing_senate_1
+					add_idea = RUS_supreme_privy_council
+				}
+			}
+			#else = {
+			    #limit = {
+					#has_idea = zemsky_sobor
+				#}
+				#swap_ideas = {
+					#remove_idea = zemsky_sobor
+					#add_idea = RUS_supreme_privy_council
+				#}
+			#}
+			#else = {
+				#add_ideas = { RUS_supreme_privy_council }
+			#}			
+		}
+	
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	focus = {
+		id = RUS_reduce_poll_taxation
+		icon = GFX_money
+		prerequisite = { focus = RUS_creation_of_supreme_privy_council }
+		x = 13
+		y = 1
+		cost = 5
+	
+		ai_will_do = {
+			factor = 10
+		}
+	
+		available = {
+			
+		}
+	
+		search_filters = { FOCUS_FILTER_STABILITY } 
+		
+
+		complete_tooltip = {
+
+		}
+
+		completion_reward = {
+            add_stability = 0.05
+            add_political_power = -50 	
+			#Future Poll Tax Idea should be changed by the focus		
+		}
+
+	}
+
+	focus = { 
+		id = RUS_launch_kamchatka_expedition
+		icon = GFX_Kamchatka
+		x = 17
+		y = 1
+		prerequisite = { focus = RUS_creation_of_supreme_privy_council }
+
+		cost = 2
+	
+		search_filters = { FOCUS_FILTER_ANNEXATION } 
+
+		completion_reward = {
+            custom_effect_tooltip = RUS_kamchatka_expedition_tooltip	
+			#TODO
+		}
+	
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}

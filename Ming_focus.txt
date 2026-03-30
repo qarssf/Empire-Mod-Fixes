@@ -1,0 +1,2575 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = {
+	id = Ming_focus
+
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = MIN
+		}
+	}
+
+	default = no
+
+#############################
+### Koxinga Legacy Branch ###
+#############################
+
+	focus = { 
+		id = MIN_koxinga_legacy
+		icon = GFX_ming_crown
+		x = 40
+		y = 0
+		
+		cost = 2
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			add_political_power = 50
+			country_event = ming.9
+		}
+	}
+
+	focus = { 
+		id = MIN_gathering_exiles
+		icon = GFX_generic_civilian_soldier
+		x = -1
+		y = 1
+		relative_position_id = MIN_koxinga_legacy 
+		prerequisite = { focus = MIN_koxinga_legacy }
+		
+		cost = 2
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = { 
+			custom_effect_tooltip = ming_recruit_loyalists_tt
+			add_manpower = 10000
+			#Unlocks decision to Recruit Ming Loyalists
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_political_power_gain = 0.05 tooltip = political_power_gain_tt }
+		}
+	}
+
+	focus = { 
+		id = MIN_arming_rebels
+		icon = GFX_tanegashima
+		x = 1
+		y = 1
+		relative_position_id = MIN_koxinga_legacy 
+		prerequisite = { focus = MIN_koxinga_legacy }
+		
+		cost = 10
+
+		completion_reward = { 
+			add_ideas = MIN_militia_uprising
+			CHI = {
+				random_owned_controlled_state = {
+					remove_core_of = CHI
+					add_resistance = 15
+				}
+				random_owned_controlled_state = {
+					remove_core_of = CHI
+					add_resistance = 15
+				}
+				random_owned_controlled_state = {
+					remove_core_of = CHI
+					add_resistance = 15
+				}
+			}
+			division_template = {
+				name = "Ming Militia"		
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+				}
+			}
+
+			592 = {
+				create_unit = { # Guangzhou
+					division = "name = \"Militia\" division_template = \"Ming Militia\" start_experience_factor = 0.3"
+					allow_spawning_on_enemy_provs = yes
+					prioritize_location = 7152
+					owner = MIN
+				}
+			}
+			593 = {
+				create_unit = { # Guangdong
+					division = "name = \"Militia\" division_template = \"Ming Militia\" start_experience_factor = 0.3"
+					allow_spawning_on_enemy_provs = yes
+					prioritize_location = 1162
+					owner = MIN
+				}
+			}
+			594 = {
+				create_unit = { # Nanning
+					division = "name = \"Militia\" division_template = \"Ming Militia\" start_experience_factor = 0.3"
+					allow_spawning_on_enemy_provs = yes
+					prioritize_location = 7192
+					owner = MIN
+				}
+			}
+		}
+	}
+	
+	focus = { 
+		id = MIN_rebuild_the_yellow_turbans
+		icon = GFX_yellow_triangle_flag
+		x = -1
+		y = 1
+		relative_position_id = MIN_gathering_exiles 
+		prerequisite = { focus = MIN_gathering_exiles }
+		
+		cost = 2.2
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_modify_ming_army_ns_intro
+			add_to_variable = { MIN_fv_conscription_factor = 0.35 tooltip = conscription_factor_tt }
+			add_to_variable = { MIN_fv_training_time_factor = -0.15 tooltip = training_time_factor_tt }
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_political_power_gain = -0.05 tooltip = political_power_gain_tt }
+			#Unlocks Yellow Turban Militias decision
+		}
+	}
+
+	focus = { 
+		id = MIN_mass_mobilization
+		icon = GFX_soldiers_marching
+		x = 0
+		y = 2
+		relative_position_id = MIN_rebuild_the_yellow_turbans 
+		prerequisite = { focus = MIN_rebuild_the_yellow_turbans }
+		
+		cost = 3
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = { 
+			custom_effect_tooltip = conscription_recruitment_tt
+			hidden_effect = {
+				country_event = {
+					id = ming.2
+					days = 15
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_smuggling_firearms
+		icon = GFX_flintlock_and_pistol
+		x = 1
+		y = 1
+		relative_position_id = MIN_gathering_exiles 
+		prerequisite = { focus = MIN_gathering_exiles focus = MIN_arming_rebels }
+
+		available = {
+			owns_state = 524
+		}
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				producer = TRI
+				amount = 750
+			}
+			524 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.035 tooltip = consumer_goods_factor_tt }
+		}
+	}
+
+	focus = { 
+		id = MIN_fujian_gamble
+		icon = GFX_dice
+		x = 0
+		y = 2
+		relative_position_id = MIN_gathering_exiles 
+		prerequisite = { focus = MIN_gathering_exiles focus = MIN_smuggling_firearms }
+		
+		cost = 2
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = { 
+			add_state_core = 595
+			country_event = ming.12
+			#+2 Land Forts in Fujian
+			complete_national_focus = MIN_flame_of_revolt
+		}
+	}
+
+	focus = { 
+		id = MIN_spirit_of_nanjing
+		icon = GFX_focus_DEN_civilian_preparations
+		x = 0
+		y = 2
+		relative_position_id = MIN_arming_rebels 
+		prerequisite = { focus = MIN_arming_rebels focus = MIN_smuggling_firearms }
+		
+		cost = 2
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			add_war_support = 0.05
+		}
+	}
+
+	focus = { 
+		id = MIN_forming_the_rebellion
+		icon = GFX_focus_generic_support_the_left_right
+		x = 1
+		y = 1
+		relative_position_id = MIN_fujian_gamble 
+		prerequisite = { focus = MIN_fujian_gamble focus = MIN_spirit_of_nanjing }
+		
+		cost = 1
+
+		completion_reward = { 
+			country_event = ming.13
+			country_event = ming.1
+		}
+	}
+
+	focus = { 
+		id = MIN_flame_of_revolt
+		icon = GFX_generic_noble
+		x = 4
+		y = 1
+		relative_position_id = MIN_arming_rebels 
+		prerequisite = { focus = MIN_arming_rebels }
+		
+		cost = 10
+
+		completion_reward = { 
+			unlock_decision_tooltip = MIN_incite_rebellion_in_guangxi
+			unlock_decision_tooltip = MIN_fund_militias_in_fujian
+			unlock_decision_tooltip = MIN_undermine_qing_loyalists_in_guangdong
+			600 = {
+				create_unit = { # Jiangxi
+					division = "name = \"Militia\" division_template = \"Ming Militia\" start_experience_factor = 0.3"
+					owner = MIN
+					count = 1
+				}
+			}
+			602 = {
+				create_unit = { # Hunan
+					division = "name = \"Militia\" division_template = \"Ming Militia\" start_experience_factor = 0.3"
+					owner = MIN
+					count = 1
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = MIN_zhejiang_revolt
+		icon = GFX_man_holding_flag_ming
+		x = 2
+		y = 1
+		relative_position_id = MIN_flame_of_revolt 
+		prerequisite = { focus = MIN_flame_of_revolt }
+		mutually_exclusive = { focus = MIN_guangdong_revolt }	
+		mutually_exclusive = { focus = MIN_hongkong_revolt }
+
+		cost = 8
+
+		completion_reward = { 
+			596 = {
+				create_unit = { # Zhejiang
+					division = "name = \"Militia\" division_template = \"Ming Militia\" start_experience_factor = 0.3"
+					owner = MIN
+					count = 2
+				}
+				add_dynamic_modifier = {
+					modifier = chaos_of_rebellion
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = MIN_hongkong_revolt
+		icon = GFX_man_holding_flag_ming
+		x = -2
+		y = 1
+		relative_position_id = MIN_flame_of_revolt 
+		prerequisite = { focus = MIN_flame_of_revolt }
+		mutually_exclusive = { focus = MIN_guangdong_revolt }
+		mutually_exclusive = { focus = MIN_zhejiang_revolt }		
+
+		cost = 8
+
+		completion_reward = { 
+			add_ideas = MIN_free_port_of_the_south
+			326 = {
+				transfer_state_to = ROOT
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+					province = 10062
+				}
+				create_unit = { # Hong Kong
+					division = "name = \"Militia\" division_template = \"Ming Militia\" start_experience_factor = 0.3"
+					owner = MIN
+					count = 2
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = MIN_guangdong_revolt
+		icon = GFX_man_holding_flag_ming
+		x = 0
+		y = 1
+		relative_position_id = MIN_flame_of_revolt 
+		prerequisite = { focus = MIN_flame_of_revolt }
+		mutually_exclusive = { focus = MIN_zhejiang_revolt }	
+		mutually_exclusive = { focus = MIN_hongkong_revolt }
+
+		cost = 8
+
+		completion_reward = { 
+			593 = {
+				add_resistance = 30
+				create_unit = { # Guangdong
+					division = "name = \"Militia\" division_template = \"Ming Militia\" start_experience_factor = 0.3"
+					owner = MIN
+					allow_spawning_on_enemy_provs = yes
+					prioritize_location = 12095
+					count = 2
+				}
+			}
+		}
+	}
+
+	focus = { 
+		id = MIN_attack_on_nanjing
+		icon = GFX_betray_qing
+		x = 0
+		y = 1
+		relative_position_id = MIN_forming_the_rebellion 
+		prerequisite = { focus = MIN_forming_the_rebellion }
+
+		cost = 10
+
+		completion_reward = { 
+			country_event = ming.10
+			custom_effect_tooltip = ming_civilwar_tt
+			hidden_effect = {
+				524 = { transfer_state_to = MIN }
+				595 = { transfer_state_to = MIN }
+				596 = { transfer_state_to = MIN }
+				MIN = { change_tag_from = CHI }
+				MIN = {
+					if = {
+						limit = {
+							MIN = {
+								has_country_flag = loyalists_recruited
+							}
+						}
+						division_template = {
+							name = "The Tiger Warrior Guard"
+							is_locked = yes
+							priority = 2
+							
+							regiments = {
+								infantry = { x = 0 y = 0 }
+								infantry = { x = 0 y = 1 }
+								infantry = { x = 0 y = 2 }
+								infantry = { x = 1 y = 0 }
+								infantry = { x = 1 y = 1 }
+								infantry = { x = 1 y = 2 }
+								infantry = { x = 2 y = 0 }
+								infantry = { x = 2 y = 1 }
+								infantry = { x = 2 y = 2 }
+							}
+							support = {
+								artillery = { x = 0 y = 0 }
+								engineer = { x = 0 y = 1 }
+								logistics_company = { x = 0 y = 2 }
+							}
+						}
+						524 = {
+							create_unit = {
+								division = "name = \"The Tiger Warrior Guard\" division_template = \"The Tiger Warrior Guard\" start_experience_factor = 3.0" 
+								owner = MIN
+							}
+						}
+						595 = {
+							create_unit = {
+								division = "name = \"The Tiger Warrior Guard\" division_template = \"The Tiger Warrior Guard\" start_experience_factor = 3.0" 
+								owner = MIN
+							}
+							create_unit = {
+								division = "name = \"The Tiger Warrior Guard\" division_template = \"The Tiger Warrior Guard\" start_experience_factor = 3.0" 
+								owner = MIN
+							}
+						}
+					}
+					if = {
+						limit = {
+							MIN = {
+								has_country_flag = peasants_recruited
+							}
+						}
+						division_template = {
+							name = "Village militia"
+							regiments = {
+								infantry = { x = 0 y = 0 }
+								infantry = { x = 0 y = 1 }
+								infantry = { x = 0 y = 2 }
+								infantry = { x = 1 y = 0 }
+								infantry = { x = 1 y = 1 }
+								infantry = { x = 1 y = 2 }
+							}
+						}
+						524 = {	
+							create_unit = {
+								division = "name = \"Village militia\" division_template = \"Village militia\" start_experience_factor = 1.0" 
+								owner = MIN
+							}
+							create_unit = {
+								division = "name = \"Village militia\" division_template = \"Village militia\" start_experience_factor = 1.0" 
+								owner = MIN
+							}
+						}
+						595 = {
+							create_unit = {
+								division = "name = \"Village militia\" division_template = \"Village militia\" start_experience_factor = 1.0" 
+								owner = MIN
+							}
+							create_unit = {
+								division = "name = \"Village militia\" division_template = \"Village militia\" start_experience_factor = 1.0" 
+								owner = MIN
+							}
+						}
+						596 = {
+							create_unit = {
+								division = "name = \"Village militia\" division_template = \"Village militia\" start_experience_factor = 1.0" 
+								owner = MIN
+							}
+						}
+					}
+				}
+				country_event = ming.7
+				CHI = {
+					country_event = china.62
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_nanjing_massacre
+		icon = GFX_goal_generic_oppression
+		x = 0
+		y = 1
+		relative_position_id = MIN_attack_on_nanjing 
+		prerequisite = { focus = MIN_attack_on_nanjing }
+		
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_WAR_SUPPORT }
+
+		completion_reward = { 
+			country_event = ming.8
+			add_stability = -0.10
+			add_war_support = 0.10
+			custom_effect_tooltip = nanjing_massarces_tt
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+################################
+### Mandate of Heaven Branch ###
+################################
+
+	focus = { 
+		id = MIN_mandate_of_heaven
+		icon = GFX_goal_ming_flag2
+		x = 53
+		y = 0
+
+		available = {
+			OR = {
+				CHI = {
+					exists = no
+				}
+				CHI = {
+					is_subject_of = ROOT
+				}
+			}
+			owns_state = 608 # Beijing
+		}
+		
+		cost = 10
+
+		completion_reward = { 
+			add_ideas = MIN_mandate_of_heaven
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_new_era
+		icon = GFX_goal_generic_national_unity
+		x = 0
+		y = 1
+		relative_position_id = MIN_mandate_of_heaven
+		prerequisite = { focus = MIN_mandate_of_heaven }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+
+		completion_reward = { 
+			add_stability = 0.10
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_political_power_gain = 0.15 tooltip = political_power_gain_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	# focus = { 
+	# 	id = MIN_imperial_court
+	# 	icon = GFX_goal_tripartite_pact
+	# 	x = -2
+	# 	y = 1
+	# 	relative_position_id = MIN_new_era
+	# 	prerequisite = { focus = MIN_new_era }
+		
+	# 	cost = 10
+
+
+	# 	completion_reward = { 
+	# 	}
+
+	# 	ai_will_do = { 
+	# 		factor = 1
+	# 	} 
+	# }
+
+	# focus = { 
+	# 	id = MIN_eliminate_corruption
+	# 	icon = GFX_goal_tripartite_pact
+	# 	x = 0
+	# 	y = 1
+	# 	relative_position_id = MIN_imperial_court
+	# 	prerequisite = { focus = MIN_imperial_court }
+		
+	# 	cost = 10
+
+
+	# 	completion_reward = { 
+	# 		add_stability = -0.05
+	# 		custom_effect_tooltip = MIN_ming_modifier_ns_intro
+	# 		add_to_variable = { MIN_nv_political_advisor_cost_factor = -0.15 tooltip = political_advisor_cost_factor_tt }
+	# 	}
+
+	# 	ai_will_do = { 
+	# 		factor = 1
+	# 	} 
+	# }
+
+	focus = { 
+		id = MIN_first_decrees
+		icon = GFX_sign_papers
+		x = -1
+		y = 1
+		relative_position_id = MIN_new_era
+		prerequisite = { focus = MIN_new_era }
+		
+		cost = 7.2
+
+		completion_reward = { 
+			add_political_power = 100
+			add_stability = 0.05
+			add_timed_idea = {
+				idea = MIN_imperial_bureaucratic_reform
+				days = 180
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	
+	focus = { 
+		id = MIN_reinstating_land_reforms
+		icon = GFX_focus_generic_land_reclamation
+		x = -2
+		y = 1
+		relative_position_id = MIN_first_decrees
+		prerequisite = { focus = MIN_first_decrees }
+
+		available = {
+			NOT = {
+				has_completed_focus = MIN_agrarian_reform
+			}
+		}
+
+		bypass = {
+			has_completed_focus = MIN_agrarian_reform
+		}
+		
+		cost = 10
+
+		completion_reward = { 
+			country_event = ming.11
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_reforms_against_manchus
+		icon = GFX_qing_flag_burning
+		x = 0
+		y = 1
+		relative_position_id = MIN_reinstating_land_reforms
+		prerequisite = { focus = MIN_reinstating_land_reforms }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			unlock_decision_category_tooltip = MIN_anti_manchus
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+
+#################################
+### Confucian Scholars Branch ###
+#################################
+
+	focus = { 
+		id = MIN_confucian_scholars
+		icon = GFX_yin_and_yang
+		x = 1
+		y = 1
+		relative_position_id = MIN_new_era
+		prerequisite = { focus = MIN_new_era }
+		
+		cost = 10
+
+		completion_reward = { 
+			add_ideas = confucian_administration
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_economy_cost_factor = -0.1 tooltip = economy_cost_factor_tt }
+			add_to_variable = { MIN_nv_political_advisor_cost_factor = -0.1 tooltip = political_advisor_cost_factor_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_imperial_examination_system
+		icon = GFX_research_empire
+		x = 2
+		y = 1
+		relative_position_id = MIN_confucian_scholars
+		prerequisite = { focus = MIN_first_decrees focus = MIN_confucian_scholars}
+		
+		cost = 10
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_research_speed_factor = 0.05 tooltip = research_speed_factor_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_restoration_of_the_examination_system
+		icon = GFX_scroll_icon2
+		x = 0
+		y = 1
+		relative_position_id = MIN_imperial_examination_system
+		prerequisite = { focus = MIN_imperial_examination_system }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH }
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_research_speed_factor = 0.05 tooltip = research_speed_factor_tt }
+			add_to_variable = { MIN_nv_stability_factor = 0.03 tooltip = stability_factor_tt }
+			add_to_variable = { MIN_nv_political_power_gain = 0.05 tooltip = political_power_gain_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_reform_education_system
+		icon = GFX_generic_education
+		x = 0
+		y = 1
+		relative_position_id = MIN_restoration_of_the_examination_system
+		prerequisite = { focus = MIN_restoration_of_the_examination_system }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+
+		completion_reward = { 
+			add_stability = -0.05
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_research_speed_factor = 0.07 tooltip = research_speed_factor_tt }
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = university
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = university
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = university
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_development_of_science_and_technology
+		icon = GFX_focus_research
+		x = 0
+		y = 1
+		relative_position_id = MIN_reform_education_system
+		prerequisite = { focus = MIN_reform_education_system }
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = { 
+			add_tech_bonus = {
+				bonus = 0.75
+				uses = 2
+				category = electronics
+				category = encryption_tech
+				category = decryption_tech
+				category = computing_tech
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_the_great_censorate
+		icon = GFX_focus_RAJ_a_policy_of_silence
+		x = 1
+		y = 1
+		relative_position_id = MIN_first_decrees
+		prerequisite = { focus = MIN_first_decrees focus = MIN_confucian_scholars }
+		
+		cost = 10
+
+		completion_reward = { 
+			add_ideas = MIN_restored_censorate
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_rebuild_cities
+		icon = GFX_found_new_cities
+		x = -1
+		y = 1
+		relative_position_id = MIN_the_great_censorate
+		prerequisite = { focus = MIN_the_great_censorate }
+
+		available = {
+			has_war = no
+			has_war_support > 0.5
+			OR = {
+				has_idea = war_economy
+				has_idea = partial_economic_mobilisation
+				has_idea = tot_economic_mobilisation
+			}
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			608 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			613 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_timed_idea = {
+				idea = iis
+				days = 356
+			}
+			add_stability = 0.05
+			remove_ideas = famine_and_poverty
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_new_manufactories
+		icon = GFX_generic_man_working
+		x = -2
+		y = 1
+		relative_position_id = MIN_rebuild_cities
+		prerequisite = { focus = MIN_rebuild_cities }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_industrial_capacity_factory = 0.05 tooltip = industrial_capacity_factory_tt }
+			add_to_variable = { MIN_nv_local_resources_factor = 0.1 tooltip = local_resources_factor_tt }
+			598 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			596 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_revision_of_land_policy
+		icon = GFX_scroll_icon
+		x = 0
+		y = 1
+		relative_position_id = MIN_rebuild_cities
+		prerequisite = { focus = MIN_rebuild_cities }
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+
+		completion_reward = { 
+			add_war_support = -0.03
+			add_stability = 0.05
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_agricultural_reform
+		icon = GFX_focus_agriculture
+		x = 0
+		y = 1
+		relative_position_id = MIN_revision_of_land_policy
+		prerequisite = { focus = MIN_revision_of_land_policy }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.03 tooltip = consumer_goods_factor_tt }
+			add_to_variable = { MIN_nv_line_change_production_efficiency_factor = 0.05 tooltip = line_change_production_efficiency_factor_tt }
+			add_to_variable = { MIN_nv_political_power_gain = -0.1 tooltip = political_power_gain_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_revival_of_the_old_elite
+		icon = GFX_noble_icon
+		x = 1
+		y = 1
+		relative_position_id = MIN_the_great_censorate 
+		prerequisite = { focus = MIN_the_great_censorate }
+		
+		available = {
+			#has_government = ming_party
+			OR = {
+				has_war_support < 0.6
+				has_stability < 0.6
+			}
+		}
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY FOCUS_FILTER_MANPOWER FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			add_political_power = 50
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_political_power_gain = 0.20 tooltip = political_power_gain_tt }
+			add_war_support = -0.05
+			add_ideas = grant_land_nobles
+			add_to_variable = { CHI_corruption_increase_progress = 7 tooltip = CHI_corruption_decrease_7_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_invest_in_silk_and_porcelain_trading
+		icon = GFX_goal_generic_cloth_focus
+		x = 0
+		y = 1
+		relative_position_id = MIN_revival_of_the_old_elite 
+		prerequisite = { focus = MIN_revival_of_the_old_elite }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_industrial_capacity_factory = 0.05 tooltip = industrial_capacity_factory_tt }
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.03 tooltip = consumer_goods_factor_tt }
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_modernise_the_minting_system
+		icon = GFX_focus_ETH_adopt_the_lira
+		x = 0
+		y = 1
+		relative_position_id = MIN_invest_in_silk_and_porcelain_trading 
+		prerequisite = { focus = MIN_invest_in_silk_and_porcelain_trading }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY } 
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_stability_factor = 0.05 tooltip = stability_factor_tt }
+			add_to_variable = { MIN_nv_production_factory_efficiency_gain_factor = 0.05 tooltip = production_factory_efficiency_gain_factor_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_bank_system
+		icon = GFX_goal_generic_balance
+		x = -1
+		y = 1
+		relative_position_id = MIN_modernise_the_minting_system 
+		prerequisite = { focus = MIN_modernise_the_minting_system focus = MIN_agricultural_reform }
+		
+		available = {
+			has_stability > 0.40
+		}
+
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_political_power_gain = 0.04 tooltip = political_power_gain_tt }
+			remove_dynamic_modifier = { modifier = budget_deficit_md_modifier }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_new_economy
+		icon = GFX_ming_economy
+		x = 0
+		y = 1
+		relative_position_id = MIN_bank_system
+		prerequisite = { focus = MIN_bank_system }
+
+		available = {
+			num_of_civilian_factories > 20
+			num_of_military_factories > 10
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			add_war_support = 0.10
+			add_stability = 0.10
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.15 tooltip = consumer_goods_factor_tt }
+			add_to_variable = { MIN_nv_industrial_capacity_factory = 0.10 tooltip = industrial_capacity_factory_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	
+##########################
+### Restoration Branch ###
+##########################
+
+	focus = { 
+		id = MIN_economic_restoration
+		icon = GFX_goal_ming_flag
+		x = 7
+		y = 0
+
+		available = {
+			has_war = no
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			add_political_power = 50
+			add_ideas = restoration_plan
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_restoring_farmlands
+		icon = GFX_focus_generic_land_reclamation
+		x = -2
+		y = 1
+		relative_position_id = MIN_economic_restoration
+		prerequisite = { focus = MIN_economic_restoration }
+		
+		available = {
+			has_stability > 0.5
+			num_of_civilian_factories > 13
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			add_timed_idea = {
+				idea = rebuilding_harvest
+				days = 720
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_modernizing_agriculture
+		icon = GFX_generic_wheat
+		x = 0
+		y = 1
+		relative_position_id = MIN_restoring_farmlands
+		prerequisite = { focus = MIN_restoring_farmlands }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = blacksmith
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_agrarian_reform
+		icon = GFX_goal_generic_wheat
+		x = -2
+		y = 1
+		relative_position_id = MIN_restoring_farmlands
+		prerequisite = { focus = MIN_restoring_farmlands }
+		
+		cost = 10
+
+		completion_reward = { 
+			add_stability = -0.05
+			country_event = ming.11
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_formosa_academy
+		icon = GFX_research_empire
+		x = 0
+		y = 1
+		relative_position_id = MIN_economic_restoration
+		prerequisite = { focus = MIN_economic_restoration }
+
+		available = {
+			owns_state = 524 # Formosa
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = { 
+			add_research_slot = 1
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_developing_urban_centers
+		icon = GFX_found_new_cities
+		x = 0
+		y = 1
+		relative_position_id = MIN_formosa_academy
+		prerequisite = { focus = MIN_formosa_academy }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
+
+		completion_reward = { 
+			add_stability = 0.05
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.05 tooltip = consumer_goods_factor_tt }
+			add_to_variable = { MIN_nv_production_speed_infrastructure_factor = 0.20 tooltip = production_speed_infrastructure_factor_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_grand_canal
+		icon = GFX_japanese_ship
+		x = 0
+		y = 1
+		relative_position_id = MIN_modernizing_agriculture
+		prerequisite = { focus = MIN_agrarian_reform }
+		prerequisite = { focus = MIN_developing_urban_centers }
+		prerequisite = { focus = MIN_modernizing_agriculture }
+		
+		cost = 10
+
+		completion_reward = { 
+			add_timed_idea = {
+				idea = revived_grand_canal
+				days = 730
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 596 # Zhejiang
+						state = 597 # Shandong
+						state = 598 # Jiangsu
+						state = 606 # Anhui
+						state = 614 # Hebei
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_new_ming_industry
+		icon = GFX_generic_man_working
+		x = 2
+		y = 1
+		relative_position_id = MIN_economic_restoration
+		prerequisite = { focus = MIN_economic_restoration }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_silver_standard
+		icon = GFX_goal_generic_neutrality_focus
+		x = 0
+		y = 1
+		relative_position_id = MIN_new_ming_industry
+		prerequisite = { focus = MIN_new_ming_industry }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY }
+
+		completion_reward = { 
+			add_stability = 0.05
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_consumer_goods_factor = -0.10 tooltip = consumer_goods_factor_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_rebuild_roads_and_bridges
+		icon = GFX_roman_road_icon
+		x = 0
+		y = 1
+		relative_position_id = MIN_silver_standard
+		prerequisite = { focus = MIN_silver_standard }
+		
+		available = {
+			owns_state = 608
+			owns_state = 613
+		}
+		
+		cost = 10
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					608
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					613
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_timed_idea = {
+				idea = MIN_reconstruction_corps
+				days = 365
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_ming_boom
+		icon = GFX_focus_generic_industry_3
+		x = 0
+		y = 1
+		relative_position_id = MIN_rebuild_roads_and_bridges
+		prerequisite = { focus = MIN_rebuild_roads_and_bridges }
+
+		available = {
+			num_of_factories > 35
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILER_INDUSTRY FOCUS_FILTER_RESEARCH }
+
+		completion_reward = { 
+			add_research_slot = 1
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_research_speed_factor = 0.085 tooltip = research_speed_factor_tt }
+			add_to_variable = { MIN_nv_industrial_capacity_factory = 0.1 tooltip = industrial_capacity_factory_tt }
+			add_to_variable = { MIN_nv_industrial_capacity_dockyard = 0.1 tooltip = industrial_capacity_dockyard_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+
+	focus = { 
+		id = MIN_tax_system
+		icon = GFX_goal_tax_hierarchy
+		x = 2
+		y = 1
+		relative_position_id = MIN_new_ming_industry
+		prerequisite = { focus = MIN_new_ming_industry }
+		
+		available = {
+			has_stability > 0.7
+		}
+
+		cost = 10
+
+		completion_reward = { 
+			custom_effect_tooltip = MIN_ming_modifier_ns_intro
+			add_to_variable = { MIN_nv_political_power_gain = 0.1 tooltip = political_power_gain_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_iron_and_steel
+		icon = GFX_goal_generic_iron_focus
+		x = 0
+		y = 1
+		relative_position_id = MIN_tax_system
+		prerequisite = { focus = MIN_tax_system }
+		
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_resource = {
+					type = steel
+					amount = 15
+				}
+			}
+			random_owned_controlled_state = {
+				add_resource = {
+					type = steel
+					amount = 9
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_found_the_imperial_workshop
+		icon = GFX_focus_generic_industry_2
+		x = 2
+		y = 1
+		relative_position_id = MIN_tax_system
+		prerequisite = { focus = MIN_tax_system }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_expand_the_merchant_fleet
+		icon = GFX_generic_ship
+		x = 1
+		y = 1
+		relative_position_id = MIN_iron_and_steel
+		prerequisite = { focus = MIN_iron_and_steel focus = MIN_found_the_imperial_workshop }
+		
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 50
+				producer = MIN
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					593
+				}
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+#######################
+### Military Branch ###
+#######################
+
+	focus = { 
+		id = MIN_ming_might
+		icon = GFX_generic_lets_go_ming
+		x = 26
+		y = 0
+
+		available = {
+			has_war = no
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = { 
+			add_stability = 0.10
+			add_war_support = 0.10
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+############################
+### Fortification Branch ###
+############################
+
+	focus = { 
+		id = MIN_regional_fortifications
+		icon = GFX_build_fort
+		x = -3
+		y = 1
+		relative_position_id = MIN_ming_might
+		prerequisite = { focus = MIN_ming_might }
+
+		available = {
+			OR = {
+				NOT = { has_completed_focus = MIN_the_ming_war_doctrine }
+				has_completed_focus = MIN_grand_army
+			}
+		}
+		
+		cost = 10
+
+		completion_reward = { 
+			add_timed_idea = {
+				idea = MIN_regional_defence
+				days = 730
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_the_way_of_sun_tzu
+		icon = GFX_sun_tzu
+		x = 0
+		y = 1
+		relative_position_id = MIN_regional_fortifications
+		prerequisite = { focus = MIN_regional_fortifications }
+		
+		cost = 8
+
+		completion_reward = {
+			add_ideas = MIN_art_of_war
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_new_mobilzation
+		icon = GFX_generic_soldiers
+		x = -2
+		y = 1
+		relative_position_id = MIN_regional_fortifications
+		prerequisite = { focus = MIN_regional_fortifications }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = { 
+			add_manpower = 40000
+			add_timed_idea = {
+				idea = conscription_order
+				days = 365
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_fortifying_beijing
+		icon = GFX_forbidden_city
+		x = -4
+		y = 1
+		relative_position_id = MIN_regional_fortifications
+		prerequisite = { focus = MIN_regional_fortifications }
+		mutually_exclusive = { focus = MIN_fortifying_nanjing }
+
+		available = {
+			owns_state = 608
+		}
+		
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					608
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 9843
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_fortifying_nanjing
+		icon = GFX_nanjing
+		x = -6
+		y = 1
+		relative_position_id = MIN_regional_fortifications
+		prerequisite = { focus = MIN_regional_fortifications }
+		mutually_exclusive = { focus = MIN_fortifying_beijing }
+
+		available = {
+			owns_state = 613
+		}
+		
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					613
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 11913
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_southern_plan
+		icon = GFX_fortification
+		x = 1
+		y = 1
+		relative_position_id = MIN_fortifying_nanjing
+		prerequisite = { focus = MIN_regional_fortifications }
+
+		available = {
+			owns_state = 593 # Guangdong
+			owns_state = 595 # Fujian
+		}
+		
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					593
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 9938
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					595
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7027
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_western_plan
+		icon = GFX_fortification
+		x = 1
+		y = 1
+		relative_position_id = MIN_fortifying_beijing
+		prerequisite = { focus = MIN_regional_fortifications }
+
+		available = {
+			owns_state = 325 # Yunnan
+			owns_state = 747 # Dali
+		}
+		
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					325
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 4501
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					747
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 7976
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_northern_plan
+		icon = GFX_fortification
+		x = 1
+		y = 1
+		relative_position_id = MIN_new_mobilzation
+		prerequisite = { focus = MIN_regional_fortifications }
+
+		available = {
+			owns_state = 614 # Hebei
+			owns_state = 615 # Shanxi
+		}
+		
+		cost = 8
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					614
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 4032
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					615
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 10840
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_complete_plan
+		icon = GFX_goal_generic_position_armies
+		x = 0
+		y = 1
+		relative_position_id = MIN_western_plan
+		prerequisite = { focus = MIN_fortifying_nanjing focus = MIN_fortifying_beijing focus = MIN_new_mobilzation focus = MIN_southern_plan focus = MIN_western_plan focus = MIN_northern_plan focus = MIN_new_mobilzation focus = MIN_the_way_of_sun_tzu }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+
+		completion_reward = { 
+			army_experience = 30
+			add_ideas = MIN_unified_defence_doctrine
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+###############################
+### Military Academy Branch ###
+###############################
+
+	focus = { 
+		id = MIN_reviving_the_military_academies
+		icon = GFX_focus_generic_military_academy
+		x = 0
+		y = 1
+		relative_position_id = MIN_ming_might
+		prerequisite = { focus = MIN_ming_might }
+		
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_ARMY_XP	}
+
+		completion_reward = { 
+			army_experience = 30
+			add_timed_idea = {
+				idea = MIN_restored_military_academies
+				days = 730
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_imperial_army
+		icon = GFX_qing_soldier
+		x = 0
+		y = 1
+		relative_position_id = MIN_reviving_the_military_academies
+		prerequisite = { focus = MIN_reviving_the_military_academies }
+
+		available = {
+			owns_state = 608 # Beijing
+		}
+		
+		cost = 5
+
+		completion_reward = { 
+			add_to_variable = { MIN_fv_army_org_factor = 0.05 tooltip = army_org_factor_tt }
+			division_template = {
+				name = "Imperial Infantry" 
+
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+
+				support = { 
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+				} 
+			}
+			608 = {
+				create_unit = {
+					division = "name = \"Imperial Infantry\" division_template = \"Imperial Infantry\" start_experience_factor = 0.8"
+   		 			owner = MIN
+					count = 2
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_regimes
+		icon = GFX_soldiers_marching
+		x = -1
+		y = 1
+		relative_position_id = MIN_imperial_army
+		prerequisite = { focus = MIN_imperial_army }
+		
+		cost = 7.2
+
+		search_filters = { FOCUS_FILTER_ARMY_XP	}
+
+		completion_reward = { 
+			army_experience = 15
+			add_to_variable = { MIN_fv_training_time_army_factor = -0.15 tooltip = training_time_factor_tt }
+			add_to_variable = { MIN_fv_army_org_factor = 0.05 tooltip = army_org_factor_tt }
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_expand_artillery
+		icon = GFX_goal_generic_army_artillery
+		x = 1
+		y = 1
+		relative_position_id = MIN_imperial_army
+		prerequisite = { focus = MIN_imperial_army }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = { 
+			add_tech_bonus = {
+				name = artillery_bonus
+				bonus = 0.75
+				uses = 1
+				category = artillery
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+########################
+### Expansion Branch ###
+########################
+
+	focus = { 
+		id = MIN_the_ming_war_doctrine
+		icon = GFX_generic_planning_military
+		x = 5
+		y = 1
+		relative_position_id = MIN_ming_might
+		prerequisite = { focus = MIN_ming_might }
+
+		available = {
+			OR = {
+				NOT = { has_completed_focus = MIN_regional_fortifications }
+				has_completed_focus = MIN_complete_plan
+			}
+		}
+		
+		cost = 10
+
+		completion_reward = { 
+			add_ideas = MIN_war_doctrine
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_imperial_guard
+		icon = GFX_soldier_ming
+		x = -2
+		y = 1
+		relative_position_id = MIN_the_ming_war_doctrine
+		prerequisite = { focus = MIN_the_ming_war_doctrine }
+
+		available = {
+			owns_state = 608
+		}
+		
+		cost = 7.2
+
+		completion_reward = { 
+			division_template = {
+				name = "Imperial Guard" 
+
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+
+				support = { 
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					logistics_company = { x = 0 y = 1 }
+				} 
+			}
+			608 = {
+				create_unit = {
+					division = "name = \"Imperial Guard Division\" division_template = \"Imperial Guard\" start_experience_factor = 0.8"
+   		 			owner = MIN
+					count = 2
+				}
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_fleet_building
+		icon = GFX_goal_generic_build_navy
+		x = 0
+		y = 1
+		relative_position_id = MIN_imperial_guard
+		prerequisite = { focus = MIN_dominion_over_korea focus = MIN_vietnam_campaign focus = MIN_imperial_guard }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILER_INDUSTRY }
+
+		completion_reward = { 
+			random_owned_controlled_state = {
+				prioritize = {
+					593
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					596
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = {
+					598
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}		
+		}
+		
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_dominion_over_korea
+		icon = GFX_attack_korea
+		x = 0
+		y = 1
+		relative_position_id = MIN_the_ming_war_doctrine
+		prerequisite = { focus = MIN_the_ming_war_doctrine }
+
+		bypass = {
+			KOR = {
+				OR = {
+					exists = no
+					has_war_with = ROOT
+					is_subject_of = ROOT
+				}
+			}
+		}
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = { 
+			create_wargoal = {
+				target = KOR
+				type = puppet_wargoal_focus
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_dominion_over_japan
+		icon = GFX_betray_japan
+		x = 0
+		y = 1
+		relative_position_id = MIN_dominion_over_korea
+		prerequisite = { focus = MIN_dominion_over_korea focus = MIN_vietnam_campaign focus = MIN_imperial_guard }
+
+		bypass = {
+			JAP = {
+				OR = {
+					exists = no
+					has_war_with = ROOT
+					is_subject_of = ROOT
+				}
+			}
+		}
+		
+		cost = 10
+
+		completion_reward = { 
+			create_wargoal = {
+				target = JAP
+				type = puppet_wargoal_focus
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_vietnam_campaign
+		icon = GFX_focus_generic_annex_country_2
+		x = 2
+		y = 1
+		relative_position_id = MIN_the_ming_war_doctrine
+		prerequisite = { focus = MIN_the_ming_war_doctrine }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = { 
+			VIN = {
+				every_core_state = {
+					add_claim_by = ROOT
+				}
+			}
+			TRI = {
+				every_core_state = {
+					add_claim_by = ROOT
+				}
+			}
+			create_wargoal = {
+				target = VIN
+				type = puppet_wargoal_focus
+			}
+			create_wargoal = {
+				target = TRI
+				type = puppet_wargoal_focus
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+	
+	focus = { 
+		id = MIN_dominion_over_tibet
+		icon = GFX_ming_vassal_tibet
+		x = 0
+		y = 1
+		relative_position_id = MIN_vietnam_campaign
+		prerequisite = { focus = MIN_dominion_over_korea focus = MIN_vietnam_campaign focus = MIN_imperial_guard }
+
+		bypass = {
+			TIB = {
+				OR = {
+					exists = no
+					has_war_with = ROOT
+					is_subject_of = ROOT
+				}
+			}
+		}
+		
+		cost = 10
+
+		completion_reward = { 
+			create_wargoal = {
+				target = TIB
+				type = puppet_wargoal_focus
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+
+	focus = { 
+		id = MIN_grand_army
+		icon = GFX_ming_helmet
+		x = 0
+		y = 1
+		relative_position_id = MIN_dominion_over_japan
+		prerequisite = { focus = MIN_dominion_over_tibet focus = MIN_dominion_over_japan focus = MIN_fleet_building }
+		
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_POLITICAL }
+
+		completion_reward = { 
+			army_experience = 30
+			add_political_power = 100
+			swap_ideas = {
+				remove_idea = MIN_war_doctrine
+				add_idea = MIN_grand_army
+			}
+		}
+
+		ai_will_do = { 
+			factor = 1
+		} 
+	}
+}

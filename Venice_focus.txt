@@ -1,0 +1,2975 @@
+### search_filters = { FOCUS_FILTER_POLITICAL }
+### search_filters = { FOCUS_FILTER_RESEARCH }
+### search_filters = { FOCUS_FILTER_INDUSTRY }
+### search_filters = { FOCUS_FILTER_STABILITY }
+### search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+### search_filters = { FOCUS_FILTER_MANPOWER }
+### search_filters = { FOCUS_FILTER_ANNEXATION }
+### search_filters = { FOCUS_FILTER_ARMY_XP }
+### search_filters = { FOCUS_FILTER_NAVY_XP }
+### search_filters = { FOCUS_FILTER_TFV_AUTONOMY } # Autonomy
+### search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS } # Internal Affairs
+### search_filters = { FOCUS_FILTER_FRA_POLITICAL_VIOLENCE } # Political Violence
+### search_filters = { FOCUS_FILTER_FRA_OCCUPATION_COST } # Occupation Costs
+### search_filters = { FOCUS_FILTER_CHI_INFLATION } # Inflation
+### search_filters = { FOCUS_FILTER_BALANCE_OF_POWER } # Balance of Power
+### search_filters = { FOCUS_FILTER_SWI_MILITARY_READINESS } # Military Readiness
+### search_filters = { FOCUS_FILTER_USA_CONGRESS } # Congress
+### search_filters = { FOCUS_FILTER_MEX_CHURCH_AUTHORITY } # Church Authority
+### search_filters = { FOCUS_FILTER_TUR_KURDISTAN } # Kurdistan
+### search_filters = { FOCUS_FILTER_TUR_TRADITIONALISM } # Traditionalism
+### search_filters = { FOCUS_FILTER_GRE_DEBT_TO_IFC } # Debt to the IFC
+#!gfx:interface\goals_empire.gfx
+
+focus_tree = {
+	id = Venice_focus
+
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = VNC
+		}
+	}
+
+	default = no
+
+	continuous_focus_position = { x = 0 y = 0 } 
+
+	focus = {
+		id = VNC_new_military_industry
+		icon = GFX_goal_unknown
+		x = 6
+		y = 9
+		prerequisite = { focus = VNC_choose_the_industrial_future }
+		mutually_exclusive = { focus = VNC_new_civilian_industry }
+
+		available = {
+			always = no
+		}
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			custom_effect_tooltip = VNC_military_the_industrial_future_tooltip
+		}
+	}
+
+	focus = {
+		id = VNC_liberate_the_south
+		icon = GFX_goal_unknown
+		x = 30
+		y = 9
+		prerequisite = { focus = VNC_forge_an_alliance }
+		
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 50
+			TSC = {
+				add_ideas = VNC_venetian_influence
+			}
+			TSC = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = small_increase
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = VNC_forge_an_alliance
+		icon = GFX_goal_unknown
+		x = 32
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_friendship_with_savoy  focus = VNC_our_old_enemy  focus = VNC_friendship_with_the_tuscans  }
+		completion_reward = {
+			increase_1DS = yes
+			add_political_power = 75
+			if = {
+				limit = {
+					NOT = { has_rule = can_create_factions }
+				}
+				set_rule = { can_create_factions = yes }
+			}
+			create_faction = VNC_Italian_Sphere
+			if = {
+				limit = {
+					VNC = { has_completed_focus = VNC_friendship_with_the_tuscans }
+				}
+				TUS = {
+					country_event = generic.5
+				}
+			}
+			if = {
+				limit = {
+					VNC = { has_completed_focus = VNC_our_old_enemy }
+				}
+				GEN = {
+					country_event = generic.5
+				}
+			}
+			if = {
+				limit = {
+					VNC = { has_completed_focus = VNC_friendship_with_savoy }
+				}
+				ITA = {
+					country_event = generic.5
+				}
+			}
+		}
+	}
+
+	#Merge the economies
+	focus = {
+		id = VNC_merge_the_economies
+		icon = GFX_goal_unknown
+		x = 36
+		y = 9
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_forge_an_alliance  }
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_in_faction_with = VNC
+				}
+			}
+			add_ideas = VNC_italian_united_economy
+		}
+	}
+
+	#Our old enemy
+	focus = {
+		id = VNC_our_old_enemy
+		icon = GFX_goal_unknown
+		x = 32
+		y = 7
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_the_bigger_ones  }
+		mutually_exclusive = { focus = VNC_friendship_with_the_tuscans  } mutually_exclusive = { focus = VNC_friendship_with_savoy  }
+		completion_reward = {
+			diplomatic_relation = {
+				country = GEN
+				relation = guarantee
+			    active = yes
+			}
+		}
+	}
+
+	#Friendship with Savoy
+	focus = {
+		id = VNC_friendship_with_savoy
+		icon = GFX_goal_unknown
+		x = 34
+		y = 7
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_the_bigger_ones  }
+		mutually_exclusive = { focus = VNC_friendship_with_the_tuscans  } mutually_exclusive = { focus = VNC_our_old_enemy  }
+		completion_reward = {
+			diplomatic_relation = {
+				country = ITA
+				relation = guarantee
+			    active = yes
+			}
+		}
+	}
+
+	#Subjugate Malta
+	focus = {
+		id = VNC_subjugate_malta
+		icon = GFX_goal_unknown
+		x = 40
+		y = 7
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_save_the_smaller_ones  }
+		completion_reward = {
+			transfer_state = 116
+		}
+	}
+
+	#Friendship with the Tuscans
+	focus = {
+		id = VNC_friendship_with_the_tuscans
+		icon = GFX_goal_unknown
+		x = 30
+		y = 7
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_the_bigger_ones  }
+		mutually_exclusive = { focus = VNC_our_old_enemy  } mutually_exclusive = { focus = VNC_friendship_with_savoy  }
+		completion_reward = {
+			diplomatic_relation = {
+				country = TUS
+				relation = guarantee
+			    active = yes
+			}
+		}	
+	}
+
+	focus = {
+		id = VNC_guarantee_ragusa
+		icon = GFX_goal_unknown
+		x = 38
+		y = 7
+		prerequisite = { focus = VNC_save_the_smaller_ones }
+
+		cost = 2
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			diplomatic_relation = {
+				country = RAG
+				relation = guarantee
+			    active = yes
+			}
+		}
+	}
+
+	focus = {
+		id = VNC_annex_mantua
+		icon = GFX_goal_unknown
+		x = 36
+		y = 7
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_save_the_smaller_ones  }
+		completion_reward = {
+			transfer_state = 967
+		}
+
+	}
+
+	#Save the smaller ones
+	focus = {
+		id = VNC_save_the_smaller_ones
+		icon = GFX_goal_unknown
+		x = 38
+		y = 6
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_defend_italy_from_others  }
+		completion_reward = {
+			MTU = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = medium_increase
+				}
+			}
+			MLT = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = small_increase
+				}
+			}
+			CRO = {
+				add_opinion_modifier = {
+			   	target = VNC
+			    modifier = medium_increase
+				}	
+			}
+		}
+	}
+	
+	
+
+	#Defend Italy from others
+	focus = {
+		id = VNC_defend_italy_from_others
+		icon = GFX_goal_unknown
+		x = 35
+		y = 5
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_continue_the_neutral_policy  }
+		completion_reward = {
+			AUS = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = medium_decrease
+				}
+			}
+			SPR = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = small_decrease
+				}
+			}
+		add_political_power = 50
+		add_stability = 0.1
+		}
+	}
+
+	#The bigger ones
+	focus = {
+		id = VNC_the_bigger_ones
+		icon = GFX_goal_unknown
+		x = 32
+		y = 6
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_defend_italy_from_others  }
+		completion_reward = {
+			TUS = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = medium_increase
+				}
+			}
+			GEN = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = small_increase
+				}
+			}
+			ITA = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = medium_increase
+				}
+			}
+		}
+	}
+
+	#Foreign Affairs
+	focus = {
+		id = VNC_foreign_affairs
+		icon = GFX_goal_unknown
+		x = 45
+		y = 3
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_crisis_period_passed  }
+		completion_reward = {
+			increase_2DS = yes
+		}
+	}
+
+	#Veneçia parona
+	focus = {
+		id = VNC_veneciaparona
+		icon = GFX_goal_unknown
+		x = 28
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_english_investments  }
+		completion_reward = {
+			add_to_variable = { VNC_mv_navy_max_range_factor = 0.1 }
+			add_to_variable = { VNC_mv_spotting_chance = 0.05 }
+			add_to_variable = { VNC_mv_naval_speed_factor = 0.05 }
+			custom_effect_tooltip = VNC_venice_rules_the_waves_tt
+			increase_1WS = yes
+		}
+
+	}
+
+	#Buy from the Spanish
+	focus = {
+		id = VNC_buy_from_the_spanish
+		icon = GFX_goal_unknown
+		x = 47
+		y = 12
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_start_the_uprisings  }
+		completion_reward = {
+			SPR = {
+				country_event = { id = venice.31 hours = 1 }
+			}
+		}
+	}
+
+	#Buy english ships
+	focus = {
+		id = VNC_english_investments
+		icon = GFX_goal_unknown
+		x = 28
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_big_ships_production  }
+		completion_reward = {
+			add_ideas = VNC_Venetian_British_accord
+		}
+	}
+
+	#Big ships production
+	focus = {
+		id = VNC_big_ships_production
+		icon = GFX_goal_unknown
+		x = 28
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_legacy_of_the_big_weapons  }
+		completion_reward = {
+			add_to_variable = { VNC_mv_navy_capital_ship_attack_factor = 0.15 }
+			custom_effect_tooltip = VNC_navy_capital_attack_plus_15
+		}
+	}
+
+	#Cooperate with the pirates
+	focus = {
+		id = VNC_cooperate_with_the_pirates
+		icon = GFX_goal_unknown
+		x = 22
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_destroy_their_trade  }
+		completion_reward = {
+			country_event = venice.5
+			increase_1WS = yes
+		}
+	}
+
+	#Fast sloop doctrine
+	focus = {
+		id = VNC_fast_sloop_doctrine
+		icon = GFX_goal_unknown
+		x = 22
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_small_but_gold  }
+		completion_reward = {
+			add_to_variable = { VNC_mv_sub_retreat_speed = 0.15 }
+			custom_effect_tooltip = VNC_navy_sub_retreat_speed_plus_15
+		}
+	}
+
+	#Destroy their trade
+	focus = {
+		id = VNC_destroy_their_trade
+		icon = GFX_goal_unknown
+		x = 22
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_fast_sloop_doctrine  }
+		completion_reward = {
+			add_to_variable = { VNC_mv_submarine_attack = 0.1 }
+			custom_effect_tooltip = VNC_navy_sub_attack_plus_10
+		}
+	}
+
+	#Prioritize ship construction
+	focus = {
+		id = VNC_prioritize_ship_construction
+		icon = GFX_goal_unknown
+		x = 26
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_small_but_gold  focus = VNC_legacy_of_the_big_weapons  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_industrial_capacity_dockyard = 0.1 }
+			add_to_variable = { VNC_ve_industrial_capacity_factory = -0.1 }
+			custom_effect_tooltip = VNC_prioritize_ship_construction_tt
+		}
+	}
+
+	#Long distance ships
+	focus = {
+		id = VNC_long_distance_ships
+		icon = GFX_goal_unknown
+		x = 24
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_legacy_of_the_big_weapons  focus = VNC_small_but_gold  }
+		completion_reward = {
+			add_to_variable = { VNC_mv_navy_max_range_factor = 0.15 }
+			custom_effect_tooltip = VNC_navy_max_range_plus_15
+		}
+	}
+
+	#Small but gold
+	focus = {
+		id = VNC_small_but_gold
+		icon = GFX_goal_unknown
+		x = 22
+		y = 5
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_marinadevenecia  }
+		mutually_exclusive = { focus = VNC_legacy_of_the_big_weapons  }
+		completion_reward = {
+		
+			add_tech_bonus = {
+				name = VNC_submarine_effort
+				bonus = 1.5
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+
+	#Legacy of the big weapons
+	focus = {
+		id = VNC_legacy_of_the_big_weapons
+		icon = GFX_goal_unknown
+		x = 28
+		y = 5
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_marinadevenecia  }
+		mutually_exclusive = { focus = VNC_small_but_gold  }
+		completion_reward = {
+			add_tech_bonus = {
+				name = capital_ships_bonus
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 2
+				category = bb_tech
+				category = shbb_tech
+			}
+		}
+	}
+
+	#Marina de Veneçia
+	focus = {
+		id = VNC_marinadevenecia
+		icon = GFX_goal_unknown
+		x = 25
+		y = 4
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			has_completed_focus = VNC_andrea_tron
+		}
+		prerequisite = { focus = VNC_arsenaldevenecia  }
+		completion_reward = {
+			hidden_effect = {
+				add_dynamic_modifier = { modifier = VNC_Marina_de_Venecia_dynamic_modifier }
+				add_to_variable = { VNC_mv_experience_gain_navy = 0.1 }
+			}
+			custom_effect_tooltip = VNC_marina_de_venecia_add
+			increase_1WS = yes
+		}
+	}
+
+	#Return to war economy
+	focus = {
+		id = VNC_return_to_war_economy
+		icon = GFX_goal_unknown
+		x = 15
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_war_measures_act  }
+		completion_reward = {
+			add_timed_idea = { idea = VNC_War_Economy days = 365 }
+			add_war_support = -0.1
+		}
+	}
+
+	#Build military industries
+	focus = {
+		id = VNC_build_military_industries
+		icon = GFX_goal_unknown
+		x = 15
+		y = 11
+		cost = 7
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_return_to_war_economy  }
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_core_of = VNC
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_core_of = VNC
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#Special forces
+	focus = {
+		id = VNC_special_forces
+		icon = GFX_goal_unknown
+		x = 11
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_war_measures_act  }
+		completion_reward = {
+			add_ideas = VNC_special_forces
+			add_tech_bonus = {
+				name = special_forces_bonus
+				bonus = 1.0
+				uses = 1
+				technology = marines
+				technology = marines2
+				technology = tech_mountaineers
+				technology = tech_mountaineers2
+			}
+		}
+	}
+
+	#Fanti da Màr
+	focus = {
+		id = VNC_fantidamar
+		icon = GFX_goal_unknown
+		x = 11
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_special_forces  }
+		completion_reward = {
+			division_template = {
+				name = "Fanti da Màr"
+			
+				regiments = {
+					marine = { x = 0 y = 0 }
+					marine = { x = 0 y = 1 }
+					marine = { x = 0 y = 2 }
+					marine = { x = 1 y = 0 }
+					marine = { x = 1 y = 1 }
+					marine = { x = 1 y = 2 }
+				}
+			
+				support = {
+					engineer = { x = 0 y = 0 }
+				}
+				
+				priority = 3
+			}
+			160 = {
+				create_unit = {
+					division = "name = \"Division da Màr Veneçia\" division_template = \"Fanti da Màr\" start_experience_factor = 1" 
+					owner = VNC
+				}
+				create_unit = {
+					division = "name = \"Division da Màr Padoa\" division_template = \"Fanti da Màr\" start_experience_factor = 1" 
+					owner = VNC
+				}
+				create_unit = {
+					division = "name = \"Division da Màr Breçia\" division_template = \"Fanti da Màr\" start_experience_factor = 1" 
+					owner = VNC
+				}
+			}
+		}
+	}
+
+	#Mobilize the youth
+	focus = {
+		id = VNC_mobilize_the_youth
+		icon = GFX_goal_unknown
+		x = 13
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_war_measures_act  }
+		completion_reward = {
+			add_to_variable = { VNC_av_conscription = 0.01 }
+			custom_effect_tooltip = VNC_rec_pop_plus_1
+		}
+	}
+
+	#Mercenaries
+	focus = {
+		id = VNC_reliance_on_mercenaries
+		icon = GFX_goal_unknown
+		x = 13
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_mobilize_the_youth  }
+		completion_reward = {
+			add_ideas = VNC_reliance_on_mercenaries
+		}
+	}
+
+	#Deep planning
+	focus = {
+		id = VNC_deep_planning
+		icon = GFX_goal_unknown
+		x = 17
+		y = 6
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_defensive_army  }
+		completion_reward = {
+			add_to_variable = { VNC_av_max_dig_in_factor = 0.05 }
+			custom_effect_tooltip = VNC_max_dig_in_plus_5
+		}
+	}
+
+	#Camouflage doctrine
+	focus = {
+		id = VNC_camouflage_doctrine
+		icon = GFX_goal_unknown
+		x = 17
+		y = 7
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_deep_planning  }
+		completion_reward = {
+			add_to_variable = { VNC_av_dig_in_speed_factor = 0.1 }
+			custom_effect_tooltip = VNC_dig_in_speed_plus_10
+		}
+	}
+
+	#Improve supplies web
+	focus = {
+		id = VNC_improve_supplies_web
+		icon = GFX_goal_unknown
+		x = 17
+		y = 8
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_camouflage_doctrine  }
+		completion_reward = {
+			add_to_variable = {	VNC_av_supply_consumption_factor = -0.15 }
+			custom_effect_tooltip = VNC_supply_consumtion_minus_15
+		}
+	}
+
+	#War measures act
+	focus = {
+		id = VNC_war_measures_act
+		icon = GFX_goal_unknown
+		x = 13
+		y = 9
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_improve_supplies_web  focus = VNC_artillery_theorists  } prerequisite = { focus = VNC_modern_army  }
+		available = {
+			any_enemy_country = {
+				is_major_not_original_tag_root = yes
+			}
+			has_war_support > 0.5
+		}
+		completion_reward = {
+			add_war_support = 0.1
+			increase_1WS = yes
+		}
+	}
+
+	#Storming doctrine
+	focus = {
+		id = VNC_storming_doctrine
+		icon = GFX_goal_unknown
+		x = 9
+		y = 7
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_form_the_generals  }
+		completion_reward = {
+			add_to_variable = { VNC_av_army_artillery_attack_factor = 0.05 }
+			custom_effect_tooltip = VNC_artillery_attack_plus_5
+		}
+	}
+
+	#Artillery theorists
+	focus = {
+		id = VNC_artillery_theorists
+		icon = GFX_goal_unknown
+		x = 9
+		y = 8
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_storming_doctrine  }
+		completion_reward = {
+			add_to_variable = { VNC_av_army_artillery_attack_factor = 0.1 }
+			custom_effect_tooltip = VNC_artillery_attack_plus_10
+			
+		}
+	}
+
+	#Form the generals
+	focus = {
+		id = VNC_form_the_generals
+		icon = GFX_goal_unknown
+		x = 9
+		y = 6
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_offensive_army  }
+		completion_reward = {
+			add_to_variable = { VNC_av_org_loss_when_moving = -0.1 }
+			custom_effect_tooltip = VNC_org_loss_movin_minus_10
+		}
+	}
+
+	#Quantity over quality
+	focus = {
+		id = VNC_quantity_over_quality
+		icon = GFX_goal_unknown
+		x = 12
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_optimise_the_drills  }
+		mutually_exclusive = { focus = VNC_last_reform_on_trainings  }
+		completion_reward = {
+			add_to_variable = { VNC_av_minimum_training_level = -0.01 }
+			custom_effect_tooltip = VNC_minimum_training_level_minus_10
+		}
+	}
+
+	#Last reform on trainings
+	focus = {
+		id = VNC_last_reform_on_trainings
+		icon = GFX_goal_unknown
+		x = 14
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_optimise_the_drills  }
+		mutually_exclusive = { focus = VNC_quantity_over_quality  }
+		completion_reward = {
+			add_to_variable = { VNC_av_training_time_factor = -0.1 }
+			custom_effect_tooltip = VNC_training_time_minus_10
+		}
+	}
+
+	#Modern army
+	focus = {
+		id = VNC_modern_army
+		icon = GFX_goal_unknown
+		x = 13
+		y = 8
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_quantity_over_quality  focus = VNC_last_reform_on_trainings  }
+		completion_reward = {
+			army_experience = 15
+			add_to_variable = { VNC_av_experience_gain_factor = 0.1 }
+			custom_effect_tooltip = VNC_training_time_plus_10
+			remove_ideas = VNC_victor_of_the_war
+			increase_2WS = yes
+		}
+	}
+
+	#Increase supply funds
+	focus = {
+		id = VNC_increase_supply_funds
+		icon = GFX_goal_unknown
+		x = 15
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_defensive_army  focus = VNC_offensive_army  }
+		completion_reward = {
+			add_to_variable = { VNC_av_army_morale_factor = 0.05 }
+			add_to_variable = { VNC_av_army_org_factor = 0.05 }
+			add_to_variable = { VNC_ve_consumer_goods_factor = 0.02 }
+			custom_effect_tooltip = VNC_increase_supply_funds_tt
+		}
+	}
+
+	#Expand conscription in isles
+	focus = {
+		id = VNC_expand_conscription_in_isles
+		icon = GFX_goal_unknown
+		x = 11
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_defensive_army  focus = VNC_offensive_army  }
+		completion_reward = {
+			add_to_variable = { VNC_av_conscription = 0.01 }
+			custom_effect_tooltip = VNC_rec_pop_plus_1
+		}
+	}
+
+	#Optimise the drills
+	focus = {
+		id = VNC_optimise_the_drills
+		icon = GFX_goal_unknown
+		x = 13
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_defensive_army  focus = VNC_offensive_army  }
+		completion_reward = {
+			add_to_variable = { VNC_av_training_time_factor = -0.1 }
+			add_to_variable = { VNC_av_army_org_factor = 0.05 }
+			custom_effect_tooltip = VNC_optimize_the_drills
+		}
+	}
+
+	#Defensive army
+	focus = {
+		id = VNC_defensive_army
+		icon = GFX_goal_unknown
+		x = 17
+		y = 5
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_armadadevenecia  }
+		available = {
+			has_completed_focus = VNC_alvise_ii_mocenigo
+		}
+		completion_reward = {
+			add_to_variable = { VNC_av_army_defence_factor = 0.1 }
+			custom_effect_tooltip = VNC_army_defence_plus_10
+			increase_1WS = yes
+		}
+	}
+
+	#Fortify Veneto
+	focus = {
+		id = VNC_fortify_veneto
+		icon = GFX_goal_unknown
+		x = 19
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_defensive_army  }
+		completion_reward = {
+			if = {
+				limit = {
+					has_full_control_of_state = 160
+				}
+				160 = { #Venice
+					add_building_construction = {
+						type = bunker
+						level = 4
+						instant_build = yes
+						province = 11568
+					}
+				}
+				160 = { #Venice
+					add_building_construction = {
+						type = bunker
+						level = 4
+						instant_build = yes
+						province = 3604
+					}
+				}
+				160 = { #Venice
+					add_building_construction = {
+						type = bunker
+						level = 4
+						instant_build = yes
+						province = 13363
+					}
+				}
+				160 = { #Venice
+					add_building_construction = {
+						type = bunker
+						level = 4
+						instant_build = yes
+						province = 9613
+					}
+				}
+				160 = { #Venice
+					add_building_construction = {
+						type = bunker
+						level = 4
+						instant_build = yes
+						province = 13359
+					}
+				}
+				160 = { #Venice
+					add_building_construction = {
+						type = bunker
+						level = 4
+						instant_build = yes
+						province = 13358
+					}
+				}
+				160 = { #Venice
+					add_building_construction = {
+						type = bunker
+						level = 4
+						instant_build = yes
+						province = 11735
+					}
+				}
+			}
+		}
+	}
+
+	#Fortify the Seas
+	focus = {
+		id = VNC_fortify_seas
+		icon = GFX_goal_unknown
+		x = 19
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_fortify_veneto  }
+		completion_reward = {
+			if = {
+				limit = { 
+					has_full_control_of_state = 163
+					has_full_control_of_state = 186
+				}
+				163 = { #Damlmatia
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 3974
+					}
+				}
+				163 = { #Damlmatia
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 3924
+					}
+				}
+				163 = { #Damlmatia
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 11816
+					}
+				}
+				163 = { #Damlmatia
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 9821
+					}
+				}
+				186 = { #Morea
+					add_building_construction = {
+						type = bunker
+						level = 3
+						instant_build = yes
+						province = 7094
+					}
+				}
+				186 = { #Morea
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = 7211
+					}
+				}
+				186 = { #Morea
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = 11965
+					}
+				}
+			}
+		}
+	}
+
+	#Fortify the Seas
+	focus = {
+		id = VNC_fortify_isles
+		icon = GFX_goal_unknown
+		x = 19
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_fortify_seas  }
+		completion_reward = {
+			if = {
+				limit = { 
+					has_full_control_of_state = 921
+					has_full_control_of_state = 920
+				}
+				921 = { #Corfu
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 10203
+					}
+				}
+				921 = { #Corfu
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = 10203
+					}
+				}
+				920 = { #Kephalonia
+					add_building_construction = {
+						type = bunker
+						level = 2
+						instant_build = yes
+						province = 12001
+					}
+				}
+				920 = { #Kephalonia
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = 1106
+					}
+				}
+			}
+		}
+	}
+
+	#Venetian military University
+	focus = {
+		id = VNC_venetian_military_university
+		icon = GFX_goal_unknown
+		x = 13
+		y = 5
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_armadadevenecia  }
+		completion_reward = {
+			add_research_slot = 1
+			increase_1WS = yes
+		}
+	}
+
+	#Offensive army
+	focus = {
+		id = VNC_offensive_army
+		icon = GFX_goal_unknown
+		x = 9
+		y = 5
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_armadadevenecia  }
+		available = {
+			has_completed_focus = VNC_andrea_tron
+		}
+		completion_reward = {
+			add_to_variable = { VNC_av_army_attack_factor = 0.1 }
+			custom_effect_tooltip = VNC_army_attack_plus_10
+			increase_1WS = yes
+		}
+	}
+
+	#Lagoon's dockyards
+	focus = {
+		id = VNC_lagoonsdockyards
+		icon = GFX_goal_unknown
+		x = 5
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_new_military_industry  }
+		completion_reward = {
+			160 = {
+    			add_extra_state_shared_building_slots = 2
+    			add_building_construction = {
+				type = dockyard
+				level = 2
+				instant_build = yes
+				}
+    		}
+			add_to_variable = { VNC_ve_industrial_capacity_dockyard = 0.05 }
+			custom_effect_tooltip = VNC_dockyard_output_plus_5
+		}
+	}
+
+	#Dalmatia's dockyards
+	focus = {
+		id = VNC_dalmatiasdockyards
+		icon = GFX_goal_unknown
+		x = 5
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_lagoonsdockyards  }
+		completion_reward = {
+			163 = {
+    			add_extra_state_shared_building_slots = 1
+    			add_building_construction = {
+				type = dockyard
+				level = 1
+				instant_build = yes
+				}
+    		}
+			add_to_variable = { VNC_ve_industrial_capacity_dockyard = 0.1 }
+			custom_effect_tooltip = VNC_dockyard_output_plus_10
+		}
+	}
+
+	#Arsenàl de Veneçia
+	focus = {
+		id = VNC_arsenaldevenecia
+		icon = GFX_goal_unknown
+		x = 19
+		y = 3
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_crisis_period_passed  } prerequisite = { focus = VNC_export_the_culture_in_the_morea  }
+		completion_reward = {
+			army_experience = 15
+			navy_experience = 15
+		}
+	}
+
+	#Armàda de Veneçia
+	focus = {
+		id = VNC_armadadevenecia
+		icon = GFX_goal_unknown
+		x = 13
+		y = 4
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_arsenaldevenecia  }
+		completion_reward = {
+			increase_1WS = yes
+			army_experience = 15
+		}
+	}
+
+	#Literacy to the venetians
+	focus = {
+		id = VNC_literacy_to_the_venetians
+		icon = GFX_goal_unknown
+		x = 6
+		y = 4
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_economic_reconstruction  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_research_speed_factor = 0.05 }
+			custom_effect_tooltip = VNC_research_speed_plus_5
+			increase_1MS = yes
+		}
+	}
+
+	#Tax the rich
+	focus = {
+		id = VNC_tax_the_rich
+		icon = GFX_goal_unknown
+		x = 6
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_venetian_craftmanship  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_consumer_goods_factor = -0.1 }
+			add_stability = -0.1
+			custom_effect_tooltip = VNC_consumer_goods_minus_10
+			random_owned_state = {
+				limit = {
+					is_core_of = VNC
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			increase_1MS = yes
+		}
+	}
+
+	#Foreign Investiments
+	focus = {
+		id = VNC_foreign_investiments
+		icon = GFX_goal_unknown
+		x = 1
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_new_civilian_industry  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_production_speed_buildings_factor = 0.5 }
+			custom_effect_tooltip = VNC_construction_speed_plus_10
+		}
+	}
+
+	#All shall work
+	focus = {
+		id = VNC_all_shall_work
+		icon = GFX_goal_unknown
+		x = 1
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_foreign_investiments  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_industrial_capacity_factory = 0.1 }
+			custom_effect_tooltip = VNC_factory_output_plus_10
+		}
+	}
+
+	#Vicenza's University
+	focus = {
+		id = VNC_vicenzasuniversity
+		icon = GFX_goal_unknown
+		x = 3
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_new_civilian_industry  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_research_speed_factor = 0.05 }
+			custom_effect_tooltip = VNC_research_speed_plus_5
+		}
+	}
+
+	#Thriving economy
+	focus = {
+		id = VNC_thriving_economy
+		icon = GFX_goal_unknown
+		x = 3
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_vicenzasuniversity  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_consumer_goods_factor = -0.05 }
+			custom_effect_tooltip = VNC_consumer_goods_minus_5
+		}
+	}
+
+	#Invest on fabric industry
+	focus = {
+		id = VNC_invest_on_fabric_industry
+		icon = GFX_goal_unknown
+		x = 4
+		y = 7
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_reclaim_the_lagoon  }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_in_home_area = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_resource = {
+			    type = rubber
+			    amount = 15
+			    state = 160
+			}
+		}
+	}
+
+	#Alvise II Mocenigo
+	focus = {
+		id = VNC_alvise_ii_mocenigo
+		icon = GFX_goal_unknown
+		x = 23
+		y = 1
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_thedeathofsilvestro  }
+		mutually_exclusive = { focus = VNC_andrea_tron  }
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = VNC_alvise_ii_mocenigo_tooltip
+		}
+	}
+
+	#Old traditions on the sea
+	focus = {
+		id = VNC_old_traditions_on_the_sea
+		icon = GFX_goal_unknown
+		x = 2
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_venetian_naval_industry  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_industrial_capacity_dockyard = 0.1 }
+			custom_effect_tooltip = VNC_dockyard_output_plus_10
+		}
+	}
+
+	#Return to the normal economy
+	focus = {
+		id = VNC_return_to_the_normal_economy
+		icon = GFX_goal_unknown
+		x = 11
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_aftermath_of_the_war  }
+		completion_reward = {
+			remove_ideas = VNC_War_Economy
+		}
+	}
+
+	#Export the culture in the morea
+	focus = {
+		id = VNC_export_the_culture_in_the_morea
+		icon = GFX_goal_unknown
+		x = 10
+		y = 2
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_return_to_the_normal_economy  } prerequisite = { focus = VNC_disband_the_mercenaries  }
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+
+	#Disband the mercenarios
+	focus = {
+		id = VNC_disband_the_mercenaries
+		icon = GFX_goal_unknown
+		x = 9
+		y = 1
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_aftermath_of_the_war  }
+		completion_reward = {
+			remove_ideas = VNC_reliance_on_mercenaries
+		}
+	}
+
+	#Crisis period passed
+	focus = {
+		id = VNC_crisis_period_passed
+		icon = GFX_goal_unknown
+		x = 22
+		y = 2
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_andrea_tron  focus = VNC_alvise_ii_mocenigo  }
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+
+	#Economic Reconstruction
+	focus = {
+		id = VNC_economic_reconstruction
+		icon = GFX_goal_unknown
+		x = 4
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_export_the_culture_in_the_morea  }
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_core_of = VNC
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			increase_1MS = yes
+		}
+	}
+
+	#Aftermath of the war
+	focus = {
+		id = VNC_aftermath_of_the_war
+		icon = GFX_goal_unknown
+		x = 10
+		y = 0
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		completion_reward = {
+			add_ideas = VNC_victor_of_the_war
+			add_war_support = -0.1
+		}
+	}
+
+	#Reform the taxes
+	focus = {
+		id = VNC_reform_the_taxes
+		icon = GFX_goal_unknown
+		x = 4
+		y = 4
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_economic_reconstruction  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_consumer_goods_factor = -0.1 }
+			add_stability = 0.05
+			random_owned_state = {
+				limit = {
+					is_core_of = VNC
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = VNC_consumer_goods_minus_10
+		}
+	}
+
+	#Use the Venetian Treasurer
+	focus = {
+		id = VNC_use_the_venetian_treasurer
+		icon = GFX_goal_unknown
+		x = 4
+		y = 5
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_reform_the_taxes  }
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_core_of = VNC
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	#The death of Silvestro
+	focus = {
+		id = VNC_thedeathofsilvestro
+		icon = GFX_goal_unknown
+		x = 22
+		y = 0
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = VNC_death_of_silvestro_tooltip
+		}
+	}
+
+	#Andrea Tron
+	focus = {
+		id = VNC_andrea_tron
+		icon = GFX_goal_unknown
+		x = 21
+		y = 1
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_thedeathofsilvestro  }
+		mutually_exclusive = { focus = VNC_alvise_ii_mocenigo  }
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = VNC_andrea_tron_tooltip
+		}
+	}
+
+	#Revamp Shipyard Industry
+	focus = {
+		id = VNC_revamp_shipyard_industry
+		icon = GFX_goal_unknown
+		x = 2
+		y = 4
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_economic_reconstruction  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_industrial_capacity_dockyard = 0.1 }
+			custom_effect_tooltip = VNC_dockyard_output_plus_10
+		}
+	}
+
+	#Expand supplies
+	focus = {
+		id = VNC_expand_supplies
+		icon = GFX_goal_unknown
+		x = 2
+		y = 5
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_revamp_shipyard_industry  }
+		completion_reward = {
+			if = {
+				limit = {
+					has_full_control_of_state = 160
+				}
+				160 = { #Venice
+					add_building_construction = {
+						type = naval_base
+						level = 4
+						instant_build = yes
+						province = 1149
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_full_control_of_state = 103
+				}
+				103 = { #Dalmatia
+					add_building_construction = {
+						type = naval_base
+						level = 3
+						instant_build = yes
+						province = 11816
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 1
+						instant_build = yes
+						province = 11816
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_full_control_of_state = 921
+				}
+				921 = { #Corfu
+					add_building_construction = {
+						type = naval_base
+						level = 2
+						instant_build = yes
+						province = 10203
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 1
+						instant_build = yes
+						province = 10203
+					}
+				}
+			}
+
+			if = {
+				limit = {
+					has_full_control_of_state = 186
+				}
+				186 = { #Peloponnese
+					add_building_construction = {
+						type = naval_base
+						level = 3
+						instant_build = yes
+						province = 11965
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 1
+						instant_build = yes
+						province = 11965
+					}
+				}
+			}
+		}
+	}
+
+	#Venetian naval industry
+	focus = {
+		id = VNC_venetian_naval_industry
+		icon = GFX_goal_unknown
+		x = 2
+		y = 6
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_expand_supplies  }
+		completion_reward = {
+			random_owned_state = {
+				limit = {
+					is_coastal = yes
+					is_core_of = VNC
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					is_coastal = yes
+					is_core_of = VNC
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}					
+		}
+	}
+
+	#Choose the industrial future
+	focus = {
+		id = VNC_choose_the_industrial_future
+		icon = GFX_goal_unknown
+		x = 4
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			has_completed_focus = VNC_crisis_period_passed
+		}
+		prerequisite = { focus = VNC_old_traditions_on_the_sea  } prerequisite = { focus = VNC_workers_of_the_republic  }
+		completion_reward = {
+			custom_effect_tooltip = VNC_choose_the_industrial_future_tooltip
+			increase_2MS = yes
+			hidden_effect = {
+				if = {
+					limit = {
+						VNC = { has_completed_focus = VNC_andrea_tron }
+					}
+					country_event = venice.4
+				}
+				else_if = {
+					limit = {
+						VNC = { has_completed_focus = VNC_alvise_ii_mocenigo }
+					}
+					country_event = venice.3
+				}
+			}
+		}
+	}
+
+	#Reclaim the lagoon
+	focus = {
+		id = VNC_reclaim_the_lagoon
+		icon = GFX_goal_unknown
+		x = 4
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_use_the_venetian_treasurer  }
+		completion_reward = {
+			160 = { add_extra_state_shared_building_slots = 5 }
+		}
+	}
+
+	#Venetian craftmanship
+	focus = {
+		id = VNC_venetian_craftmanship
+		icon = GFX_goal_unknown
+		x = 6
+		y = 5
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_literacy_to_the_venetians  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_industrial_capacity_factory = 0.1 }
+			custom_effect_tooltip = VNC_factory_output_plus_10
+		}
+	}
+
+	#New civilian Industry
+	focus = {
+		id = VNC_new_civilian_industry
+		icon = GFX_goal_unknown
+		x = 2
+		y = 9
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			always = no
+		}
+		prerequisite = { focus = VNC_choose_the_industrial_future  }
+		mutually_exclusive = { focus = VNC_new_military_industry  }
+		completion_reward = {
+			custom_effect_tooltip = VNC_civilian_the_industrial_future_tooltip
+		}
+	}
+
+	#Workers of the republic
+	focus = {
+		id = VNC_workers_of_the_republic
+		icon = GFX_goal_unknown
+		x = 6
+		y = 7
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_tax_the_rich  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_industrial_capacity_factory = 0.15 }
+			custom_effect_tooltip = VNC_factory_output_plus_15
+			increase_1MS = yes
+		}
+	}
+
+	#Increase artillery production
+	focus = {
+		id = VNC_increase_artillery_production
+		icon = GFX_goal_unknown
+		x = 7
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_new_military_industry  } prerequisite = { focus = VNC_war_measures_act  }
+		completion_reward = {
+			add_ideas = VNC_military_investment
+			add_tech_bonus = {
+				name = infantry_artillery_bonus
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+				category = artillery
+			}
+		}
+	}
+
+	#Increase cavalry production
+	focus = {
+		id = VNC_increase_cavalry_production
+		icon = GFX_goal_unknown
+		x = 7
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_increase_artillery_production  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = VNC_military_investments
+				add_idea = VNC_military_investments_2
+			}
+		}
+	}
+
+	#Southerns uprisings
+	focus = {
+		id = VNC_southerns_uprisings
+		icon = GFX_goal_unknown
+		x = 30
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_liberate_the_south  }
+		completion_reward = {
+			TSC = {
+				add_ideas = VNC_southerns_uprisings_naples
+			}
+			SPR = {
+				country_event = venice.12
+			}
+		}
+	}
+
+	#Buy the lands
+	focus = {
+		id = VNC_buy_the_lands
+		icon = GFX_goal_unknown
+		x = 30
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_southerns_uprisings  }
+		completion_reward = {
+			SPR = {
+				country_event = venice.13
+			}
+		}
+	}
+
+	#Protect the Pope
+	focus = {
+		id = VNC_protect_the_pope
+		icon = GFX_goal_unknown
+		x = 32
+		y = 9
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_forge_an_alliance  }
+		completion_reward = {
+			diplomatic_relation = {
+				country = PAP
+				relation = guarantee
+			    active = yes
+			}
+		}
+	}
+
+	#Blessed by the lord
+	focus = {
+		id = VNC_blessed_by_the_lord
+		icon = GFX_goal_unknown
+		x = 32
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_protect_the_pope  }
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_in_faction_with = VNC
+				}
+			}
+			add_ideas = VNC_blessed_by_the_lord
+		}
+	}
+	
+
+	#Liberate the north
+	focus = {
+		id = VNC_liberate_the_north
+		icon = GFX_goal_unknown
+		x = 34
+		y = 9
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_forge_an_alliance  }
+		completion_reward = {
+			LOM = {
+				add_ideas = VNC_venetian_influence
+			}
+			LOM = {
+				add_opinion_modifier = {
+				    target = VNC
+				    modifier = small_increase
+				}
+			}
+			add_state_claim = 159
+		}
+	}
+
+	#Buy Milan
+	focus = {
+		id = VNC_buy_milan
+		icon = GFX_goal_unknown
+		x = 34
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_liberate_the_north  }
+		completion_reward = {
+			country_event = venice.17
+		}
+	}
+
+	#Integrate into Venice
+	focus = {
+		id = VNC_integrate_into_venice
+		icon = GFX_goal_unknown
+		x = 34
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			owns_state = 159
+		}
+		prerequisite = { focus = VNC_buy_milan  }
+		completion_reward = {
+			add_state_core = 159
+			add_stability = 0.1
+		}
+	}
+
+	#Indian trade company
+	focus = {
+		id = VNC_indian_trade_company
+		icon = GFX_goal_unknown
+		x = 52
+		y = 13
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_expand_the_east_indies  } prerequisite = { focus = VNC_indian_port  }
+	}
+
+	#Continue the neutral policy
+	focus = {
+		id = VNC_continue_the_neutral_policy
+		icon = GFX_goal_unknown
+		x = 39
+		y = 4
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			has_completed_focus = VNC_alvise_ii_mocenigo
+		}
+		prerequisite = { focus = VNC_foreign_affairs  }
+		completion_reward = {
+			add_political_power = 100
+			increase_1DS = yes
+		}
+	}
+
+	#Seek protections
+	focus = {
+		id = VNC_seek_protections
+		icon = GFX_goal_unknown
+		x = 43
+		y = 5
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_continue_the_neutral_policy  }
+		completion_reward = {
+			add_political_power = 50
+			#TODO: ADD ADVISORS
+		}
+		
+	}
+
+	#State visit to Austria
+	focus = {
+		id = VNC_state_visit_to_austria
+		icon = GFX_goal_unknown
+		x = 41
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_seek_protections  }
+		mutually_exclusive = { focus = VNC_send_alvise_to_london  } mutually_exclusive = { focus = VNC_flirt_with_the_french  }
+		completion_reward = {
+			AUS = {
+				add_opinion_modifier = {
+					target = VNC
+					modifier = small_increase
+				}
+				diplomatic_relation = {
+					country = VNC
+					relation = guarantee
+					active = yes
+				}
+			}
+		}
+	}
+
+	#Send Alvise to London
+	focus = {
+		id = VNC_send_alvise_to_london
+		icon = GFX_goal_unknown
+		x = 43
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_seek_protections  }
+		mutually_exclusive = { focus = VNC_state_visit_to_austria  } mutually_exclusive = { focus = VNC_flirt_with_the_french  }
+		completion_reward = {
+			ENG = {
+				add_opinion_modifier = {
+					target = VNC
+					modifier = small_increase
+				}
+				diplomatic_relation = {
+					country = VNC
+					relation = guarantee
+					active = yes
+				}
+			}
+		}
+		
+	}
+
+	#Flirt with the French
+	focus = {
+		id = VNC_flirt_with_the_french
+		icon = GFX_goal_unknown
+		x = 45
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_seek_protections  }
+		mutually_exclusive = { focus = VNC_state_visit_to_austria  } mutually_exclusive = { focus = VNC_send_alvise_to_london  }
+		completion_reward = {
+			FRA = {
+				add_opinion_modifier = {
+					target = VNC
+					modifier = small_increase
+				}
+				diplomatic_relation = {
+					country = VNC
+					relation = guarantee
+					active = yes
+				}
+			}
+		}
+	}
+
+	#No wars on us
+	focus = {
+		id = VNC_no_wars_on_us
+		icon = GFX_goal_unknown
+		x = 43
+		y = 7
+		cost = 15
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_send_alvise_to_london  focus = VNC_flirt_with_the_french  focus = VNC_state_visit_to_austria  }
+		completion_reward = {
+			add_ideas = VNC_no_wars_on_us
+		}
+	}
+
+	#A new era for Venice
+	focus = {
+		id = VNC_a_new_era_for_venice
+		icon = GFX_goal_unknown
+		x = 50
+		y = 4
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			has_completed_focus = VNC_andrea_tron
+		}
+		prerequisite = { focus = VNC_foreign_affairs  }
+		completion_reward = {
+			add_threat = 5
+			add_war_support = 0.1
+			increase_1WS = yes
+		}
+	}
+
+	#Restore the thalassocracy
+	focus = {
+		id = VNC_restore_the_thalassocracy
+		icon = GFX_goal_unknown
+		x = 50
+		y = 5
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_a_new_era_for_venice  }
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.1
+		}
+
+	}
+
+	#On the Adriatic Sea
+	focus = {
+		id = VNC_on_the_adriatic_sea
+		icon = GFX_goal_unknown
+		x = 48
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_restore_the_thalassocracy  }
+		mutually_exclusive = { focus = VNC_on_the_aegean_sea  }
+		completion_reward = {
+			transfer_state = 907
+		}
+	}
+
+	#On the Aegean Sea
+	focus = {
+		id = VNC_on_the_aegean_sea
+		icon = GFX_goal_unknown
+		x = 50
+		y = 6
+		cost = 2
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_restore_the_thalassocracy  }
+		mutually_exclusive = { focus = VNC_on_the_adriatic_sea  }
+		completion_reward = {
+			add_state_claim = 187
+			add_state_claim = 164
+			add_state_claim = 880
+
+		}
+	}
+
+	#On the Ionian Sea
+	focus = {
+		id = VNC_on_the_ionian_sea
+		icon = GFX_goal_unknown
+		x = 52
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_restore_the_thalassocracy  }
+		completion_reward = {
+			transfer_state = 116
+		}
+	}
+
+	#Time to choose the future
+	focus = {
+		id = VNC_time_to_choose_the_future
+		icon = GFX_goal_unknown
+		x = 50
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_on_the_aegean_sea  } prerequisite = { focus = VNC_on_the_ionian_sea  focus = VNC_on_the_adriatic_sea  } prerequisite = { focus = VNC_on_the_ionian_sea  }
+		completion_reward = {
+			add_political_power = 100
+			add_threat = 5
+			increase_1WS = yes
+		}
+	}
+
+	#Venice-Florence Pact
+	focus = {
+		id = VNC_veniceflorence_pact
+		icon = GFX_goal_unknown
+		x = 44
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_time_to_choose_the_future  }
+		completion_reward = {
+			increase_1DS = yes
+			if = {
+				limit = {
+					NOT = { has_rule = can_create_factions }
+				}
+				set_rule = { can_create_factions = yes }
+			}
+			create_faction = VNC_Covenant_of_the_lordships
+			TUS = {
+				country_event = generic.5
+			}
+		}
+	}
+
+	#Venice First
+	focus = {
+		id = VNC_venice_first
+		icon = GFX_goal_unknown
+		x = 56
+		y = 8
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_time_to_choose_the_future  }
+		completion_reward = {
+			add_political_power = 75
+			increase_1WS = yes
+		}
+	}
+
+	#The destiny of Italy
+	focus = {
+		id = VNC_the_destiny_of_italy
+		icon = GFX_goal_unknown
+		x = 44
+		y = 9
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_veniceflorence_pact  }
+		completion_reward = {
+			add_threat = 5
+			add_political_power = 100
+			add_war_support = 0.05
+			increase_1WS = yes
+		}
+	}
+
+	#March on Mantua
+	focus = {
+		id = VNC_march_on_mantua
+		icon = GFX_goal_unknown
+		x = 43
+		y = 10
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_the_destiny_of_italy  }
+		completion_reward = {
+			transfer_state = 967
+		}
+
+	}
+
+	#Destroy Genoa
+	focus = {
+		id = VNC_destroy_genoa
+		icon = GFX_goal_unknown
+		x = 45
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_the_destiny_of_italy  }
+		completion_reward = {
+			TUS = {
+				add_state_claim = 1
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = GEN
+			}
+		}
+	}
+
+	#Move on Milan
+	focus = {
+		id = VNC_move_on_milan
+		icon = GFX_goal_unknown
+		x = 44
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_destroy_genoa  } prerequisite = { focus = VNC_march_on_mantua  }
+		completion_reward = {
+			custom_effect_tooltip = VNC_invade_milan_tooltip
+		}
+	}
+
+	#Venetian Hegemony
+	focus = {
+		id = VNC_venetian_hegemony
+		icon = GFX_goal_unknown
+		x = 44
+		y = 13
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_destroy_the_papacy  }
+		completion_reward = {
+			add_ideas = VNC_venetian_hegemony_idea
+			add_state_core = 159
+			increase_1WS = yes
+		}
+		
+	}
+
+	#Out of the Mediterrean
+	focus = {
+		id = VNC_out_of_the_mediterrean
+		icon = GFX_goal_unknown
+		x = 50
+		y = 9
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_veniceflorence_pact  focus = VNC_venice_first  }
+		completion_reward = {
+			add_to_variable = { VNC_mv_navy_max_range_factor = 0.1 }
+		}
+	}
+
+	#Focus on Americas
+	focus = {
+		id = VNC_focus_on_americas
+		icon = GFX_goal_unknown
+		x = 48
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_out_of_the_mediterrean  }
+		mutually_exclusive = { focus = VNC_focus_on_the_east_indies  }
+		completion_reward = {
+			add_state_claim = 315
+			add_state_claim = 318
+			add_state_claim = 319
+			add_state_claim = 689
+			add_state_claim = 692
+			add_state_claim = 626
+		}
+	}
+
+	#Start the uprisings
+	focus = {
+		id = VNC_start_the_uprisings
+		icon = GFX_goal_unknown
+		x = 47
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_focus_on_americas  }
+		completion_reward = {
+			SPR = {
+				country_event = { id = venice.30 hours = 1 }
+			}
+		}
+	}
+
+	#Deal with England
+	focus = {
+		id = VNC_deal_with_england
+		icon = GFX_goal_unknown
+		x = 49
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_focus_on_americas  }
+		available = {
+			num_of_civilian_factories_available_for_projects > 15
+		}
+		completion_reward = {
+			country_event = venice.34
+		}
+	}
+
+	#Buy Ceuta
+	focus = {
+		id = VNC_buy_ceuta
+		icon = GFX_goal_unknown
+		x = 49
+		y = 12
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_deal_with_england  }
+		available = {
+			num_of_civilian_factories_available_for_projects > 20
+		}
+		completion_reward = {
+			SPR = {
+				country_event = { id = venice.40 hours = 1 }
+			}
+		}
+	}
+
+	#American Trade Company
+	focus = {
+		id = VNC_american_trade_company
+		icon = GFX_goal_unknown
+		x = 48
+		y = 13
+		cost = 5
+		 
+		prerequisite = { focus = VNC_buy_ceuta} prerequisite = { focus = VNC_buy_from_the_spanish  }
+	}
+
+	#Focus on the East Indies
+	focus = {
+		id = VNC_focus_on_the_east_indies
+		icon = GFX_goal_unknown
+		x = 52
+		y = 10
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_out_of_the_mediterrean  }
+		mutually_exclusive = { focus = VNC_focus_on_americas  }
+		completion_reward = {
+			add_state_claim = 853
+			add_state_claim = 336
+			add_state_claim = 335
+			add_state_claim = 851
+			add_state_claim = 1038
+		}
+	}
+
+	#Purchase East Indies
+	focus = {
+		id = VNC_purchase_east_indies
+		icon = GFX_goal_unknown
+		x = 51
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_focus_on_the_east_indies  }
+		available = {
+			num_of_civilian_factories_available_for_projects > 15
+		}
+		completion_reward = {
+			country_event = venice.43
+		}
+	}
+
+	#Fix the colonial administration
+	focus = {
+		id = VNC_expand_the_east_indies
+		icon = GFX_goal_unknown
+		x = 51
+		y = 12
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_purchase_east_indies  }
+		completion_reward = {
+			transfer_state = 672
+			transfer_state = 850
+			transfer_state = 857
+		}
+	}
+
+	focus = {
+		id = VNC_the_pearl_of_the_lion
+		icon = GFX_goal_unknown
+		x = 53
+		y = 11
+		prerequisite = { focus = VNC_focus_on_the_east_indies }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			create_wargoal = {
+				type = annex_everything
+				target = CHI
+			}
+		}
+	}
+
+	focus = {
+		id = VNC_indian_port
+		icon = GFX_goal_unknown
+		x = 53
+		y = 12
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_the_pearl_of_the_lion  }
+		available = {
+			num_of_civilian_factories_available_for_projects > 5
+		}
+		completion_reward = {
+			ENG = {
+				country_event = venice.49
+			}
+		}
+	}
+
+	#Veneçia Parona del Màr
+	focus = {
+		id = VNC_veneciaparonadelmar
+		icon = GFX_goal_unknown
+		x = 50
+		y = 14
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_american_trade_company  focus = VNC_indian_trade_company  }
+		completion_reward = {
+			add_to_variable = { VNC_ve_industrial_capacity_factory = 0.2 }
+			add_to_variable = { VNC_ve_consumer_goods_factor = -0.15 }
+			add_to_variable = { VNC_ve_research_speed_factor = 0.15 }
+			add_to_variable = { VNC_ve_production_speed_buildings_factor = 0.2 }
+		}
+	}
+
+	#Gràn Veneçia
+	focus = {
+		id = VNC_granvenecia
+		icon = GFX_goal_unknown
+		x = 50
+		y = 15
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_veneciaparonadelmar  }
+	}
+
+	#The great enemy
+	focus = {
+		id = VNC_the_great_enemy
+		icon = GFX_goal_unknown
+		x = 56
+		y = 9
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_venice_first  }
+		completion_reward = {
+			add_opinion_modifier = {
+					target = TUR
+					modifier = large_decrease
+				}
+			TUR = {
+				add_opinion_modifier = {
+					target = VNC
+					modifier = large_decrease
+				}
+			}
+			increase_1WS = yes
+		}
+	}
+
+	#Proclaim the Claims
+	focus = {
+		id = VNC_proclaim_the_claims
+		icon = GFX_goal_unknown
+		x = 56
+		y = 10
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_the_great_enemy  }
+		completion_reward = {
+			add_state_claim = 182
+			add_state_claim = 183
+			news_event = { id = mod.36 days = 1 }
+		}
+	}
+
+	#Secret Alliance
+	focus = {
+		id = VNC_secret_alliance
+		icon = GFX_goal_unknown
+		x = 55
+		y = 11
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_proclaim_the_claims  }
+		mutually_exclusive = { focus = VNC_a_new_ally  }
+		completion_reward = {
+			AUS = {
+				country_event = venice.20
+			}
+			SOV = {
+				country_event = venice.20
+			}
+			POL = {
+				country_event = venice.20
+			}
+		}
+	}
+
+	#A new Ally
+	focus = {
+		id = VNC_a_new_ally
+		icon = GFX_goal_unknown
+		x = 57
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_proclaim_the_claims  }
+		mutually_exclusive = { focus = VNC_secret_alliance  }
+		completion_reward = {
+			PER = {
+				country_event = venice.20
+			}
+		}
+	}
+
+	#Resume the Great Turkish War
+	focus = {
+		id = VNC_resume_the_great_turkish_war
+		icon = GFX_goal_unknown
+		x = 56
+		y = 12
+		cost = 10
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_a_new_ally  focus = VNC_secret_alliance  }
+		completion_reward = {
+			increase_1WS = yes
+			every_country = {
+				limit = {
+					has_idea = VNC_anti_ottoman_pact
+				}
+				declare_war_on = { type = annex_everything  target = TUR }
+			}
+			declare_war_on = { type = annex_everything  target = TUR }
+			hidden_effect = { 
+				add_timed_idea = { idea = VNC_start_of_the_war days = 120 } 
+			}
+		}
+	}
+
+	#Seek peace
+	focus = {
+		id = VNC_seek_peace
+		icon = GFX_goal_unknown
+		x = 56
+		y = 13
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		available = {
+			NOT = {
+				has_idea = VNC_start_of_the_war
+			}
+		}
+		prerequisite = { focus = VNC_resume_the_great_turkish_war  }
+		completion_reward = {
+			TUR = {
+				country_event = venice.24
+			}
+		}
+	}
+
+	focus = {
+		id = VNC_destroy_the_papacy
+		icon = GFX_goal_unknown
+		x = 44
+		y = 12
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = VNC_move_on_milan  }
+		completion_reward = {
+			TUS = {
+				add_state_claim = 2
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = PAP
+			}
+		}
+	}
+
+	focus = {
+		id = VNC_hire_military_leaders
+		icon = GFX_goal_unknown
+		x = 17
+		y = 10
+		prerequisite = { focus = VNC_war_measures_act }
+
+		cost = 2
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			custom_effect_tooltip = VNC_hire_military_leaders_tooltip
+		}
+	}
+}
